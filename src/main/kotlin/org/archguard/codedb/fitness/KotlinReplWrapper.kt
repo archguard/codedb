@@ -1,29 +1,30 @@
 package org.archguard.codedb.fitness
 
-import org.jetbrains.kotlinx.jupyter.*
+import org.jetbrains.kotlinx.jupyter.EvalRequestData
+import org.jetbrains.kotlinx.jupyter.KernelConfig
+import org.jetbrains.kotlinx.jupyter.ReplForJupyter
+import org.jetbrains.kotlinx.jupyter.ReplForJupyterImpl
+import org.jetbrains.kotlinx.jupyter.RuntimeKernelProperties
 import org.jetbrains.kotlinx.jupyter.api.Code
-import org.jetbrains.kotlinx.jupyter.libraries.*
-import org.jetbrains.kotlinx.jupyter.messaging.CommManagerImpl
+import org.jetbrains.kotlinx.jupyter.libraries.EmptyResolutionInfoProvider
+import org.jetbrains.kotlinx.jupyter.libraries.LibraryResolver
 import org.jetbrains.kotlinx.jupyter.messaging.DisplayHandler
-import org.jetbrains.kotlinx.jupyter.messaging.NoOpDisplayHandler
-import org.jetbrains.kotlinx.jupyter.repl.creating.MockJupyterConnection
-import org.jetbrains.kotlinx.jupyter.repl.creating.createRepl
-import org.jetbrains.kotlinx.jupyter.startup.KernelConfig
-import org.jetbrains.kotlinx.jupyter.startup.createKernelPorts
 import org.slf4j.LoggerFactory
 import java.io.File
 import kotlin.script.experimental.jvm.util.KotlinJars
 
-const val standardResolverBranch = "master"
-
 class KotlinReplWrapper {
     private val logger = LoggerFactory.getLogger(this.javaClass)
     private val repl: ReplForJupyter
-    val standardResolverRuntimeProperties = object : ReplRuntimeProperties by defaultRuntimeProperties {
-        override val currentBranch: String
-            get() = standardResolverBranch
-    }
-
+    private val replRuntimeProperties = RuntimeKernelProperties(
+        mapOf(
+            "version" to "0.11.0.89.dev1",
+            "currentBranch" to "stable-kotlin",
+            "currentSha" to "3c9c34dae3d4a334809d3bb078012b743b2bd618",
+            "librariesFormatVersion" to "2",
+            "jvmTargetForSnippets" to "11"
+        )
+    )
 
     init {
         this.repl = this.makeEmbeddedRepl()
@@ -48,39 +49,28 @@ class KotlinReplWrapper {
         embeddedClasspath = embeddedClasspath.distinctBy { it.name } as MutableList<File>
         logger.info("classpath: $embeddedClasspath")
 
-        val kernelConfig = KernelConfig(
-            ports = createKernelPorts { socket -> 8080 },
+        val config = KernelConfig(
+            ports = listOf(8080),
             transport = "tcp",
             signatureScheme = "hmac1-sha256",
             signatureKey = "",
             scriptClasspath = embeddedClasspath,
             homeDir = null,
+            libraryResolver = resolveArchGuardLibs(),
+            embedded = true,
+            resolutionInfoProvider = EmptyResolutionInfoProvider,
         )
 
-        val connection = MockJupyterConnection
-        val commManger = CommManagerImpl(connection)
-//        val notebook = NotebookImpl(replRuntimeProperties, connection, commManger)
-//        val librariesScanner = LibrariesScanner(notebook)
-
-
-        val standardResolutionInfoProvider = getDefaultClasspathResolutionInfoProvider()
-        val resolver = getStandardResolver(".", standardResolutionInfoProvider)
-
-//        val standardResolutionInfoProvider = getDefaultClasspathResolutionInfoProvider()
-        return createRepl(
-            standardResolutionInfoProvider,
-            embeddedClasspath,
-            isEmbedded = true,
-            homeDir = null,
-            runtimeProperties = standardResolverRuntimeProperties,
-            displayHandler = NoOpDisplayHandler,
-            mavenRepositories = defaultRepositories,
-            libraryResolver = resolver
-        )
+        return ReplForJupyterImpl(config, this.replRuntimeProperties)
     }
 
-    fun eval(code: Code, jupyterId: Int = -1, storeHistory: Boolean = true) =
-        repl.eval(EvalRequestData(code, jupyterId, storeHistory))
+    fun eval(
+        code: Code,
+        displayHandler: DisplayHandler? = null,
+        jupyterId: Int = -1,
+        storeHistory: Boolean = true,
+    ) =
+        repl.eval(EvalRequestData(code, displayHandler, jupyterId, storeHistory))
 
     private fun resolveArchGuardLibs(): LibraryResolver {
         val lib = "archguard" to """
