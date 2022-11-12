@@ -4,13 +4,23 @@
 
 Todos:
 
-- [ ] align APIs
-  - test cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=http --output=json --path=. --server-url=http://localhost:8084`
-- [ ] new features
+- [ ] Fitness function Define
+  - [ ] Math integration
+  - [ ] Data integration
+- [ ] Incremental Computing
+  - [ ] annotated DSL
+- [ ] DSL Query
   - [ ] search by file name
   - [ ] search by ast
   - [ ] search by regex
 - [ ] feeder  
+  - [ ] test coverage
+  - [ ] source code
+  - [ ] security
+  - [ ] sonarqube
+  - [ ] ...
+- [ ] align APIs
+- [ ] REPL environment
 
 ## What is it?
 
@@ -18,7 +28,13 @@ CodeDB is a tool for searching code snippets.
 It is a command line tool that can be used to search code snippets from a database of code snippets.
 It is written in Kotlin and uses MongoDB as the database backend.
 
-## How to use it?
+
+
+## Development
+
+## Scan Data
+
+test cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=http --output=json --path=. --server-url=http://localhost:8084`
 
 ### Install
 
