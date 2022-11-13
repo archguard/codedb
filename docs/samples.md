@@ -44,3 +44,17 @@ class Loc : DefaultTask {
     }
 }
 ```
+
+## Query DSL
+
+like: [https://prestodb.io/](https://prestodb.io/) ?
+
+```kotlin
+val query = Query {
+    select {
+        from("table")
+        where("id" eq 1)
+    }
+}
+```
+ 
