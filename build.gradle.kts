@@ -44,6 +44,10 @@ dependencies {
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
+	// for tasking
+	implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.21")
+
+
 	testImplementation("io.kotest:kotest-assertions-core:5.5.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
