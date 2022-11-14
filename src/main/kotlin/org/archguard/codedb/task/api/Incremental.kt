@@ -8,4 +8,4 @@ package org.archguard.codedb.task.api
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.FIELD
 )
-annotation class Input 
+annotation class Incremental
