@@ -1,6 +1,9 @@
 package org.archguard.codedb.build.task.api
 
-open class DefaultTask : Task {
+import org.archguard.codedb.build.internal.Project
+
+abstract class AbstractTask() : Task {
+    open lateinit var project: Project
     override fun setDependsOn(dependsOnTasks: Iterable<*>) {
         TODO("Not yet implemented")
     }
