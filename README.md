@@ -7,8 +7,11 @@ Todos:
 - [ ] Fitness function Define
   - [ ] Math integration
   - [ ] Data integration
-- [ ] Incremental Computing
+- [ ] Incremental Computing Tasks
   - [ ] annotated DSL
+  - [ ] Builtin Task
+    - [ ] Query Task
+    - [ ] Index Task
 - [ ] DSL Query
   - [ ] search by file name
   - [ ] search by ast

@@ -1,4 +1,4 @@
-package org.archguard.codedb.task.api
+package org.archguard.codedb.build.task.core
 
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)

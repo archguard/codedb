@@ -1,5 +1,8 @@
-package org.archguard.codedb.task.api
+package org.archguard.codedb.build.task.core
 
+/**
+ * intermediate will create a new document/table/schema in the database
+ */
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 @Target(
@@ -8,4 +11,4 @@ package org.archguard.codedb.task.api
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.FIELD
 )
-annotation class Output
+annotation class Intermediate(val name: String = "")
