@@ -1,4 +1,4 @@
-package org.archguard.codedb.code.domain
+package org.archguard.codedb.server.code.domain
 
 import kotlinx.serialization.Serializable
 import org.springframework.data.annotation.Id

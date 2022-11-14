@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness
+package org.archguard.codedb.server.fitness
 
 import org.jetbrains.kotlinx.jupyter.api.libraries.LibraryDefinition
 import org.jetbrains.kotlinx.jupyter.api.libraries.LibraryReference

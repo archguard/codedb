@@ -1,4 +1,4 @@
-package org.archguard.codedb.hello
+package org.archguard.codedb.server.hello
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController

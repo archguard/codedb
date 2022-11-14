@@ -1,4 +1,4 @@
-package org.archguard.codedb
+package org.archguard.codedb.server
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.data.mongo.MongoReactiveDataAutoConfiguration

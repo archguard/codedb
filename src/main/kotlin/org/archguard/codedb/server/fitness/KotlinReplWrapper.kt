@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness
+package org.archguard.codedb.server.fitness
 
 import org.jetbrains.kotlinx.jupyter.EvalRequestData
 import org.jetbrains.kotlinx.jupyter.KernelConfig
