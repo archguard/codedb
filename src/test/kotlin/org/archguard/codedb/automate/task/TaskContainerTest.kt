@@ -7,7 +7,7 @@ internal class TaskContainerTest {
     @Test
     fun `should register task`() {
         val taskContainer = TaskContainer()
-        taskContainer.register("Hello", LocTask::class.java, "")
-
+        val task = taskContainer.create("Hello", LocTask::class)
+        task.run()
     }
 }
