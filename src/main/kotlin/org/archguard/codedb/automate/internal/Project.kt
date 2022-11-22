@@ -1,4 +1,4 @@
-package org.archguard.codedb.build.internal
+package org.archguard.codedb.automate.internal
 
 interface Project {
     var name: String

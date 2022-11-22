@@ -1,6 +1,6 @@
-package org.archguard.codedb.build.task
+package org.archguard.codedb.automate.task
 
-import org.archguard.codedb.build.task.api.Task
+import org.archguard.codedb.automate.task.api.Task
 
 abstract class TaskExecutor {
     fun execute(task: Task, context: TaskExecutionContext): TaskExecuterResult {

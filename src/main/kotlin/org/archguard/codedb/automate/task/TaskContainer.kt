@@ -1,7 +1,7 @@
-package org.archguard.codedb.build.task
+package org.archguard.codedb.automate.task
 
-import org.archguard.codedb.build.internal.Action
-import org.archguard.codedb.build.task.api.Task
+import org.archguard.codedb.automate.internal.Action
+import org.archguard.codedb.automate.task.api.Task
 
 class TaskContainer {
     private var objects: List<Task> = listOf()

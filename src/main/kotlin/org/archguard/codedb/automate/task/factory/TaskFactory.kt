@@ -1,6 +1,6 @@
-package org.archguard.codedb.build.task.factory
+package org.archguard.codedb.automate.task.factory
 
-import org.archguard.codedb.build.task.api.Task
+import org.archguard.codedb.automate.task.api.Task
 
 interface TaskFactory {
     fun <S : Task> create(taskIdentity: TaskIdentity<S>, constructorArgs: Array<Any>): S

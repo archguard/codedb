@@ -1,8 +1,8 @@
-package org.archguard.codedb.build.task
+package org.archguard.codedb.automate.task
 
-import org.archguard.codedb.build.DefaultProject
-import org.archguard.codedb.build.task.api.AbstractTask
-import org.archguard.codedb.build.task.core.Input
+import org.archguard.codedb.automate.DefaultProject
+import org.archguard.codedb.automate.task.api.AbstractTask
+import org.archguard.codedb.automate.task.core.Input
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.primaryConstructor
 

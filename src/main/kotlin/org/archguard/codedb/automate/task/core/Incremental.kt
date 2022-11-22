@@ -1,4 +1,4 @@
-package org.archguard.codedb.build.task.core
+package org.archguard.codedb.automate.task.core
 
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
@@ -8,4 +8,4 @@ package org.archguard.codedb.build.task.core
     AnnotationTarget.PROPERTY_SETTER,
     AnnotationTarget.FIELD
 )
-annotation class Output
+annotation class Incremental

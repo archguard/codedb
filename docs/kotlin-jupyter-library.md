@@ -1,5 +1,11 @@
 # Kotlin Jupyter Library for refs
 
+## [Lets-Plot for Kotlin](https://github.com/JetBrains/lets-plot-kotlin)
+
+Lets-Plot for Kotlin is a Kotlin API for the Lets-Plot library - an open-source plotting library for statistical data.
+
+Lets-Plot Kotlin API is built on the principles of layered graphics first described in the Leland Wilkinson work The Grammar of Graphics and later implemented in the ggplot2 package for R.
+
 ## [jlatexmath](https://github.com/opencollab/jlatexmath)
 
 > JLaTeXMath is a Java library. Its main purpose is to display mathematical formulas written in LaTeX. JLaTeXMath is the best Java library to display LaTeX code.

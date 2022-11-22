@@ -1,4 +1,4 @@
-package org.archguard.codedb.build.task.api
+package org.archguard.codedb.automate.task.api
 
 interface Task : Comparable<Task> {
     var name: String
