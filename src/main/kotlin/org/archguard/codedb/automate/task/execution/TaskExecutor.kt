@@ -1,4 +1,4 @@
-package org.archguard.codedb.automate.task
+package org.archguard.codedb.automate.task.execution
 
 import org.archguard.codedb.automate.task.api.Task
 
