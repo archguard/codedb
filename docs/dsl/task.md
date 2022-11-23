@@ -1,4 +1,4 @@
-# Pipeline DSL
+ # Pipeline DSL
 
 ## Fitness function
 
@@ -8,6 +8,17 @@ var fitness = { model, data ->
     // data is a map of data
     // return a map of fitness values
 }
+```
+
+### Ranking Function 
+
+```javascript
+var ranking: HashMap<String, Range> = hashmapOf(
+    "fitness" to 0.0..1.0,
+    "accuracy" to 0.0..1.0,
+    "precision" to 0.0..1.0,
+    "recall" to 0.0..1.0,
+    "f1" to 0.0..1.0
 ```
 
 ## Query
@@ -45,7 +56,25 @@ task("diff") {
 }
 ```
 
+### Database to DSL
 
+```kotlin
+var systemName = "systemid"
+
+select("git") {
+    start = "HEAD~1"
+    end = "HEAD"
+
+    systemId = select("system") {
+        name = systemName
+    }
+}
+
+// or
+var data = query("select * from git where systemId = :systemId") {
+    systemId = systemName
+}
+```
 
 ## Model Abstract
 
@@ -108,8 +137,23 @@ like [Span](https://opencensus.io/tracing/span/)
 ![](https://opencensus.io/img/trace-trace.png)
 
 
-
 ### Metrics Data Model
 
 [Metrics Data Model](https://opentelemetry.io/docs/reference/specification/metrics/data-model/)
+
+## Job Engine ?
+
+Cron Job
+
+```kotlin
+var cron = "0 0 12 * * ?"
+var cron_parser = CronParser(cron)
+class CronParser(str: String) {
+    var cron = str
+    var cron_expr = CronExpression(cron)
+    fun next(): Date {
+        return cron_expr.nextValidTimeAfter(Date())
+    }
+}
+```
 
