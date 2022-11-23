@@ -55,6 +55,11 @@ task("diff") {
   - Skywalking
   - Jaeger
   - Zipkin
+- [ ] OS statistics
+  - collectd
+  - Prometheus
+  - Grafana
+  - statsd
 - [ ] Quality
   - SonarQube
   - CodeClimate
@@ -88,4 +93,8 @@ task("diff") {
 ```kotlin
 class GitModel(val hash: String)
 ```
+
+### Metrics Data Model
+
+[Metrics Data Model](https://opentelemetry.io/docs/reference/specification/metrics/data-model/)
 
