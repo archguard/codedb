@@ -1,8 +1,31 @@
 # Pipeline DSL
 
-Sample Task Call
+## Fitness function
 
-```groovy
+```kotlin
+var fitness = { model, data -> 
+    // model is a map of parameters
+    // data is a map of data
+    // return a map of fitness values
+}
+```
+
+## Query
+
+[presto-parser](https://github.com/prestodb/presto/tree/master/presto-parser)
+
+[https://github.com/querydsl/querydsl](https://github.com/querydsl/querydsl)
+
+```kotlin
+var tuples: List<Tuple>  = queryFactory.select(
+        person.lastName, person.firstName, person.yearOfBirth)
+        .from(person)
+        .fetch();
+```
+
+## Flow Engine for Task ?
+
+```kotlin
 task("loc") {
     // construct vars
     inputs = [files("src"), ]
@@ -10,16 +33,19 @@ task("loc") {
 }
 ```
 
-### Presto SQL Task
+Git Hash ? 
 
-[presto-parser](https://github.com/prestodb/presto/tree/master/presto-parser)
+```kotlin
+// range
+task("diff") {
+    inputs = [git("HEAD~1..HEAD"), ]
+    outputs = dir("build/diff")
+}
+```
 
-[https://github.com/querydsl/querydsl](https://github.com/querydsl/querydsl)
+## Model Abstract
 
-```java
-List<Tuple> tuples = queryFactory.select(
-        person.lastName, person.firstName, person.yearOfBirth)
-        .from(person)
-        .fetch();
+```kotlin
+class GitModel(val hash: String)
 ```
 
