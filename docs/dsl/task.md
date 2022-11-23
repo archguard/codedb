@@ -14,6 +14,8 @@ var fitness = { model, data ->
 
 [presto-parser](https://github.com/prestodb/presto/tree/master/presto-parser)
 
+[Presto MongoDB Connector](https://prestodb.io/docs/current/connector/mongodb.html)
+
 [https://github.com/querydsl/querydsl](https://github.com/querydsl/querydsl)
 
 ```kotlin
@@ -44,6 +46,44 @@ task("diff") {
 ```
 
 ## Model Abstract
+
+- [x] SourceCode => Chapi
+- [ ] Version Management
+  - Git
+- [ ] APM
+  - OpenTelemetry
+  - Skywalking
+  - Jaeger
+  - Zipkin
+- [ ] Quality
+  - SonarQube
+  - CodeClimate
+  - Codecov
+  - Coveralls
+  - Codacy
+- [ ] CI/CD
+  - Jenkins
+  - Travis
+  - CircleCI
+  - GitLab
+  - Bamboo
+  - TeamCity
+  - GoCD
+  - Drone
+  - Buildkite
+- [ ] Dependencies => SCA ?
+  - DependencyCheck
+  - OWASP Dependency-Check
+  - DependencyBot
+  - Snyk
+- [ ] Container
+  - Docker
+  - Kubernetes
+  - Docker Compose
+- [ ] Security
+  - OWASP
+  - Sonatype
+  - WhiteSource
 
 ```kotlin
 class GitModel(val hash: String)
