@@ -8,8 +8,9 @@ class DefaultTaskFactory : TaskFactory {
     private val instantiator = DirectInstantiator()
 
     override fun <S : Task> create(identity: TaskIdentity<S>, constructorArgs: Array<Any>): S {
-        // todo: create task in here
-        val instance = instantiator.newInstance(identity.type, *constructorArgs)
+        val instance = instantiator.newInstanceByTypename(identity.type, *constructorArgs)
         return identity.type.cast(instance)
     }
+
+    // todo: add process to get classInfo
 }

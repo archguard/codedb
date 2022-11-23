@@ -9,10 +9,10 @@ import org.archguard.codedb.automate.task.core.TaskAction
 @CacheableTask
 abstract class LocTask : DefaultTask() {
     @get:Input
-    abstract val source: Any
+    val source = "src/main/kotlin"
 
     @get:Output
-    abstract val output: Any
+    val output = ""
 
     @TaskAction
     fun run() {
