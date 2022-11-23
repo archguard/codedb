@@ -45,6 +45,8 @@ task("diff") {
 }
 ```
 
+
+
 ## Model Abstract
 
 - [x] SourceCode => Chapi
@@ -52,6 +54,7 @@ task("diff") {
   - Git
 - [ ] APM
   - OpenTelemetry
+    - OpenCensus/OpenTracing
   - Skywalking
   - Jaeger
   - Zipkin
@@ -93,6 +96,18 @@ task("diff") {
 ```kotlin
 class GitModel(val hash: String)
 ```
+
+### Static Tracing API
+
+like [Span](https://opencensus.io/tracing/span/)
+
+> A span represents a single operation in a trace. A span could be representative of an HTTP request, a remote procedure call (RPC), a database query, or even the path that a code takes in user code, etc.
+
+在 ArchGuard 构建中生成静态的 Tracing API，可以和动态的 Tracing API 结合起来，形成完整的 Tracing 数据。
+
+![](https://opencensus.io/img/trace-trace.png)
+
+
 
 ### Metrics Data Model
 
