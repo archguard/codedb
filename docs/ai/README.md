@@ -1,5 +1,15 @@
 # AI
 
+几个方向
+
+- 正则表达式理解
+  - Multi-modal Synthesis of Regular Expressions
+- SQL 生成
+  - SQLizer: Query Synthesis from Natural Language
+- 从代码到语义
+  - Bimodal Modelling of Source Code and Natural Language
+- 从语义到代码
+
 
 ## To AI ?
 
