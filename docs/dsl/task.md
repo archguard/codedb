@@ -39,6 +39,7 @@ var tuples: List<Tuple>  = queryFactory.select(
 ## Flow Engine for Task ?
 
 ```kotlin
+@Parallel // for inputs ?
 task("loc") {
     // construct vars
     inputs = [files("src"), ]

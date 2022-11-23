@@ -10,6 +10,7 @@ val fitness = Fitness { x: Double -> x * x }
 
 ```kotlin
 @Input
+@Parallel // for inputs ?
 fun loc(context: Context): Int {
     
 }
