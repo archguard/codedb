@@ -38,6 +38,8 @@ var tuples: List<Tuple>  = queryFactory.select(
 
 ## Flow Engine for Task ?
 
+Workflow Engine: [https://github.com/meirwah/awesome-workflow-engines](https://github.com/meirwah/awesome-workflow-engines)
+
 ```kotlin
 @Parallel // for inputs ?
 task("loc") {
