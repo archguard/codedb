@@ -1,6 +1,6 @@
 package org.archguard.codedb.automate.task
 
-import org.archguard.codedb.automate.task.builtin.LocTask
+import org.archguard.codedb.automate.builtin.LocTask
 import org.junit.jupiter.api.Test
 
 internal class TaskContainerTest {
