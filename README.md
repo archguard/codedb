@@ -20,6 +20,8 @@ Architecture diagram
 +------------------------------------------------------------+
 ```
 
+Multiple-platform Kotlin ?
+
 # Roadmap
 
 Todos:
