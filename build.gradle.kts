@@ -47,6 +47,7 @@ dependencies {
 	// for tasking
 	implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.21")
 
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
 	testImplementation("io.kotest:kotest-assertions-core:5.5.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
