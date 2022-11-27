@@ -28,6 +28,11 @@ Model: Architecture Twin ?
 
 Todos:
 
+- [ ] Query DSL 
+    - [ ] search by file name
+    - [ ] search by ast
+    - [ ] search by regex
+    - [ ] search by code snippet
 - [ ] TaskEngine
     - [ ] annotated DSL
     - [ ] Task API
@@ -38,10 +43,11 @@ Todos:
         - [ ] NoC
         - [ ] ...
     - [ ] Incremental Computing
-- [ ] Fitness function Define
+- [ ] Fitness Engine
+    - [ ] Fitness function 
     - [ ] Math integration API
     - [ ] Data integration DSL
-- [ ] DataService
+- [ ] MetricModeling
     - Builtin Data
         - [ ] Ast Tree with TreeSitter ??
         - [ ] Chapi API ??
@@ -51,14 +57,19 @@ Todos:
         - [ ] security
         - [ ] sonarqube
         - [ ] ...
-    - [ ] DSL Query
-        - [ ] search by file name
-        - [ ] search by ast
-        - [ ] search by regex
-        - [ ] search by code snippet
 - [ ] Workbench
     - [ ] REPL environment
     - [ ] Kotlin Jupyter
+- [ ] AI Algorithm
+    - [ ] ML Algorithm
+        - [ ] KNN
+        - [ ] SVM
+        - [ ] ...
+- [ ] Data Visualization
+    - [ ] CodeCity
+      - [ ] Three.js
+    - [ ] D3.js
+    - [ ] ...
 
 Migrations:
 
