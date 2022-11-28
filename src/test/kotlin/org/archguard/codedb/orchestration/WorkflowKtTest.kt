@@ -6,15 +6,17 @@ internal class WorkflowKtTest {
     @Test
     fun dsl_sample() {
         workflow("WorkflowName") {
-            task("TaskName") {
+            task("CreateData") {
+                output = String::class
                 taskAction = {
-                    println("Hello World")
+                    listOf("Hello", "World")
                 }
             }
             task("TaskName2") {
-                dependsOn("TaskName", "TaskName 1")
+                after("TaskName", "TaskName 1")
+
                 input = String::class
-                output = Integer::class
+                output = String::class
 
                 taskAction {
                     val input = it as String
@@ -25,6 +27,5 @@ internal class WorkflowKtTest {
 
             }
         }
-        // .binding()
     }
 }
