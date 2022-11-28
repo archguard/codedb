@@ -20,7 +20,41 @@ class TaskDeclaration(val taskName: String) {
         println(taskName)
     }
 
+    fun trigger(function: TriggerDeclaration.() -> Unit) {
+
+    }
+
     var taskAction: () -> Unit = {}
+}
+
+class TriggerDeclaration {
+    /**
+     * External Event trigger
+     */
+    fun external(function: () -> Unit) {
+
+    }
+
+    /**
+     * One Time Trigger
+     */
+    fun onetime(time: String) {
+
+    }
+
+    /**
+     * Cron Trigger
+     */
+    fun cron(function: () -> Unit) {
+
+    }
+
+    /**
+     * Interval Trigger
+     */
+    fun interval(function: () -> Unit) {
+
+    }
 }
 
 class WorkflowDeclaration(val flowName: String) {
