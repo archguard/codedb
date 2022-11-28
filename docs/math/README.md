@@ -68,7 +68,6 @@ the Simulation and Optimization Laboratory, Department of Computer Science and O
 h at Université de Montréal. It provides facilities for:
 
 
-
 ## LogicNG
 
 https://github.com/logic-ng/LogicNG
@@ -81,3 +80,8 @@ FormulaFactory f = new FormulaFactory();
 PropositionalParser p = new PropositionalParser(f);
 Formula formula = p.parse("A & ~(B | ~C)");
 ```
+
+## DataSketches
+
+https://github.com/apache/datasketches-java
+
