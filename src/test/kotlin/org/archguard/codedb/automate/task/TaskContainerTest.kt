@@ -16,12 +16,20 @@ internal class TaskContainerTest {
     fun dsl_sample() {
         workflow("WorkflowName") {
             task("TaskName") {
-//                taskAction {
-//                    println("Hello World")
-//                }
+                taskAction = {
+                    println("Hello World")
+                }
             }
             task("TaskName2") {
+                input {
+                    "String"
+                }
+                output {
 
+                }
+                taskAction {
+
+                }
             }
             handler("sample") {
 
@@ -29,11 +37,21 @@ internal class TaskContainerTest {
         }
     }
 
-    private fun handler(handleName: String, function: (input: Any) -> Unit) {
+    class TaskDeclaration {
+        fun input(function: () -> Any) {}
+        fun output(function: () -> Any) {}
+        fun taskAction(function: () -> Any) {}
+
+        var input: ()  -> Unit = {}
+        var output: () -> Unit = {}
+        var taskAction: () -> Unit = {}
+    }
+
+    private fun handler(handleName: String, function: () -> Unit) {
         println("handler: $handleName")
     }
 
-    private fun task(taskName: String, function: () -> Unit) {
+    private fun task(taskName: String, function: TaskDeclaration.() -> Unit) {
         println("task: $taskName")
     }
 
