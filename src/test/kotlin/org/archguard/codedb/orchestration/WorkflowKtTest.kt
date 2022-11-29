@@ -15,8 +15,12 @@ internal class WorkflowKtTest {
                 }
             }
 
+            project("ProjectName") {
+                repo("https://github.com/feakin/fklang")
+            }
+
             task("Create Data") {
-                input = git("https://github.com/feakin/fklang")
+                input = git(project.repo)
                 // we don't need to config output, it will be automatically generated
                 output = auto()
 

@@ -185,7 +185,7 @@ class TriggerDeclaration {
     }
 }
 
-class WorkflowDeclaration(val flowName: String) {
+class WorkflowDeclaration(val flowName: String, val project: ProjectDeclaration = ProjectDeclaration("default")) {
     var tasks: HashMap<String, TaskDeclaration> = HashMap()
 
     // task @Input
@@ -203,6 +203,21 @@ class WorkflowDeclaration(val flowName: String) {
 
     fun trigger(function: TriggerDeclaration.() -> Unit) {
 
+    }
+
+    fun project(projectName: String, function: ProjectDeclaration.() -> Unit) {
+        val projectDeclaration = ProjectDeclaration(projectName)
+        projectDeclaration.function()
+    }
+}
+
+class ProjectDeclaration(val projectName: String, val repo: String = "") {
+    fun name(name: String) {
+        println("project name: $name")
+    }
+
+    fun repo(url: String): Boolean {
+        return IOHandler().git(url)
     }
 }
 
