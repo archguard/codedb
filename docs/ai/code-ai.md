@@ -7,6 +7,7 @@ https://github.com/github/CodeSearchNet
 
 >  Datasets, tools, and benchmarks for representation learning of code.
 
+![Model Architecture](model-architecture.png)
 
 ## Semantic Code Search
 
