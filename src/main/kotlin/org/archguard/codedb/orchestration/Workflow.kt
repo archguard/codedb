@@ -78,10 +78,6 @@ class TaskDeclaration(val taskName: String) {
         println(taskNames)
     }
 
-    fun trigger(function: TriggerDeclaration.() -> Unit) {
-
-    }
-
     /**
      * for current support for MongoDB only
      */
@@ -128,6 +124,10 @@ class WorkflowDeclaration(val flowName: String) {
         tasks[taskName] = taskDeclaration
 
         taskDeclaration.function()
+    }
+
+    fun trigger(function: TriggerDeclaration.() -> Unit) {
+
     }
 
     fun handler(handlerName: String, function: () -> Unit) {}

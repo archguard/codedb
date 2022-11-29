@@ -6,14 +6,15 @@ internal class WorkflowKtTest {
     @Test
     fun dsl_sample() {
         workflow("WorkflowName") {
-            task("CreateData") {
-                trigger {
-                    onetime("2021-10-01T00:00:00Z")
-                    cron("0 0 0 * * ?")
-                    external {
-                        // do something
-                    }
+            trigger {
+                onetime("2021-10-01T00:00:00Z")
+                cron("0 0 0 * * ?")
+                external {
+                    // do something
                 }
+            }
+
+            task("CreateData") {
 
                 input = "src/main"
                 output = database("sample")
