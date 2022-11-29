@@ -54,6 +54,9 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 
 	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+
+	testImplementation("com.phodal.chapi:chapi-ast-java:2.0.0-beta.9")
+	testImplementation("com.phodal.chapi:chapi-domain:2.0.0-beta.9")
 }
 
 tasks.withType<KotlinCompile> {
