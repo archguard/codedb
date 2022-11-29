@@ -9,15 +9,10 @@ internal class WorkflowKtTest {
             task("CreateData") {
                 trigger {
                     onetime("2021-10-01T00:00:00Z")
-//                    cron({
-//                        second = "0"
-//                        minute = "0"
-//                        hour = "0"
-//                        dayOfMonth = "1"
-//                        month = "1"
-//                        dayOfWeek = "1"
-//                        year = "2021"
-//                    })
+                    cron("0 0 0 * * ?")
+                    external {
+                        // do something
+                    }
                 }
                 output = String::class
                 taskAction = {

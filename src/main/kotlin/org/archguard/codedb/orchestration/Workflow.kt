@@ -2,15 +2,47 @@ package org.archguard.codedb.orchestration
 
 import kotlin.reflect.KClass
 
+class CronTime(
+    val second: Int,
+    val minute: Int,
+    val hour: Int,
+    val dayOfMonth: Int,
+    val month: Int,
+    val dayOfWeek: Int,
+    val year: Int
+) {
+    fun from(str: String): CronTime {
+        val tokens = str.split(" ")
+        if (tokens.size != 6) {
+            throw IllegalArgumentException("Invalid cron time format: $str")
+        }
+        return CronTime(
+            second = tokens[0].toInt(),
+            minute = tokens[1].toInt(),
+            hour = tokens[2].toInt(),
+            dayOfMonth = tokens[3].toInt(),
+            month = tokens[4].toInt(),
+            dayOfWeek = tokens[5].toInt(),
+            year = 0
+        )
+    }
+}
+
 class TaskDeclaration(val taskName: String) {
     var input: KClass<*>? = null
     var output: KClass<*>? = null
 
-    fun input(function: () -> Any) {}
+    fun input(function: () -> Any) {
+        function()
+    }
 
-    fun output(function: () -> Any) {}
+    fun output(function: () -> Any) {
+        function()
+    }
 
-    fun taskAction(function: (input: Any) -> Any) {}
+    fun taskAction(function: (input: Any) -> Any) {
+
+    }
 
     fun after(vararg taskName: String) {
         println(taskName)
@@ -32,7 +64,7 @@ class TriggerDeclaration {
      * External Event trigger
      */
     fun external(function: () -> Unit) {
-
+        function()
     }
 
     /**
@@ -45,14 +77,7 @@ class TriggerDeclaration {
     /**
      * Cron Trigger
      */
-    fun cron(function: () -> Unit) {
-
-    }
-
-    /**
-     * Interval Trigger
-     */
-    fun interval(function: () -> Unit) {
+    fun cron(expression: String) {
 
     }
 }
