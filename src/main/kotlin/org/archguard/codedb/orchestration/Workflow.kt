@@ -28,47 +28,90 @@ class CronTime(
     }
 }
 
-class IOHandler() {
+sealed class HttpMethod {
+    object GET : HttpMethod()
+    object POST : HttpMethod()
+    object PUT : HttpMethod()
+    object DELETE : HttpMethod()
+    object PATCH : HttpMethod()
+    object HEAD : HttpMethod()
+    object OPTIONS : HttpMethod()
+    object TRACE : HttpMethod()
+    object CONNECT : HttpMethod()
+}
+
+class IOHandler {
+    constructor()
+
     fun database(tableName: String): Boolean {
         return true
     }
 
-    // output type: file
     fun file(fileName: String): Boolean {
         return true
     }
 
-    // output type: dir
+    // output type: dr
     fun dir(dirName: String): Boolean {
         return true
     }
 
-    // output type: http
-    fun http(url: String): Boolean {
+    // todo: add streaming for http
+    fun http(url: String, method: HttpMethod, data: Any): Boolean {
+        return true
+    }
+
+    fun git(url: String): Boolean {
         return true
     }
 }
 
+sealed class HandlerType {
+    class Auto() : HandlerType()
+    class Git(val url: String) : HandlerType() {
+
+    }
+
+    class Http(val url: String, val method: HttpMethod, val data: Any) : HandlerType() {
+
+    }
+
+    class Database(val tableName: String) : HandlerType() {
+
+    }
+
+    class File(val fileName: String) : HandlerType() {
+
+    }
+
+    class Dir(val dirName: String) : HandlerType() {
+
+    }
+
+    class Custom(val handler: KClass<*>) : HandlerType() {
+
+    }
+
+    override fun toString(): String {
+        return when (this) {
+            is Auto -> "auto"
+            is Git -> "git $url"
+            is Http -> "http $method $url"
+            is Database -> "database $tableName"
+            is File -> "file $fileName"
+            is Dir -> "dir $dirName"
+            is Custom -> "custom"
+        }
+    }
+}
+
 class TaskDeclaration(val taskName: String) {
-    private val handler: IOHandler = IOHandler()
+    var input: HandlerType? = null
+    var output: HandlerType? = null
 
-    var input: Any? = null
-    var output: Any? = null
-
-    var taskAction: () -> Unit = {}
-
-
-    fun input(function: () -> Any) {
-        function()
-    }
-
-    fun output(function: () -> Any) {
-        function()
-    }
-
-    fun taskAction(function: (input: Any) -> Any) {
-
-    }
+    fun input(function: () -> Any) = function()
+    fun output(function: () -> Any) = function()
+    fun action(function: () -> Any) = function()
 
     fun after(vararg taskNames: String) {
         println("after: ${taskNames.joinToString(",")}")
@@ -81,10 +124,16 @@ class TaskDeclaration(val taskName: String) {
     /**
      * for current support for MongoDB only
      */
-    fun database(tableName: String) = handler.database(tableName)
-    fun file(fileName: String) = handler.file(fileName)
-    fun dir(dirName: String) = handler.dir(dirName)
-    fun http(url: String) = handler.http(url)
+    fun database(tableName: String) = HandlerType.Database(tableName)
+    fun file(fileName: String) = HandlerType.File(fileName)
+    fun dir(dirName: String) = HandlerType.Dir(dirName)
+    fun http(url: String, method: HttpMethod, data: Any) = HandlerType.Http(url, method, data)
+    fun git(url: String) = HandlerType.Git(url)
+
+    /**
+     * auto means do nothing, just to make conceptual completeness
+     */
+    fun auto() = HandlerType.Auto()
 }
 
 class TriggerDeclaration {
@@ -155,10 +204,6 @@ class WorkflowDeclaration(val flowName: String) {
     fun trigger(function: TriggerDeclaration.() -> Unit) {
 
     }
-
-    fun handler(handlerName: String, function: () -> Unit) {}
-
-    fun binding(bindingName: String, function: () -> Unit) {}
 }
 
 public fun workflow(flowName: String, function: WorkflowDeclaration.() -> Unit) {

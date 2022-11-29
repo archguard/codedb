@@ -15,29 +15,25 @@ internal class WorkflowKtTest {
                 }
             }
 
-            task("CreateData") {
+            task("Create Data") {
+                input = git("https://github.com/feakin/fklang")
+                // we don't need to config output, it will be automatically generated
+                output = auto()
 
-                input = "src/main"
-                output = database("sample")
-
-                taskAction = {
+                action {
                     listOf("Hello", "World")
                 }
             }
+
             task("TaskName2") {
                 after("TaskName", "TaskName 1")
 
-                input = "src/main"
+                input = dir("src/main")
                 output = file("loc.json")
 
-                taskAction {
-                    val input = it as String
-                    println("taskName:  ${input.javaClass.simpleName}")
+                action {
+                    println(input)
                 }
-            }
-
-            handler("sample") {
-
             }
         }
     }
