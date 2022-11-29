@@ -221,7 +221,7 @@ class ProjectDeclaration(var name: String, var repo: String = "") {
     }
 }
 
-public fun workflow(flowName: String, function: WorkflowDeclaration.() -> Unit) {
+fun workflow(flowName: String, function: WorkflowDeclaration.() -> Unit) {
     val workflowDeclaration = WorkflowDeclaration(flowName)
     workflowDeclaration.function()
 }

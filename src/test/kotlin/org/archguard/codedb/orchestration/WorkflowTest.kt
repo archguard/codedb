@@ -1,8 +1,10 @@
 package org.archguard.codedb.orchestration
 
+import org.archguard.codedb.fitness.fitness
 import org.junit.jupiter.api.Test
+import java.lang.Math.sin
 
-internal class WorkflowKtTest {
+internal class WorkflowTest {
     @Test
     fun dsl_sample() {
         workflow("WorkflowName") {
@@ -37,6 +39,24 @@ internal class WorkflowKtTest {
 
                 action {
                     println(input)
+                }
+            }
+        }
+
+        fitness("FitnessName") {
+            val result = sin(1.0 * 2.0)
+
+            // send output
+            detail["sin"] = listOf(result)
+
+            // a fitness function call be output a value only
+            when {
+                result > 0.5 -> {
+                    println("pass")
+                }
+
+                else -> {
+                    println("fail")
                 }
             }
         }
