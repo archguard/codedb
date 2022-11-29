@@ -7,8 +7,9 @@ internal class WorkflowKtTest {
     fun dsl_sample() {
         workflow("WorkflowName") {
             trigger {
-                onetime("2021-10-01T00:00:00Z")
+                once("2021-10-01T00:00:00Z")
                 cron("0 0 0 * * ?")
+                schedule("@daily")
                 external {
                     // do something
                 }

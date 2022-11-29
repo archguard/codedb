@@ -98,7 +98,7 @@ class TriggerDeclaration {
     /**
      * One Time Trigger
      */
-    fun onetime(time: String) {
+    fun once(time: String) {
 
     }
 
@@ -107,6 +107,32 @@ class TriggerDeclaration {
      */
     fun cron(expression: String) {
 
+    }
+
+    /**
+     * Schedule Trigger
+     */
+    fun schedule(expression: String) {
+        if (expression.isEmpty()) {
+            throw IllegalArgumentException("Invalid schedule expression: $expression")
+        }
+
+        // handle for like @daily
+        if (expression.startsWith("@")) {
+            val cronTime = CronTime(0, 0, 0, 0, 0, 0, 0)
+            when (expression) {
+                "@daily" -> cronTime.from("0 0 0 * * ?")
+                "@weekly" -> cronTime.from("0 0 0 ? * MON")
+                "@monthly" -> cronTime.from("0 0 0 1 * ?")
+                "@yearly" -> cronTime.from("0 0 0 1 1 ?")
+                else -> throw IllegalArgumentException("Invalid schedule expression: $expression")
+            }
+        }
+
+        if (expression.startsWith("cron:")) {
+            val cronTime = CronTime(0, 0, 0, 0, 0, 0, 0)
+            cronTime.from(expression.substring(5))
+        }
     }
 }
 
