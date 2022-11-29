@@ -28,9 +28,35 @@ class CronTime(
     }
 }
 
+class IOHandler() {
+    fun database(tableName: String): Boolean {
+        return true
+    }
+
+    // output type: file
+    fun file(fileName: String): Boolean {
+        return true
+    }
+
+    // output type: dir
+    fun dir(dirName: String): Boolean {
+        return true
+    }
+
+    // output type: http
+    fun http(url: String): Boolean {
+        return true
+    }
+}
+
 class TaskDeclaration(val taskName: String) {
-    var input: KClass<*>? = null
-    var output: KClass<*>? = null
+    private val handler: IOHandler = IOHandler()
+
+    var input: Any? = null
+    var output: Any? = null
+
+    var taskAction: () -> Unit = {}
+
 
     fun input(function: () -> Any) {
         function()
@@ -44,19 +70,25 @@ class TaskDeclaration(val taskName: String) {
 
     }
 
-    fun after(vararg taskName: String) {
-        println(taskName)
+    fun after(vararg taskNames: String) {
+        println("after: ${taskNames.joinToString(",")}")
     }
 
-    fun before(vararg taskName: String) {
-        println(taskName)
+    fun before(vararg taskNames: String) {
+        println(taskNames)
     }
 
     fun trigger(function: TriggerDeclaration.() -> Unit) {
 
     }
 
-    var taskAction: () -> Unit = {}
+    /**
+     * for current support for MongoDB only
+     */
+    fun database(tableName: String) = handler.database(tableName)
+    fun file(fileName: String) = handler.file(fileName)
+    fun dir(dirName: String) = handler.dir(dirName)
+    fun http(url: String) = handler.http(url)
 }
 
 class TriggerDeclaration {

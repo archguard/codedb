@@ -14,7 +14,10 @@ internal class WorkflowKtTest {
                         // do something
                     }
                 }
-                output = String::class
+
+                input = "src/main"
+                output = database("sample")
+
                 taskAction = {
                     listOf("Hello", "World")
                 }
@@ -22,14 +25,15 @@ internal class WorkflowKtTest {
             task("TaskName2") {
                 after("TaskName", "TaskName 1")
 
-                input = String::class
-                output = String::class
+                input = "src/main"
+                output = file("loc.json")
 
                 taskAction {
                     val input = it as String
-                    println(input)
+                    println("taskName:  ${input.javaClass.simpleName}")
                 }
             }
+
             handler("sample") {
 
             }
