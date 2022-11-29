@@ -60,15 +60,11 @@ class IOHandler {
     fun http(url: String, method: HttpMethod, data: Any): Boolean {
         return true
     }
-
-    fun git(url: String): Boolean {
-        return true
-    }
 }
 
 sealed class HandlerType {
     class Auto() : HandlerType()
-    class Git(val url: String) : HandlerType() {
+    class Repo(val url: String) : HandlerType() {
 
     }
 
@@ -95,7 +91,7 @@ sealed class HandlerType {
     override fun toString(): String {
         return when (this) {
             is Auto -> "auto"
-            is Git -> "git $url"
+            is Repo -> "repo $url"
             is Http -> "http $method $url"
             is Database -> "database $tableName"
             is File -> "file $fileName"
@@ -128,7 +124,7 @@ class TaskDeclaration(val taskName: String) {
     fun file(fileName: String) = HandlerType.File(fileName)
     fun dir(dirName: String) = HandlerType.Dir(dirName)
     fun http(url: String, method: HttpMethod, data: Any) = HandlerType.Http(url, method, data)
-    fun git(url: String) = HandlerType.Git(url)
+    fun repo(url: String) = HandlerType.Repo(url)
 
     /**
      * auto means do nothing, just to make conceptual completeness
@@ -185,7 +181,7 @@ class TriggerDeclaration {
     }
 }
 
-class WorkflowDeclaration(val flowName: String, val project: ProjectDeclaration = ProjectDeclaration("default")) {
+class WorkflowDeclaration(val flowName: String, var project: ProjectDeclaration = ProjectDeclaration("default")) {
     var tasks: HashMap<String, TaskDeclaration> = HashMap()
 
     // task @Input
@@ -208,20 +204,28 @@ class WorkflowDeclaration(val flowName: String, val project: ProjectDeclaration 
     fun project(projectName: String, function: ProjectDeclaration.() -> Unit) {
         val projectDeclaration = ProjectDeclaration(projectName)
         projectDeclaration.function()
+
+        // after execute, align the project
+        project = projectDeclaration
     }
 }
 
-class ProjectDeclaration(val projectName: String, val repo: String = "") {
+class ProjectDeclaration(var name: String, var repo: String = "") {
+
     fun name(name: String) {
-        println("project name: $name")
+        this.name = name
     }
 
-    fun repo(url: String): Boolean {
-        return IOHandler().git(url)
+    fun repo(url: String) {
+        this.repo = url
     }
 }
 
 public fun workflow(flowName: String, function: WorkflowDeclaration.() -> Unit) {
     val workflowDeclaration = WorkflowDeclaration(flowName)
     workflowDeclaration.function()
+}
+
+fun git(command: String): GitHandler {
+    return GitHandler(command)
 }

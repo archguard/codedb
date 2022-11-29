@@ -20,12 +20,12 @@ internal class WorkflowKtTest {
             }
 
             task("Create Data") {
-                input = git(project.repo)
+                input = repo(project.repo)
                 // we don't need to config output, it will be automatically generated
                 output = auto()
 
                 action {
-                    listOf("Hello", "World")
+                    git("clone").source(project.repo).target().execute()
                 }
             }
 
