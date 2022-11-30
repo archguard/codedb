@@ -42,11 +42,12 @@ internal class MongoQueryTest {
 
         val instance = Morphia()
 
-        val morphia = instance.map(QCodeDocument::class.java)
+        val morphia = instance.map(CodeDocument::class.java)
         val datastore = morphia.createDatastore(mongo, "codedb")
 
-        val query: MorphiaQuery<QCodeDocument> = MorphiaQuery(morphia, datastore, QCodeDocument::class.java)
-        val first: QCodeDocument = query.fetchFirst()
+        val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
+        val first: CodeDocument = query
+            .fetchFirst()
 
         println(first)
     }
