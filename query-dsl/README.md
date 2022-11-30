@@ -7,6 +7,8 @@
 2. 基于普通的 SQL 语句字符串？
 3. 基于 Presto 构建表达器？
 
+问题 ：QueryDSL 只支持 MongoDB 5.0 及以下，需要自己实现 querysql-mongodb。
+
 ## QueryDSL MongoDB
 
 ```kotlin

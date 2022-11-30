@@ -29,7 +29,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("org.archguard.codedb.analyser.KotlinAnalyserKt")
+    mainClass.set("org.archguard.codedb.query.KotlinAnalyserKt")
 }
 
 tasks {

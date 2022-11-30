@@ -64,10 +64,10 @@ internal class MongoQueryTest {
         val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
         val qCodeDocument = QCodeDocument("document")
 
-        val first: CodeDocument = query
+        val documents: List<CodeDocument> = query
             .where(Expressions.booleanOperation(Ops.EQ, Expressions.stringPath("systemId"), ConstantImpl.create("id")))
-            .fetchFirst()
+            .fetch()
 
-        println(first)
+        println(documents)
     }
 }

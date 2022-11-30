@@ -16,12 +16,12 @@ class CodeController(val repository: CodeRepository, private val container: Cont
 
     // todo: modify to streaming
     @PostMapping(value = ["/class-items"])
-    suspend fun save(
+    fun save(
         @PathVariable systemId: String,
         @RequestParam language: String,
         @RequestParam path: String,
         @RequestBody inputs: List<CodeDataStruct>,
-    ): CodeDocument? {
+    ): Mono<Void> {
         val collect = inputs.stream().map { input ->
             CodeDocument(
                 UUID.randomUUID().toString(),
@@ -37,14 +37,14 @@ class CodeController(val repository: CodeRepository, private val container: Cont
 
         return repository.deleteAllBySystemId(systemId)
             .thenMany(repository.saveAll(collect))
-            .awaitFirstOrNull()
+            .then()
     }
 
-    // clean up repository, so that we handle for suspend collection
-    @DeleteMapping(value = ["/class-items"])
-    suspend fun delete(@PathVariable systemId: String): Void? {
-        return repository.deleteAllBySystemId(systemId).awaitFirstOrNull()
-    }
+//    // clean up repository, so that we handle for suspend collection
+//    @DeleteMapping(value = ["/class-items"])
+//    suspend fun delete(@PathVariable systemId: String): Void? {
+//        return repository.deleteAllBySystemId(systemId).awaitFirstOrNull()
+//    }
 
     @PostMapping("/container-services")
     fun saveContainerServices(
