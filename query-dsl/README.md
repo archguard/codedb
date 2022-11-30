@@ -7,8 +7,6 @@
 2. 基于普通的 SQL 语句字符串？
 3. 基于 Presto 构建表达器？
 
-问题 ：QueryDSL 只支持 MongoDB 5.0 及以下，需要自己实现 querysql-mongodb。
-
 ## QueryDSL MongoDB
 
 ```kotlin
@@ -90,3 +88,13 @@ val luke = col.aggregate<Jedi>(
             sample(1)
         ).first()   
 ```
+
+
+## Query 问题
+
+问题 ：QueryDSL 只支持 MongoDB 5.0 及以下，需要自己实现 querysql-mongodb。
+
+Java 16 and 17 compatibility #191 : https://github.com/cglib/cglib/issues/191
+
+cglib 不支持 Java 17
+

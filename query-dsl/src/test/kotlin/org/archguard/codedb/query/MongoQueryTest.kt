@@ -17,19 +17,19 @@ import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.annotations.Entity
 import org.mongodb.morphia.annotations.Id
 
-@Entity
+@Entity("codeDocument")
 class CodeDocument(
     @Id
-    val id: ObjectId? = null,
+    val _id: ObjectId? = null,
     val systemId: String = "",
     val language: String = "",
     val path: String = "",
 
-    // data_struct
     val ds: CodeDataStruct? = null,
     val ds_package: String = "",
     val ds_node_name: String = "",
     val ds_file_path: String = "",
+    val _class: String = "",
 )
 
 class QCodeDocument : EntityPathBase<CodeDocument> {
@@ -62,10 +62,20 @@ internal class MongoQueryTest {
         val datastore = morphia.createDatastore(mongo, "codedb")
 
         val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
-        val qCodeDocument = QCodeDocument("document")
 
-        val documents: List<CodeDocument> = query
-            .where(Expressions.booleanOperation(Ops.EQ, Expressions.stringPath("systemId"), ConstantImpl.create("id")))
+        val where = query
+            .where(
+                Expressions.booleanOperation(
+                    Ops.EQ,
+                    Expressions.stringPath("language"),
+                    ConstantImpl.create("kotlin")
+                )
+            )
+
+        // where.toString() shouldBe { "language" : "kotlin"}
+        println(where.toString())
+
+        val documents: List<CodeDocument> = where
             .fetch()
 
         println(documents)

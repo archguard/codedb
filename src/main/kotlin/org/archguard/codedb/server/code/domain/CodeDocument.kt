@@ -4,8 +4,6 @@ import chapi.domain.core.CodeDataStruct
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-import javax.persistence.Entity
-
 @Document
 class CodeDocument(
     @Id
@@ -13,12 +11,9 @@ class CodeDocument(
     val systemId: String,
     val language: String,
     val path: String,
-
     // data_struct
     val ds: CodeDataStruct,
     val ds_package: String,
     val ds_node_name: String,
     val ds_file_path: String,
-) {
-
-}
+)
