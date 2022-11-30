@@ -26,8 +26,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
     // mongodb query dsl
-//    implementation("org.mongodb.morphia:morphia:1.3.2")
-    implementation("dev.morphia.morphia:morphia-core:2.2.10")
+    implementation("org.mongodb.morphia:morphia:1.3.2")
+//    implementation("dev.morphia.morphia:morphia-core:2.2.10")
 
     implementation("com.querydsl:querydsl-core:5.0.0")
     implementation("com.querydsl:querydsl-apt:5.0.0")

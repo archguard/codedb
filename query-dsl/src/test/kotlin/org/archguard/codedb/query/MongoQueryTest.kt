@@ -1,40 +1,31 @@
 package org.archguard.codedb.query
 
 import chapi.domain.core.CodeDataStruct
-import com.mongodb.DBCollection
-import com.mongodb.DBObject
 import com.mongodb.MongoClient
-import com.querydsl.mongodb.AbstractMongodbQuery
-import com.querydsl.mongodb.morphia.MorphiaSerializer
-import dev.morphia.Datastore
-import dev.morphia.Morphia
-import io.mockk.MockKAnnotations
-import io.mockk.impl.annotations.MockK
-import org.junit.Before
+import com.querydsl.core.types.Ops
+import com.querydsl.core.types.Predicate
+import com.querydsl.core.types.dsl.Expressions
+import com.querydsl.mongodb.morphia.MorphiaQuery
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
-import java.util.function.Function
+import org.mongodb.morphia.Morphia
 
 
 internal class MongoQueryTest {
-    @MockK
-    lateinit var mongo: MongoClient
-
-    @Before
-    fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true) // turn relaxUnitFun on for all mocks
-
     @Test
+    @Disabled
     internal fun sample() {
-        val datastore = Morphia.createDatastore("chapi")
-        val ds = CodeDataStruct("user")
+        val mongo = MongoClient()
+        val morphia = Morphia().map(CodeDataStruct::class.java)
+        val datastore = morphia.createDatastore(mongo, "codedb")
 
-        val query: CodeMorphiaQuery<CodeDataStruct> = CodeMorphiaQuery(datastore, CodeDataStruct::class.java)
-//        val list: List<CodeDataStruct> = query
-//            .where(ds.NodeName.eq("Bob"))
-//            .fetch()
+        val query: MorphiaQuery<CodeDataStruct> = MorphiaQuery(morphia, datastore, CodeDataStruct::class.java)
+        val list: List<CodeDataStruct> = query
+            .where(CodeDataStruct().NodeName.eq("Bob"))
+            .fetch()
     }
 }
 
-
-public class CodeMorphiaQuery<K>(val datastore: Datastore, entityType: Class<out K?>?) {
-
+fun String.eq(string: String): Predicate {
+    return Expressions.booleanOperation(Ops.EQ, Expressions.stringPath(this), Expressions.stringPath(string))
 }
