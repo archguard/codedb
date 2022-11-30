@@ -10,18 +10,33 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mongodb.morphia.Morphia
 
+class CodeDocument(
+    val id: String = "",
+    val systemId: String = "",
+    val language: String = "",
+    val path: String = "",
+
+    // data_struct
+    val ds: CodeDataStruct = CodeDataStruct(),
+    val ds_package: String = "",
+    val ds_node_name: String = "",
+    val ds_file_path: String = "",
+) {
+
+}
+
 
 internal class MongoQueryTest {
     @Test
-    @Disabled
+//    @Disabled
     internal fun sample() {
         val mongo = MongoClient()
-        val morphia = Morphia().map(CodeDataStruct::class.java)
+        val morphia = Morphia().map(CodeDocument::class.java)
         val datastore = morphia.createDatastore(mongo, "codedb")
 
-        val query: MorphiaQuery<CodeDataStruct> = MorphiaQuery(morphia, datastore, CodeDataStruct::class.java)
-        val list: List<CodeDataStruct> = query
-            .where(CodeDataStruct().NodeName.eq("Bob"))
+        val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
+        val list: List<CodeDocument> = query
+            .where(CodeDocument().systemId.eq("Bob"))
             .fetch()
     }
 }

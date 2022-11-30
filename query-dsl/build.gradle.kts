@@ -31,6 +31,7 @@ dependencies {
 
     implementation("com.querydsl:querydsl-core:5.0.0")
     implementation("com.querydsl:querydsl-apt:5.0.0")
+    implementation("com.querydsl:querydsl-kotlin:5.0.0")
     implementation("com.querydsl:querydsl-mongodb:5.0.0") {
         exclude(group = "org.mongodb", module = "mongo-java-driver")
     }
