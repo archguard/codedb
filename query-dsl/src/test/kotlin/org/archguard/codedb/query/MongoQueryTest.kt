@@ -2,14 +2,16 @@ package org.archguard.codedb.query
 
 import chapi.domain.core.CodeDataStruct
 import com.mongodb.MongoClient
+import com.querydsl.core.types.ConstantImpl
+import com.querydsl.core.types.Ops
 import com.querydsl.core.types.PathMetadata
 import com.querydsl.core.types.PathMetadataFactory
 import com.querydsl.core.types.dsl.EntityPathBase
+import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.core.types.dsl.PathInits
 import com.querydsl.core.types.dsl.StringPath
 import com.querydsl.mongodb.morphia.MorphiaQuery
 import org.bson.types.ObjectId
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.annotations.Entity
@@ -45,9 +47,7 @@ class QCodeDocument : EntityPathBase<CodeDocument> {
         type,
         metadata,
         inits
-    ) {
-
-    }
+    )
 }
 
 internal class MongoQueryTest {
@@ -65,7 +65,7 @@ internal class MongoQueryTest {
         val qCodeDocument = QCodeDocument("document")
 
         val first: CodeDocument = query
-            .where(qCodeDocument.systemId.eq("test"))
+            .where(Expressions.booleanOperation(Ops.EQ, Expressions.stringPath("systemId"), ConstantImpl.create("id")))
             .fetchFirst()
 
         println(first)

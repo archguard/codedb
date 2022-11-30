@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.data.mongo.MongoReactiveDataAutoCo
 import org.springframework.boot.runApplication
 
 @SpringBootApplication(exclude = [MongoReactiveDataAutoConfiguration::class])
-class CodedbApplication
+open class CodedbApplication
 
 fun main(args: Array<String>) {
     runApplication<CodedbApplication>(*args)
