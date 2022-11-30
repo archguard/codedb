@@ -1,4 +1,4 @@
-package org.archguard.codedb.analyser
+package org.archguard.codedb.query
 
 import chapi.domain.core.CodeDataStruct
 import chapi.parser.ParseMode

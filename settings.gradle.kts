@@ -9,3 +9,4 @@ rootProject.name = "codedb"
 
 
 include(":streaming-scanner")
+include(":query-dsl")
