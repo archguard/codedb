@@ -16,14 +16,14 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @EnableReactiveMongoRepositories(
     basePackageClasses = [CodeRepository::class]
 )
-class MongoConfig : AbstractReactiveMongoConfiguration() {
+open class MongoConfig : AbstractReactiveMongoConfiguration() {
 
     override fun getDatabaseName() = "codedb"
 
     override fun reactiveMongoClient(): MongoClient = mongoClient()
 
     @Bean
-    fun mongoClient(): MongoClient = MongoClients.create()
+    open fun mongoClient(): MongoClient = MongoClients.create()
 
     @Bean
     override fun reactiveMongoTemplate(
