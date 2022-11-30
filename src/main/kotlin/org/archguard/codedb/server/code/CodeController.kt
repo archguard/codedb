@@ -1,6 +1,7 @@
 package org.archguard.codedb.server.code
 
 import chapi.domain.core.CodeDataStruct
+import kotlinx.coroutines.reactive.awaitFirstOrNull
 import org.archguard.codedb.server.code.domain.CodeDocument
 import org.archguard.codedb.server.code.domain.ContainerService
 import org.archguard.codedb.server.code.dto.ContainerServiceDto
@@ -11,14 +12,16 @@ import java.util.stream.Collectors
 
 @RestController
 @RequestMapping("/api/scanner/{systemId}/reporting")
-class CodeController(val eventRepository: CodeRepository, val container: ContainerRepository) {
+class CodeController(val repository: CodeRepository, private val container: ContainerRepository) {
+
+    // todo: modify to streaming
     @PostMapping(value = ["/class-items"])
-    fun save(
+    suspend fun save(
         @PathVariable systemId: String,
         @RequestParam language: String,
         @RequestParam path: String,
         @RequestBody inputs: List<CodeDataStruct>,
-    ): Mono<Void> {
+    ): CodeDocument? {
         val collect = inputs.stream().map { input ->
             CodeDocument(
                 UUID.randomUUID().toString(),
@@ -32,9 +35,9 @@ class CodeController(val eventRepository: CodeRepository, val container: Contain
             )
         }.collect(Collectors.toList())
 
-        return eventRepository.deleteAllBySystemId(systemId)
-            .thenMany(eventRepository.saveAll(collect))
-            .then()
+        return repository.deleteAllBySystemId(systemId)
+            .thenMany(repository.saveAll(collect))
+            .awaitFirstOrNull()
     }
 
     @PostMapping("/container-services")
