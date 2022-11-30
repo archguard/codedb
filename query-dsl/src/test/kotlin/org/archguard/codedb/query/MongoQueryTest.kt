@@ -2,16 +2,20 @@ package org.archguard.codedb.query
 
 import chapi.domain.core.CodeDataStruct
 import com.mongodb.MongoClient
-import com.querydsl.core.types.Ops
-import com.querydsl.core.types.Predicate
-import com.querydsl.core.types.dsl.Expressions
+import com.querydsl.core.types.PathMetadata
+import com.querydsl.core.types.dsl.ComparablePath
+import com.querydsl.core.types.dsl.EntityPathBase
 import com.querydsl.mongodb.morphia.MorphiaQuery
+import org.bson.types.ObjectId
 import org.junit.jupiter.api.Test
 import org.mongodb.morphia.Morphia
-import org.mongodb.morphia.mapping.Mapper
+import org.mongodb.morphia.annotations.Entity
+import org.mongodb.morphia.annotations.Id
 
+@Entity
 class CodeDocument(
-    val id: String = "",
+    @Id
+    val id: ObjectId? = null,
     val systemId: String = "",
     val language: String = "",
     val path: String = "",
@@ -21,30 +25,29 @@ class CodeDocument(
     val ds_package: String = "",
     val ds_node_name: String = "",
     val ds_file_path: String = "",
-) {
+)
 
+class QCodeDocument : EntityPathBase<CodeDocument> {
+    val id: ComparablePath<ObjectId> = createComparable("id", ObjectId::class.java)
+
+    constructor(type: Class<out CodeDocument>?, metadata: PathMetadata?) : super(type, metadata)
 }
 
 
 internal class MongoQueryTest {
     @Test
-    @Disabled
+//    @Disabled
     internal fun sample() {
         val mongo = MongoClient()
 
-        Mapper()
         val instance = Morphia()
 
-        val morphia = instance.map(CodeDocument::class.java)
+        val morphia = instance.map(QCodeDocument::class.java)
         val datastore = morphia.createDatastore(mongo, "codedb")
 
-        val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
-        val list: List<CodeDocument> = query
-            .where(CodeDocument().systemId.eq("172b41bc-b03d-4dec-926d-bffc4ca68a32"))
-            .fetch()
-    }
-}
+        val query: MorphiaQuery<QCodeDocument> = MorphiaQuery(morphia, datastore, QCodeDocument::class.java)
+        val first: QCodeDocument = query.fetchFirst()
 
-fun String.eq(string: String): Predicate {
-    return Expressions.booleanOperation(Ops.EQ, Expressions.stringPath(this), Expressions.stringPath(string))
+        println(first)
+    }
 }
