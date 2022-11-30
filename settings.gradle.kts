@@ -6,3 +6,6 @@ pluginManagement {
 	}
 }
 rootProject.name = "codedb"
+
+
+include(":streaming-scanner")
