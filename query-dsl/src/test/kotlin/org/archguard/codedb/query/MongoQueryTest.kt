@@ -6,9 +6,9 @@ import com.querydsl.core.types.Ops
 import com.querydsl.core.types.Predicate
 import com.querydsl.core.types.dsl.Expressions
 import com.querydsl.mongodb.morphia.MorphiaQuery
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mongodb.morphia.Morphia
+import org.mongodb.morphia.mapping.Mapper
 
 class CodeDocument(
     val id: String = "",
@@ -28,15 +28,19 @@ class CodeDocument(
 
 internal class MongoQueryTest {
     @Test
-//    @Disabled
+    @Disabled
     internal fun sample() {
         val mongo = MongoClient()
-        val morphia = Morphia().map(CodeDocument::class.java)
+
+        Mapper()
+        val instance = Morphia()
+
+        val morphia = instance.map(CodeDocument::class.java)
         val datastore = morphia.createDatastore(mongo, "codedb")
 
         val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
         val list: List<CodeDocument> = query
-            .where(CodeDocument().systemId.eq("Bob"))
+            .where(CodeDocument().systemId.eq("172b41bc-b03d-4dec-926d-bffc4ca68a32"))
             .fetch()
     }
 }

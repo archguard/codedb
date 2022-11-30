@@ -4,6 +4,8 @@ import chapi.domain.core.CodeDataStruct
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
+import javax.persistence.Entity
+
 @Document
 class CodeDocument(
     @Id
