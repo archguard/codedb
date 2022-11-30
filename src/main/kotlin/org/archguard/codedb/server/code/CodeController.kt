@@ -40,6 +40,12 @@ class CodeController(val repository: CodeRepository, private val container: Cont
             .awaitFirstOrNull()
     }
 
+    // clean up repository, so that we handle for suspend collection
+    @DeleteMapping(value = ["/class-items"])
+    suspend fun delete(@PathVariable systemId: String): Void? {
+        return repository.deleteAllBySystemId(systemId).awaitFirstOrNull()
+    }
+
     @PostMapping("/container-services")
     fun saveContainerServices(
         @PathVariable systemId: String,
