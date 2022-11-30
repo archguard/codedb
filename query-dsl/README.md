@@ -1,6 +1,14 @@
 # QueryDSL
 
 
+两种模式？
+
+1. 基于 QueryDSL 对内建的选择器进行扩展，`query.where()` 之类的
+2. 基于普通的 SQL 语句字符串？
+3. 基于 Presto 构建表达器？
+
+## QueryDSL MongoDB
+
 ```kotlin
 val list: List<CodeDocument> = query
         .where(CodeDocument().systemId.eq("Bob"))
