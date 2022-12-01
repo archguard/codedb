@@ -32,6 +32,10 @@ sealed class HandlerType {
 
     }
 
+    class Stdout: HandlerType() {
+
+    }
+
     override fun toString(): String {
         return when (this) {
             is Auto -> "auto"
@@ -42,6 +46,7 @@ sealed class HandlerType {
             is Dir -> "dir $dirName"
             is Custom -> "custom"
             is Multiple -> "multiple $handlerTypes"
+            is Stdout -> "stdout"
         }
     }
 }

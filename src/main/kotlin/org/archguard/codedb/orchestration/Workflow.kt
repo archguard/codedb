@@ -10,9 +10,36 @@ class Workflow {
 
 }
 
+/**
+ *
+ * Task is a unit of work in a workflow.
+ *
+ * @param name workflow name
+ * @param block workflow block
+ *
+ * examples:
+ * 
+ * ```kotlin
+ * task("TaskName2") {
+ *     runtime {
+ *         image("archguard/archguard-backend:latest")
+ *     }
+ *
+ *     after("TaskName", "TaskName 1")
+ *
+ *     input = dir("src/main")
+ *     output = file("loc.json")
+ *
+ *     action {
+ *         println(input)
+ *     }
+ * }
+ * ```
+ */
 class TaskDeclaration(val taskName: String) {
     var input: HandlerType? = null
     var output: HandlerType? = null
+    var runtime: RuntimeDeclaration? = null
 
     fun input(function: () -> Any) = function()
     fun output(function: () -> Any) = function()
@@ -36,6 +63,11 @@ class TaskDeclaration(val taskName: String) {
     fun repo(url: String) = HandlerType.Repo(url)
 
     /**
+     * stdout is a special handler, it will be automatically generated
+     */
+    fun stdout() = HandlerType.Stdout()
+
+    /**
      * keep api to Kotlin language
      */
     fun listOf(vararg handlerTypes: HandlerType) = HandlerType.Multiple(handlerTypes)
@@ -49,22 +81,24 @@ class TaskDeclaration(val taskName: String) {
     /**
      * Runtime is a container to run the task, default to use docker
      *
-     * @param runtime the name of the runtime
+     * @param function the name of the runtime
      *
      *  for example: archguard/archguard-backend:latest
      */
-    fun runtime(runtime: String) {
-        // parse runtime 'archguard/archguard-backend:latest' to Runtime
-        val optRuntime = runtime.split(":").let {
-            val name = it[0]
-            val version = it[1]
+    fun runtime(function: RuntimeDeclaration.() -> Unit) {
+        val runtimeDeclaration = RuntimeDeclaration()
+        runtimeDeclaration.function()
 
-            return@let Runtime(name, version)
-        }
+        // after execute, align the project
+        runtime = runtimeDeclaration
     }
 }
 
-open class Runtime(val name: String, val version: String)
+class RuntimeDeclaration {
+    fun image(imageName: String) {
+
+    }
+}
 
 class TriggerDeclaration {
     /**

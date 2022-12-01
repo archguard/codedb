@@ -32,7 +32,9 @@ internal class WorkflowTest {
             }
 
             task("TaskName2") {
-                runtime("docker:lastest")
+                runtime {
+                    image("archguard/archguard-backend:latest")
+                }
 
                 after("TaskName", "TaskName 1")
 
