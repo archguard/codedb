@@ -1,4 +1,4 @@
-package org.archguard.codedb.query
+package org.archguard.codedb.query.mongo
 
 import com.querydsl.core.types.Visitor
 

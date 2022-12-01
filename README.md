@@ -1,6 +1,9 @@
-# CodeDB: database of code and software development.
+_# CodeDB: database of code and software development.
 
->  CodeDB 是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)的理念，内建架构适度度函数、代码设计查询和存储 DSL、依赖分析引擎、机器学习算法等。
+> CodeDB
+>
+是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)
+> 的理念，内建架构适度度函数、代码设计查询和存储 DSL、依赖分析引擎、机器学习算法等。
 
 Architecture diagram
 
@@ -28,7 +31,9 @@ Model: Architecture Twin ?
 
 Todos:
 
-- [ ] Query DSL 
+- [ ] Query DSL
+    - [ ] MongoDB. Need to implement custom `querysql-mongodb` for new morphia.
+- [ ] Query Engine
     - [ ] search by file name
     - [ ] search by ast
     - [ ] search by regex
@@ -44,7 +49,7 @@ Todos:
         - [ ] ...
     - [ ] Incremental Computing
 - [ ] Fitness Engine
-    - [ ] Fitness function 
+    - [ ] Fitness function
     - [ ] Math integration API
     - [ ] Data integration DSL
 - [ ] MetricModeling
@@ -67,7 +72,7 @@ Todos:
         - [ ] ...
 - [ ] Data Visualization
     - [ ] CodeCity
-      - [ ] Three.js
+        - [ ] Three.js
     - [ ] D3.js
     - [ ] ...
 
@@ -123,4 +128,4 @@ cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=h
 2. install MongoDB and start it
     - follow: [https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/)
 3. start spring boot application
-    - `./gradlew bootRun`
+    - `./gradlew bootRun`_
