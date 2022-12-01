@@ -1,4 +1,4 @@
-package org.archguard.codedb.server.sample
+package org.archguard.codedb.automate.task
 
 import org.archguard.codedb.automate.task.TaskRunner
 import org.junit.jupiter.api.Test

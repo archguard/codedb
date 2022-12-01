@@ -1,4 +1,4 @@
-package org.archguard.codedb.orchestration
+package org.archguard.codedb.orchestration.io
 
 class GitHandler(val commandName: String, var source: String = "", var destination: String = "") {
     fun source(input: String): GitHandler {
