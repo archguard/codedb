@@ -6,6 +6,10 @@ import org.archguard.codedb.orchestration.io.HttpMethod
 import org.archguard.codedb.orchestration.schedule.CronTime
 import kotlin.reflect.KClass
 
+class Workflow  {
+
+}
+
 class TaskDeclaration(val taskName: String) {
     var input: HandlerType? = null
     var output: HandlerType? = null
@@ -30,6 +34,8 @@ class TaskDeclaration(val taskName: String) {
     fun dir(dirName: String) = HandlerType.Dir(dirName)
     fun http(url: String, method: HttpMethod, data: Any) = HandlerType.Http(url, method, data)
     fun repo(url: String) = HandlerType.Repo(url)
+
+    fun multiple(vararg handlerTypes: HandlerType) = HandlerType.Multiple(handlerTypes)
 
     /**
      * auto means do nothing, just to make conceptual completeness

@@ -28,6 +28,10 @@ sealed class HandlerType {
 
     }
 
+    class Multiple(val handlerTypes: Array<out HandlerType>) : HandlerType() {
+
+    }
+
     override fun toString(): String {
         return when (this) {
             is Auto -> "auto"
@@ -37,6 +41,7 @@ sealed class HandlerType {
             is File -> "file $fileName"
             is Dir -> "dir $dirName"
             is Custom -> "custom"
+            is Multiple -> "multiple $handlerTypes"
         }
     }
 }

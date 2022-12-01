@@ -41,6 +41,10 @@ internal class WorkflowTest {
                     println(input)
                 }
             }
+
+            task("function") {
+                input = multiple(file("loc.json"), file("loc2.json"))
+            }
         }
 
         fitness("FitnessName") {
