@@ -1,4 +1,7 @@
-# GLR Coding Labels
+# 微服务 Coding Rules 设计
+
+
+## GLR Coding Labels
 
 Source: https://github.com/xJREB/research-microservices-evolvability-glr/blob/master/coding-labels.md
 
@@ -168,7 +171,7 @@ The coding system is organized in five different categories.
     - *Aggregating Data from Several Services*
     - *Vendor / Ecosystem Lock-in*
 - Influences on Assurance Process
-    - Difficult Macroarchitecture Assessment
+    - Difficult Macro-architecture Assessment
     - Good Quality of New Services
     - Difficult Quality Analysis
     - Difficult Root Cause Analysis
