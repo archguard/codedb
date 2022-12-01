@@ -5,7 +5,6 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
-
 repositories {
     mavenCentral()
     mavenLocal()
@@ -45,21 +44,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 }
-
-application {
-    mainClass.set("org.archguard.codedb.analyser.KotlinAnalyserKt")
-}
-
-tasks {
-    shadowJar {
-        dependencies {
-            exclude(dependency("org.jetbrains.kotlin:.*:.*"))
-            exclude(dependency("org.jetbrains.kotlinx:.*:.*"))
-        }
-        minimize()
-    }
-}
-
 
 tasks.withType<Test> {
     useJUnitPlatform()

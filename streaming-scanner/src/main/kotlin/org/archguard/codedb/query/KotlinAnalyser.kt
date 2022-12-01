@@ -47,3 +47,9 @@ class KotlinAnalyser(private val path: String) {
         return text
     }
 }
+
+
+fun main() {
+    val analyser = KotlinAnalyser(".")
+    analyser.analyse()
+}
