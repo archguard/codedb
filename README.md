@@ -71,9 +71,12 @@ Todos:
         - [ ] SVM
         - [ ] ...
 - [ ] Data Visualization
+    - [ ] Landscape View
+    - [ ] Mapping View
+        - [ ] Services Map, Database Map, Message Map
+    - [ ] Network Profiling
+        - [ ] [Sample](https://user-images.githubusercontent.com/5441976/187399382-907788dc-9c03-4a66-a560-07d28fd2de07.png)
     - [ ] CodeCity
-        - [ ] Three.js
-    - [ ] D3.js
     - [ ] ...
 
 Migrations:
