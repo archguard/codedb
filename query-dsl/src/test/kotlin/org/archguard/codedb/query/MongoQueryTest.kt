@@ -1,8 +1,9 @@
 package org.archguard.codedb.query
 
 import chapi.domain.core.CodeDataStruct
-import com.mongodb.DBCollection
-import com.mongodb.MongoClient
+import com.mongodb.*
+import com.mongodb.client.MongoDatabase
+import com.mongodb.client.model.DBCollectionFindOptions
 import com.querydsl.core.types.ConstantImpl
 import com.querydsl.core.types.Ops
 import com.querydsl.core.types.PathMetadata
@@ -24,6 +25,7 @@ import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.annotations.Entity
 import org.mongodb.morphia.annotations.Id
 import org.mongodb.morphia.mapping.Mapper
+import kotlin.test.assertEquals
 
 @Entity("codeDocument")
 class CodeDocument(
@@ -68,53 +70,56 @@ internal class MongoQueryTest {
 //
 //    @MockK
 //    private lateinit var morphia: Morphia
-//
-//
-//    @MockK
-//    private lateinit var datastore: Datastore
-//
-//
-//    @MockK
-//    private lateinit var dbCollection: DBCollection
-//
-//
-//    @MockK
-//    private lateinit var mapper: Mapper
-//
-//    @BeforeEach
-//    fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true) // turn relaxUnitFun on for all mocks
+
+
+    @MockK
+    private lateinit var datastore: Datastore
+
+
+    @MockK
+    private lateinit var dbCollection: DBCollection
+
+
+    @MockK
+    private lateinit var mapper: Mapper
+
+    @BeforeEach
+    fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true) // turn relaxUnitFun on for all mocks
 
     @Test
-//    @Disabled
     internal fun sample() {
-//        every { datastore.getCollection(any()) } returns dbCollection
-//        every { mapper.toMongoObject(any(), any(), any()) } returns CodeDocument()
-//        every { morphia.getMapper() } returns mapper
-//        every { morphia.createDatastore(any(), "codedb") } returns datastore
+        val database = mockk<MongoDatabase>()
+        every { database.getName() } returns "codedb"
 
-        val mongo = MongoClient()
-        val instance = Morphia()
+        val mongo = mockk<MongoClient>();
+        val db = mockk<DB>()
+        val cursor = mockk<DBCursor>()
 
-        val morphia = instance.map(CodeDocument::class.java)
+
+        val iterator = mockk<MutableIterator<DBObject>>()
+        every { iterator.hasNext() } returns false
+
+        every { cursor.iterator() } returns iterator
+
+        // todo: verify spy
+        every { dbCollection.find(any(), any<DBObject>()) } returns cursor
+
+        every { db.getCollection(any()) } returns dbCollection
+
+        every { mongo.getDatabase(any()) } returns database
+        every { mongo.getDB(any()) } returns db
+        every { mongo.getWriteConcern() } returns mockk<WriteConcern>()
+
+        val morphia = Morphia().map(CodeDocument::class.java)
         val datastore = morphia.createDatastore(mongo, "codedb")
 
         val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
 
         val where = query
             .where(
-                Expressions.booleanOperation(
-                    Ops.EQ,
-                    Expressions.stringPath("language"),
-                    ConstantImpl.create("kotlin")
-                )
+                Expressions.booleanOperation(Ops.EQ, Expressions.stringPath("language"), ConstantImpl.create("kotlin"))
             )
 
-        // where.toString() shouldBe { "language" : "kotlin"}
-        println(where.toString())
-
-        val documents: List<CodeDocument> = where
-            .fetch()
-
-        println(documents)
+        assertEquals(where.toString(), "{ \"language\" : \"kotlin\"}")
     }
 }
