@@ -44,6 +44,11 @@ internal class WorkflowTest {
 
             task("function") {
                 input = multiple(file("loc.json"), file("loc2.json"))
+                // or
+                input {
+                    file("loc.json")
+                    file("loc2.json")
+                }
             }
         }
 

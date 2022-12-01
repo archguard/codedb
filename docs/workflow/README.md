@@ -1,10 +1,29 @@
 # Workflow
 
+## Pipeliine
+
+
+https://github.com/pditommaso/awesome-pipeline
+
+## Existing Workflow systems
+
+Links: https://github.com/common-workflow-language/common-workflow-language/wiki/Existing-Workflow-systems
+
+Antlr Parser: [https://github.com/openwdl/wdl/tree/main/versions/1.1/parsers/antlr4](https://github.com/openwdl/wdl/tree/main/versions/1.1/parsers/antlr4)
+
+Execution Engines:
+
+WDL is not executable in and of itself, but requires an execution engine to run. Compliant executions engines should 
+support the features of a specific version of the WDL specification. Please see the corresponding engine documentation 
+for information on available execution options and support.
+
+*   [Cromwell](https://github.com/broadinstitute/cromwell)
+*   [MiniWDL](https://github.com/chanzuckerberg/miniwdl)
+*   [dxWDL](https://github.com/dnanexus/dxWDL)
+
 ## Luigi
 
 https://github.com/spotify/luigi
-
-
 
 
 ## Nextflow
