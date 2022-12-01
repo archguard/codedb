@@ -7,8 +7,9 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import java.io.File
 import kotlin.streams.asStream
+import kotlin.streams.toList
 
-class KotlinAnalyser(val path: String) {
+class KotlinAnalyser(private val path: String) {
     private val impl = chapi.ast.kotlinast.KotlinAnalyser()
 
     fun analyse(): List<CodeDataStruct> = runBlocking {
@@ -30,14 +31,14 @@ class KotlinAnalyser(val path: String) {
             }
     }
 
-    fun getFilesByPath(path: String, predicate: (File) -> Boolean = { true }): List<File> {
+    private fun getFilesByPath(path: String, predicate: (File) -> Boolean = { true }): List<File> {
         return File(path).walk().asStream().parallel()
             .filter { it.isFile }
             .filter { predicate(it) }
             .toList()
     }
 
-    fun File.readContent(): String {
+    private fun File.readContent(): String {
         val text = readText()
         // fix for Window issue
         if (text.startsWith("\uFEFF")) {
