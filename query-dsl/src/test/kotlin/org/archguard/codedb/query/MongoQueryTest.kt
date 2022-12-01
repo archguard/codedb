@@ -19,6 +19,7 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
@@ -65,13 +66,6 @@ class QCodeDocument : EntityPathBase<CodeDocument> {
 }
 
 internal class MongoQueryTest {
-//    @MockK
-//    private lateinit var mongo: MongoClient
-//
-//    @MockK
-//    private lateinit var morphia: Morphia
-
-
     @MockK
     private lateinit var datastore: Datastore
 
@@ -87,6 +81,7 @@ internal class MongoQueryTest {
     fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true) // turn relaxUnitFun on for all mocks
 
     @Test
+    @Disabled
     internal fun sample() {
         val database = mockk<MongoDatabase>()
         every { database.getName() } returns "codedb"
