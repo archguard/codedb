@@ -1,0 +1,177 @@
+# GLR Coding Labels
+
+Source: https://github.com/xJREB/research-microservices-evolvability-glr/blob/master/coding-labels.md
+
+These are all labels used in the coding of the GLR resources.
+Since they were based on a previous [interview study on the same topic](https://github.com/xJREB/research-microservices-evolvability-interviews), not all labels that are listed here have been used in the GLR.
+Newly formed labels are listed in *italic*.
+The coding system is organized in five different categories.
+
+- Process
+    - Governance
+    - Test Automation
+    - Standardization
+    - Principle/Guideline
+    - CI/CD Integration
+    - Code Review
+    - Pragmatism and Simplicity
+    - Quality Gate
+    - Refactoring
+    - Architecture Documentation
+    - Decentralization & Empowerment
+    - No Shared Libraries
+    - 12-Factor App Guidelines
+    - Boy Scouting
+    - Technical Debt Tracking & Mgmt
+    - Knowledge Exchange Between Teams
+    - Pair Programming
+    - Architectural Decision Records (ADRs)
+    - Architecture Conformance Checking
+    - Commit Linting
+    - Information Wall Dashboard
+    - *Feature Toggles*
+    - *Code Generation*
+    - *QA in Production*
+- Used Tools
+    - SonarQube
+    - FindBugs
+    - Checkstyle
+    - PMD
+    - IDE Linting
+    - Cobertura
+    - Codecov
+    - Custom Tool
+    - VersionEye
+    - Codacy
+    - Structure101
+    - *Robot*
+    - *Selenium*
+    - *Cucumber*
+    - *Byteman*
+    - *Simian Army*
+    - *Testcontainers*
+    - *Serverspec*
+    - *Testinfra*
+    - *WireMock*
+    - *Pact*
+    - *Betamax*
+    - *VCR*
+    - *Spring Cloud Contract*
+    - *GoReplay*
+    - *Mountebank*
+    - *Karate*
+    - *Dredd*
+    - *Cypress*
+    - *Postman*
+    - *TestRail*
+    - *Prism*
+    - *Restito*
+    - *Hoverfly*
+    - *Apiary*
+    - *X-Ray*
+    - *JDepend*
+    - *NDepend*
+    - *Code City*
+    - *Source Monitor*
+    - *Stackalytics*
+    - *RSpec*
+    - *SoapUI*
+    - *JMeter*
+    - *ReadyAPI*
+    - *REST-assured*
+    - *MockLab*
+    - *MockableIO*
+    - *ServiceV*
+    - *Kiuwan*
+    - *Hikaku*
+    - *SOASTA*
+    - *Requestly*
+    - *Mitmproxy*
+    - *Chakram*
+    - *Restdriver*
+    - *Mochito*
+- Used Metrics
+    - Service-Oriented Metrics
+    - Test Coverage
+    - \# of Code Smells
+    - Clone Coverage
+    - Cyclomatic Complexity
+    - \# of Failed Tests
+    - Defect Resolution Time
+    - Lines of Code
+    - \# of Architectural Violations
+    - \# of Defects per Service
+    - \# of Endangered Requirements
+    - Burndown
+    - Cognitive Complexity
+    - Deployment Duration
+    - *Cycle Time*
+    - *MTTR*
+    - *Deployment Success Rate*
+    - *Time to First Commit*
+    - *\# of Deploys to Production*
+    - *API Monitoring Coverage*
+    - *Team Predictability (Points Committed / Points Delivered)*
+    - *Velocity*
+    - *Regression Test Duration*
+    - *\# of Open Bugs per Sprint*
+    - *Static Coupling*
+    - *Temporal Coupling*
+    - *\# of Classes*
+    - *Comment Ratio*
+    - *Component Entanglement*
+    - *\# of Parameters per Interface*
+    - *\# of Dependencies*
+    - *\# of Defects per LOC*
+    - *Maintainability Index*
+- Used Patterns
+    - Event-Driven Messaging
+    - Self-Contained System
+    - Strangler
+    - Backends for Frontends
+    - Consumer-Driven Contracts
+    - Request-Reaction
+    - API Gateway
+    - Service Registry
+    - Tolerant Reader
+    - *CQRS*
+    - *Service Façade*
+    - *Sidecar*
+    - *Event Sourcing*
+    - *Correlation ID*
+    - *Service Mesh*
+- Challenges
+    - Service Cutting
+    - No System-Centric View
+    - Mastering Technologies
+    - Technological Heterogeneity
+    - Missing / Outdated Documentation
+    - Inter-Service Dependencies / Ripples
+    - Architectural / Technical Complexity
+    - Unhealthy Metric Usage
+    - Integrating Legacy Code
+    - Coordination Between Decentralized Teams
+    - Inadequate Testing
+    - Communicating the Importance of Assurance
+    - Microservices Integration
+    - Slow or Manual Deployment Process
+    - Tool/Process Frustration and Patronization
+    - Breaking API Changes
+    - Code Duplication
+    - Distributed Code Repositories
+    - High Issue Resolve Time
+    - Slow Adding of New Functionality
+    - Complicated Effort Estimation
+    - High Cycle Time
+    - High Number of Defects
+    - Motivate People to Follow Recommendations
+    - *Aggregating Data from Several Services*
+    - *Vendor / Ecosystem Lock-in*
+- Influences on Assurance Process
+    - Difficult Macroarchitecture Assessment
+    - Good Quality of New Services
+    - Difficult Quality Analysis
+    - Difficult Root Cause Analysis
+    - Increased Testing Complexity
+    - More Motivation to Improve a Small Service
+    - More Cultural Quality Awareness

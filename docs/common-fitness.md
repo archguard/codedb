@@ -19,7 +19,7 @@ The fitness function is a function that takes a solution as input and returns a 
  
 ### Metric: Quality of Architecture
 
-Test Coverage
+Test Coverage: E2E/Unit/Integration/API ??
 
 ```kotlin
 class FileCoverage(
@@ -59,5 +59,10 @@ enum class ElementType {
 
 ### Open Tracing Model
 
+OpenTelemetry modeling
+
+### Code Smells
+
+from SonarType ?
 
 
