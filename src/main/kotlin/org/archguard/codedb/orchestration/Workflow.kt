@@ -6,7 +6,7 @@ import org.archguard.codedb.orchestration.io.HttpMethod
 import org.archguard.codedb.orchestration.schedule.CronTime
 import kotlin.reflect.KClass
 
-class Workflow  {
+class Workflow {
 
 }
 
@@ -35,13 +35,36 @@ class TaskDeclaration(val taskName: String) {
     fun http(url: String, method: HttpMethod, data: Any) = HandlerType.Http(url, method, data)
     fun repo(url: String) = HandlerType.Repo(url)
 
+    /**
+     * keep api to Kotlin language
+     */
+    fun listOf(vararg handlerTypes: HandlerType) = HandlerType.Multiple(handlerTypes)
     fun multiple(vararg handlerTypes: HandlerType) = HandlerType.Multiple(handlerTypes)
 
     /**
      * auto means do nothing, just to make conceptual completeness
      */
     fun auto() = HandlerType.Auto()
+
+    /**
+     * Runtime is a container to run the task, default to use docker
+     *
+     * @param runtime the name of the runtime
+     *
+     *  for example: archguard/archguard-backend:latest
+     */
+    fun runtime(runtime: String) {
+        // parse runtime 'archguard/archguard-backend:latest' to Runtime
+        val optRuntime = runtime.split(":").let {
+            val name = it[0]
+            val version = it[1]
+
+            return@let Runtime(name, version)
+        }
+    }
 }
+
+open class Runtime(val name: String, val version: String)
 
 class TriggerDeclaration {
     /**

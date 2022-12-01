@@ -32,6 +32,8 @@ internal class WorkflowTest {
             }
 
             task("TaskName2") {
+                runtime("docker:lastest")
+
                 after("TaskName", "TaskName 1")
 
                 input = dir("src/main")
@@ -43,12 +45,7 @@ internal class WorkflowTest {
             }
 
             task("function") {
-                input = multiple(file("loc.json"), file("loc2.json"))
-                // or
-                input {
-                    file("loc.json")
-                    file("loc2.json")
-                }
+                input = listOf(file("loc.json"), file("loc2.json"))
             }
         }
 
