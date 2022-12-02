@@ -1,8 +1,5 @@
 package org.archguard.codedb.query.mongo
 
-import com.mongodb.ConnectionString
-import com.mongodb.MongoClientSettings
-import com.mongodb.reactivestreams.client.MongoClients
 import org.junit.jupiter.api.Test
 
 class NativeMongoTest {

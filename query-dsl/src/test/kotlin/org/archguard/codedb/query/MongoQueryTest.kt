@@ -81,15 +81,13 @@ internal class MongoQueryTest {
     fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true) // turn relaxUnitFun on for all mocks
 
     @Test
-    @Disabled
     internal fun sample() {
         val database = mockk<MongoDatabase>()
-        every { database.getName() } returns "codedb"
+        every { database.name } returns "codedb"
 
         val mongo = mockk<MongoClient>();
         val db = mockk<DB>()
         val cursor = mockk<DBCursor>()
-
 
         val iterator = mockk<MutableIterator<DBObject>>()
         every { iterator.hasNext() } returns false
@@ -103,7 +101,7 @@ internal class MongoQueryTest {
 
         every { mongo.getDatabase(any()) } returns database
         every { mongo.getDB(any()) } returns db
-        every { mongo.getWriteConcern() } returns mockk<WriteConcern>()
+        every { mongo.writeConcern } returns mockk()
 
         val morphia = Morphia().map(CodeDocument::class.java)
         val datastore = morphia.createDatastore(mongo, "codedb")
