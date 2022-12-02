@@ -77,11 +77,12 @@ internal class MongoQueryTest {
     @MockK
     private lateinit var mapper: Mapper
 
-    @BeforeEach
-    fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true) // turn relaxUnitFun on for all mocks
+    private lateinit var morphia: Morphia
 
-    @Test
-    internal fun sample() {
+    @BeforeEach
+    fun setUp() {
+        MockKAnnotations.init(this, relaxUnitFun = true)
+
         val database = mockk<MongoDatabase>()
         every { database.name } returns "codedb"
 
@@ -103,9 +104,13 @@ internal class MongoQueryTest {
         every { mongo.getDB(any()) } returns db
         every { mongo.writeConcern } returns mockk()
 
-        val morphia = Morphia().map(CodeDocument::class.java)
-        val datastore = morphia.createDatastore(mongo, "codedb")
+        morphia = Morphia().map(CodeDocument::class.java)
+        datastore = morphia.createDatastore(mongo, "codedb")
+    }
 
+
+    @Test
+    internal fun sample() {
         val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
 
         val where = query
