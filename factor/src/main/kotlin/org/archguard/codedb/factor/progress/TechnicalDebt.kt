@@ -1,4 +1,6 @@
 package org.archguard.codedb.factor.progress
 
-class TechnicalDebt {
+import org.archguard.codedb.factor.meta.Todo
+
+class TechnicalDebt : Todo() {
 }
