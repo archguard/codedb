@@ -5,11 +5,6 @@ package org.archguard.codedb.factor.governance.document
  */
 sealed class DocumentType {
     /**
-     * Architecture Decision Record (ADR) is a lightweight document format for capturing architecture decisions.
-     */
-    class ArchitectureDecisionRecord : DocumentType()
-
-    /**
      * Code of conduct is a document that describes the expected behavior of the members of the project.
      */
     class CodeOfConduct : DocumentType()
