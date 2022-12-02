@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/archguard/codedb-poc/actions/workflows/ci.yaml/badge.svg)](https://github.com/archguard/codedb-poc/actions/workflows/ci.yaml)
 
+![CodeDB Logo](asssets/codedb.svg)
+
 > CodeDB 是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)
 > 的理念，内建架构适度度函数、代码设计查询和存储 DSL、依赖分析引擎、机器学习算法等。
 
@@ -133,7 +135,7 @@ cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=h
 
 ## Install
 
-1. setup JDK 17
+1. setup JDK 11
 2. install MongoDB and start it
     - follow: [https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/)
 3. start spring boot application
