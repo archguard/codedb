@@ -3,15 +3,11 @@ package org.archguard.codedb.query
 import chapi.domain.core.CodeDataStruct
 import com.mongodb.*
 import com.mongodb.client.MongoDatabase
-import com.mongodb.client.model.DBCollectionFindOptions
 import com.querydsl.core.types.ConstantImpl
 import com.querydsl.core.types.Ops
 import com.querydsl.core.types.PathMetadata
 import com.querydsl.core.types.PathMetadataFactory
-import com.querydsl.core.types.dsl.EntityPathBase
-import com.querydsl.core.types.dsl.Expressions
-import com.querydsl.core.types.dsl.PathInits
-import com.querydsl.core.types.dsl.StringPath
+import com.querydsl.core.types.dsl.*
 import com.querydsl.mongodb.morphia.MorphiaQuery
 import io.mockk.MockKAnnotations
 import io.mockk.every
@@ -19,7 +15,6 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.mongodb.morphia.Datastore
 import org.mongodb.morphia.Morphia
@@ -119,5 +114,21 @@ internal class MongoQueryTest {
             )
 
         assertEquals(where.toString(), "{ \"language\" : \"kotlin\"}")
+    }
+
+    @Test
+    internal fun `should query with string path`() {
+        val query: MorphiaQuery<CodeDocument> = MorphiaQuery(morphia, datastore, CodeDocument::class.java)
+
+        val where = query
+            .where(string("language").eq("kotlin"))
+            .orderBy(string("language").asc())
+
+        assertEquals(where.toString(), "{ \"language\" : \"kotlin\"}")
+    }
+
+    // todo: move to field
+    private fun string(name: String): StringPath {
+        return Expressions.stringPath(name)
     }
 }
