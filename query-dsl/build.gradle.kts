@@ -32,6 +32,9 @@ dependencies {
     implementation("com.querydsl:querydsl-mongodb:5.0.0") {
         exclude(group = "org.mongodb", module = "mongo-java-driver")
     }
+
+    implementation("org.mongodb:mongodb-driver-reactivestreams:4.8.0")
+
     // test
     implementation(kotlin("test"))
     implementation(kotlin("test-junit"))
