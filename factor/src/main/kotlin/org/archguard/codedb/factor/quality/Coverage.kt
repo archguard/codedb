@@ -9,7 +9,7 @@ class Coverage(
     val uncoveredLines: Int,
     val partial: Int,
     val coverage: Double,
-    val metricDef: MetricDef = MetricDef("FileCoverage", "File Coverage", "File Coverage", listOf())
+    val metricDef: MetricDef = MetricDef("FileCoverage", "File Coverage", "File Coverage")
 ) {
 
 }

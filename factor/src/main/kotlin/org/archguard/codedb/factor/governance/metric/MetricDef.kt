@@ -5,7 +5,6 @@ package org.archguard.codedb.factor.governance.metric
  * - Metric Label is a label of a metric.
  * - Metric Name is a unique name of a metric.
  * - Metric Definition is a description of the metric.
- * - Metric Value is a value of the metric.
  *
  * for examples:
  *
@@ -18,12 +17,12 @@ package org.archguard.codedb.factor.governance.metric
 class MetricDef(
     val name: String,
     val label: String,
-    val definition: String,
-    val value: List<MetricValue> = emptyList()
-) {
+    val definition: String
+)
 
-}
-
+/**
+ * Metric Value is a class that represents a metric value.
+ */
 class MetricValue(
     val name: String,
     val value: Double
