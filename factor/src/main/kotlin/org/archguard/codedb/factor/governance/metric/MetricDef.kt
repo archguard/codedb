@@ -15,7 +15,7 @@ package org.archguard.codedb.factor.governance.metric
  * | CYCLO | Cyclomatic Complexity| The maximum number of linearly independent paths in a method.                                 |
  *
  */
-class Metric(
+class MetricDef(
     val name: String,
     val label: String,
     val definition: String,
