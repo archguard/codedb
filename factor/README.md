@@ -10,4 +10,8 @@ Metric Factor is a metric for measuring the impact of a change on the codebase.
 | Factor | The number of files that are affected by a change | `factor = (files changed) / (total files)` | `factor = 2 / 100 = 0.02` |
 
 
+## Expression by Explain
 
+```kotlin
+val coverage  = "Changed Files" / "Total Files"
+```

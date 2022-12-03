@@ -53,6 +53,8 @@ internal class WorkflowTest {
 
         fitness("FitnessName") {
             val result = sin(1.0 * 2.0)
+            //Expression by Explain
+            val coverage = "Changed Files" / "Total Files"
 
             // send output
             detail["sin"] = listOf(result)
@@ -69,4 +71,8 @@ internal class WorkflowTest {
             }
         }
     }
+}
+
+operator fun String.div(name: String): Double {
+    return 0.0
 }
