@@ -4,7 +4,7 @@
 
 静态代码分析工具分类
 
-![](taxonomy-static-code-anlaysis-tools.png)
+![](images/taxonomy-static-code-anlaysis-tools.png)
 
 Table 1:  Analysis of selected static code analysis tools
 
@@ -19,25 +19,25 @@ Table 1:  Analysis of selected static code analysis tools
 
 Mindmap overviewing the taxonomy of Runtime Verification
 
-![Runtime Verify](runtime-verify.png)
+![Runtime Verify](images/runtime-verify.png)
 
 Mindmap for the specification part of the taxonomy
 
-![](specification.png)
+![](images/specification.png)
 
 Mindmap for the monitor part of the taxonomy
 
-![](monitor.png)
+![](images/monitor.png)
 
 Fig. 4: Mindmap for the deployment part of the taxonomy
 
-![](deployment.png)
+![](images/deployment.png)
 
 Fig. 5: Mindmap for the reaction part of the taxonomy
 
-![](reaction.png)
+![](images/reaction.png)
 
 Fig. 6: Mindmap for the trace part of the taxonomy
 
-![](trace.png)
+![](images/trace.png)
 

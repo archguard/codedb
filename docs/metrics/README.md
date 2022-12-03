@@ -51,7 +51,7 @@
 
 ## Industry practices and challenges for the evolvability assurance of microservices
 
-![Patterns](microservices-pattern.png)
+![Patterns](images/microservices-pattern.png)
 
 ### Google and Bing Search
 
