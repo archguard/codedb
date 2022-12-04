@@ -5,7 +5,7 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = "codedb"
+rootProject.name = "CodeDB"
 
 
 include(":structure-ql")
