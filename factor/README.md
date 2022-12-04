@@ -1,6 +1,6 @@
 # Factor
 
-Metric Factor is a metric for measuring the impact of a change on the codebase.
+> Metric Factor is a metric for measuring the impact of a change on the codebase.
 
 ## Factor in Design
 
