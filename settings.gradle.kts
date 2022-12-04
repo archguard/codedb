@@ -8,6 +8,5 @@ pluginManagement {
 rootProject.name = "codedb"
 
 
-include(":streaming-scanner")
-include(":query-dsl")
+include(":structure-ql")
 include(":factor")
