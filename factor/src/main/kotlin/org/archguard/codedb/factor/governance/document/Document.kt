@@ -3,7 +3,7 @@ package org.archguard.codedb.factor.governance.document
 /**
  * A document is a piece of information that is created, received, and stored electronically.
  */
-sealed class DocumentType {
+sealed class DocumentType() {
     /**
      * Code of conduct is a document that describes the expected behavior of the members of the project.
      */
@@ -35,6 +35,10 @@ sealed class DocumentType {
      * Security policy is a document that describes the security policy of the project.
      */
     class SecurityPolicy : DocumentType()
-    class Other(str: String) : DocumentType()
+
+    /**
+     * For custom document type
+     */
+    class Custom(str: String) : DocumentType()
 }
 

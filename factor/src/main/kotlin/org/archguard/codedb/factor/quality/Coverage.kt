@@ -23,11 +23,19 @@ enum class CounterEntity {
     CLASS
 }
 
-enum class ElementType {
-    GROUP,
-    BUNDLE,
-    PACKAGE,
-    SOURCEFILE,
-    CLASS,
-    METHOD,
+enum class ElementType(private val level: Int) {
+    GROUP(0),
+    BUNDLE(1),
+    PACKAGE(2),
+    SOURCEFILE(3),
+    CLASS(4),
+    METHOD(5),
+
+    // todo: or call expression
+    INSTRUCTION(6)
+    ;
+
+    fun level(): Int {
+        return level
+    }
 }
