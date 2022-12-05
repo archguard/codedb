@@ -1,5 +1,7 @@
 package org.archguard.codedb.factor.governance.metric
 
+import javax.persistence.*
+
 /**
  * Metric is a class that represents a metric.
  * - Metric Label is a label of a metric.
@@ -14,11 +16,17 @@ package org.archguard.codedb.factor.governance.metric
  * | CYCLO | Cyclomatic Complexity| The maximum number of linearly independent paths in a method.                                 |
  *
  */
+@Entity
 class MetricDef(
-    val name: String,
-    val label: String,
-    val definition: String
-)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+    val name: String = "",
+    val label: String = "",
+    val definition: String = ""
+) {
+
+}
 
 /**
  * Metric Value is a class that represents a metric value.

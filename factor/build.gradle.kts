@@ -1,6 +1,18 @@
 plugins {
+    idea
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.serialization") version "1.6.21"
+
+    kotlin("kapt")
+}
+
+
+idea {
+    module {
+        val kaptMain = file("build/generated/source/kapt/main")
+        sourceDirs.plusAssign(kaptMain)
+        generatedSourceDirs.plusAssign(kaptMain)
+    }
 }
 
 repositories {
@@ -9,6 +21,11 @@ repositories {
 }
 
 dependencies {
+    implementation("javax.persistence:javax.persistence-api:2.2")
+    // ksp for annotation processing
+    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+    implementation("com.querydsl:querydsl-core:5.0.0")
+
     implementation("com.phodal.chapi:chapi-domain:2.0.0-beta.9")
 
     // date time: https://github.com/Kotlin/kotlinx-datetime
