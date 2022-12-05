@@ -28,7 +28,15 @@ sealed class DocumentType() {
      * Contribution guide is a document that describes how to contribute to the project.
      */
     class Contributing : DocumentType()
+
+    /**
+     * Issue template is a document that describes the format of the issue.
+     */
     class IssueTemplate : DocumentType()
+
+    /**
+     * Pull request template is a document that describes the format of the pull request.
+     */
     class PullRequestTemplate : DocumentType()
 
     /**
@@ -39,6 +47,6 @@ sealed class DocumentType() {
     /**
      * For custom document type
      */
-    class Custom(str: String) : DocumentType()
+    class Custom(_str: String) : DocumentType()
 }
 
