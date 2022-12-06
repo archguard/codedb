@@ -10,10 +10,10 @@ import javax.persistence.*
  *
  * samples:
  *
- * | fileName | trackedLines | coveredLines | uncoveredLines | partial | coverage |  metricDef |
- * |----------|--------------|--------------|----------------|---------|----------|------------|
- * | file1    | 100          | 80           | 20             | 0       | 80%      |            |
- * | file2    | 200          | 100          | 100            | 0       | 50%      |            |
+ * | fileName | trackedLines | coveredLines | uncoveredLines | partial | value |  metricDef |
+ * |----------|--------------|--------------|----------------|---------|-------|------------|
+ * | file1    | 100          | 80           | 20             | 0       | 80%   |            |
+ * | file2    | 200          | 100          | 100            | 0       | 50%   |            |
  *
  */
 @Entity
@@ -26,7 +26,8 @@ class Coverage(
     val coveredLines: Int = 0,
     val uncoveredLines: Int = 0,
     val partial: Int = 0,
-    val coverage: Double = 0.0,
+    // aka. coverage
+    val value: Double = 0.0,
     @Column(name = "metric_def", nullable = false)
     val metricDef: MetricDef = MetricDef(null, "FileCoverage", "File Coverage", "File Coverage")
 ) {

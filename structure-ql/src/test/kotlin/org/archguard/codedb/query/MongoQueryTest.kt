@@ -13,6 +13,10 @@ import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
+import org.archguard.codedb.factor.governance.linting.QRule
+import org.archguard.codedb.factor.governance.linting.Rule
+import org.archguard.codedb.factor.quality.Coverage
+import org.archguard.codedb.factor.quality.QCoverage
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -114,6 +118,17 @@ internal class MongoQueryTest {
             )
 
         assertEquals(where.toString(), "{ \"language\" : \"kotlin\"}")
+    }
+
+    @Test
+    internal fun shouldQueryByLanguage() {
+        val query: MorphiaQuery<Coverage> = MorphiaQuery(morphia, datastore, Coverage::class.java)
+
+        val qRule = QCoverage.coverage
+
+        val where = query.where(qRule.value.between(0.0, 1.0))
+
+        assertEquals(where.toString(), "{ \"value\" : { \"${"\$"}gte\" : 0.0 , \"${"\$"}lte\" : 1.0}}")
     }
 
     @Test
