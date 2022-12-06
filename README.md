@@ -4,14 +4,15 @@
 
 ![CodeDB Logo](asssets/codedb.svg)
 
-> CodeDB 是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)的理念，内建架构适度度函数、代码设计查询和存储 DSL、依赖分析引擎、机器学习算法等。
+> CodeDB 是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)
+> 的理念，内建架构适度度函数、代码设计查询和存储 DSL、依赖分析引擎、机器学习算法等。
 
-Architecture diagram
+Architecture diagram: 
 
 ```
 +------------------------------------------------------------+
 |        +----------------+---------------+---------------+   |
-|   UI   |    Workbench   | ArchComponent |      eDSL     |   |
+|   UI   |    Workbench   | ArchComponent |     eDSL      |   |
 |        +----------------+---------------+---------------+   |
 +------------------------------------------------------------+
 |        +----------------+---------------+---------------+   |
@@ -32,13 +33,15 @@ Model: Architecture Twin ?
 
 Todos:
 
-- [ ] Query DSL
+- [ ] Workbench
+    - [ ] REPL environment
+    - [ ] REPL Editor
+- [ ] eDSL = embedding DSL
     - [ ] MongoDB. Need to implement custom `querysql-mongodb` for new morphia.
-- [ ] Query Engine
-    - [ ] search by file name
-    - [ ] search by ast
-    - [ ] search by regex
-    - [ ] search by code snippet
+    - [ ] Query DSL
+- [ ] Kotlin REPL
+    - [ ] Kotlin Jupyter Kernel
+    - [ ] Dynamic Library
 - [ ] TaskEngine
     - [ ] annotated DSL
     - [ ] Task API
@@ -53,7 +56,7 @@ Todos:
     - [ ] Fitness function
     - [ ] Math integration API
     - [ ] Data integration DSL
-- [ ] MetricModeling
+- [ ] Factor Model. CodeDB 自带模型，用于查询代码库的度量指标
     - Builtin Data
         - [ ] Ast Tree with TreeSitter ??
         - [ ] Chapi API ??
@@ -63,9 +66,6 @@ Todos:
         - [ ] security
         - [ ] sonarqube
         - [ ] ...
-- [ ] Workbench
-    - [ ] REPL environment
-    - [ ] Kotlin Jupyter
 - [ ] AI Algorithm
     - [ ] ML Algorithm
         - [ ] KNN
@@ -79,20 +79,22 @@ Todos:
         - [ ] [Sample](https://user-images.githubusercontent.com/5441976/187399382-907788dc-9c03-4a66-a560-07d28fd2de07.png)
     - [ ] CodeCity
     - [ ] ...
-
-Tech Stack Design:
-
-[@react-three/fiber](https://github.com/pmndrs/react-three-fiber) is a React renderer for threejs. Build your scene declaratively with re-usable, self-contained components that react to state, are readily 
-interactive and can participate in React's ecosystem.
+- [ ] Structure QL. 用于支持动态的模型引入
+    -  [ ] Query Engine
+        - [ ] search by file name
+        - [ ] search by ast
+        - [ ] search by regex
+        - [ ] search by code snippet
 
 Migrations:
 
 - [ ] align APIs
 
-# Query DSL
+Tech Stack Design:
 
-- factor，CodeDB 自带模型，用于查询代码库的度量指标
-- structure-ql，用于支持动态的模型引入
+[@react-three/fiber](https://github.com/pmndrs/react-three-fiber) is a React renderer for Three.js. Build your scene
+declarative with re-usable, self-contained components that react to state, are readily interactive and can participate
+in React's ecosystem.
 
 ## S-Expression Query ?
 
