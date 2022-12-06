@@ -1,23 +1,22 @@
 package org.archguard.codedb.factor.progress
 
+import org.archguard.codedb.factor.uuid
+import javax.persistence.Entity
+import javax.persistence.Id
+
 /**
  * Path-to-production analysis is a technique for assessing and diagnosing any bottlenecks in the SDLC process.
  *
  */
-open class PathToProduction(open val steps: List<ProcessItem>) {
+@Entity
+open class PathToProduction(
+    @Id
+    open val id: String = uuid(),
+    open var name: String = "",
+    open var steps: ArrayList<ProcessItem> = arrayListOf()
+) {
 
 }
-
-sealed class ProcessItem {
-    class Discussions : ProcessItem()
-    class Requirements : ProcessItem()
-    class Analysis : ProcessItem()
-    class Development : ProcessItem()
-    class Testing : ProcessItem()
-    class Deployment : ProcessItem()
-
-}
-
 
 /**
  * Sample: [https://www.thoughtworks.com/insights/articles/towards-a-secure-path-to-production](https://www.thoughtworks.com/insights/articles/towards-a-secure-path-to-production)
@@ -33,7 +32,23 @@ sealed class ProcessItem {
  * - Security controls alongside each step: Threat Modeling, Tests, Logging, Scanners, ...
  *
  */
-class SecurePathToProduction(override val steps: List<ProcessItem>) : PathToProduction(steps) {
+@Entity
+class SecurePathToProduction(
+    @Id
+    override val id: String = uuid(),
+    override var name: String = "",
+    override var steps: ArrayList<ProcessItem> = arrayListOf()
+) : PathToProduction(id, name, steps) {
 
+}
+
+
+sealed class ProcessItem {
+    class Discussions : ProcessItem()
+    class Requirements : ProcessItem()
+    class Analysis : ProcessItem()
+    class Development : ProcessItem()
+    class Testing : ProcessItem()
+    class Deployment : ProcessItem()
 }
 

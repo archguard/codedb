@@ -61,6 +61,8 @@ allprojects {
 }
 
 dependencies {
+	api(project(":factor"))
+
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")

@@ -9,6 +9,8 @@ repositories {
 }
 
 dependencies {
+    api(project(":factor"))
+
     implementation("com.phodal.chapi:chapi-ast-kotlin:2.0.0-beta.9") {
         // around 10mb, only documents files, exclude (reuse in cli?)
         exclude(group = "com.ibm.icu", module = "icu4j")

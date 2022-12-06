@@ -82,7 +82,6 @@ Todos:
 
 Tech Stack Design:
 
-
 [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) is a React renderer for threejs. Build your scene declaratively with re-usable, self-contained components that react to state, are readily 
 interactive and can participate in React's ecosystem.
 
@@ -91,6 +90,9 @@ Migrations:
 - [ ] align APIs
 
 # Query DSL
+
+- factor，CodeDB 自带模型，用于查询代码库的度量指标
+- structure-ql，用于支持动态的模型引入
 
 ## S-Expression Query ?
 
