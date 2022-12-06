@@ -26,7 +26,8 @@ dependencies {
     kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
     implementation("com.querydsl:querydsl-core:5.0.0")
 
-    implementation("com.phodal.chapi:chapi-domain:2.0.0-beta.9")
+//    todo: move to split module for ArchGuard
+//    implementation("com.phodal.chapi:chapi-domain:2.0.0-beta.9")
 
     // date time: https://github.com/Kotlin/kotlinx-datetime
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
@@ -52,4 +53,3 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-

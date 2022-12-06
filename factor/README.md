@@ -2,6 +2,11 @@
 
 > Metric Factor is a metric for measuring the impact of a change on the codebase.
 
+Issues:
+
+- [ ] QueryDSL 需要使用 KAPT + JPA 进行转换以生成查询 DSL
+- [ ] Chapi 需要结合到 JPA
+
 ## Factor in Design
 
 | Evolution     | Progress           | Governance | Experience | DevOps               | Quality       | Productivity |
