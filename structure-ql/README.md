@@ -1,75 +1,12 @@
-# QueryDSL
+# Structure QL
 
-
-两种模式？
+两种模式
 
 1. 基于 QueryDSL 对内建的选择器进行扩展，`query.where()` 之类的
-2. 基于普通的 SQL 语句字符串？
-3. 基于 Presto 构建表达器？
-
-## QueryDSL MongoDB
-
-```kotlin
-val list: List<CodeDocument> = query
-        .where(CodeDocument().systemId.eq("Bob"))
-        .fetch()
-```
-
-Bean Generator
-
-
-```java
-@Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QUser extends EntityPathBase<User> {
-    public final StringPath name = createString("name");
-}
-
-public class BeanPath<T> extends SimpleExpression<T> implements Path<T> {
-    protected StringPath createString(String property) {
-        return add(new StringPath(forProperty(property)));
-    }
-}
-
-public class StringPath extends StringExpression implements Path<String> {
-    protected StringPath(PathMetadata metadata) {
-        super(ExpressionUtils.path(String.class, metadata));
-        this.pathMixin = (PathImpl<String>) mixin;
-    }
-}
-
-public abstract class StringExpression extends LiteralExpression<String> {
-    
-}
-
-public abstract class LiteralExpression<T extends Comparable> extends ComparableExpression<T> {
-
-}
-
-public abstract class ComparableExpression<T extends Comparable> extends ComparableExpressionBase<T> {
-    
-}
-
-public abstract class ComparableExpressionBase<T extends Comparable> extends SimpleExpression<T> {
-    /**
-     * Create a {@code this == right} expression
-     *
-     * <p>Use expr.isNull() instead of expr.eq(null)</p>
-     *
-     * @param right rhs of the comparison
-     * @return this == right
-     */
-    public BooleanExpression eq(T right) {
-        if (right == null) {
-            throw new IllegalArgumentException("eq(null) is not allowed. Use isNull() instead");
-        } else {
-            return eq(ConstantImpl.create(right));
-        }
-    }
-}
-```
+2. 基于普通的 SQL 语句字符串
+3. 基于 Presto 构建表达器（未来）
 
 ## KMongo
-
 
 https://litote.org/kmongo/
 
@@ -88,13 +25,4 @@ val luke = col.aggregate<Jedi>(
             sample(1)
         ).first()   
 ```
-
-
-## Query 问题
-
-问题 ：QueryDSL 只支持 MongoDB 5.0 及以下，需要自己实现 querysql-mongodb。
-
-Java 16 and 17 compatibility #191 : https://github.com/cglib/cglib/issues/191
-
-cglib 不支持 Java 17
 

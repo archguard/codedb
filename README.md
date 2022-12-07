@@ -143,3 +143,14 @@ cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=h
     - follow: [https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/)
 3. start spring boot application
     - `./gradlew bootRun`_
+
+### Known Issues
+
+#### Why JDK 11 with MongoDB 5.0
+
+问题：
+
+1. cglib 不支持 Java 17 Java 16 and 17 compatibility #191 : https://github.com/cglib/cglib/issues/191
+2. QueryDSL MongoDB 5.0 只支持 MongoDB 6.0 以下版本（暂不支持 6.0），需要自己实现 querysql-mongodb。
+
+
