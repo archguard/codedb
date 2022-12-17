@@ -4,10 +4,12 @@
 
 ![CodeDB Logo](asssets/codedb.svg)
 
-> CodeDB 是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)
+> CodeDB
+>
+是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)
 > 的理念，内建架构适度度函数、代码设计查询和存储 DSL、依赖分析引擎、机器学习算法等。
 
-Architecture diagram: 
+Architecture diagram:
 
 ```
 +------------------------------------------------------------+
@@ -25,11 +27,7 @@ Architecture diagram:
 +------------------------------------------------------------+
 ```
 
-Multiple-platform Kotlin ?
-
 # Roadmap
-
-Model: Architecture Twin ?
 
 Todos:
 
@@ -79,11 +77,12 @@ Todos:
         - [ ] [Sample](https://user-images.githubusercontent.com/5441976/187399382-907788dc-9c03-4a66-a560-07d28fd2de07.png)
     - [ ] CodeCity
     - [ ] ...
-- [ ] Structure QL. 用于支持动态的模型引入
-    -  [ ] Query Engine
+- [ ] Data Query
+    - [ ] Structure QL. 用于支持动态的模型引入
         - [ ] search by file name
         - [ ] search by ast
         - [ ] search by regex
+    - [ ] Query Engine
         - [ ] search by code snippet
 
 Migrations:
