@@ -10,3 +10,4 @@ rootProject.name = "CodeDB"
 
 include(":structure-ql")
 include(":factor")
+include(":fitness-engine")
