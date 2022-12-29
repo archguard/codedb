@@ -37,6 +37,7 @@ Todos:
 - [ ] eDSL = embedding DSL
     - [ ] MongoDB. Need to implement custom `querysql-mongodb` for new morphia.
     - [ ] Query DSL
+    - [ ] Data integration DSL
 - [ ] Kotlin REPL
     - [ ] Kotlin Jupyter Kernel
     - [ ] Dynamic Library
@@ -53,7 +54,6 @@ Todos:
 - [ ] Fitness Engine
     - [ ] Fitness function
     - [ ] Math integration API
-    - [ ] Data integration DSL
 - [ ] Factor Model. CodeDB 自带模型，用于查询代码库的度量指标
     - Builtin Data
         - [ ] Ast Tree with TreeSitter ??
@@ -88,12 +88,6 @@ Todos:
 Migrations:
 
 - [ ] align APIs
-
-Tech Stack Design:
-
-[@react-three/fiber](https://github.com/pmndrs/react-three-fiber) is a React renderer for Three.js. Build your scene
-declarative with re-usable, self-contained components that react to state, are readily interactive and can participate
-in React's ecosystem.
 
 ## S-Expression Query ?
 
