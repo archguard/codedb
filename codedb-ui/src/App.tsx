@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 import { Canvas, useFrame } from '@react-three/fiber'
+import { Flex } from '@react-three/flex';
 
 function Box(props: any) {
   // This reference gives us direct access to the THREE.Mesh object
@@ -30,8 +31,12 @@ function App() {
     <Canvas>
       <ambientLight/>
       <pointLight position={[10, 10, 10]}/>
-      <Box position={[-1.2, 0, 0]}/>
-      <Box position={[1.2, 0, 0]}/>
+
+      <Flex justifyContent="center" alignItems="center">
+        <Box position={[-1.2, 0, 0]}/>
+        <Box position={[1.2, 0, 0]}/>
+        <Box centerAnchor></Box>
+      </Flex>
     </Canvas>
   );
 }
