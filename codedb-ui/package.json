@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^9.48.2",
     "@react-three/fiber": "^8.9.1",
     "@react-three/flex": "^1.0.1",
     "@react-three/xr": "^5.1.2",
