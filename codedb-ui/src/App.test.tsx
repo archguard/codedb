@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import App from './App';
+import ReactThreeTestRenderer from '@react-three/test-renderer'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test('mesh to have two children', async () => {
+  const renderer = await ReactThreeTestRenderer.create(<App/>)
+
+  // const mesh = renderer.scene.children[0].allChildren
+  // expect(mesh.length).toBe(2)
+})

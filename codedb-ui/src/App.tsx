@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, extend } from '@react-three/fiber'
 import { Flex } from '@react-three/flex';
+import { ResizeObserver } from '@juggle/resize-observer';
 
 function Box(props: any) {
   // This reference gives us direct access to the THREE.Mesh object
@@ -28,6 +29,8 @@ function Box(props: any) {
 
 function App() {
   return (
+    // follow https://github.com/pmndrs/react-three-fiber/issues/248 setup pollyfill
+    // <Canvas resize={{polyfill: ResizeObserver}}>
     <Canvas>
       <ambientLight/>
       <pointLight position={[10, 10, 10]}/>

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@juggle/resize-observer": "^3.4.0",
     "@react-three/drei": "^9.48.2",
     "@react-three/fiber": "^8.9.1",
     "@react-three/flex": "^1.0.1",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@react-three/test-renderer": "^8.0.17"
   }
 }
