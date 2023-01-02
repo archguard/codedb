@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.0.0",
+    "@craco/types": "^7.0.0",
     "@react-three/test-renderer": "^8.0.17",
     "@storybook/addon-actions": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.15",
