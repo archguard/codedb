@@ -1,3 +1,5 @@
-module.exports = {
-    webpack: {}
-}
+const config = {
+  verbose: true,
+};
+
+module.exports = config;
