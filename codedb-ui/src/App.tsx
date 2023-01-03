@@ -3,7 +3,7 @@ import './App.css';
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Flex } from '@react-three/flex';
 
-function Box(props: any) {
+export function Box(props: any) {
   // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef()
   // Hold state for hovered and clicked events
