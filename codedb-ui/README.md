@@ -8,6 +8,9 @@ Todos:
 - [ ] Editor Integration
     - [ ] Monaco Editor
 - [ ] UI Design
+- [ ] Component as Plugin
+    - [ ] Plugin System
+    - [ ] Plugin Store
 
 ## Library
 
