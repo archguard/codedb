@@ -12,6 +12,13 @@ Todos:
     - [ ] Plugin System
     - [ ] Plugin Store
 
+## Refs
+
+- BI
+  - Metabase
+  - Redash
+  - Superset
+
 ## Library
 
 [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) is a React renderer for Three.js. Build your scene
