@@ -1,5 +1,6 @@
 import { Card, Col, Row } from "antd";
 import React from "react";
+import Radar from "../chart/Radar/Radar";
 
 export function Dashboard() {
   return (
@@ -14,8 +15,7 @@ export function Dashboard() {
         <Row gutter={ [24, 0] }>
           <Col xs={ 24 } sm={ 24 } md={ 12 } lg={ 12 } xl={ 10 } className="mb-24">
             <Card bordered={ false }>
-              {/*<Echart />*/ }
-              EChart
+              <Radar />
             </Card>
           </Col>
           <Col xs={ 24 } sm={ 24 } md={ 12 } lg={ 12 } xl={ 14 } className="mb-24">
