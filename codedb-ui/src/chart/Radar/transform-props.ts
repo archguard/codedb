@@ -7,10 +7,10 @@ export interface RadarOptions {
 
 }
 
-export function transformProps(radarOptions: RadarOptions) : EChartOption {
+export function transformProps(radarOptions: RadarOptions): EChartOption {
   let radarOption = {
     title: {
-      text: 'Basic Radar Chart'
+      text: 'Radar'
     },
     legend: {
       data: ['Allocated Budget', 'Actual Spending']
