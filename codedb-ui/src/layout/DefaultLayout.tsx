@@ -1,16 +1,19 @@
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 export default function DefaultLayout() {
   const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
 
   return (
-    <Layout style={ { minHeight: '100vh' } }>
+    <Layout style={ { minHeight: '100vh', background: colorBgContainer } }>
       <Sider collapsible collapsed={ collapsed } onCollapse={ (value) => setCollapsed(value) }>
-        <Menu theme="light" mode="inline">
+        <Menu>
           <Menu.Item key="1">
             <NavLink to="/">Home</NavLink>
           </Menu.Item>
@@ -20,9 +23,7 @@ export default function DefaultLayout() {
         </Menu>
       </Sider>
       <Layout>
-        <Header>
-          <Breadcrumb></Breadcrumb>
-        </Header>
+        <Breadcrumb></Breadcrumb>
         <Content>
           <Outlet/>
         </Content>

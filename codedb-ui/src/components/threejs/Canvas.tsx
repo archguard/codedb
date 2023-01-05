@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Flex } from "@react-three/flex";
-import { Box } from "../../components/threejs/Box";
+import { Box } from "./Box";
 import React from "react";
 
 function CanvasDemo() {
