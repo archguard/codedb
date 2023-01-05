@@ -37,15 +37,15 @@ function Echart(props: EchartProps) {
     }
   }));
 
-  const handleResize = useCallback((width: number, height: number) => {
+  const onResize = useCallback((width: number, height: number) => {
     if (echartRef.current) {
       echartRef.current.resize({ width, height });
     }
   }, []);
 
   useLayoutEffect(() => {
-    handleResize(width, height)
-  }, [width, height, handleResize]);
+    onResize(width, height)
+  }, [width, height, onResize]);
 
   return (
     <div className={ "echart" } ref={ elemRef } style={ { width, height } }/>

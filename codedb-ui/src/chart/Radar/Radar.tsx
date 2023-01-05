@@ -39,6 +39,6 @@ export default function Radar() {
   };
 
   return (
-    <Echart height={ 320 } width={ 320 } option={ radarOption }/>
+    <Echart height={ 480 } width={ 480 } option={ radarOption }/>
   )
 }

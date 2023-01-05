@@ -12,7 +12,10 @@ export default function DefaultLayout() {
       <Sider collapsible collapsed={ collapsed } onCollapse={ (value) => setCollapsed(value) }>
         <Menu theme="light" mode="inline">
           <Menu.Item key="1">
-            <NavLink to="/dashboard">CodeDB</NavLink>
+            <NavLink to="/">Home</NavLink>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <NavLink to="/dashboard">My Dashboard</NavLink>
           </Menu.Item>
         </Menu>
       </Sider>
