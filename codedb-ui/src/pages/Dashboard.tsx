@@ -15,12 +15,11 @@ export function Dashboard() {
         <Row gutter={ [24, 0] }>
           <Col xs={ 24 } sm={ 24 } md={ 12 } lg={ 12 } xl={ 10 } className="mb-24">
             <Card bordered={ false }>
-              <Radar />
+              <Radar option={ {} }/>
             </Card>
           </Col>
           <Col xs={ 24 } sm={ 24 } md={ 12 } lg={ 12 } xl={ 14 } className="mb-24">
             <Card bordered={ false }>
-              {/*<LineChart />*/ }
               LineChart
             </Card>
           </Col>

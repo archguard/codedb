@@ -7,7 +7,7 @@ import { Dashboard } from "./pages/Dashboard";
 import Home from "./pages/Home";
 import { ConfigProvider } from "antd";
 import { color } from "./theme/color";
-
+import 'antd/dist/reset.css';
 
 function App() {
   return (
