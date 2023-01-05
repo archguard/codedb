@@ -83,7 +83,9 @@
     "babel-plugin-named-exports-order": "^0.0.2",
     "lerna": "^5.2.0",
     "prop-types": "^15.8.1",
-    "webpack": "^5.75.0"
+    "webpack": "^5.75.0",
+    "webpack-bundle-analyzer": "^4.7.0",
+    "webpackbar": "^5.0.2"
   },
   "workspaces": [
     "packages/*",
