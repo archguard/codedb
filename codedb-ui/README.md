@@ -12,6 +12,11 @@ Todos:
     - [ ] Plugin System
     - [ ] Plugin Store
 
+## Tech Stack
+
+- CSS in JS: https://emotion.sh/docs/introduction
+- Chart: Echarts
+
 ## Refs
 
 - BI
