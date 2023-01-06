@@ -3,5 +3,7 @@
  * Receive JSON data and convert to different formats, for example: Radar, Line, Bar, etc.
  */
 export interface ChartData {
-  type: string;
+  // the Visualization type
+  viz_type: string;
 }
+
