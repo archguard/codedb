@@ -2,8 +2,9 @@ import { Button, Layout, Menu, MenuProps } from "antd";
 import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { DownOutlined } from "@ant-design/icons";
+import "./DefaultLayout.less";
 
-const { Content, Footer } = Layout;
+const { Header, Content, Footer } = Layout;
 
 export default function DefaultLayout() {
   const [current, setCurrent] = useState('dashboard');
@@ -24,7 +25,7 @@ export default function DefaultLayout() {
       disabled: true
     },
     {
-      label: <Button type="primary">Create <DownOutlined /></Button>,
+      label: <Button type="primary">Create <DownOutlined/></Button>,
       key: 'SubMenu',
       children: [
         {
@@ -47,7 +48,13 @@ export default function DefaultLayout() {
   return (
     <Layout style={ { minHeight: '100vh' } }>
       <Layout>
-        <Menu onClick={ onClick } selectedKeys={ [current] } mode="horizontal" items={ items }/>
+        <Header className="header">
+          <a className="logo">
+            <img src={ require('../assets/images/logo.svg').default } alt="logo"/>
+          </a>
+
+          <Menu onClick={ onClick } selectedKeys={ [current] } mode="horizontal" items={ items }/>
+        </Header>
         <Content>
           <Outlet/>
         </Content>
