@@ -2,11 +2,8 @@
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "useNx": true,
   "useWorkspaces": true,
-  "version": "0.0.0",
-  "packages": [
-    "packages/*",
-    "plugins/*"
-  ],
+  "version": "0.1.0",
+  "packages": ["packages/*", "plugins/*"],
   "command": {
     "publish": {
       "message": "chore(superset-ui): publish %s",
