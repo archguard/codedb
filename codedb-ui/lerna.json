@@ -6,5 +6,15 @@
   "packages": [
     "packages/*",
     "plugins/*"
-  ]
+  ],
+  "command": {
+    "publish": {
+      "message": "chore(superset-ui): publish %s",
+      "graphType": "all"
+    },
+    "version": {
+      "message": "chore(superset-ui): publish %s",
+      "exact": true
+    }
+  }
 }
