@@ -1,5 +1,5 @@
 {
-  "name": "plugin-chart-echarts",
+  "name": "@codedb/plugin-chart-echarts",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
