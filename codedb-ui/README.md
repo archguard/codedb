@@ -34,3 +34,9 @@ in React's ecosystem.
 - [ ] @react-three/flex, brings the webs flexbox spec to react-three-fiber.
   - [ ]@react-three/drei, A growing collection of useful helpers and fully functional, ready-made abstractions for
   @react-three/fiber.
+
+
+## License
+
+This code is distributed under the MIT license. See `LICENSE` in this directory.
+
