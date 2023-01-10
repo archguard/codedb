@@ -2,7 +2,6 @@ import { Button, Layout, Menu, MenuProps } from "antd";
 import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { DownOutlined } from "@ant-design/icons";
-import "./DefaultLayout.less";
 
 const { Header, Content, Footer } = Layout;
 

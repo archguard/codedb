@@ -14,7 +14,8 @@ Todos:
 
 ## Tech Stack
 
-- CSS in JS: https://emotion.sh/docs/introduction
+- Styled Components: https://emotion.sh/docs/introduction
+  - purpose: for custom themes
 - Chart: Echarts
 
 ## Refs
