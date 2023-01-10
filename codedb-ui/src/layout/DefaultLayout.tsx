@@ -1,7 +1,8 @@
 import { Button, Layout, Menu, MenuProps } from "antd";
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { DownOutlined } from "@ant-design/icons";
+import styled from "@emotion/styled";
 
 const { Header, Content, Footer } = Layout;
 
@@ -45,21 +46,24 @@ export default function DefaultLayout() {
   };
 
   return (
-    <Layout style={ { minHeight: '100vh' } }>
+    <FullLayout style={ { minHeight: '100vh' } }>
       <Layout>
-        <Header className="header">
-          <a className="logo">
-            <img src={ require('../assets/images/logo.svg').default } alt="logo"/>
-          </a>
-
+        <StyledHeader>
           <Menu onClick={ onClick } selectedKeys={ [current] } mode="horizontal" items={ items }/>
-        </Header>
+        </StyledHeader>
         <Content>
           <Outlet/>
         </Content>
 
         <Footer style={ { textAlign: 'center' } }>CodeDB ©2023 Created by ArchGuard</Footer>
       </Layout>
-    </Layout>
+    </FullLayout>
   );
 }
+
+const FullLayout = styled(Layout)`
+  min-height: 100vh;
+`
+const StyledHeader = styled(Header)`
+  padding-inline: 0px !important;
+`
