@@ -1,6 +1,6 @@
 import { Card, Col, Row } from "antd";
 import React from "react";
-import Radar from "../chart/Radar/Radar";
+import Radar from "../../chart/Radar/Radar";
 
 export function Dashboard() {
   return (

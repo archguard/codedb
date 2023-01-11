@@ -11,18 +11,16 @@ export default function DefaultLayout() {
   const items: MenuProps['items'] = [
 
     {
-      label: <NavLink to="/dashboard">My Dashboard</NavLink>,
+      label: <NavLink to="/">My Dashboard</NavLink>,
       key: 'dashboard',
     },
     {
-      label: <NavLink to="/">Queries</NavLink>,
+      label: <NavLink to="/queries">Queries</NavLink>,
       key: 'queries',
-      disabled: true
     },
     {
-      label: <NavLink to="/">Alerts</NavLink>,
+      label: <NavLink to="/alerts">Alerts</NavLink>,
       key: 'alerts',
-      disabled: true
     },
     {
       label: <Button type="primary">Create <DownOutlined/></Button>,
