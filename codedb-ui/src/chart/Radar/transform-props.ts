@@ -1,11 +1,9 @@
-import { EChartOption } from "echarts";
+import { EChartOption } from 'echarts'
 
 /**
  *
  */
-export interface RadarOptions {
-
-}
+export interface RadarOptions {}
 
 export function transformProps(radarOptions: RadarOptions): EChartOption {
   let radarOption = {
@@ -42,7 +40,7 @@ export function transformProps(radarOptions: RadarOptions): EChartOption {
         ]
       }
     ]
-  };
+  }
 
-  return radarOption;
+  return radarOption
 }

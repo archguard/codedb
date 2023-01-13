@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react'
 
 function CreateFitness(props: any) {
-  return (
-    <div></div>
-  );
+  return <div></div>
 }
 
-export default CreateFitness;
+export default CreateFitness

@@ -4,6 +4,5 @@
  */
 export interface ChartData {
   // the Visualization type
-  viz_type: string;
+  viz_type: string
 }
-

@@ -1,11 +1,6 @@
 {
-  "extends": [
-    "react-app",
-    "react-app/jest"
-  ],
-  "plugins": [
-    "prettier"
-  ],
+  "extends": ["react-app", "react-app/jest"],
+  "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -13,13 +8,8 @@
         "endOfLine": "lf"
       }
     ],
-    "@typescript-eslint/no-unused-vars": [
-      "error"
-    ],
-    "jsx-quotes": [
-      1,
-      "prefer-single"
-    ],
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "jsx-quotes": [1, "prefer-single"],
     "no-class-assign": "error",
     "no-dupe-keys": "error",
     "no-dupe-args": "error",
@@ -28,14 +18,8 @@
     "no-func-assign": "error",
     "no-multi-spaces": "warn",
     "no-var": "error",
-    "eqeqeq": [
-      2,
-      "allow-null"
-    ],
-    "quotes": [
-      1,
-      "single"
-    ],
+    "eqeqeq": [2, "allow-null"],
+    "quotes": [1, "single"],
     "no-unreachable": "error",
     "no-multiple-empty-lines": [
       2,

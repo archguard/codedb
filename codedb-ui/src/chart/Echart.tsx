@@ -1,23 +1,23 @@
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef } from "react";
-import { EChartOption, ECharts, init } from "echarts";
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react'
+import { EChartOption, ECharts, init } from 'echarts'
 
 interface EchartProps {
-  width: number;
+  width: number
 
-  height: number;
+  height: number
   /**
    * the echart option
    */
-  option: EChartOption;
+  option: EChartOption
 
-  ref: React.Ref<{ instance: () => ECharts | undefined }>;
+  ref: React.Ref<{ instance: () => ECharts | undefined }>
 }
 
 function Echart(props: EchartProps) {
-  const { width, height, option } = props;
+  const { width, height, option } = props
 
-  const elemRef = useRef<HTMLDivElement>(null);
-  const echartRef = useRef<ECharts>();
+  const elemRef = useRef<HTMLDivElement>(null)
+  const echartRef = useRef<ECharts>()
 
   useEffect(() => {
     if (!elemRef.current) {
@@ -25,31 +25,29 @@ function Echart(props: EchartProps) {
     }
 
     if (!echartRef.current) {
-      echartRef.current = init(elemRef.current!);
+      echartRef.current = init(elemRef.current!)
     }
 
-    echartRef.current.setOption(props.option, true);
-  });
+    echartRef.current.setOption(props.option, true)
+  })
 
   useImperativeHandle(props.ref, () => ({
     instance() {
-      return echartRef.current;
+      return echartRef.current
     }
-  }));
+  }))
 
   const onResize = useCallback((width: number, height: number) => {
     if (echartRef.current) {
-      echartRef.current.resize({ width, height });
+      echartRef.current.resize({ width, height })
     }
-  }, []);
+  }, [])
 
   useLayoutEffect(() => {
     onResize(width, height)
-  }, [width, height, onResize]);
+  }, [width, height, onResize])
 
-  return (
-    <div className={ "echart" } ref={ elemRef } style={ { width, height } }/>
-  )
+  return <div className={'echart'} ref={elemRef} style={{ width, height }} />
 }
 
 export default forwardRef(Echart)

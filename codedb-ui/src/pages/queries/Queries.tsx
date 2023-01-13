@@ -1,15 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-export interface QueriesProps {
-
-}
+export interface QueriesProps {}
 
 function Queries(props: QueriesProps) {
   return (
     <div>
       <h1>Queries</h1>
     </div>
-  );
+  )
 }
 
-export default Queries;
+export default Queries

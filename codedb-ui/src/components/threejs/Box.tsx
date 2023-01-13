@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import React, { useRef, useState } from 'react'
+import { useFrame } from '@react-three/fiber'
 
 export function Box(props: any) {
   // This reference gives us direct access to the THREE.Mesh object
@@ -12,14 +12,15 @@ export function Box(props: any) {
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <mesh
-      { ...props }
-      ref={ ref }
-      scale={ clicked ? 1.5 : 1 }
-      onClick={ (event) => click(!clicked) }
-      onPointerOver={ (event) => hover(true) }
-      onPointerOut={ (event) => hover(false) }>
-      <boxGeometry args={ [1, 1, 1] }/>
-      <meshStandardMaterial color={ hovered ? 'hotpink' : 'orange' }/>
+      {...props}
+      ref={ref}
+      scale={clicked ? 1.5 : 1}
+      onClick={(event) => click(!clicked)}
+      onPointerOver={(event) => hover(true)}
+      onPointerOut={(event) => hover(false)}
+    >
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
     </mesh>
   )
 }
