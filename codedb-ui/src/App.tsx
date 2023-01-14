@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ConfigProvider } from 'antd'
+import { Helmet } from 'react-helmet'
 
 import './App.css'
 import DefaultLayout from './layout/DefaultLayout'
@@ -19,6 +20,10 @@ function App() {
       }}
     >
       <div className='App'>
+        <Helmet>
+          <meta charSet='utf-8' />
+          <title>FitFlow - Fit your software in flow </title>
+        </Helmet>
         <Routes>
           <Route path='/' element={<DefaultLayout />}>
             <Route path='/' element={<Dashboard />} />

@@ -14,7 +14,7 @@ interface EchartProps {
 }
 
 function Echart(props: EchartProps) {
-  const { width, height, option } = props
+  const { width, height } = props
 
   const elemRef = useRef<HTMLDivElement>(null)
   const echartRef = useRef<ECharts>()

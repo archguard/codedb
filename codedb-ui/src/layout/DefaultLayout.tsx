@@ -1,6 +1,6 @@
 import { Button, Layout, Menu, MenuProps } from 'antd'
 import React, { useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
 import styled from '@emotion/styled'
 
@@ -65,5 +65,5 @@ const FullLayout = styled(Layout)`
   min-height: 100vh;
 `
 const StyledHeader = styled(Header)`
-  padding-inline: 0px !important;
+  padding-inline: 0 !important;
 `
