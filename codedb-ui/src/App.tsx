@@ -11,18 +11,18 @@ import { color } from './theme/color'
 import 'antd/dist/reset.css'
 import Alerts from './pages/alerts/Alerts'
 import Queries from './pages/queries/Queries'
+import { useTranslation } from 'react-i18next'
+import './i18n/config'
 
 function App() {
+  const { t } = useTranslation()
+
   return (
-    <ConfigProvider
-      theme={{
-        token: color
-      }}
-    >
+    <ConfigProvider theme={{ token: color }}>
       <div className='App'>
         <Helmet>
           <meta charSet='utf-8' />
-          <title>FitFlow - Fit your software in flow </title>
+          <title>{t('title')}</title>
         </Helmet>
         <Routes>
           <Route path='/' element={<DefaultLayout />}>
