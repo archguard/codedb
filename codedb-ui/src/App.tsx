@@ -12,7 +12,7 @@ import 'antd/dist/reset.css'
 import Alerts from './pages/alerts/Alerts'
 import Queries from './pages/queries/Queries'
 import { useTranslation } from 'react-i18next'
-import './i18n/config'
+import './i18n/i18n-config'
 
 function App() {
   const { t } = useTranslation()
