@@ -43,8 +43,10 @@ in React's ecosystem.
 3. 分解指标为适应度函数
 4. 适应度函数分解为 WorkFlow
 5. WorkFlow 拆解为 Job
-6. Job 细分到 Taks
-
+  - [ ] Analyser
+  - [ ] Scheduler
+6. Job 细分到 Task
+  - [ ] Scanner
 
 
 ## License
