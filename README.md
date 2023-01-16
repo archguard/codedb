@@ -122,6 +122,13 @@ like TreeSitter?
 )
 ```
 
+## Principle
+
+ThinSlice for Goal
+
+By Level Goal -> Flow/Fitness -> Task -> Job
+
+
 # Development
 
 ## Scan Data with ArchGuard

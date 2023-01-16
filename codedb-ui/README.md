@@ -36,6 +36,17 @@ in React's ecosystem.
   - [ ]@react-three/drei, A growing collection of useful helpers and fully functional, ready-made abstractions for
     @react-three/fiber.
 
+## ThinSlice
+
+1. 创建治理目标
+2. 分解治理目标为指标
+3. 分解指标为适应度函数
+4. 适应度函数分解为 WorkFlow
+5. WorkFlow 拆解为 Job
+6. Job 细分到 Taks
+
+
+
 ## License
 
 This code is distributed under the MIT license. See `LICENSE` in this directory.
