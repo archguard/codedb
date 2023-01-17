@@ -3,41 +3,58 @@ import React, { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
 import styled from '@emotion/styled'
+import { useTranslation } from 'react-i18next'
 
 const { Header, Content, Footer } = Layout
 
 export default function DefaultLayout() {
+  const { t } = useTranslation()
+
   const [current, setCurrent] = useState('dashboard')
+
   const items: MenuProps['items'] = [
     {
-      label: <NavLink to='/'>My Dashboard</NavLink>,
+      label: <NavLink to='/'>{t('dashboard')}</NavLink>,
       key: 'dashboard'
     },
     {
-      label: <NavLink to='/queries'>Queries</NavLink>,
+      label: <NavLink to='/queries'>{t('queries')}</NavLink>,
       key: 'queries'
     },
     {
-      label: <NavLink to='/alerts'>Alerts</NavLink>,
+      label: <NavLink to='/alerts'>{t('alerts')}</NavLink>,
       key: 'alerts'
+    },
+    {
+      label: <NavLink to='/analysis'>{t('analysis')}</NavLink>,
+      key: 'analysis'
     },
     {
       label: (
         <Button type='primary'>
-          Create <DownOutlined />
+          {t('create')} <DownOutlined />
         </Button>
       ),
       key: 'SubMenu',
       children: [
         {
-          label: 'Create Alert',
-          key: 'setting:1'
+          label: t('alerts'),
+          key: 'create:alerts'
         },
         {
-          label: 'Create Query',
-          key: 'setting:2'
+          label: t('queries'),
+          key: 'create:queries'
+        },
+        {
+          label: t('analysis'),
+          key: 'create:analysis'
         }
       ]
+    },
+    {
+      label: <NavLink to='/fitness'>{t('fitness')}</NavLink>,
+      key: 'fitness',
+      disabled: true
     }
   ]
 

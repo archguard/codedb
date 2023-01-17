@@ -1,3 +1,9 @@
 {
-  "title": "FitFlow - Fit your software in flow"
+  "title": "FitFlow - Fit your software in flow",
+  "fitness": "Fitness",
+  "dashboard": "Dashboard",
+  "alerts": "Alerts",
+  "queries": "Queries",
+  "analysis": "Analysis",
+  "create": "Create"
 }

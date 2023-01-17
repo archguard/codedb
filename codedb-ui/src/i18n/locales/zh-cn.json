@@ -1,3 +1,9 @@
 {
-  "title": "FitFlow - 让软件合身于设计"
+  "title": "FitFlow - 让软件合身于设计",
+  "fitness": "适应度（联合计算）",
+  "dashboard": "Dashboard",
+  "alerts": "预警",
+  "queries": "查询",
+  "analysis": "扫描分析",
+  "create": "创建"
 }
