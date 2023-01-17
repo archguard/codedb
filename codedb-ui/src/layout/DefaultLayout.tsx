@@ -55,7 +55,7 @@ export default function DefaultLayout() {
           <Outlet />
         </Content>
 
-        <Footer style={{ textAlign: 'center' }}>CodeDB ©2023 Created by ArchGuard</Footer>
+        <Footer style={{ textAlign: 'center' }}>CodeDB©2023 Created by Thoughtworks & ArchGuard Team.</Footer>
       </Layout>
     </FullLayout>
   )

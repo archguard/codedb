@@ -4,26 +4,26 @@ Todos:
 
 - [ ] Storybook
 - [ ] Lowcode Component ?
-  - [ ] like JSON generate ?
+    - [ ] like JSON generate ?
 - [ ] Editor Integration
-  - [ ] Monaco Editor
+    - [ ] Monaco Editor
 - [ ] UI Design
 - [ ] Component as Plugin
-  - [ ] Plugin System
-  - [ ] Plugin Store
+    - [ ] Plugin System
+    - [ ] Plugin Store
 
 ## Tech Stack
 
 - Styled Components: https://emotion.sh/docs/introduction
-  - purpose: for custom themes
+    - purpose: for custom themes
 - Chart: Echarts
 
 ## Refs
 
 - BI
-  - Metabase
-  - Redash
-  - Superset
+    - Metabase
+    - Redash
+    - Superset
 
 ## Library
 
@@ -34,20 +34,29 @@ in React's ecosystem.
 - [ ] @react-three/xr, React components and hooks for creating VR/AR applications .
 - [ ] @react-three/flex, brings the webs flexbox spec to react-three-fiber.
   - [ ]@react-three/drei, A growing collection of useful helpers and fully functional, ready-made abstractions for
-    @react-three/fiber.
+  @react-three/fiber.
 
-## ThinSlice
+## Information Landscape
+
+LVT (Lean Value Tree)
+
+- Goal
+- Evolution => Fitness Function ?
+- Alerts =>
+- Queries =>
+- Workflow => ?
+
+ThinSlice ?
 
 1. 创建治理目标
 2. 分解治理目标为指标
 3. 分解指标为适应度函数
 4. 适应度函数分解为 WorkFlow
 5. WorkFlow 拆解为 Job
-  - [ ] Analyser
-  - [ ] Scheduler
+    - [ ] Analyser
+    - [ ] Scheduler
 6. Job 细分到 Task
-  - [ ] Scanner
-
+    - [ ] Scanner
 
 ## License
 
