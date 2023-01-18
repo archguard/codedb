@@ -54,9 +54,13 @@ ThinSlice ?
 4. 适应度函数分解为 WorkFlow
 5. WorkFlow 拆解为 Job
     - [ ] Analyser
+    - [ ] Scanner
     - [ ] Scheduler
 6. Job 细分到 Task
-    - [ ] Scanner
+    - [ ] examples:
+        - [ ] SVN clone
+            - [ ] ignore config     
+        - [ ] Local Task
 
 ## License
 
