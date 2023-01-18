@@ -63,7 +63,7 @@ export default function DefaultLayout() {
   }
 
   return (
-    <FullLayout style={{ minHeight: '100vh' }}>
+    <FullLayout>
       <Layout>
         <StyledHeader>
           <Menu onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />
