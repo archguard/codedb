@@ -38,16 +38,6 @@ in React's ecosystem.
 
 ## Information Landscape
 
-LVT (Lean Value Tree)
-
-- Goal
-- Evolution => Fitness Function ?
-- Alerts =>
-- Queries =>
-- Workflow => ?
-
-ThinSlice ?
-
 1. 创建治理目标
 2. 分解治理目标为指标
 3. 分解指标为适应度函数
@@ -61,6 +51,16 @@ ThinSlice ?
         - [ ] SVN clone
             - [ ] ignore config     
         - [ ] Local Task
+
+LVT (Lean Value Tree)
+
+- Goal
+- Evolution => Fitness Function ?
+- Alerts =>
+- Queries =>
+- Workflow => ?
+
+ThinSlice ?
 
 ## License
 
