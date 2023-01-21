@@ -13,3 +13,5 @@ include(":factor")
 include(":fitness-engine")
 
 include(":components:task:core")
+
+include(":components:basic:gitignore")
