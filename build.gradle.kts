@@ -68,6 +68,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
 	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -75,25 +77,18 @@ dependencies {
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
 	// DSL
 	implementation("org.jetbrains.kotlinx:kotlin-jupyter-api:0.11.0-89-1")
 	implementation("org.jetbrains.kotlinx:kotlin-jupyter-kernel:0.11.0-89-1")
-	compileOnly("org.jetbrains.kotlin:kotlin-scripting-jvm:1.6.21")
 
 	compileOnly(libs.kotlin.scriptingJvm)
 
 	implementation("org.slf4j:slf4j-api:2.0.3")
 
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-
 	// for tasking
-	implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.21")
-
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
-
 	testImplementation("io.kotest:kotest-assertions-core:5.5.4")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")

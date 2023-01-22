@@ -15,3 +15,5 @@ jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
+# todo
+testing = [ "kotlin-test", "kotlin-test-junit" ]
