@@ -73,8 +73,6 @@ dependencies {
 
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 
-	implementation("com.phodal.chapi:chapi-domain:2.0.0-beta.4")
-
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
@@ -84,6 +82,8 @@ dependencies {
 	implementation("org.jetbrains.kotlinx:kotlin-jupyter-api:0.11.0-89-1")
 	implementation("org.jetbrains.kotlinx:kotlin-jupyter-kernel:0.11.0-89-1")
 	compileOnly("org.jetbrains.kotlin:kotlin-scripting-jvm:1.6.21")
+
+	compileOnly(libs.kotlin.scriptingJvm)
 
 	implementation("org.slf4j:slf4j-api:2.0.3")
 
@@ -100,8 +100,9 @@ dependencies {
 
 	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
 
-	testImplementation("com.phodal.chapi:chapi-ast-java:2.0.0-beta.9")
-	testImplementation("com.phodal.chapi:chapi-domain:2.0.0-beta.9")
+	// for chapi
+	implementation(libs.chapi.domain)
+	implementation(libs.chapi.java)
 }
 
 tasks.withType<KotlinCompile> {

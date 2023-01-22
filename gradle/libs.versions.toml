@@ -1,11 +1,17 @@
 [versions]
 kotlin = "1.6.21"
+chapi = "2.0.0-beta.9"
 
 [libraries]
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
 
-[bundles]
+# chapi
+chapi-domain = { group = "com.phodal.chapi", name = "chapi-domain", version.ref = "chapi" }
+chapi-java = { group = "com.phodal.chapi", name = "chapi-ast-java", version.ref = "chapi" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+[bundles]
