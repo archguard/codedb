@@ -1,7 +1,7 @@
 plugins {
     idea
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.serialization") version "1.6.21"
+    alias(libs.plugins.jvm)
+    alias(libs.plugins.serialization)
 
     kotlin("kapt")
 }

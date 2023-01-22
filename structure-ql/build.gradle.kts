@@ -1,7 +1,7 @@
 plugins {
     `java-library`
     alias(libs.plugins.jvm)
-    kotlin("plugin.serialization") version "1.6.21"
+    alias(libs.plugins.serialization)
 }
 
 repositories {
