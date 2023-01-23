@@ -70,15 +70,16 @@ dependencies {
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+	implementation(libs.serialization.json)
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+	implementation(libs.kotlin.reflect)
+	implementation(libs.kotlin.stdlibJdk8)
+
+	implementation(libs.coroutines.core)
+	implementation(libs.coroutines.reactor)
 
 	// DSL
 	implementation("org.jetbrains.kotlinx:kotlin-jupyter-api:0.11.0-89-1")

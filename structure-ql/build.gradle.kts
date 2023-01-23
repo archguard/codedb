@@ -22,8 +22,7 @@ dependencies {
     implementation(libs.kotlin.stdlibJdk8)
 
     implementation(libs.serialization.json)
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+    implementation(libs.coroutines.core)
 
     // mongodb query dsl
     implementation("org.mongodb.morphia:morphia:1.3.2")
@@ -45,8 +44,8 @@ dependencies {
     testImplementation("io.mockk:mockk:1.12.3")
     testImplementation("org.assertj:assertj-core:3.22.0")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testImplementation(libs.test.junit.api)
+    testRuntimeOnly(libs.test.junit.engine)
 }
 
 tasks.withType<Test> {
