@@ -12,11 +12,11 @@ repositories {
 dependencies {
     api(project(":factor"))
 
-    implementation("com.phodal.chapi:chapi-ast-kotlin:2.0.0-beta.9") {
+    implementation(libs.chapi.kotlin) {
         // around 10mb, only documents files, exclude (reuse in cli?)
         exclude(group = "com.ibm.icu", module = "icu4j")
     }
-    implementation("com.phodal.chapi:chapi-domain:2.0.0-beta.9")
+    implementation(libs.chapi.domain)
 
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlibJdk8)
@@ -44,7 +44,9 @@ dependencies {
     testImplementation("io.mockk:mockk:1.12.3")
     testImplementation("org.assertj:assertj-core:3.22.0")
 
-    testImplementation(libs.test.junit.api)
+    // Test dependencies: kotlin-test and Junit 5
+    testImplementation(libs.test.junit.params)
+    testImplementation(libs.test.kotlintest.assertions)
     testRuntimeOnly(libs.test.junit.engine)
 }
 

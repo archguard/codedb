@@ -87,7 +87,9 @@ dependencies {
 
 	compileOnly(libs.kotlin.scriptingJvm)
 
-	implementation("org.slf4j:slf4j-api:2.0.3")
+	// Logging
+	implementation(libs.logging.slf4j.api)
+	implementation(libs.logging.logback.classic)
 
 	// for tasking
 	testImplementation("io.kotest:kotest-assertions-core:5.5.4")
