@@ -1,10 +1,18 @@
 [versions]
 kotlin = "1.6.21"
+stableKotlin = "1.6.21"
+kotlinxSerialization = "1.4.1"
+
 chapi = "2.0.0-beta.9"
 
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+kotlin-stdlibJdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+
+# Kotlinx Serialization
+serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 
 # chapi
 chapi-domain = { group = "com.phodal.chapi", name = "chapi-domain", version.ref = "chapi" }
@@ -15,5 +23,5 @@ jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
-# todo
-testing = [ "kotlin-test", "kotlin-test-junit" ]
+# todo: add testing libs
+# testing = [ "kotlin-test", "kotlin-test-junit" ]
