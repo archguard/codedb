@@ -1,8 +1,13 @@
 [versions]
 kotlin = "1.6.21"
 stableKotlin = "1.6.21"
-kotlinxSerialization = "1.4.1"
+
 kotlinxCoroutines = "1.6.4"
+kotlinxSerialization = "1.4.1"
+kotlinxDatetime = "0.4.0"
+
+# 0.11.0-208
+jupyterApi = "0.11.0-89-1"
 
 junit = "5.9.1"
 kotlinTest = "5.5.4"
@@ -23,6 +28,7 @@ kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.re
 
 # Kotlinx Serialization
 serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
 
 # Coroutines
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
@@ -45,9 +51,14 @@ test-assertj = { group = "org.assertj", name = "assertj-core", version.ref = "as
 logging-slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 logging-logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 
+# DSL
+jupyter-api = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-api", version.ref = "jupyterApi" }
+jupyter-kernel = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-kernel", version.ref = "jupyterApi" }
+
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+jupyter = { id = "org.jetbrains.kotlin.jupyter.api", version.ref = "jupyterApi" }
 
 [bundles]
 # todo: add testing libs

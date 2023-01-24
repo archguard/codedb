@@ -27,7 +27,7 @@ dependencies {
     implementation("com.querydsl:querydsl-core:5.0.0")
 
     // date time: https://github.com/Kotlin/kotlinx-datetime
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+    implementation(libs.datetime)
 
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlibJdk8)

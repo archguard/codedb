@@ -7,7 +7,7 @@ plugins {
 	id("org.springframework.boot") version "2.7.6-SNAPSHOT"
 	id("io.spring.dependency-management") version "1.1.0"
 
-	id("org.jetbrains.kotlin.jupyter.api") version "0.11.0-89-1"
+	alias(libs.plugins.jupyter)
 
 	id("jacoco-report-aggregation")
 }
@@ -82,8 +82,8 @@ dependencies {
 	implementation(libs.coroutines.reactor)
 
 	// DSL
-	implementation("org.jetbrains.kotlinx:kotlin-jupyter-api:0.11.0-89-1")
-	implementation("org.jetbrains.kotlinx:kotlin-jupyter-kernel:0.11.0-89-1")
+	implementation(libs.jupyter.api)
+	implementation(libs.jupyter.kernel)
 
 	compileOnly(libs.kotlin.scriptingJvm)
 
