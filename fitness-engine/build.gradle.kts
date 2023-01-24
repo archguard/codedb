@@ -25,11 +25,11 @@ dependencies {
     implementation(kotlin("test"))
     implementation(kotlin("test-junit"))
 
-    testImplementation("io.mockk:mockk:1.12.3")
-    testImplementation("org.assertj:assertj-core:3.22.0")
+    testImplementation(libs.test.mockk)
+    testImplementation(libs.test.assertj)
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testImplementation(libs.test.junit.params)
+    testRuntimeOnly(libs.test.junit.engine)
 }
 
 tasks.withType<Test> {

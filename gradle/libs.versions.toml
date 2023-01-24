@@ -3,8 +3,11 @@ kotlin = "1.6.21"
 stableKotlin = "1.6.21"
 kotlinxSerialization = "1.4.1"
 kotlinxCoroutines = "1.6.4"
+
 junit = "5.9.1"
 kotlinTest = "5.5.4"
+mockk = "1.13.3"
+assertj = "3.22.0"
 
 chapi = "2.0.0-beta.9"
 
@@ -35,6 +38,8 @@ test-junit-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", vers
 test-junit-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit" }
 test-junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
 test-kotlintest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotlinTest" }
+test-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+test-assertj = { group = "org.assertj", name = "assertj-core", version.ref = "assertj" }
 
 # Logging
 logging-slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }

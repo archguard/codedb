@@ -92,7 +92,7 @@ dependencies {
 	implementation(libs.logging.logback.classic)
 
 	// for tasking
-	testImplementation("io.kotest:kotest-assertions-core:5.5.4")
+	testImplementation(libs.test.kotlintest.assertions)
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 

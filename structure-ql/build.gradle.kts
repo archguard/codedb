@@ -41,13 +41,13 @@ dependencies {
     implementation(kotlin("test"))
     implementation(kotlin("test-junit"))
 
-    testImplementation("io.mockk:mockk:1.12.3")
-    testImplementation("org.assertj:assertj-core:3.22.0")
+    testImplementation(libs.test.mockk)
+    testImplementation(libs.test.assertj)
 
     // Test dependencies: kotlin-test and Junit 5
     testImplementation(libs.test.junit.params)
-    testImplementation(libs.test.kotlintest.assertions)
     testRuntimeOnly(libs.test.junit.engine)
+    testImplementation(libs.test.kotlintest.assertions)
 }
 
 tasks.withType<Test> {
