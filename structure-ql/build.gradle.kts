@@ -28,10 +28,10 @@ dependencies {
     implementation("org.mongodb.morphia:morphia:1.3.2")
 //    implementation("dev.morphia.morphia:morphia-core:2.2.10")
 
-    implementation("com.querydsl:querydsl-core:5.0.0")
-    implementation("com.querydsl:querydsl-apt:5.0.0")
-    implementation("com.querydsl:querydsl-kotlin:5.0.0")
-    implementation("com.querydsl:querydsl-mongodb:5.0.0") {
+    implementation(libs.querydsl.core)
+    implementation(libs.querydsl.apt)
+    implementation(libs.querydsl.kotlin)
+    implementation(libs.querydsl.mongodb) {
         exclude(group = "org.mongodb", module = "mongo-java-driver")
     }
 

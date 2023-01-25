@@ -19,6 +19,8 @@ chapi = "2.0.0-beta.9"
 slf4j = "2.0.5"
 logback = "1.4.5"
 
+querydsl = "5.0.0"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -54,6 +56,13 @@ logging-logback-classic = { group = "ch.qos.logback", name = "logback-classic", 
 # DSL
 jupyter-api = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-api", version.ref = "jupyterApi" }
 jupyter-kernel = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-kernel", version.ref = "jupyterApi" }
+
+# QueryDSL
+querydsl-core = { group = "com.querydsl", name = "querydsl-core", version.ref = "querydsl" }
+querydsl-apt = { group = "com.querydsl", name = "querydsl-apt", version.ref = "querydsl" }
+querydsl-kotlin = { group = "com.querydsl", name = "querydsl-kotlin", version.ref = "querydsl" }
+querydsl-mongodb = { group = "com.querydsl", name = "querydsl-mongodb", version.ref = "querydsl" }
+
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
