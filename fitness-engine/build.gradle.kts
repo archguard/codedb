@@ -22,10 +22,6 @@ repositories {
 }
 
 dependencies {
-    // test
-    implementation(kotlin("test"))
-    implementation(kotlin("test-junit"))
-
     testImplementation(libs.test.mockk)
     testImplementation(libs.test.assertj)
 

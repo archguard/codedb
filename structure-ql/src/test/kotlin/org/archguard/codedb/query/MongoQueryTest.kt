@@ -13,11 +13,10 @@ import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
-import org.archguard.codedb.factor.governance.linting.QRule
-import org.archguard.codedb.factor.governance.linting.Rule
 import org.archguard.codedb.factor.quality.Coverage
 import org.archguard.codedb.factor.quality.QCoverage
 import org.bson.types.ObjectId
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mongodb.morphia.Datastore
@@ -25,7 +24,6 @@ import org.mongodb.morphia.Morphia
 import org.mongodb.morphia.annotations.Entity
 import org.mongodb.morphia.annotations.Id
 import org.mongodb.morphia.mapping.Mapper
-import kotlin.test.assertEquals
 
 @Entity("codeDocument")
 class CodeDocument(

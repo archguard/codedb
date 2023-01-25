@@ -1,6 +1,5 @@
 [versions]
-kotlin = "1.6.21"
-stableKotlin = "1.6.21"
+kotlin = "1.8.0"
 
 kotlinxCoroutines = "1.6.4"
 kotlinxSerialization = "1.4.1"

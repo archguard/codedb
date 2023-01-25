@@ -36,10 +36,6 @@ dependencies {
 //    implementation("dev.morphia.morphia:morphia-core:2.2.10")
     implementation(libs.mongodb.driver.reactivestreams)
 
-    // test
-    implementation(kotlin("test"))
-    implementation(kotlin("test-junit"))
-
     testImplementation(libs.test.mockk)
     testImplementation(libs.test.assertj)
 
