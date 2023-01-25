@@ -17,7 +17,6 @@ assertj = "3.22.0"
 chapi = "2.0.0-beta.9"
 
 slf4j = "2.0.5"
-logback = "1.4.5"
 
 querydsl = "5.0.0"
 
@@ -56,7 +55,6 @@ test-assertj = { group = "org.assertj", name = "assertj-core", version.ref = "as
 
 # Logging
 logging-slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
-logging-logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 
 # DSL
 jupyter-api = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-api", version.ref = "jupyterApi" }

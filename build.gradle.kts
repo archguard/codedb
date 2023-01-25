@@ -89,7 +89,6 @@ dependencies {
 
 	// Logging
 	implementation(libs.logging.slf4j.api)
-	implementation(libs.logging.logback.classic)
 
 	// for tasking
 	testImplementation(libs.test.kotlintest.assertions)
