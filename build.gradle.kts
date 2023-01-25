@@ -4,12 +4,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	alias(libs.plugins.jvm)
 	alias(libs.plugins.serialization)
-
-	id("org.springframework.boot") version "2.7.6-SNAPSHOT"
-	id("io.spring.dependency-management") version "1.1.0"
-
+	alias(libs.plugins.springboot)
 	alias(libs.plugins.jupyter)
 
+	id("io.spring.dependency-management") version "1.1.0"
 	id("jacoco-report-aggregation")
 }
 
@@ -94,9 +92,8 @@ dependencies {
 	// for tasking
 	testImplementation(libs.test.kotlintest.assertions)
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.projectreactor:reactor-test")
-
-	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+	testImplementation(libs.test.reactor)
+	testImplementation(libs.test.embed.mongodb)
 
 	// for chapi
 	implementation(libs.chapi.domain)
@@ -106,7 +103,7 @@ dependencies {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "11"
+		jvmTarget = "17"
 	}
 }
 

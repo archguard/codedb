@@ -130,6 +130,8 @@ By Level Goal -> Flow/Fitness -> Task -> Job
 
 # Development
 
+requirements: JAVA 17 (refs: [Spring Boot 3.0 require Java 17](https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0))
+
 ## Scan Data with ArchGuard
 
 test
