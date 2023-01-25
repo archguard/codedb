@@ -21,10 +21,10 @@ repositories {
 }
 
 dependencies {
-    implementation("javax.persistence:javax.persistence-api:2.2")
+    implementation(libs.javax.persistence.api)
     // ksp for annotation processing
-    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
-    implementation("com.querydsl:querydsl-core:5.0.0")
+    kapt(libs.querydsl.apt)
+    implementation(libs.querydsl.core)
 
     // date time: https://github.com/Kotlin/kotlinx-datetime
     implementation(libs.datetime)

@@ -24,10 +24,6 @@ dependencies {
     implementation(libs.serialization.json)
     implementation(libs.coroutines.core)
 
-    // mongodb query dsl
-    implementation("org.mongodb.morphia:morphia:1.3.2")
-//    implementation("dev.morphia.morphia:morphia-core:2.2.10")
-
     implementation(libs.querydsl.core)
     implementation(libs.querydsl.apt)
     implementation(libs.querydsl.kotlin)
@@ -35,7 +31,9 @@ dependencies {
         exclude(group = "org.mongodb", module = "mongo-java-driver")
     }
 
-    implementation("org.mongodb:mongodb-driver-reactivestreams:4.8.0")
+    implementation(libs.mongodb.morphia)
+//    implementation("dev.morphia.morphia:morphia-core:2.2.10")
+    implementation(libs.mongodb.driver.reactivestreams)
 
     // test
     implementation(kotlin("test"))
