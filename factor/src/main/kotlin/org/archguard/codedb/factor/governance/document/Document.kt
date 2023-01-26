@@ -47,6 +47,6 @@ sealed class DocumentType() {
     /**
      * For custom document type
      */
-    class Custom(_str: String) : DocumentType()
+    class Custom() : DocumentType()
 }
 

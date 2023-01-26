@@ -28,8 +28,9 @@ allprojects {
 
 	group = "org.archguard.codedb"
 	version = "0.1.0-SNAPSHOT"
-	java.sourceCompatibility = JavaVersion.VERSION_11
-	java.targetCompatibility = JavaVersion.VERSION_11
+
+//	java.sourceCompatibility = JavaVersion.VERSION_11
+//	java.targetCompatibility = JavaVersion.VERSION_11
 
 	tasks.getByName<Test>("test") {
 		useJUnitPlatform()
@@ -63,13 +64,11 @@ allprojects {
 dependencies {
 	api(project(":factor"))
 
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
-	implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation(libs.bundles.springboot)
 
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+    developmentOnly(libs.springboot.devtools)
 
-	implementation(libs.serialization.json)
+    implementation(libs.serialization.json)
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
@@ -91,7 +90,7 @@ dependencies {
 
 	// for tasking
 	testImplementation(libs.test.kotlintest.assertions)
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation(libs.springboot.test)
 	testImplementation(libs.test.reactor)
 	testImplementation(libs.test.embed.mongodb)
 

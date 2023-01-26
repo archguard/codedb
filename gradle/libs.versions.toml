@@ -82,6 +82,15 @@ javax-persistence-api = { group = "javax.persistence", name = "javax.persistence
 test-reactor = { module = "io.projectreactor:reactor-test", version.ref = "reactor" }
 test-embed-mongodb = { module = "de.flapdoodle.embed:de.flapdoodle.embed.mongo", version.ref = "embedMongo" }
 
+# spring
+springboot-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "springBoot" }
+
+springboot-starter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "springBoot" }
+springboot-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "springBoot" }
+springboot-mongodb-reactive = { group = "org.springframework.boot", name = "spring-boot-starter-data-mongodb-reactive", version.ref = "springBoot" }
+
+springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools", version.ref = "springBoot" }
+
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -91,3 +100,4 @@ springboot = { id = "org.springframework.boot", version.ref = "springBoot" }
 [bundles]
 # todo: add testing libs
 # testing = [ "kotlin-test", "kotlin-test-junit" ]
+springboot = ["springboot-starter", "springboot-webflux", "springboot-mongodb-reactive"]
