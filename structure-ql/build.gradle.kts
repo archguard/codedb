@@ -25,9 +25,7 @@ dependencies {
     implementation(libs.serialization.json)
     implementation(libs.coroutines.core)
 
-    implementation(libs.querydsl.core)
-    implementation(libs.querydsl.apt)
-    implementation(libs.querydsl.kotlin)
+    implementation(libs.bundles.querydsl)
     implementation(libs.querydsl.mongodb) {
         exclude(group = "org.mongodb", module = "mongo-java-driver")
     }
@@ -36,13 +34,8 @@ dependencies {
 //    implementation("dev.morphia.morphia:morphia-core:2.2.10")
     implementation(libs.mongodb.driver.reactivestreams)
 
-    testImplementation(libs.test.mockk)
-    testImplementation(libs.test.assertj)
-
-    // Test dependencies: kotlin-test and Junit 5
-    testImplementation(libs.test.junit.params)
+    testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)
-    testImplementation(libs.test.kotlintest.assertions)
 }
 
 tasks.withType<Test> {

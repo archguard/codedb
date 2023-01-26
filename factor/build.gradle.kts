@@ -37,9 +37,7 @@ dependencies {
     implementation(libs.serialization.json)
     implementation(libs.coroutines.core)
 
-    testImplementation(libs.test.mockk)
-    testImplementation(libs.test.assertj)
-    testImplementation(libs.test.junit.params)
+    testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)
 }
 

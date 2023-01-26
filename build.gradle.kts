@@ -89,7 +89,8 @@ dependencies {
 	implementation(libs.logging.slf4j.api)
 
 	// for tasking
-	testImplementation(libs.test.kotlintest.assertions)
+	testImplementation(libs.bundles.test)
+
 	testImplementation(libs.springboot.test)
 	testImplementation(libs.test.reactor)
 	testImplementation(libs.test.embed.mongodb)

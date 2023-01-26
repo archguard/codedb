@@ -98,6 +98,6 @@ jupyter = { id = "org.jetbrains.kotlin.jupyter.api", version.ref = "jupyterApi" 
 springboot = { id = "org.springframework.boot", version.ref = "springBoot" }
 
 [bundles]
-# todo: add testing libs
-# testing = [ "kotlin-test", "kotlin-test-junit" ]
 springboot = ["springboot-starter", "springboot-webflux", "springboot-mongodb-reactive"]
+querydsl = ["querydsl-core", "querydsl-apt", "querydsl-kotlin"]
+test = ["test-junit-params", "test-kotlintest-assertions", "test-mockk", "test-assertj"]
