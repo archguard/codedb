@@ -69,15 +69,15 @@ dependencies {
     developmentOnly(libs.springboot.devtools)
 
     implementation(libs.serialization.json)
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation(libs.jackson)
 
-	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 
 	implementation(libs.kotlin.reflect)
 	implementation(libs.kotlin.stdlibJdk8)
 
 	implementation(libs.coroutines.core)
 	implementation(libs.coroutines.reactor)
+	implementation(libs.reactor.kotlin.ext)
 
 	// DSL
 	implementation(libs.jupyter.api)
