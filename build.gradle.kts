@@ -62,7 +62,7 @@ allprojects {
 }
 
 dependencies {
-	api(project(":factor"))
+	api(projects.factor)
 
     implementation(libs.bundles.springboot)
 

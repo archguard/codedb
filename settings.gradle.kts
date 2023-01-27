@@ -1,17 +1,29 @@
-pluginManagement {
-	repositories {
-		maven { url = uri("https://repo.spring.io/milestone") }
-		maven { url = uri("https://repo.spring.io/snapshot") }
-		gradlePluginPortal()
-	}
-}
+@file:Suppress("UnstableApiUsage")
+
 rootProject.name = "CodeDB"
 
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+// root project
+subproject("factor", "")
 
 include(":structure-ql")
-include(":factor")
 include(":fitness-engine")
 
-include(":components:task:core")
+taskComponent("core")
+basicComponent("gitignore")
 
-include(":components:basic:gitignore")
+fun taskComponent(name: String) = subproject(name, "components/task/")
+fun basicComponent(name: String) = subproject(name, "components/basic/")
+
+fun subproject(name: String, parentPath: String) {
+    include(name)
+    project(":$name").projectDir = file("$parentPath$name")
+}
