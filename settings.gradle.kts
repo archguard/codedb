@@ -5,11 +5,11 @@ rootProject.name = "CodeDB"
 enableFeaturePreview("VERSION_CATALOGS")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-}
+//pluginManagement {
+//    repositories {
+//        gradlePluginPortal()
+//    }
+//}
 
 // for normal projects
 include(":factor")
