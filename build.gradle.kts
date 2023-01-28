@@ -29,8 +29,8 @@ allprojects {
 	group = "org.archguard.codedb"
 	version = "0.1.0-SNAPSHOT"
 
-//	java.sourceCompatibility = JavaVersion.VERSION_11
-//	java.targetCompatibility = JavaVersion.VERSION_11
+	java.sourceCompatibility = JavaVersion.VERSION_11
+	java.targetCompatibility = JavaVersion.VERSION_11
 
 	tasks.getByName<Test>("test") {
 		useJUnitPlatform()
@@ -86,7 +86,7 @@ dependencies {
 	compileOnly(libs.kotlin.scriptingJvm)
 
 	// Logging
-	implementation(libs.logging.slf4j.api)
+//	implementation(libs.logging.slf4j.api)
 
 	// for tasking
 	testImplementation(libs.bundles.test)
@@ -103,7 +103,7 @@ dependencies {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "17"
+		jvmTarget = "11"
 	}
 }
 

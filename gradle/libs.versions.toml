@@ -28,7 +28,7 @@ persistence = "2.2"
 reactor = "3.5.2"
 
 # Spring
-springBoot = "3.0.2"
+springBoot = "2.7.8"
 
 jackson = "2.14.1"
 reactorKotlin = "1.2.1"
