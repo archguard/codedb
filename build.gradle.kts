@@ -85,9 +85,6 @@ dependencies {
 
 	compileOnly(libs.kotlin.scriptingJvm)
 
-	// Logging
-//	implementation(libs.logging.slf4j.api)
-
 	// for tasking
 	testImplementation(libs.bundles.test)
 
