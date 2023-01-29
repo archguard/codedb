@@ -5,12 +5,6 @@ rootProject.name = "CodeDB"
 enableFeaturePreview("VERSION_CATALOGS")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-//pluginManagement {
-//    repositories {
-//        gradlePluginPortal()
-//    }
-//}
-
 // for normal projects
 include(":factor")
 include(":structure-ql")
