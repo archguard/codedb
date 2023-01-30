@@ -1,6 +1,8 @@
 package org.archguard.codedb.walkdir
 
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.eclipse.jgit.lib.Constants
 import org.eclipse.jgit.lib.FileMode
 import org.eclipse.jgit.lib.ObjectId
@@ -41,10 +43,34 @@ import java.io.IOException
  * }
  * ```
  */
-class GitDirectoryWalker(workdir: String, private val output: Channel<File>) {
+class GitDirectoryWalker(workdir: String) {
     private val root = File(workdir)
 
-    suspend fun start() {
+    /**
+     * Walks the directory and returns all files.
+     */
+    fun start(): List<File> {
+        val files: MutableList<File> = mutableListOf()
+        runBlocking {
+            val channel = Channel<File>()
+            launch {
+                for (fileJob in channel) {
+                    files += fileJob
+                }
+            }
+
+            start(channel)
+
+            channel.close()
+        }
+
+        return files
+    }
+
+    /**
+     * Walks the directory and sends all files to the channel.
+     */
+    suspend fun start(output: Channel<File>) {
         val repository = FileRepositoryBuilder().findGitDir(root).build()
         repository.use { repo ->
             val tree = getTree(repo)
