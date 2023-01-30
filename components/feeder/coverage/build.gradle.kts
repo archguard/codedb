@@ -15,7 +15,6 @@ dependencies {
 
     // java
     implementation(libs.jacoco.core)
-    implementation(libs.regex.re2)
 
     implementation(libs.bundles.test)
 }
