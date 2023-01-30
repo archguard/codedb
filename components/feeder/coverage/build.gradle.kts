@@ -8,3 +8,8 @@ repositories {
     mavenCentral()
     mavenLocal()
 }
+
+dependencies {
+    implementation(libs.jacoco.core)
+    implementation(libs.kotlin.reflect)
+}

@@ -35,6 +35,8 @@ reactorKotlin = "1.2.1"
 
 archguard = "2.0.0-beta.5"
 
+# feeder
+jacoco = "0.8.8"
 
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
@@ -104,6 +106,9 @@ datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version
 # archguard
 # implementation("org.archguard.aaac:dsl:2.0.0-beta.5")
 archguard-dsl = { group = "org.archguard.aaac", name = "dsl", version.ref = "archguard" }
+
+# implementation("org.jacoco:org.jacoco.core:0.8.8")
+jacoco-core = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "jacoco" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
