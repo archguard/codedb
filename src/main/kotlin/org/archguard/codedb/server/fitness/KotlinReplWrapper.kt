@@ -5,8 +5,6 @@ import org.jetbrains.kotlinx.jupyter.ReplForJupyter
 import org.jetbrains.kotlinx.jupyter.api.Code
 import org.jetbrains.kotlinx.jupyter.libraries.EmptyResolutionInfoProvider
 import org.jetbrains.kotlinx.jupyter.libraries.LibraryResolver
-import org.jetbrains.kotlinx.jupyter.libraries.getDefaultClasspathResolutionInfoProvider
-import org.jetbrains.kotlinx.jupyter.libraries.getStandardResolver
 import org.jetbrains.kotlinx.jupyter.messaging.NoOpDisplayHandler
 import org.jetbrains.kotlinx.jupyter.repl.creating.createRepl
 import org.slf4j.LoggerFactory
@@ -21,7 +19,7 @@ class KotlinReplWrapper {
         this.repl = this.makeEmbeddedRepl()
     }
 
-    fun makeEmbeddedRepl(): ReplForJupyter {
+    private fun makeEmbeddedRepl(): ReplForJupyter {
         val property = System.getProperty("java.class.path")
         var embeddedClasspath: MutableList<File> = property.split(File.pathSeparator).map(::File).toMutableList()
 
@@ -49,8 +47,7 @@ class KotlinReplWrapper {
         )
     }
 
-    fun eval(code: Code, jupyterId: Int = -1, storeHistory: Boolean = true) =
-        repl.eval(EvalRequestData(code, jupyterId, storeHistory))
+    fun eval(code: Code, jupyterId: Int = -1, storeHistory: Boolean = true) = repl.eval(EvalRequestData(code, jupyterId, storeHistory))
 
     private fun resolveArchGuardLibs(): LibraryResolver {
         val lib = "archguard" to """
