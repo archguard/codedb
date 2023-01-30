@@ -11,6 +11,7 @@ import org.eclipse.jgit.revwalk.RevWalk
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.eclipse.jgit.treewalk.TreeWalk
 import org.eclipse.jgit.treewalk.filter.TreeFilter
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.io.IOException
@@ -81,6 +82,6 @@ class GitDirectoryWalker(workdir: String, private val output: Channel<File>) {
     }
 
     companion object {
-        val logger = LoggerFactory.getLogger(GitDirectoryWalker::class.java)
+        val logger: Logger = LoggerFactory.getLogger(GitDirectoryWalker::class.java)
     }
 }

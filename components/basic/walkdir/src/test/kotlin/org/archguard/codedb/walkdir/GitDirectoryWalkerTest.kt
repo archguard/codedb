@@ -19,7 +19,6 @@ class GitDirectoryWalkerTest {
         runBlocking {
             launch {
                 for (fileJob in channel) {
-                    println("file: $fileJob")
                     count++
                 }
             }
@@ -28,8 +27,6 @@ class GitDirectoryWalkerTest {
             walker.start()
 
             channel.close()
-
-            println(count)
         }
 
         count shouldBeGreaterThan 100
