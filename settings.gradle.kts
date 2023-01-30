@@ -15,5 +15,6 @@ include(":components:task:core")
 include(":components:task:coverage")
 
 include(":components:basic:gitignore")
+include(":components:basic:walkdir")
 
 include(":components:feeder:coverage")

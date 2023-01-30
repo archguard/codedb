@@ -42,6 +42,8 @@ re2j = "1.7"
 
 logback = "1.4.5"
 
+jgit = "6.0.0.202111291000-r"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -117,6 +119,8 @@ jacoco-core = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "j
 
 # re2
 regex-re2 = { group = "com.google.re2j", name = "re2j", version.ref = "re2j" }
+
+jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
