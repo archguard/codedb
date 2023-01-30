@@ -35,12 +35,15 @@ class Pattern(
                 pathDepth = path.count { it == '/' }
             }
 
-            val matcher: IgnorePathMatcher
             val matchingPath = path.trim('/')
-            if (hasMeta(path)) {
-                matcher = FilepathMatcherIgnore(path = matchingPath)
-            } else {
-                matcher = SimpleMatcherIgnore(path = matchingPath)
+
+            val matcher: IgnorePathMatcher = when {
+                hasMeta(path) -> {
+                    FilepathMatcherIgnore(path = matchingPath)
+                }
+                else -> {
+                    SimpleMatcherIgnore(path = matchingPath)
+                }
             }
 
             return Pattern(

@@ -1,5 +1,7 @@
 package org.archguard.codedb.gitignore
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.nio.file.FileSystem
 import java.nio.file.FileSystems
 
@@ -18,11 +20,12 @@ var fileSystem: FileSystem = FileSystems.getDefault()
 class FilepathMatcherIgnore(val path: String) : IgnorePathMatcher {
     override fun match(path: String): Boolean {
         val absolute = fileSystem.getPath(path)
+        logger.warn("Matching $absolute with ${this.path}")
         return fileSystem.getPathMatcher("glob:${this.path}").matches(absolute)
-//        return path.matches(convertGlobToRegex(this.path).toRegex())
     }
 
     companion object {
+        var logger = LoggerFactory.getLogger(FilepathMatcherIgnore::class.java)
         fun convertGlobToRegex(glob: String): String {
             val inDoubleQuotes = false
             val regex = StringBuilder("^")

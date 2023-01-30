@@ -24,6 +24,7 @@ class InitialPatternHolder(
         if (patterns.size() == 0 && otherPatterns.size() == 0) {
             return false
         }
+
         if (patterns.get(path[0].code.toByte())?.match(path, isDir) == true) {
             return true
         }
