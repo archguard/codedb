@@ -1,0 +1,3 @@
+# Gitignore
+
+default by PathMatcher
