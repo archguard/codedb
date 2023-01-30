@@ -10,20 +10,10 @@ include(":factor")
 include(":structure-ql")
 include(":fitness-engine")
 
-taskComponent("core")
-basicComponent("gitignore")
-feeder("coverage")
 
-fun taskComponent(name: String) = component(name, "components/task/")
-fun basicComponent(name: String) = component(name, "components/basic/")
-fun feeder(name: String) = component(name, "components/feeder/")
+include(":components:task:core")
+include(":components:task:coverage")
 
-fun subproject(name: String, parentPath: String) {
-    include(name)
-    project(":$name").projectDir = file("$parentPath$name")
-}
+include(":components:basic:gitignore")
 
-fun component(name: String, parentPath: String) {
-    include(":components:$name")
-    project(":components:$name").projectDir = file("$parentPath$name")
-}
+include(":components:feeder:coverage")

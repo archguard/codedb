@@ -34,4 +34,12 @@ internal class GitignoreTest {
         ignore.matchText("test.kt", true) shouldBe true
         ignore.matchText("test.java", true) shouldBe false
     }
+
+    @Test
+    fun bug() {
+        val ignore = Gitignore.fromLines("", listOf("build/", "!build/demo.kt"))
+
+        ignore.matchText("build/demo.kt", false) shouldBe false
+        ignore.matchText("build/demo2.kt", false) shouldBe false
+    }
 }
