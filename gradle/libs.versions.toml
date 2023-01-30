@@ -33,6 +33,9 @@ springBoot = "2.7.8"
 jackson = "2.14.1"
 reactorKotlin = "1.2.1"
 
+archguard = "2.0.0-beta.5"
+
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -98,6 +101,9 @@ springboot-devtools = { group = "org.springframework.boot", name = "spring-boot-
 # Others
 datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxDatetime" }
 
+# archguard
+# implementation("org.archguard.aaac:dsl:2.0.0-beta.5")
+archguard-dsl = { group = "org.archguard.aaac", name = "dsl", version.ref = "archguard" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

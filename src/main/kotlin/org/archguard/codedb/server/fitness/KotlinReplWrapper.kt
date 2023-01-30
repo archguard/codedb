@@ -5,6 +5,8 @@ import org.jetbrains.kotlinx.jupyter.ReplForJupyter
 import org.jetbrains.kotlinx.jupyter.api.Code
 import org.jetbrains.kotlinx.jupyter.libraries.EmptyResolutionInfoProvider
 import org.jetbrains.kotlinx.jupyter.libraries.LibraryResolver
+import org.jetbrains.kotlinx.jupyter.libraries.getDefaultClasspathResolutionInfoProvider
+import org.jetbrains.kotlinx.jupyter.libraries.getStandardResolver
 import org.jetbrains.kotlinx.jupyter.messaging.NoOpDisplayHandler
 import org.jetbrains.kotlinx.jupyter.repl.creating.createRepl
 import org.slf4j.LoggerFactory
@@ -47,11 +49,7 @@ class KotlinReplWrapper {
         )
     }
 
-    fun eval(
-        code: Code,
-        jupyterId: Int = -1,
-        storeHistory: Boolean = true,
-    ) =
+    fun eval(code: Code, jupyterId: Int = -1, storeHistory: Boolean = true) =
         repl.eval(EvalRequestData(code, jupyterId, storeHistory))
 
     private fun resolveArchGuardLibs(): LibraryResolver {
