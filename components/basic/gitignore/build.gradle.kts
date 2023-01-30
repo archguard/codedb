@@ -8,3 +8,9 @@ repositories {
     mavenCentral()
     mavenLocal()
 }
+
+dependencies {
+    implementation(libs.coroutines.core)
+
+    testImplementation(libs.bundles.test)
+}
