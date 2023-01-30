@@ -8,6 +8,7 @@ interface IgnoreMatcher {
     fun match(path: String, isDir: Boolean): Boolean
 }
 
+@Deprecated("use `GitDirectoryWalker` instead")
 class Gitignore(val path: String) : IgnoreMatcher {
     private val ignorePatterns: ScanStrategy = IndexScanPatterns()
     private val acceptPatterns: ScanStrategy = IndexScanPatterns()
