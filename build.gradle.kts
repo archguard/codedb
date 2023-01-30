@@ -11,13 +11,6 @@ plugins {
 	id("jacoco-report-aggregation")
 }
 
-repositories {
-	mavenCentral()
-	maven { url = uri("https://repo.spring.io/milestone") }
-	maven { url = uri("https://repo.spring.io/snapshot") }
-}
-
-
 jacoco {
 	toolVersion = "0.8.7"
 }
@@ -25,6 +18,10 @@ jacoco {
 allprojects {
 	apply(plugin = "java")
 	apply(plugin = "jacoco")
+
+	repositories {
+		mavenCentral()
+	}
 
 	group = "org.archguard.codedb"
 	version = "0.1.0-SNAPSHOT"
@@ -64,20 +61,22 @@ allprojects {
 dependencies {
 	api(projects.factor)
 
-    implementation(libs.bundles.springboot)
+	implementation(libs.bundles.springboot)
 
-    developmentOnly(libs.springboot.devtools)
+	developmentOnly(libs.springboot.devtools)
 
-    implementation(libs.serialization.json)
+	implementation(libs.serialization.json)
 	implementation(libs.jackson.kotlin)
 
-
 	implementation(libs.kotlin.reflect)
-//	implementation(libs.kotlin.stdlibJdk8)
 
 	implementation(libs.coroutines.core)
 	implementation(libs.coroutines.reactor)
 	implementation(libs.reactor.kotlin.ext)
+
+	// for chapi
+	implementation(libs.chapi.domain)
+	implementation(libs.chapi.java)
 
 	// DSL
 	implementation(libs.jupyter.api)
@@ -91,10 +90,6 @@ dependencies {
 	testImplementation(libs.springboot.test)
 	testImplementation(libs.test.reactor)
 	testImplementation(libs.test.embed.mongodb)
-
-	// for chapi
-	implementation(libs.chapi.domain)
-	implementation(libs.chapi.java)
 }
 
 tasks.withType<KotlinCompile> {
