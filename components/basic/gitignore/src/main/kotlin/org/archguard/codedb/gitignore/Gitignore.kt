@@ -1,6 +1,7 @@
 package org.archguard.codedb.gitignore
 
 import org.jetbrains.annotations.TestOnly
+import org.slf4j.LoggerFactory
 import java.io.File
 
 interface IgnoreMatcher {
@@ -32,6 +33,8 @@ class Gitignore(val path: String) : IgnoreMatcher {
 
 
     companion object {
+        private var logger = LoggerFactory.getLogger(Gitignore::class.java)
+
         fun create(gitignore: String, vararg base: String): Gitignore? {
             val path: String = if (base.isNotEmpty()) {
                 base[0]
@@ -42,7 +45,7 @@ class Gitignore(val path: String) : IgnoreMatcher {
             val ignoreFile = File(gitignore)
 
             if (!ignoreFile.exists()) {
-                println("Ignore file $gitignore does not exist")
+                logger.warn("Ignore file $gitignore does not exist")
                 return null
             }
 

@@ -40,6 +40,8 @@ jacoco = "0.8.8"
 
 re2j = "1.7"
 
+logback = "1.4.5"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -71,6 +73,7 @@ test-assertj = { group = "org.assertj", name = "assertj-core", version.ref = "as
 
 # Logging
 logging-slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
+logging-logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 
 # DSL
 jupyter-api = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-api", version.ref = "jupyterApi" }
