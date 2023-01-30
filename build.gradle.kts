@@ -69,7 +69,7 @@ dependencies {
     developmentOnly(libs.springboot.devtools)
 
     implementation(libs.serialization.json)
-	implementation(libs.jackson)
+	implementation(libs.jackson.kotlin)
 
 
 	implementation(libs.kotlin.reflect)

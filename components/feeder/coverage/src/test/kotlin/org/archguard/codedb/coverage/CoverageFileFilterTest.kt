@@ -3,10 +3,10 @@ package org.archguard.codedb.coverage
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-class SearcherTest {
+class CoverageFileFilterTest {
 
     @Test
     fun byRegex() {
-        Searcher().isMatch("coverage.xml") shouldBe true
+        CoverageFileFilter().isMatch("coverage.xml") shouldBe true
     }
 }

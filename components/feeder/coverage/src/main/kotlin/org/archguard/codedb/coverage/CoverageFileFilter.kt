@@ -3,7 +3,7 @@ package org.archguard.codedb.coverage
 import java.nio.file.FileSystems
 
 // poc: can be refs by: https://codecov.io/bash
-class Searcher {
+class CoverageFileFilter {
     var coverageFiles = listOf(
         "*coverage*.*",
         "*.clover",
