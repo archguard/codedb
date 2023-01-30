@@ -38,3 +38,4 @@ out/
 .vscode/
 docs/papers
 dependencies
+*/.DS_Store
