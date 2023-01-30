@@ -1,6 +1,7 @@
 package org.archguard.codedb.walkdir
 
 import io.kotest.matchers.ints.shouldBeGreaterThan
+import io.kotest.matchers.ints.shouldBeLessThan
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -11,7 +12,8 @@ import java.nio.file.Paths
 class DirectoryWalkerTest {
     @Test
     fun testWalk() {
-        val rootDir = Paths.get("").toAbsolutePath().parent.parent.toString()
+        // TODO: replace with absolute path
+        val rootDir = Paths.get("").toAbsolutePath().parent.parent.parent.toString()
         var count = 0
         val channel = Channel<File>()
         runBlocking {
@@ -22,7 +24,7 @@ class DirectoryWalkerTest {
                 }
             }
 
-            val walker = DirectoryWalker(rootDir, channel)
+            val walker = DirectoryWalker(rootDir, channel, true)
             walker.start()
 
             channel.close()
@@ -30,6 +32,9 @@ class DirectoryWalkerTest {
             println(count)
         }
 
-        count shouldBeGreaterThan 10
+        count shouldBeGreaterThan 100
+
+        // if with `build/` directory, the count should be greater than 5000
+        count shouldBeLessThan 5000
     }
 }

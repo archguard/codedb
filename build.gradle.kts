@@ -73,7 +73,7 @@ dependencies {
 
 
 	implementation(libs.kotlin.reflect)
-	implementation(libs.kotlin.stdlibJdk8)
+//	implementation(libs.kotlin.stdlibJdk8)
 
 	implementation(libs.coroutines.core)
 	implementation(libs.coroutines.reactor)
