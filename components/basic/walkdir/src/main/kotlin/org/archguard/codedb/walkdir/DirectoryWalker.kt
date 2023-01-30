@@ -13,11 +13,11 @@ import org.eclipse.jgit.treewalk.TreeWalk
 import java.io.File
 import java.io.IOException
 
-class DirectoryWalker(val workdir: String, val output: Channel<File>, val withGitIgnore: Boolean = false) {
-    val root = File(workdir)
+class DirectoryWalker(workdir: String, private val output: Channel<File>, private val withGitIgnore: Boolean = false) {
+    private val root = File(workdir)
 
-    public final suspend fun start() {
-        if (withGitIgnore) {
+    suspend fun start() {
+        if (withGitIgnore && File(root, ".git").exists()) {
             gitWalker()
         } else {
             normalWalker()
@@ -31,8 +31,6 @@ class DirectoryWalker(val workdir: String, val output: Channel<File>, val withGi
             val treeWalk = TreeWalk(repository)
             treeWalk.addTree(tree)
             treeWalk.isRecursive = false
-            // todo: update ignore
-//            treeWalk.filter = PathFilter.create(".gitignore")
 
             while (treeWalk.next()) {
                 val path = treeWalk.pathString
@@ -45,7 +43,6 @@ class DirectoryWalker(val workdir: String, val output: Channel<File>, val withGi
             }
         }
     }
-
 
     @Throws(IOException::class)
     private fun getTree(repository: Repository): RevTree {
