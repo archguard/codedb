@@ -12,9 +12,11 @@ include(":fitness-engine")
 
 taskComponent("core")
 basicComponent("gitignore")
+feeder("coverage")
 
 fun taskComponent(name: String) = component(name, "components/task/")
 fun basicComponent(name: String) = component(name, "components/basic/")
+fun feeder(name: String) = component(name, "components/feeder/")
 
 fun subproject(name: String, parentPath: String) {
     include(name)
