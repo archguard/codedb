@@ -10,8 +10,6 @@ import org.eclipse.jgit.revwalk.RevTree
 import org.eclipse.jgit.revwalk.RevWalk
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import org.eclipse.jgit.treewalk.TreeWalk
-import org.eclipse.jgit.treewalk.filter.AndTreeFilter
-import org.eclipse.jgit.treewalk.filter.NotIgnoredFilter
 import org.eclipse.jgit.treewalk.filter.TreeFilter
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -42,18 +40,10 @@ import java.io.IOException
  * }
  * ```
  */
-class DirectoryWalker(workdir: String, private val output: Channel<File>, private val withGitIgnore: Boolean = false) {
+class GitDirectoryWalker(workdir: String, private val output: Channel<File>) {
     private val root = File(workdir)
 
     suspend fun start() {
-        if (withGitIgnore) {
-            gitWalker()
-        } else {
-            normalWalker()
-        }
-    }
-
-    private suspend fun gitWalker() {
         val repository = FileRepositoryBuilder().findGitDir(root).build()
         repository.use { repo ->
             val tree = getTree(repo)
@@ -90,13 +80,7 @@ class DirectoryWalker(workdir: String, private val output: Channel<File>, privat
         }
     }
 
-    private suspend fun normalWalker() {
-        root.walk().filter { it.isFile }.forEach {
-            output.send(it)
-        }
-    }
-
     companion object {
-        val logger = LoggerFactory.getLogger(DirectoryWalker::class.java)
+        val logger = LoggerFactory.getLogger(GitDirectoryWalker::class.java)
     }
 }

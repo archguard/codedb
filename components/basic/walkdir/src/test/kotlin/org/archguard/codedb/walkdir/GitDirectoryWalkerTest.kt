@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import java.io.File
 import java.nio.file.Paths
 
-class DirectoryWalkerTest {
+class GitDirectoryWalkerTest {
     @Test
     fun testWalk() {
         // TODO: replace with absolute path
@@ -24,7 +24,7 @@ class DirectoryWalkerTest {
                 }
             }
 
-            val walker = DirectoryWalker(rootDir, channel, true)
+            val walker = GitDirectoryWalker(rootDir, channel)
             walker.start()
 
             channel.close()
