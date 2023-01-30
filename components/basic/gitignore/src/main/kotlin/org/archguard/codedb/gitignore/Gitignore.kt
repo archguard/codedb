@@ -20,6 +20,7 @@ class Gitignore(val path: String) : IgnoreMatcher {
         return ignorePatterns.match(relativePath, isDir)
     }
 
+    // todo: refactor in here
     @TestOnly
     fun matchText(relativePath: String, isDir: Boolean): Boolean {
         if (acceptPatterns.match(relativePath, isDir)) {
@@ -50,19 +51,20 @@ class Gitignore(val path: String) : IgnoreMatcher {
 
         fun fromLines(path: String, lines: List<String>): Gitignore {
             val g = Gitignore(path)
-            for (line in lines) {
-                val trimmed = line.trim()
-                if (trimmed.isEmpty() || trimmed.startsWith("#")) {
-                    continue
+            lines
+                .map { it.trim() }
+                .filter { it.isNotEmpty() && !isComment(it) }
+                .forEach {
+                    if (it.startsWith("!")) {
+                        g.acceptPatterns.add(it.substring(1))
+                    } else {
+                        g.ignorePatterns.add(it)
+                    }
                 }
 
-                if (trimmed.startsWith("!")) {
-                    g.acceptPatterns.add(trimmed.substring(1))
-                } else {
-                    g.ignorePatterns.add(trimmed)
-                }
-            }
             return g
         }
+
+        private fun isComment(it: String) = it.startsWith("#")
     }
 }

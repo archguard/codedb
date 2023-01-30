@@ -23,6 +23,7 @@ class IndexScanPatterns(
         if (absolute.match(path, isDir)) {
             return true
         }
+
         return relative.match(path, isDir)
     }
 }
