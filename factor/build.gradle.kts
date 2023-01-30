@@ -32,8 +32,6 @@ dependencies {
     implementation(libs.datetime)
 
     implementation(libs.kotlin.reflect)
-//    implementation(libs.kotlin.stdlibJdk8)
-
     implementation(libs.serialization.json)
     implementation(libs.coroutines.core)
 
