@@ -10,6 +10,12 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.jacoco.core)
     implementation(libs.kotlin.reflect)
+    implementation(libs.kotlin.stdlib)
+
+    // java
+    implementation(libs.jacoco.core)
+    implementation(libs.regex.re2)
+
+    implementation(libs.bundles.test)
 }

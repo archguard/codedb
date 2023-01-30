@@ -1,4 +1,4 @@
-package org.archguard.codedb.coverage
+package org.archguard.codedb.coverage.jvm
 
 import kotlin.reflect.full.findAnnotation
 import kotlin.reflect.full.memberProperties

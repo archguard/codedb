@@ -1,4 +1,4 @@
-package org.archguard.codedb.coverage
+package org.archguard.codedb.coverage.jvm
 
 import org.jacoco.core.analysis.Analyzer
 import org.jacoco.core.analysis.CoverageBuilder

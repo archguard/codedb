@@ -38,6 +38,8 @@ archguard = "2.0.0-beta.5"
 # feeder
 jacoco = "0.8.8"
 
+re2j = "1.7"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -109,6 +111,9 @@ archguard-dsl = { group = "org.archguard.aaac", name = "dsl", version.ref = "arc
 
 # implementation("org.jacoco:org.jacoco.core:0.8.8")
 jacoco-core = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "jacoco" }
+
+# re2
+regex-re2 = { group = "com.google.re2j", name = "re2j", version.ref = "re2j" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
