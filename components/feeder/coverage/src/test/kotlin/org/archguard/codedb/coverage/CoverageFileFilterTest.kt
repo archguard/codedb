@@ -9,13 +9,13 @@ class CoverageFileFilterTest {
     @Test
     @Disabled
     fun byRegex() {
-        CoverageFileFilter().isMatch("clover.xml") shouldBe true
+        CoverageFileCollector().isMatch("clover.xml") shouldBe true
     }
 
     @Test
     @Disabled
     fun testFinalize() {
-        val filter = CoverageFileFilter()
+        val filter = CoverageFileCollector()
         filter.isMatch("coverage.xml") shouldBe false
         filter.isMatch("jacoco2.xml") shouldBe false
         filter.isMatch("hello.txt") shouldBe false

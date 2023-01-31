@@ -4,8 +4,12 @@ import java.nio.file.FileSystem
 import java.nio.file.FileSystems
 
 
-abstract class BasicWalkerFilter() {
-    private val fileSystem: FileSystem = FileSystems.getDefault()
+/**
+ * a collector for TreeWalker
+ */
+abstract class WalkerCollector {
+    protected var collectFiles: List<String> = listOf()
+    protected val fileSystem: FileSystem = FileSystems.getDefault()
 
     open fun isMatch(rules: List<String>, filename: String) = rules.any { isMatch(it, filename) }
 

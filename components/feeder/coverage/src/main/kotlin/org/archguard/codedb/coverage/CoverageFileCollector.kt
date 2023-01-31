@@ -1,14 +1,11 @@
 package org.archguard.codedb.coverage
 
-import org.archguard.codedb.core.BasicWalkerFilter
+import org.archguard.codedb.core.WalkerCollector
 
-val jacocoRules = listOf(
-    "jacoco*.xml",
-    "*Jacoco*.xml",
-)
-val cloverRules = listOf(
-    "clover.xml"
-)
+val jacocoRules = listOf("jacoco*.xml", "*Jacoco*.xml")
+val cloverRules = listOf("clover.xml")
+val gcovRules = listOf("gcov.info")
+val lcovRules = listOf("lcov.info")
 
 val coverageFileRules = listOf(
     "*coverage*.*",
@@ -23,19 +20,15 @@ val coverageFileRules = listOf(
     "codecov-result.json",
     "coverage-final.json",
     "excoveralls.json",
-    "gcov.info",
     "lcov.dat",
-    "lcov.info",
     "luacov.report.out",
     "naxsi.info",
     "nosetests.xml",
     "report.xml"
-) + jacocoRules + cloverRules
+) + jacocoRules + cloverRules + gcovRules + lcovRules
 
 // poc: can be refs by: https://codecov.io/bash
-class CoverageFileFilter : BasicWalkerFilter() {
-    var collectFiles: List<String> = emptyList()
-
+class CoverageFileCollector : WalkerCollector() {
     fun isMatch(filename: String): Boolean {
         val hasMatched = isMatch(coverageFileRules, filename)
 
@@ -51,6 +44,8 @@ class CoverageFileFilter : BasicWalkerFilter() {
             when {
                 isMatch(jacocoRules, it) -> println("jacoco: $it")
                 isMatch(cloverRules, it) -> println("clover: $it")
+                isMatch(gcovRules, it) -> println("clover: $it")
+                isMatch(lcovRules, it) -> println("clover: $it")
                 else -> {
                     println("else: $it")
                 }

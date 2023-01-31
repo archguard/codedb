@@ -5,5 +5,5 @@ plugins {
 }
 
 dependencies {
-
+    api(libs.coroutines.core)
 }

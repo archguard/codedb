@@ -5,6 +5,8 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.components.core)
+
     implementation(libs.coroutines.core)
     implementation(libs.jgit)
 
