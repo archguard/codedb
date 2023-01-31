@@ -44,7 +44,10 @@ logback = "1.4.5"
 
 jgit = "6.4.0.202211300538-r"
 
-# openclover = "4.4.1"
+guava = "31.1-jre"
+autoValue = "1.9"
+gson = "2.10.1"
+jcommander = "1.82"
 
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
@@ -118,8 +121,13 @@ archguard-dsl = { group = "org.archguard.aaac", name = "dsl", version.ref = "arc
 
 # coverage module
 jacoco-core = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "jacoco" }
-# openclover-core = { group = "org.openclover", name = "clover", version.ref = "openclover" }
-# openclover-runtime = { group = "org.openclover", name = "clover-runtime", version.ref = "openclover" }
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+
+auto-value = { group = "com.google.auto.value", name = "auto-value", version.ref = "autoValue" }
+auto-value-annotations = { group = "com.google.auto.value", name = "auto-value-annotations", version.ref = "autoValue" }
+
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+jcommander = { group = "com.beust", name = "jcommander", version.ref = "jcommander" }
 
 # re2
 regex-re2 = { group = "com.google.re2j", name = "re2j", version.ref = "re2j" }

@@ -1,7 +1,10 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+    java
     alias(libs.plugins.jvm)
     alias(libs.plugins.serialization)
+
+    kotlin("kapt")
 }
 
 dependencies {
@@ -14,11 +17,17 @@ dependencies {
     implementation(libs.logging.slf4j.api)
     implementation(libs.logging.logback.classic)
 
-// todo: investigate why this doesn't work
-//    implementation(libs.openclover.core)
-//    implementation(libs.openclover.runtime)
     // java
     implementation(libs.jacoco.core)
+    implementation(libs.guava)
+    implementation(libs.gson)
+
+    compileOnly(libs.auto.value.annotations)
+    kapt(libs.auto.value)
+//    implementation(libs.auto.value)
+
+
+    implementation(libs.jcommander)
 
     testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)
