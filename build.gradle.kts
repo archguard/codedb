@@ -71,8 +71,12 @@ dependencies {
 	implementation(libs.reactor.kotlin.ext)
 
 	// for chapi
-	implementation(libs.chapi.domain)
-	implementation(libs.chapi.java)
+	implementation(libs.chapi.domain) {
+		exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
+	}
+	implementation(libs.chapi.java) {
+		exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
+	}
 
 	// DSL
 	implementation(libs.jupyter.api)

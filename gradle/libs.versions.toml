@@ -44,7 +44,7 @@ logback = "1.4.5"
 
 jgit = "6.4.0.202211300538-r"
 
-# openclover = "4.4.1"
+openclover = "4.4.1"
 
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
@@ -125,7 +125,7 @@ regex-re2 = { group = "com.google.re2j", name = "re2j", version.ref = "re2j" }
 jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
 
 # openclover
-# openclover-core = { group = "org.openclover", name = "clover", version.ref = "openclover" }
+openclover-core = { group = "org.openclover", name = "clover", version.ref = "openclover" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -136,4 +136,4 @@ springboot = { id = "org.springframework.boot", version.ref = "springBoot" }
 [bundles]
 springboot = ["springboot-starter", "springboot-webflux", "springboot-mongodb-reactive"]
 querydsl = ["querydsl-core", "querydsl-apt", "querydsl-kotlin"]
-test = ["test-junit-params", "test-kotlintest-assertions", "test-mockk", "test-assertj"]
+test = ["test-junit-params", "kotlin-test", "test-kotlintest-assertions", "test-mockk", "test-assertj"]

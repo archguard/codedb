@@ -14,7 +14,6 @@ include(":fitness-engine")
 include(":components:core")
 
 include(":components:task:core")
-include(":components:task:coverage")
 
 include(":components:basic:gitignore")
 include(":components:basic:walkdir")

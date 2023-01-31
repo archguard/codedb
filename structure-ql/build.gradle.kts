@@ -11,8 +11,11 @@ dependencies {
     implementation(libs.chapi.kotlin) {
         // around 10mb, only documents files, exclude (reuse in cli?)
         exclude(group = "com.ibm.icu", module = "icu4j")
+        exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
     }
-    implementation(libs.chapi.domain)
+    implementation(libs.chapi.domain) {
+        exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
+    }
 
     implementation(libs.kotlin.reflect)
     implementation(libs.serialization.json)
@@ -28,9 +31,5 @@ dependencies {
 
     testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }
 
