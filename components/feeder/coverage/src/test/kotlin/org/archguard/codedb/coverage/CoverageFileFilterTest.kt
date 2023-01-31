@@ -13,9 +13,9 @@ class CoverageFileFilterTest {
     @Test
     fun testFinalize() {
         val filter = CoverageFileFilter()
-        filter.isMatch("coverage.xml")
-        filter.isMatch("jacoco.xml")
-        filter.isMatch("hello.txt")
+        filter.isMatch("coverage.xml") shouldBe false
+        filter.isMatch("jacoco2.xml") shouldBe false
+        filter.isMatch("hello.txt") shouldBe false
 
         filter.finalize()
     }
