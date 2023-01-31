@@ -11,6 +11,8 @@ include(":structure-ql")
 include(":fitness-engine")
 
 
+include(":components:core")
+
 include(":components:task:core")
 include(":components:task:coverage")
 

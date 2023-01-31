@@ -7,15 +7,16 @@ class CoverageFileFilterTest {
 
     @Test
     fun byRegex() {
-        CoverageFileFilter().isMatch("coverage.xml") shouldBe true
+        CoverageFileFilter().isMatch("clover.xml") shouldBe true
     }
 
     @Test
     fun testFinalize() {
         val filter = CoverageFileFilter()
-        filter.check("coverage.xml")
-        filter.check("jacoco.xml")
-        filter.check("hello.txt")
+        filter.isMatch("coverage.xml")
+        filter.isMatch("jacoco.xml")
+        filter.isMatch("hello.txt")
+
         filter.finalize()
     }
 }

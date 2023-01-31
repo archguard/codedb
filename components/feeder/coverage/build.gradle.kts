@@ -5,6 +5,8 @@ plugins {
 }
 
 dependencies {
+    api(projects.components.core)
+
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlib)
 

@@ -1,6 +1,6 @@
 package org.archguard.codedb.coverage
 
-import java.nio.file.FileSystems
+import org.archguard.codedb.core.BasicWalkerFilter
 
 val jacocoRules = listOf(
     "jacoco*.xml",
@@ -30,29 +30,23 @@ val coverageFileRules = listOf(
 ) + jacocoRules
 
 // poc: can be refs by: https://codecov.io/bash
-class CoverageFileFilter {
+class CoverageFileFilter : BasicWalkerFilter() {
     var collectFiles: List<String> = emptyList()
-    val fileSystem = FileSystems.getDefault()
 
     fun isMatch(filename: String): Boolean {
-        return match(coverageFileRules, filename)
-    }
+        val hasMatched = isMatch(coverageFileRules, filename)
 
-    private fun match(rules: List<String>, filename: String) = rules.any { match(it, filename) }
-
-    private fun match(rule: String, filename: String) =
-        fileSystem.getPathMatcher("glob:$rule").matches(fileSystem.getPath(filename))
-
-    fun check(filename: String) {
-        if (isMatch(filename)) {
+        if (hasMatched) {
             collectFiles = collectFiles.plus(filename)
         }
+
+        return hasMatched
     }
 
-    fun finalize() {
+    override fun finalize() {
         collectFiles.forEach {
             when {
-                match(jacocoRules, it) -> println("jacoco: $it")
+                isMatch(jacocoRules, it) -> println("jacoco: $it")
                 else -> {
                     println("else: $it")
                 }
@@ -60,3 +54,4 @@ class CoverageFileFilter {
         }
     }
 }
+
