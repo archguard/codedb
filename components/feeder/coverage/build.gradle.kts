@@ -10,6 +10,8 @@ dependencies {
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlib)
 
+//    implementation(libs.openclover.core)
+
     // java
     implementation(libs.jacoco.core)
 

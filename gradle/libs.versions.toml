@@ -44,6 +44,8 @@ logback = "1.4.5"
 
 jgit = "6.4.0.202211300538-r"
 
+# openclover = "4.4.1"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -121,6 +123,9 @@ jacoco-core = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "j
 regex-re2 = { group = "com.google.re2j", name = "re2j", version.ref = "re2j" }
 
 jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
+
+# openclover
+# openclover-core = { group = "org.openclover", name = "clover", version.ref = "openclover" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
