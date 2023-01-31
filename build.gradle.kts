@@ -82,7 +82,9 @@ dependencies {
 	implementation(libs.jupyter.api)
 	implementation(libs.jupyter.kernel)
 	compileOnly(libs.kotlin.scriptingJvm)
-	implementation(libs.archguard.dsl)
+	implementation(libs.archguard.dsl) {
+		exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
+	}
 
 	// for tasking
 	testImplementation(libs.bundles.test)
