@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
 
 /** Stores line execution coverage information. */
 @AutoValue
-abstract class LineCoverage {
+public abstract class LineCoverage {
   static LineCoverage create(int lineNumber, long executionCount, String checksum) {
     return new AutoValue_LineCoverage(lineNumber, executionCount, checksum);
   }

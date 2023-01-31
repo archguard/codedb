@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 
-class Coverage {
+public class Coverage {
   private final TreeMap<String, SourceFileCoverage> sourceFiles;
 
   Coverage() {

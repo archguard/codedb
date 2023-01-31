@@ -20,7 +20,7 @@ package org.archguard.codedb.coverage.bazel;
  * {@code --intermediate-format} in <a href="https://gcc.gnu.org/onlinedocs/gcc/Invoking-Gcov.html">
  * gcov documentation</a>.
  */
-class Constants {
+public class Constants {
   static final String SF_MARKER = "SF:";
   static final String FN_MARKER = "FN:";
   static final String FNDA_MARKER = "FNDA:";

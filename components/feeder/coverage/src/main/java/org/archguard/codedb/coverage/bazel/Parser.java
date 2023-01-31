@@ -18,6 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-interface Parser {
+public interface Parser {
   List<SourceFileCoverage> parse(InputStream inputStream) throws IOException;
 }

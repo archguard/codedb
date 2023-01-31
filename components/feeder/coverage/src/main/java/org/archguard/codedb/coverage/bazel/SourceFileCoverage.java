@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /** Stores coverage information for a specific source file. */
-class SourceFileCoverage {
+public class SourceFileCoverage {
 
   private String sourceFileName;
   private final TreeMap<String, Integer> lineNumbers; // function name to line numbers

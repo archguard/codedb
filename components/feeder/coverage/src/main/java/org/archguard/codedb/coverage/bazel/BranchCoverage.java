@@ -46,7 +46,7 @@ import com.google.auto.value.AutoValue;
  * may be 0).
  */
 @AutoValue
-abstract class BranchCoverage {
+public abstract class BranchCoverage {
 
   /**
    * Create a BranchCoverage object corresponding to a BA line

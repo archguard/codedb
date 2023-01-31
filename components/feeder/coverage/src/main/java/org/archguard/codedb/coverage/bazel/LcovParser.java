@@ -44,7 +44,7 @@ import java.util.logging.Logger;
  * A parser for the lcov tracefile format used by geninfo. See <a
  * href="http://ltp.sourceforge.net/coverage/lcov/geninfo.1.php">lcov documentation</a>
  */
-class LcovParser {
+public class LcovParser {
 
   private static final Logger logger = Logger.getLogger(LcovParser.class.getName());
   private final InputStream inputStream;
