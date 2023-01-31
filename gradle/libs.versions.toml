@@ -44,7 +44,7 @@ logback = "1.4.5"
 
 jgit = "6.4.0.202211300538-r"
 
-openclover = "4.4.1"
+# openclover = "4.4.1"
 
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
@@ -116,16 +116,15 @@ datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version
 # implementation("org.archguard.aaac:dsl:2.0.0-beta.5")
 archguard-dsl = { group = "org.archguard.aaac", name = "dsl", version.ref = "archguard" }
 
-# implementation("org.jacoco:org.jacoco.core:0.8.8")
+# coverage module
 jacoco-core = { group = "org.jacoco", name = "org.jacoco.core", version.ref = "jacoco" }
+# openclover-core = { group = "org.openclover", name = "clover", version.ref = "openclover" }
+# openclover-runtime = { group = "org.openclover", name = "clover-runtime", version.ref = "openclover" }
 
 # re2
 regex-re2 = { group = "com.google.re2j", name = "re2j", version.ref = "re2j" }
 
 jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
-
-# openclover
-openclover-core = { group = "org.openclover", name = "clover", version.ref = "openclover" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

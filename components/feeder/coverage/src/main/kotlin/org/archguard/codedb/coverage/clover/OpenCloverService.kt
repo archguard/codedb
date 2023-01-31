@@ -1,8 +1,6 @@
 package org.archguard.codedb.coverage.clover
 
 import org.slf4j.LoggerFactory
-import com.atlassian.clover.model.CoverageDataPoint
-import com.atlassian.clover.model.XmlConverter
 import java.io.File
 
 /**
@@ -14,11 +12,6 @@ class OpenCloverService {
     }
 
     fun parse(file: File): CoverageDataPoint? {
-        try {
-            return XmlConverter.getFromXmlFile(file, XmlConverter.FILE_LEVEL)
-        } catch (e: Exception) {
-            logger.error("Error parsing clover file: ${file.absolutePath}", e)
-            return null
-        }
+        return null
     }
 }

@@ -14,7 +14,9 @@ dependencies {
     implementation(libs.logging.slf4j.api)
     implementation(libs.logging.logback.classic)
 
-    implementation(libs.openclover.core)
+// todo: investigate why this doesn't work
+//    implementation(libs.openclover.core)
+//    implementation(libs.openclover.runtime)
     // java
     implementation(libs.jacoco.core)
 
