@@ -28,10 +28,6 @@ allprojects {
 	java.sourceCompatibility = JavaVersion.VERSION_11
 	java.targetCompatibility = JavaVersion.VERSION_11
 
-	tasks.getByName<Test>("test") {
-		useJUnitPlatform()
-	}
-
 	tasks.withType<Test> {
 		useJUnitPlatform()
 		testLogging {
@@ -89,6 +85,17 @@ dependencies {
 	testImplementation(libs.springboot.test)
 	testImplementation(libs.test.reactor)
 	testImplementation(libs.test.embed.mongodb)
+}
+
+// !!!important for jacoco aggregation report only
+dependencies {
+	jacocoAggregation(projects.factor)
+	jacocoAggregation(projects.components.task.core)
+	jacocoAggregation(projects.components.basic.walkdir)
+	jacocoAggregation(projects.components.basic.gitignore)
+	jacocoAggregation(projects.components.feeder.coverage)
+	jacocoAggregation(projects.structureQl)
+	jacocoAggregation(projects.fitnessEngine)
 }
 
 tasks.withType<KotlinCompile> {
