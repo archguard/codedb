@@ -6,6 +6,10 @@ val jacocoRules = listOf(
     "jacoco*.xml",
     "*Jacoco*.xml",
 )
+val cloverRules = listOf(
+    "clover.xml"
+)
+
 val coverageFileRules = listOf(
     "*coverage*.*",
     "*.clover",
@@ -13,7 +17,6 @@ val coverageFileRules = listOf(
     "*.gcov",
     "*.lcov",
     "*.lst",
-    "clover.xml",
     "cobertura.xml",
     "codecov.*",
     "cover.out",
@@ -27,7 +30,7 @@ val coverageFileRules = listOf(
     "naxsi.info",
     "nosetests.xml",
     "report.xml"
-) + jacocoRules
+) + jacocoRules + cloverRules
 
 // poc: can be refs by: https://codecov.io/bash
 class CoverageFileFilter : BasicWalkerFilter() {
@@ -47,6 +50,7 @@ class CoverageFileFilter : BasicWalkerFilter() {
         collectFiles.forEach {
             when {
                 isMatch(jacocoRules, it) -> println("jacoco: $it")
+                isMatch(cloverRules, it) -> println("clover: $it")
                 else -> {
                     println("else: $it")
                 }

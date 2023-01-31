@@ -1,6 +1,5 @@
 package org.archguard.codedb.gitignore
 
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.nio.file.FileSystem
 import java.nio.file.FileSystems

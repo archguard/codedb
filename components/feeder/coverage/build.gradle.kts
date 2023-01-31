@@ -5,15 +5,19 @@ plugins {
 }
 
 dependencies {
-    api(projects.components.core)
+    implementation(projects.components.core)
 
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlib)
 
-//    implementation(libs.openclover.core)
+    // Logging
+    implementation(libs.logging.slf4j.api)
+    implementation(libs.logging.logback.classic)
 
+    implementation(libs.openclover.core)
     // java
     implementation(libs.jacoco.core)
 
-    implementation(libs.bundles.test)
+    testImplementation(libs.bundles.test)
+    testRuntimeOnly(libs.test.junit.engine)
 }

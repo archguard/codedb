@@ -1,4 +1,4 @@
-package org.archguard.codedb.coverage.jvm
+package org.archguard.codedb.coverage.jacoco
 
 open class Coverage(
     @Sql("instruction_missed") val instructionMissed: Int,
