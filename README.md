@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/archguard/codedb-poc/actions/workflows/ci.yaml/badge.svg)](https://github.com/archguard/codedb-poc/actions/workflows/ci.yaml)
 
-![CodeDB Logo](asssets/codedb.svg)
+![CodeDB Logo](assets/codedb.svg)
 
 CodeDB is a Technology Insight Platform for Software Development.
 
