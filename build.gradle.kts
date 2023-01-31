@@ -12,7 +12,7 @@ plugins {
 }
 
 jacoco {
-	toolVersion = "0.8.7"
+	toolVersion = "0.8.8"
 }
 
 allprojects {
