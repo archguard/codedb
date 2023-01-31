@@ -7,7 +7,6 @@ plugins {
 	alias(libs.plugins.springboot)
 	alias(libs.plugins.jupyter)
 
-	id("io.spring.dependency-management") version "1.1.0"
 	id("jacoco-report-aggregation")
 }
 
