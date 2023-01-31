@@ -16,3 +16,14 @@ B - total number of branches
 S - total number of statements
 M - total number of methods
 ```
+
+others:
+
+
+based:
+
+- https://github.com/bazelbuild/bazel/blob/master/tools/test/CoverageOutputGenerator/java/com/google/devtools/coverageoutputgenerator/LcovParser.java
+
+Can be
+
+- Bazel
