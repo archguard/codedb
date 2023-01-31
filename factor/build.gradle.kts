@@ -28,7 +28,6 @@ dependencies {
 
     implementation(libs.querydsl.core)
 
-    // date time: https://github.com/Kotlin/kotlinx-datetime
     implementation(libs.datetime)
 
     implementation(libs.kotlin.reflect)
@@ -36,9 +35,4 @@ dependencies {
     implementation(libs.coroutines.core)
 
     testImplementation(libs.bundles.test)
-    testRuntimeOnly(libs.test.junit.engine)
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }

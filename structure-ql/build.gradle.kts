@@ -29,7 +29,6 @@ dependencies {
     }
 
     implementation(libs.mongodb.morphia)
-//    implementation("dev.morphia.morphia:morphia-core:2.2.10")
     implementation(libs.mongodb.driver.reactivestreams)
 
     testImplementation(libs.bundles.test)
