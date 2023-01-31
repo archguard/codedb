@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.serialization)
 }
 
-repositories {
-    mavenCentral()
-    mavenLocal()
+dependencies {
+
 }

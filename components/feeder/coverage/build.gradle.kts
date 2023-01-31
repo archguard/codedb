@@ -4,11 +4,6 @@ plugins {
     alias(libs.plugins.serialization)
 }
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
 dependencies {
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlib)

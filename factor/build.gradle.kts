@@ -7,18 +7,12 @@ plugins {
     kotlin("kapt")
 }
 
-
 idea {
     module {
         val kaptMain = file("build/generated/source/kapt/main")
         sourceDirs.plusAssign(kaptMain)
         generatedSourceDirs.plusAssign(kaptMain)
     }
-}
-
-repositories {
-    mavenCentral()
-    mavenLocal()
 }
 
 dependencies {
