@@ -1,12 +1,11 @@
 package org.archguard.codedb.git
 
 import org.eclipse.jgit.api.Git
-import org.eclipse.jgit.api.PullResult
 import org.eclipse.jgit.transport.CredentialsProvider
-import org.eclipse.jgit.transport.FetchResult
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider
 import org.slf4j.LoggerFactory
 import java.io.File
+import java.nio.file.Path
 
 private const val DEFAULT_BRANCH = "master"
 
