@@ -5,6 +5,8 @@ rootProject.name = "CodeDB"
 enableFeaturePreview("VERSION_CATALOGS")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
+include(":api-examples:getting-started")
+
 // for normal projects
 include(":factor")
 include(":metric")
