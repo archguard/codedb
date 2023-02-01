@@ -1,7 +1,7 @@
 package org.archguard.codedb.factor.governance.document
 
 /**
- * A document is a piece of information that is created, received, and stored electronically.
+ * A document is a compliance of information that is created, received, and stored electronically.
  */
 sealed class DocumentType() {
     /**

@@ -1,9 +1,9 @@
-package org.archguard.codedb.fitness.piece
+package org.archguard.codedb.fitness.quality
 
 /**
  * quality API
  */
-abstract class Quality {
+abstract class QualityCode {
     /**
      * @return the quality of the code base
      */

@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness
+package org.archguard.codedb.fitness.engine
 
 
 /**

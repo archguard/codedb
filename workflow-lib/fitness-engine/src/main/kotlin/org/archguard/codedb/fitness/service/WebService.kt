@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness.piece
+package org.archguard.codedb.fitness.service
 
 /**
  * include web service
@@ -10,6 +10,4 @@ abstract class WebService {
     fun hasMetrics(): Boolean {
         return false
     }
-
-
 }

@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness.piece
+package org.archguard.codedb.fitness.deployment
 
 abstract class Deployment {
     /**
