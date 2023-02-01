@@ -19,11 +19,11 @@ include(":client:codedb-cli")
 include(":client:codedb-gradle-plugin")
 
 // for server/cli/other usage
-libSubproject("factor")
-libSubproject("metric")
-libSubproject("structure-ql")
-libSubproject("fitness-engine")
-libSubproject("task-core")
+include(":workflow-lib:factor")
+include(":workflow-lib:metric")
+include(":workflow-lib:structure-ql")
+include(":workflow-lib:fitness-engine")
+include(":workflow-lib:task-core")
 
 fun libSubproject(name: String) = workflow(name, "workflow-lib/")
 fun workflow(name: String, parentPath: String) {

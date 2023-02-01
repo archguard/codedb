@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    api(project(":factor"))
+    api(projects.workflowLib.factor)
 
     implementation(libs.chapi.kotlin) {
         // around 10mb, only documents files, exclude (reuse in cli?)

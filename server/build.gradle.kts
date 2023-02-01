@@ -9,8 +9,8 @@ plugins {
 }
 
 dependencies {
-	api(projects.factor)
-	api(projects.metric)
+	api(projects.workflowLib.factor)
+	api(projects.workflowLib.metric)
 	api(projects.feeder.core)
 
 	implementation(libs.bundles.springboot)
