@@ -6,4 +6,6 @@ interface Project {
     var displayName: String
 
     var description: String
+
+    var workdir: String
 }
