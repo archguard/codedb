@@ -1,8 +1,11 @@
 package org.archguard.codedb.git
 
 import org.eclipse.jgit.api.Git
+import org.eclipse.jgit.api.PullResult
 import org.eclipse.jgit.transport.CredentialsProvider
+import org.eclipse.jgit.transport.FetchResult
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider
+import org.slf4j.LoggerFactory
 import java.io.File
 
 private const val DEFAULT_BRANCH = "master"
@@ -50,5 +53,18 @@ class GitCommand {
             .setBranch(branch)
             .setCredentialsProvider(credentialsProvider)
             .call()
+    }
+
+    fun pull(git: Git) {
+        try {
+            git.clean().call()
+            git.pull().call()
+        } catch (e: Exception) {
+            logger.error("git pull failed: ", e)
+        }
+    }
+
+    companion object {
+        var logger = LoggerFactory.getLogger(GitCommand::class.java)
     }
 }
