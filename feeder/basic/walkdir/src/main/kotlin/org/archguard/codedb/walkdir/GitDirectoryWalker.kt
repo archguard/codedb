@@ -98,7 +98,7 @@ class GitDirectoryWalker(workdir: String): DirectoryWalker(workdir) {
     @Throws(IOException::class)
     private fun getTree(repository: Repository): RevTree {
         val lastCommitId: ObjectId = repository.resolve(Constants.HEAD)
-        logger.warn("lastCommitId: $lastCommitId")
+        logger.info("lastCommitId: $lastCommitId")
 
         RevWalk(repository).use { revWalk ->
             val commit: RevCommit = revWalk.parseCommit(lastCommitId)
