@@ -8,6 +8,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":api-examples:getting-started")
 
 include(":feeder:core")
+include(":server")
 
 include(":feeder:basic:gitignore")
 include(":feeder:basic:walkdir")
