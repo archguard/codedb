@@ -1,6 +1,6 @@
 package org.archguard.codedb.automate.task
 
-import org.archguard.codedb.automate.DefaultProject
+import org.archguard.codedb.core.DefaultProject
 import org.archguard.codedb.automate.task.api.AbstractTask
 import org.archguard.codedb.automate.task.core.Input
 import kotlin.reflect.full.findAnnotation

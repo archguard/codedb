@@ -1,4 +1,4 @@
-package org.archguard.codedb.automate.internal
+package org.archguard.codedb.core.internal
 
 /**
  * Factory for creating instances of [org.archguard.codedb.automate.api.Task].

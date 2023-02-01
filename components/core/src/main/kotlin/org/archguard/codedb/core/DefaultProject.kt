@@ -1,6 +1,4 @@
-package org.archguard.codedb.automate
-
-import org.archguard.codedb.automate.internal.Project
+package org.archguard.codedb.core
 
 class DefaultProject(
     override var name: String = "",
