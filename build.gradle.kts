@@ -57,7 +57,7 @@ allprojects {
 dependencies {
 	api(projects.factor)
 	api(projects.metric)
-	api(projects.components.core)
+	api(projects.feeder.core)
 
 	implementation(libs.bundles.springboot)
 
@@ -98,13 +98,13 @@ dependencies {
 
 // !!!important for jacoco aggregation report only
 dependencies {
-	jacocoAggregation(projects.factor)
-	jacocoAggregation(projects.components.task.core)
-	jacocoAggregation(projects.components.basic.walkdir)
-	jacocoAggregation(projects.components.basic.gitignore)
-	jacocoAggregation(projects.components.feeder.coverage)
-	jacocoAggregation(projects.structureQl)
-	jacocoAggregation(projects.fitnessEngine)
+//	jacocoAggregation(projects.factor)
+//	jacocoAggregation(projects.taskCore)
+//	jacocoAggregation(projects.feeder.basic.walkdir)
+//	jacocoAggregation(projects.feeder.basic.gitignore)
+//	jacocoAggregation(projects.feeder.analyser.coverage)
+//	jacocoAggregation(projects.structureQl)
+//	jacocoAggregation(projects.fitnessEngine)
 }
 
 tasks.withType<KotlinCompile> {

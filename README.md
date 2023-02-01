@@ -29,6 +29,17 @@ Architecture diagram:
 +------------------------------------------------------------+
 ```
 
+Code Datastructure
+
+- src, the core server code.
+- workflow-lib, which will be used by workflow
+- feeder, which will fill the data into database
+    - [ ] test coverage
+    - [ ] source code
+    - [ ] security
+    - [ ] sonarqube
+    - [ ] ...
+
 # Roadmap
 
 Todos:

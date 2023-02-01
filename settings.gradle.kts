@@ -7,24 +7,25 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":api-examples:getting-started")
 
-include(":components:core")
+include(":feeder:core")
 
-include(":components:task:core")
-include(":components:task:automate")
+include(":feeder:basic:gitignore")
+include(":feeder:basic:walkdir")
 
-include(":components:basic:gitignore")
-include(":components:basic:walkdir")
+include(":feeder:analyser:coverage")
 
-include(":components:feeder:coverage")
+include(":client:codedb-cli")
+include(":client:codedb-gradle-plugin")
 
 // for server/cli/other usage
 libSubproject("factor")
 libSubproject("metric")
 libSubproject("structure-ql")
-libSubproject("fitness-engine")
+libSubproject("math-engine")
+libSubproject("task-core")
 
-fun libSubproject(name: String) = subproject(name, "workflow-lib/")
-fun subproject(name: String, parentPath: String) {
+fun libSubproject(name: String) = workflow(name, "workflow-lib/")
+fun workflow(name: String, parentPath: String) {
     include(name)
     project(":$name").projectDir = file("$parentPath$name")
 }
