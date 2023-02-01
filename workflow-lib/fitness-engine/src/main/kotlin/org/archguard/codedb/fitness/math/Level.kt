@@ -1,5 +1,7 @@
 package org.archguard.codedb.fitness.math
 
+import java.io.Serializable
+
 /**
  *  Sonar refs: https://docs.sonarqube.org/latest/user-guide/metric-definitions/
  */
@@ -12,6 +14,9 @@ enum class Level {
     F,
 }
 
-interface Metric {
-    fun getLevel(): Level
+interface Metric<T : Serializable> {
+    fun name(): String
+
+    fun valueType(): Class<T>
+    fun level(): Level
 }

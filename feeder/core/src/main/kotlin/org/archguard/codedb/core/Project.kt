@@ -8,4 +8,8 @@ interface Project {
     var description: String
 
     var workdir: String
+
+    var basedir: String
+
+    var subProjects: List<Project>
 }
