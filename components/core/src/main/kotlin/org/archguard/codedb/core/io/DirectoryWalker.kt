@@ -1,4 +1,4 @@
-package org.archguard.codedb.core
+package org.archguard.codedb.core.io
 
 import java.io.File
 import kotlinx.coroutines.channels.Channel

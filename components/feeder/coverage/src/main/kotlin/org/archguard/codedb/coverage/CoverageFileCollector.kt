@@ -1,6 +1,6 @@
 package org.archguard.codedb.coverage
 
-import org.archguard.codedb.core.WalkerCollector
+import org.archguard.codedb.core.io.WalkerCollector
 
 val jacocoRules = listOf("jacoco*.xml", "*Jacoco*.xml")
 val cloverRules = listOf("clover.xml")

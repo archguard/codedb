@@ -1,4 +1,4 @@
-package org.archguard.codedb.core
+package org.archguard.codedb.core.io
 
 import java.nio.file.FileSystem
 import java.nio.file.FileSystems
