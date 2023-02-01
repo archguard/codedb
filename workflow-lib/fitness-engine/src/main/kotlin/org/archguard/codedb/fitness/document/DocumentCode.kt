@@ -4,10 +4,10 @@ abstract class DocumentCode {
     /**
      * @return true if the code has a readme file
      */
-    abstract fun hasReadmeFile()
+    abstract fun hasReadmeFile(): Boolean
 
     /**
-     * @return true if the code has a adr file
+     * has architecture decision record
      */
-    abstract fun hasAdr(): Boolean
+    abstract fun hasDecisionRecord(): Boolean
 }

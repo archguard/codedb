@@ -10,6 +10,8 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.kotlin.stdlib)
+
     testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)
 }

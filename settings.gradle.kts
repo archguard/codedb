@@ -21,7 +21,7 @@ include(":client:codedb-gradle-plugin")
 libSubproject("factor")
 libSubproject("metric")
 libSubproject("structure-ql")
-libSubproject("math-engine")
+libSubproject("fitness-engine")
 libSubproject("task-core")
 
 fun libSubproject(name: String) = workflow(name, "workflow-lib/")
