@@ -56,6 +56,7 @@ allprojects {
 
 dependencies {
 	api(projects.factor)
+	api(projects.metric)
 	api(projects.components.core)
 
 	implementation(libs.bundles.springboot)

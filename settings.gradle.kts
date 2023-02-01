@@ -7,6 +7,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 // for normal projects
 include(":factor")
+include(":metric")
 include(":structure-ql")
 include(":fitness-engine")
 

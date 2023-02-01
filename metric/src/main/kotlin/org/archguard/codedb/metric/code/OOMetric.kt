@@ -1,4 +1,4 @@
-package org.archguard.codedb.metrics.code
+package org.archguard.codedb.metric.code
 
 class OOMetric {
     fun loc() {
