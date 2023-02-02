@@ -25,9 +25,10 @@ include(":workflow-lib:metric")
 include(":workflow-lib:structure-ql")
 include(":workflow-lib:fitness-engine")
 include(":workflow-lib:task-core")
+include(":workflow-lib:repl")
 
-fun libSubproject(name: String) = workflow(name, "workflow-lib/")
-fun workflow(name: String, parentPath: String) {
-    include(name)
-    project(":$name").projectDir = file("$parentPath$name")
-}
+//fun libSubproject(name: String) = workflow(name, "workflow-lib/")
+//fun workflow(name: String, parentPath: String) {
+//    include(name)
+//    project(":$name").projectDir = file("$parentPath$name")
+//}

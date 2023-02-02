@@ -1,13 +1,11 @@
-package org.archguard.codedb.server
+package org.archguard.codedb.repl
 
 import io.kotest.matchers.shouldBe
-import org.archguard.codedb.server.fitness.KotlinReplWrapper
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class ReplDemoTest {
     private lateinit var compiler: KotlinReplWrapper
-
 
     @BeforeEach
     internal fun setUp() {
@@ -17,7 +15,6 @@ class ReplDemoTest {
     @Test
     internal fun simple_eval() {
         compiler.eval("val x = 3")
-
     }
 
     @Test

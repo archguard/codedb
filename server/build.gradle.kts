@@ -11,6 +11,7 @@ plugins {
 dependencies {
 	api(projects.workflowLib.factor)
 	api(projects.workflowLib.metric)
+	api(projects.workflowLib.repl)
 	api(projects.feeder.core)
 
 	implementation(libs.bundles.springboot)
@@ -38,6 +39,7 @@ dependencies {
 	implementation(libs.jupyter.api)
 	implementation(libs.jupyter.kernel)
 	compileOnly(libs.kotlin.scriptingJvm)
+
 	implementation(libs.archguard.dsl) {
 		exclude(group = "org.jetbrains.kotlin", module = "kotlin-test-junit")
 	}

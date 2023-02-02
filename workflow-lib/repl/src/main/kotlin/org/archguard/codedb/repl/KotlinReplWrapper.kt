@@ -1,4 +1,4 @@
-package org.archguard.codedb.server.fitness
+package org.archguard.codedb.repl
 
 import org.jetbrains.kotlinx.jupyter.EvalRequestData
 import org.jetbrains.kotlinx.jupyter.ReplForJupyter
