@@ -1,10 +1,11 @@
 package org.archguard.codedb.repl
 
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class ReplDemoTest {
+class KotlinReplWrapperTest {
     private lateinit var compiler: KotlinReplWrapper
 
     @BeforeEach
