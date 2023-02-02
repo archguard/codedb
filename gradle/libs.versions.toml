@@ -49,6 +49,9 @@ autoValue = "1.9"
 gson = "2.10.1"
 jcommander = "1.82"
 
+clikt = "3.5.1"
+shadowJar = "7.1.2"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -134,11 +137,15 @@ regex-re2 = { group = "com.google.re2j", name = "re2j", version.ref = "re2j" }
 
 jgit = { group = "org.eclipse.jgit", name = "org.eclipse.jgit", version.ref = "jgit" }
 
+# cli
+clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
+
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jupyter = { id = "org.jetbrains.kotlin.jupyter.api", version.ref = "jupyterApi" }
 springboot = { id = "org.springframework.boot", version.ref = "springBoot" }
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadowJar" }
 
 [bundles]
 springboot = ["springboot-starter", "springboot-webflux", "springboot-mongodb-reactive"]
