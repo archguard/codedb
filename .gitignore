@@ -36,6 +36,6 @@ out/
 
 ### VS Code ###
 .vscode/
-docs/papers
+docs/spike/papers
 dependencies
 */.DS_Store
