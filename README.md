@@ -29,16 +29,26 @@ Architecture diagram:
 +------------------------------------------------------------+
 ```
 
-Code Datastructure
+Code DataStructure
 
-- src, the core server code.
+- server, which will provide the API
+- client
+    - CLI,
+    - CLUI (experiment)
+    - Gradle Plugin
 - workflow-lib, which will be used by workflow
+    - factor, foundation of fitness model
+    - fitness-engine, define the basic element to calculate fitness
+    - metric, common metric model of software
+    - repl, kotlin REPL API
+    - structure-ql, structure query language
+    - task-core, the core of task engine
 - feeder, which will fill the data into database
-    - [ ] test coverage
-    - [ ] source code
-    - [ ] security
-    - [ ] sonarqube
-    - [ ] ...
+    - test coverage
+    - source code
+    - security
+    - sonarqube
+    - ...
 
 # Roadmap
 
