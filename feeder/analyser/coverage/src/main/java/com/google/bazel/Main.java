@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package org.archguard.codedb.coverage.bazel;
+package com.google.bazel;
 
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_EXTENSION;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_JSON_EXTENSION;
-import static  org.archguard.codedb.coverage.bazel.Constants.PROFDATA_EXTENSION;
-import static  org.archguard.codedb.coverage.bazel.Constants.TRACEFILE_EXTENSION;
+import static  com.google.bazel.Constants.GCOV_EXTENSION;
+import static  com.google.bazel.Constants.GCOV_JSON_EXTENSION;
+import static  com.google.bazel.Constants.PROFDATA_EXTENSION;
+import static  com.google.bazel.Constants.TRACEFILE_EXTENSION;
 import static java.lang.Math.max;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;

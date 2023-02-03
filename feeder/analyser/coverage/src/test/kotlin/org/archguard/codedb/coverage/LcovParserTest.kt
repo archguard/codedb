@@ -1,6 +1,6 @@
 package org.archguard.codedb.coverage
 
-import org.archguard.codedb.coverage.bazel.LcovParser.parse
+import com.google.bazel.LcovParser.parse
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

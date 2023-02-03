@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package org.archguard.codedb.coverage.bazel;
+package com.google.bazel;
 
-import static  org.archguard.codedb.coverage.bazel.Constants.BA_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.BRDA_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.BRF_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.BRH_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.DA_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.DELIMITER;
-import static  org.archguard.codedb.coverage.bazel.Constants.END_OF_RECORD_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.FNDA_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.FNF_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.FNH_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.FN_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.LF_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.LH_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.NEVER_EVALUATED;
-import static  org.archguard.codedb.coverage.bazel.Constants.SF_MARKER;
+import static  com.google.bazel.Constants.BA_MARKER;
+import static  com.google.bazel.Constants.BRDA_MARKER;
+import static  com.google.bazel.Constants.BRF_MARKER;
+import static  com.google.bazel.Constants.BRH_MARKER;
+import static  com.google.bazel.Constants.DA_MARKER;
+import static  com.google.bazel.Constants.DELIMITER;
+import static  com.google.bazel.Constants.END_OF_RECORD_MARKER;
+import static  com.google.bazel.Constants.FNDA_MARKER;
+import static  com.google.bazel.Constants.FNF_MARKER;
+import static  com.google.bazel.Constants.FNH_MARKER;
+import static  com.google.bazel.Constants.FN_MARKER;
+import static  com.google.bazel.Constants.LF_MARKER;
+import static  com.google.bazel.Constants.LH_MARKER;
+import static  com.google.bazel.Constants.NEVER_EVALUATED;
+import static  com.google.bazel.Constants.SF_MARKER;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.BufferedReader;

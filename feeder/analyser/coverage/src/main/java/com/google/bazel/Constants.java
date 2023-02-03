@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package org.archguard.codedb.coverage.bazel;
+package com.google.bazel;
 
 /**
  * Stores markers used by the lcov tracefile and gcov intermediate format file. See <a

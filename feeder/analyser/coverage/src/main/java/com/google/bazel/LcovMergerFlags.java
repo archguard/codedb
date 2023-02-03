@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package org.archguard.codedb.coverage.bazel;
+package com.google.bazel;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;

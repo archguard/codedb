@@ -12,18 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package org.archguard.codedb.coverage.bazel;
+package com.google.bazel;
 
-import static  org.archguard.codedb.coverage.bazel.Constants.DELIMITER;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_BRANCH_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_BRANCH_NOTEXEC;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_BRANCH_NOTTAKEN;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_BRANCH_TAKEN;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_CWD_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_FILE_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_FUNCTION_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_LINE_MARKER;
-import static  org.archguard.codedb.coverage.bazel.Constants.GCOV_VERSION_MARKER;
+import static  com.google.bazel.Constants.DELIMITER;
+import static  com.google.bazel.Constants.GCOV_BRANCH_MARKER;
+import static  com.google.bazel.Constants.GCOV_BRANCH_NOTEXEC;
+import static  com.google.bazel.Constants.GCOV_BRANCH_NOTTAKEN;
+import static  com.google.bazel.Constants.GCOV_BRANCH_TAKEN;
+import static  com.google.bazel.Constants.GCOV_CWD_MARKER;
+import static  com.google.bazel.Constants.GCOV_FILE_MARKER;
+import static  com.google.bazel.Constants.GCOV_FUNCTION_MARKER;
+import static  com.google.bazel.Constants.GCOV_LINE_MARKER;
+import static  com.google.bazel.Constants.GCOV_VERSION_MARKER;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 import com.google.common.collect.ListMultimap;
