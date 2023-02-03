@@ -60,10 +60,8 @@ By Level:
 - create flow for task
 - create job for task
 
-## Scan Data with ArchGuard
+# Development
 
-test
-cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=http --output=json --path=. --server-url=http://localhost:8084`
 
 ## Install
 
@@ -72,6 +70,14 @@ cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=h
     - follow: [https://www.mongodb.com/docs/manual/installation/](https://www.mongodb.com/docs/manual/installation/)
 3. start spring boot application
     - `./gradlew bootRun`_
+
+## Scan Data with ArchGuard
+
+test cli
+
+```bash
+java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=http --output=json --path=. --server-url=http://localhost:8084
+```
 
 ### Known Issues
 
@@ -82,4 +88,7 @@ cli: `java -jar/scanner_cli.jar --language=Kotlin --features=apicalls --output=h
 1. cglib 不支持 Java 17 Java 16 and 17 compatibility #191 : https://github.com/cglib/cglib/issues/191
 2. QueryDSL MongoDB 5.0 只支持 MongoDB 6.0 以下版本（暂不支持 6.0），需要自己实现 querysql-mongodb。
 
+License
+---
 
+This code is distributed under the MIT license. See `LICENSE` in this directory.
