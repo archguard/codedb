@@ -1,11 +1,10 @@
 package org.archguard.codedb.fitness
 
-import io.kotest.matchers.collections.shouldBeIn
 import io.kotest.matchers.shouldBe
-import org.archguard.codedb.fitness.document.DocumentCode
+import org.archguard.codedb.fitness.slice.document.DocumentCode
 import org.junit.jupiter.api.Test
 
-class DemoTest {
+class FitnessDemoTest {
     @Test
     fun test() {
         val documentCode = object : DocumentCode() {
@@ -20,4 +19,6 @@ class DemoTest {
 
         documentCode.hasReadmeFile() shouldBe true
     }
+
+
 }

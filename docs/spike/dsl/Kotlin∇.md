@@ -14,7 +14,7 @@ https://github.com/breandan/kotlingrad
     val adEval = `df∕dx`(ẋ) 
     
     val dx = 1E-8
-    // Since ẋ is a raw numeric type, sin => kotlin.math.sin
+    // Since ẋ is a raw numeric type, sin => kotlin.core.sin
     val fdEval = (sin(ẋ + dx) - sin(ẋ)) / dx
     adEval shouldBeApproximately fdEval
   }

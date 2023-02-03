@@ -1,8 +1,10 @@
-package org.archguard.codedb.fitness.scm
+package org.archguard.codedb.fitness.slice.scm
 
 abstract class SourceCodeManagement {
     abstract fun getCommitHistory(): List<Commit>
+
     abstract fun getBranches(): List<Branch>
+
     abstract fun getTags(): List<Tag>
 
     abstract fun getCloc(): Cloc

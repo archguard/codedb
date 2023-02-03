@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness.operability
+package org.archguard.codedb.fitness.slice.operability
 
 /**
  * cloud-native operability

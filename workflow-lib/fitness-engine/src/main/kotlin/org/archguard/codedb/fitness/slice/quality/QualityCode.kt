@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness.quality
+package org.archguard.codedb.fitness.slice.quality
 
 /**
  * quality API

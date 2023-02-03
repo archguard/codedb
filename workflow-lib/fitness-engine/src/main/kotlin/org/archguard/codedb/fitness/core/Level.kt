@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness.math
+package org.archguard.codedb.fitness.core
 
 import java.io.Serializable
 
@@ -18,5 +18,6 @@ interface Metric<T : Serializable> {
     fun name(): String
 
     fun valueType(): Class<T>
+
     fun level(): Level
 }

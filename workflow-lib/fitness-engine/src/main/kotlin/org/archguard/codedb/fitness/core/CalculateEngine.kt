@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness.math
+package org.archguard.codedb.fitness.core
 
 
 /**

@@ -1,4 +1,4 @@
-package org.archguard.codedb.fitness.document
+package org.archguard.codedb.fitness.slice.document
 
 abstract class DocumentCode {
     /**
