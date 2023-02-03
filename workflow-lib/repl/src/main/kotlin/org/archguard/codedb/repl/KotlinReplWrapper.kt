@@ -41,24 +41,27 @@ class KotlinReplWrapper {
         return createRepl(
             EmptyResolutionInfoProvider,
             embeddedClasspath,
-            libraryResolver = resolveArchGuardLibs(),
+            libraryResolver = resolveArchGuardDsl(),
             displayHandler = NoOpDisplayHandler,
             isEmbedded = true
         )
     }
 
-    fun eval(code: Code, jupyterId: Int = -1, storeHistory: Boolean = true) = repl.eval(EvalRequestData(code, jupyterId, storeHistory))
+    fun eval(code: Code, jupyterId: Int = -1, storeHistory: Boolean = true) =
+        repl.eval(EvalRequestData(code, jupyterId, storeHistory))
 
-    private fun resolveArchGuardLibs(): LibraryResolver {
-        val lib = "archguard" to """
-        {
-            "imports": [
-                "org.archguard.dsl.*"
-            ],
-            "init": []
+    companion object {
+        fun resolveArchGuardDsl(): LibraryResolver {
+            val lib = "archguard" to """
+            {
+                "imports": [
+                    "org.archguard.dsl.*"
+                ],
+                "init": []
+            }
+                """.trimIndent()
+
+            return listOf(lib).toLibraries()
         }
-            """.trimIndent()
-
-        return listOf(lib).toLibraries()
     }
 }
