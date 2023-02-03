@@ -7,8 +7,7 @@
 CodeDB is a Technology Insight Platform for Software Development.
 
 > CodeDB
->
-是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)
+> 是一个专为软件开发本身开发的代码数据库，可以用于架构治理、代码生成等领域。基于[架构孪生](https://www.phodal.com/blog/architecture-twin/)
 > 的理念，内建架构适度度函数、代码设计查询和存储 DSL、依赖分析引擎、机器学习算法等。
 
 Architecture diagram:
@@ -50,44 +49,16 @@ Code DataStructure
     - sonarqube
     - ...
 
-## S-Expression Query ?
-
-like TreeSitter?
-
-```ocaml
-(package_declaration
-	(scoped_identifier) @package-name)
-
-(import_declaration
-	(scoped_identifier) @import-name)
-
-(program
-    (class_declaration
-	    name: (identifier) @class-name
-        interfaces: (super_interfaces (interface_type_list (type_identifier)  @impl-name))?
-        body: (class_body (method_declaration
-            (modifiers
-                (annotation
-                  name: (identifier) @annotation.name
-                      arguments: (annotation_argument_list)? @annotation.key_values
-                )
-            )?
-            type: (type_identifier) @return-type
-            name: (identifier) @function-name
-            parameters: (formal_parameters (formal_parameter
-              type: (type_identifier) @param-type
-                name: (identifier) @param-name
-            ))?
-          ))?
-    )
-)
-```
-
 ## Principle
 
 ThinSlice for Goal
 
-By Level Goal -> Flow/Fitness -> Task -> Job
+By Level:
+
+- define Goal
+- custom Metric (Fitness function)
+- create flow for task
+- create job for task
 
 ## Scan Data with ArchGuard
 
