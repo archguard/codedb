@@ -1,35 +1,27 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    application
     alias(libs.plugins.jvm)
     alias(libs.plugins.serialization)
-    alias(libs.plugins.shadow)
+    alias(libs.plugins.compose)
 }
 
 dependencies {
-    implementation(libs.clikt)
-
     // Logging
     implementation(libs.logging.slf4j.api)
     implementation(libs.logging.logback.classic)
 
     testImplementation(libs.bundles.test)
+    implementation(compose.desktop.currentOs)
 }
 
-application {
-    mainClass.set("org.archguard.codedb.clui.RunnerKt")
+repositories {
+    mavenCentral()
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+    google()
 }
 
-tasks {
-    shadowJar {
-        manifest {
-            attributes(Pair("Main-Class", "org.archguard.scanner.ctl.RunnerKt"))
-        }
-        // minimize()
-        dependencies {
-            exclude(dependency("org.junit.jupiter:.*:.*"))
-            exclude(dependency("org.junit:.*:.*"))
-            exclude(dependency("junit:.*:.*"))
-        }
+compose.desktop {
+    application {
+        mainClass = "org.archguard.codedb.clui.CodeDBKt"
     }
 }

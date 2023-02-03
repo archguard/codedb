@@ -52,6 +52,8 @@ jcommander = "1.82"
 clikt = "3.5.1"
 shadowJar = "7.1.2"
 
+compose = "1.3.0"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -146,6 +148,7 @@ serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref 
 jupyter = { id = "org.jetbrains.kotlin.jupyter.api", version.ref = "jupyterApi" }
 springboot = { id = "org.springframework.boot", version.ref = "springBoot" }
 shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadowJar" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 
 [bundles]
 springboot = ["springboot-starter", "springboot-webflux", "springboot-mongodb-reactive"]
