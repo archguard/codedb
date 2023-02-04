@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.*
 import org.archguard.codedb.clui.common.LocalAppResources
 import kotlinx.coroutines.launch
+import org.archguard.codedb.clui.common.Constants
 import org.archguard.codedb.clui.util.FileDialog
 import org.archguard.codedb.clui.util.YesNoCancelDialog
 
@@ -39,7 +40,7 @@ fun CodeDBWindow(state: CodeDBWindowState) {
 
         if (state.openDialog.isAwaiting) {
             FileDialog(
-                title = "CodeDB",
+                title = Constants.APP_NAME,
                 isLoad = true,
                 onResult = {
                     state.openDialog.onResult(it)
@@ -49,7 +50,7 @@ fun CodeDBWindow(state: CodeDBWindowState) {
 
         if (state.saveDialog.isAwaiting) {
             FileDialog(
-                title = "CodeDB",
+                title = Constants.APP_NAME,
                 isLoad = false,
                 onResult = { state.saveDialog.onResult(it) }
             )
@@ -57,7 +58,7 @@ fun CodeDBWindow(state: CodeDBWindowState) {
 
         if (state.exitDialog.isAwaiting) {
             YesNoCancelDialog(
-                title = "CodeDB",
+                title = Constants.APP_NAME,
                 message = "Save changes?",
                 onResult = { state.exitDialog.onResult(it) }
             )
@@ -68,7 +69,7 @@ fun CodeDBWindow(state: CodeDBWindowState) {
 private fun titleOf(state: CodeDBWindowState): String {
     val changeMark = if (state.isChanged) "*" else ""
     val filePath = state.path ?: "Untitled"
-    return "$changeMark$filePath - CodeDB"
+    return "$changeMark$filePath - ${Constants.APP_NAME}"
 }
 
 @Composable

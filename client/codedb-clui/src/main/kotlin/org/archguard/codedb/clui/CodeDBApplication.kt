@@ -8,6 +8,7 @@ import androidx.compose.ui.window.MenuScope
 import androidx.compose.ui.window.Tray
 import org.archguard.codedb.clui.common.LocalAppResources
 import kotlinx.coroutines.launch
+import org.archguard.codedb.clui.common.Constants
 import org.archguard.codedb.clui.window.CodeDBWindow
 
 @Composable
@@ -28,7 +29,7 @@ private fun ApplicationScope.ApplicationTray(state: CodeDBApplicationState) {
     Tray(
         LocalAppResources.current.icon,
         state = state.tray,
-        tooltip = "CodeDB",
+        tooltip = Constants.APP_NAME,
         menu = { ApplicationMenu(state) }
     )
 }
