@@ -63,6 +63,7 @@ By Level:
 
 # Development
 
+requirements: JDK 11, Node.js 16, MongoDB 5.0
 
 ## Install
 
