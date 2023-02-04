@@ -1,7 +1,10 @@
 # CLUI
 
+tech stack: JetBrains Compose, Mosaic 
+
 - [ ] REPL with CodeDB API
 - [ ] DSL integration
+- [ ] History API
 
 example: `codedb run --repl System101.kt`
 
