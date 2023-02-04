@@ -32,6 +32,7 @@ Code DataStructure
 
 - server, which will provide the API
 - client
+    - API, which will be used by other client 
     - CLI,
     - CLUI (experiment)
     - Gradle Plugin

@@ -23,6 +23,7 @@ include(":feeder:basic:walkdir")
 
 include(":feeder:analyser:coverage")
 
+include(":client:client-api")
 include(":client:codedb-cli")
 include(":client:codedb-clui")
 include(":client:codedb-gradle-plugin")
