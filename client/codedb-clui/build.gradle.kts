@@ -1,8 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(libs.kotlin.gradle)
+        classpath(libs.mosaic.gradle)
+    }
+}
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.jvm)
     alias(libs.plugins.serialization)
     alias(libs.plugins.compose)
+    alias(libs.plugins.mosaic)
 }
 
 dependencies {

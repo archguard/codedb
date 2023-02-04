@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.jakewharton.mosaic.MosaicScope
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() = application {
@@ -68,3 +70,17 @@ fun main() = application {
         }
     }
 }
+
+//suspend fun MosaicScope.Counter() {
+//    // TODO https://github.com/JakeWharton/mosaic/issues/3
+//    var count by mutableStateOf(0)
+//
+//    setContent {
+//        Text("The count is: $count")
+//    }
+//
+//    for (i in 1..20) {
+//        delay(250)
+//        count = i
+//    }
+//}
