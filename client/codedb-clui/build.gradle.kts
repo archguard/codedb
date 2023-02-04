@@ -1,3 +1,5 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 buildscript {
     repositories {
         mavenCentral()
@@ -21,8 +23,11 @@ dependencies {
     implementation(libs.logging.slf4j.api)
     implementation(libs.logging.logback.classic)
 
-    testImplementation(libs.bundles.test)
     implementation(compose.desktop.currentOs)
+    implementation(compose.materialIconsExtended)
+    implementation(libs.coroutines.swing)
+
+    testImplementation(libs.bundles.test)
 }
 
 repositories {
@@ -34,5 +39,17 @@ repositories {
 compose.desktop {
     application {
         mainClass = "org.archguard.codedb.clui.CodeDBKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "CodeDB"
+            packageVersion = "1.0.0"
+
+            windows {
+                menu = true
+                // see https://wixtoolset.org/documentation/manual/v3/howtos/general/generate_guids.html
+                upgradeUuid = "61DAB35E-17CB-43B0-81D5-B30E1C0830FA"
+            }
+        }
     }
 }

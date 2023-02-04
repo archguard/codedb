@@ -70,6 +70,7 @@ jackson-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-modul
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
 coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-reactor", version.ref = "kotlinxCoroutines" }
 reactor-kotlin-ext = { group = "io.projectreactor.kotlin", name = "reactor-kotlin-extensions", version.ref = "reactorKotlin" }
+coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinxCoroutines" }
 
 # chapi
 chapi-domain = { group = "com.phodal.chapi", name = "chapi-domain", version.ref = "chapi" }

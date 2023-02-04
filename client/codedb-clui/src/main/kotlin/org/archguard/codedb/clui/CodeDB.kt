@@ -1,16 +1,12 @@
 package org.archguard.codedb.clui
 
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Window
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.window.application
-import androidx.compose.ui.window.rememberWindowState
+import org.archguard.codedb.clui.common.LocalAppResources
+import org.archguard.codedb.clui.common.rememberAppResources
 
 fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "CodeDB",
-        state = rememberWindowState(width = 800.dp, height = 480.dp)
-    ) {
-        CodeDBApplication()
+    CompositionLocalProvider(LocalAppResources provides rememberAppResources()) {
+        CodeDBApplication(rememberApplicationState())
     }
 }
