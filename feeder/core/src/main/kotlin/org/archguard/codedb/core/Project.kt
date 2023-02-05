@@ -11,5 +11,5 @@ interface Project {
 
     var basedir: String
 
-    var subProjects: List<Project>
+    var modules: List<Project>
 }
