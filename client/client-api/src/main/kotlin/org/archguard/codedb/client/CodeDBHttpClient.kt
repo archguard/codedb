@@ -1,5 +1,5 @@
 package org.archguard.codedb.client
 
-class HttpClient {
+class CodeDBHttpClient {
 
 }
