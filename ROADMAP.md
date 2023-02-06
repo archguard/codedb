@@ -9,7 +9,9 @@
 ### 2023-07-01
 
 - ArchGuard 2.x migration
-    - Align ArchGuard APIs
+    - Metric Migration
+    - Database Migration
+    - Align ArchGuard Server APIs
 
 ## 2021-12-31
 
@@ -70,41 +72,3 @@ Todos:
         - [ ] search by regex
     - [ ] Query Engine
         - [ ] search by code snippet
-
-Migrations:
-
-- [ ] align APIs
-
-
-## S-Expression Query ?
-
-like TreeSitter?
-
-```ocaml
-(package_declaration
-	(scoped_identifier) @package-name)
-
-(import_declaration
-	(scoped_identifier) @import-name)
-
-(program
-    (class_declaration
-	    name: (identifier) @class-name
-        interfaces: (super_interfaces (interface_type_list (type_identifier)  @impl-name))?
-        body: (class_body (method_declaration
-            (modifiers
-                (annotation
-                  name: (identifier) @annotation.name
-                      arguments: (annotation_argument_list)? @annotation.key_values
-                )
-            )?
-            type: (type_identifier) @return-type
-            name: (identifier) @function-name
-            parameters: (formal_parameters (formal_parameter
-              type: (type_identifier) @param-type
-                name: (identifier) @param-name
-            ))?
-          ))?
-    )
-)
-```
