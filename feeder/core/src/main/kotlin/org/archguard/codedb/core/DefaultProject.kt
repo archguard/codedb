@@ -12,11 +12,19 @@ class DefaultProject(
     override var basedir: String = "",
     override var modules: List<Project> = emptyList()
 ) : Project {
-    // TODO: add more properties
+    /**
+     * project source root / content
+     */
     val contentRoot: String get() = ""
 
-    val dependency: List<Dependency> get() = emptyList()
+    /**
+     * project dependencies
+     */
+    val dependencies: List<Dependency> get() = emptyList()
 
+    /**
+     * multiple languages in one project
+     */
     val languages: List<LanguageInfo> get() = emptyList()
 
     companion object {
@@ -30,7 +38,9 @@ class DefaultProject(
 class Dependency(
     val name: String,
     val version: String,
-    val scope: String
+    val scope: String,
+    //
+    val dependencies: List<Dependency> = emptyList()
 )
 
 
