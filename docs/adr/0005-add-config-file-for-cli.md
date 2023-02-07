@@ -8,7 +8,8 @@ Date: 2023-02-07
 
 ## Context
 
-In our current CLI, we need to pass the parameters to the CLI. It's not easy to use. We need to add a config file to the CLI.
+In our current CLI, we need to pass the parameters to the CLI. It's not easy to use. We need to add a config file to the
+CLI.
 
 We need to config a lot of things, like (Generate by GitHub Copilot):
 
@@ -23,7 +24,16 @@ But, for the user, it will be hard to remember all the parameters. So we need to
 
 ## Decision
 
-Decision here...
+Sample:
+
+```yaml
+path: .
+server:
+  url: http://localhost:8084
+language: Kotlin
+features: apicalls
+output: http
+```
 
 ## Consequences
 

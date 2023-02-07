@@ -18,6 +18,8 @@ include(":api-examples:getting-started")
 include(":feeder:core")
 include(":server")
 
+include(":core-model")
+
 include(":feeder:basic:gitignore")
 include(":feeder:basic:walkdir")
 
