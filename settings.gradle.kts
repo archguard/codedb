@@ -38,6 +38,8 @@ include(":workflow-lib:fitness-engine")
 include(":workflow-lib:task-core")
 include(":workflow-lib:repl")
 
+include(":action:checkout")
+
 //fun libSubproject(name: String) = workflow(name, "workflow-lib/")
 //fun workflow(name: String, parentPath: String) {
 //    include(name)
