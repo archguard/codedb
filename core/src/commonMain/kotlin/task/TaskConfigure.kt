@@ -1,0 +1,4 @@
+package task
+
+class TaskConfigure {
+}

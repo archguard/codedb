@@ -5,6 +5,8 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.core)
+
     implementation(libs.serialization.json)
     implementation(libs.gson)
 

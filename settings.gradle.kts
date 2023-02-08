@@ -18,8 +18,8 @@ include(":api-examples:getting-started")
 include(":feeder:core")
 include(":server")
 
-include(":core-model")
-include(":core")
+// TODO: spike for core usage
+ include(":core")
 
 include(":feeder:basic:gitignore")
 include(":feeder:basic:walkdir")

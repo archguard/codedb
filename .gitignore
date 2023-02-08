@@ -39,3 +39,4 @@ out/
 docs/spike/papers
 dependencies
 */.DS_Store
+kotlin-js-store/yarn.lock
