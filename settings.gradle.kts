@@ -19,6 +19,7 @@ include(":feeder:core")
 include(":server")
 
 include(":core-model")
+include(":core")
 
 include(":feeder:basic:gitignore")
 include(":feeder:basic:walkdir")
