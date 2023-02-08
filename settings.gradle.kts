@@ -39,6 +39,7 @@ include(":workflow-lib:task-core")
 include(":workflow-lib:repl")
 
 include(":action:checkout")
+include(":action:runner")
 
 //fun libSubproject(name: String) = workflow(name, "workflow-lib/")
 //fun workflow(name: String, parentPath: String) {
