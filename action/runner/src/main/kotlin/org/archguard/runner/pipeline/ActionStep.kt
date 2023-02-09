@@ -1,6 +1,7 @@
 package org.archguard.runner.pipeline
 
 import kotlinx.serialization.Serializable
+import java.lang.Boolean.parseBoolean
 
 @Serializable
 class ActionStep(
@@ -21,24 +22,64 @@ sealed class Scalar {
     data class String(val value: kotlin.String) : Scalar() {}
 
     @Serializable
-    class Boolean(val value: kotlin.Boolean) : Scalar() {}
+    class Boolean(val value: kotlin.Boolean) : Scalar() {
+        override fun equals(other: Any?): kotlin.Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as Boolean
+
+            if (value != other.value) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            return value.hashCode()
+        }
+    }
 
     @Serializable
-    class Number(val value: Double) : Scalar() {}
+    class Number(val value: Double) : Scalar() {
+        override fun equals(other: Any?): kotlin.Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as Number
+
+            if (value != other.value) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            return value.hashCode()
+        }
+    }
 
     @Serializable
     class Array(val values: List<Scalar>) : Scalar()
 
     @Serializable
-    class Object(val value: List<Scalar>) : Scalar()
+    class Object(val value: List<Scalar>) : Scalar() {
+
+    }
 
     companion object {
         fun from(value: kotlin.String): Scalar {
-            when (value) {
-                "true" -> return Boolean(true)
-                "false" -> return Boolean(false)
-                else -> return String(value)
+            return when {
+                isBoolean(value) -> Boolean(parseBoolean(value))
+                isNumber(value) -> Number(value.toDouble())
+                else -> String(value)
             }
+        }
+
+        private fun isBoolean(value: kotlin.String): kotlin.Boolean {
+            return value == "true" || value == "false"
+        }
+
+        private fun isNumber(value: kotlin.String): kotlin.Boolean {
+            return value.matches("-?\\d+(\\.\\d+)?".toRegex())
         }
     }
 }
