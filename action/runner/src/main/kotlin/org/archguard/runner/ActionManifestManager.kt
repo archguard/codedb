@@ -2,9 +2,6 @@ package org.archguard.runner
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import org.archguard.runner.pipeline.ActionConfig
 import org.archguard.runner.pipeline.ActionDefinitionData
 
 
@@ -26,34 +23,9 @@ class ActionManifestManager {
                 "version" -> definition.version = parser.valueAsString
                 "author" -> definition.author = parser.valueAsString
                 "config" -> {
-                    // START_OBJECT
-                    parser.nextToken()
-                    // FIELD_NAME
-                    parser.nextToken()
-
-                    when(parser.currentName) {
-                        "metric" -> definition.config.metric = parser.valueAsBoolean
-                        "server" -> {
-                            // START_OBJECT
-                            parser.nextToken()
-                            // FIELD_NAME
-                            parser.nextToken()
-
-                            when(parser.currentName) {
-                                "url" -> {
-                                    parser.nextToken()
-                                    definition.config.server.url = parser.valueAsString
-                                }
-                            }
-
-                            // END_OBJECT
-                            parser.nextToken()
-                        }
-                    }
-
-                    // END_OBJECT
-                    parser.nextToken()
+                    convertObject(parser, definition, ::convertConfig)
                 }
+
                 "runs" -> {
 
                 }
@@ -63,5 +35,42 @@ class ActionManifestManager {
         }
 
         return definition
+    }
+
+    private fun convertObject(
+        parser: JsonParser,
+        definition: ActionDefinitionData,
+        function: (JsonParser, ActionDefinitionData) -> Unit
+    ) {
+        // START_OBJECT
+        parser.nextToken()
+        // FIELD_NAME
+        parser.nextToken()
+
+        function(parser, definition)
+
+        // END_OBJECT
+        parser.nextToken()
+    }
+
+    private fun convertConfig(
+        parser: JsonParser,
+        definition: ActionDefinitionData
+    ) {
+        when (parser.currentName) {
+            "metric" -> definition.config.metric = parser.valueAsBoolean
+            "server" -> {
+                convertObject(parser, definition, ::convertServerConfig)
+            }
+        }
+    }
+
+    private fun convertServerConfig(parser: JsonParser, definition: ActionDefinitionData) {
+        when (parser.currentName) {
+            "url" -> {
+                parser.nextToken()
+                definition.config.server.url = parser.valueAsString
+            }
+        }
     }
 }
