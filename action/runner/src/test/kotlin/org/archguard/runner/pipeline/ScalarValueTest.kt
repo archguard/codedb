@@ -11,4 +11,25 @@ class ScalarValueTest {
 
         Scalar.from("1") shouldBe Scalar.Number(1.0)
     }
+
+    @Test
+    fun `should convert array`() {
+        // Numbers
+        Scalar.from("[1, 2, 3]") shouldBe Scalar.Array(
+            listOf(
+                Scalar.Number(1.0),
+                Scalar.Number(2.0),
+                Scalar.Number(3.0)
+            )
+        )
+
+        // String arrays
+        Scalar.from("[\"1\", \"2\", \"3\"]") shouldBe Scalar.Array(
+            listOf(
+                Scalar.String("1"),
+                Scalar.String("2"),
+                Scalar.String("3")
+            )
+        )
+    }
 }

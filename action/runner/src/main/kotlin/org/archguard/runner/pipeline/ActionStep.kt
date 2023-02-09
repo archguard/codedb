@@ -58,7 +58,26 @@ sealed class Scalar {
     }
 
     @Serializable
-    class Array(val values: List<Scalar>) : Scalar()
+    class Array(val values: List<Scalar>) : Scalar() {
+        override fun equals(other: Any?): kotlin.Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as Array
+
+            if (values != other.values) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            return values.hashCode()
+        }
+
+        override fun toString(): kotlin.String {
+            return values.joinToString(",") { it.toString() }
+        }
+    }
 
     @Serializable
     class Object(val value: List<Scalar>) : Scalar() {
@@ -70,8 +89,21 @@ sealed class Scalar {
             return when {
                 isBoolean(value) -> Boolean(parseBoolean(value))
                 isNumber(value) -> Number(value.toDouble())
+                isArray(value) -> {
+                    val values = value.substring(1, value.length - 1).split(",").map { it.trim() }
+                    Array(values.map { from(it) })
+                }
+
+                isQuoteString(value) -> {
+                    String(value.substring(1, value.length - 1))
+                }
+
                 else -> String(value)
             }
+        }
+
+        private fun isQuoteString(value: kotlin.String): kotlin.Boolean {
+            return value.matches("\".*\"".toRegex()) || value.matches("'.*'".toRegex())
         }
 
         private fun isBoolean(value: kotlin.String): kotlin.Boolean {
@@ -80,6 +112,10 @@ sealed class Scalar {
 
         private fun isNumber(value: kotlin.String): kotlin.Boolean {
             return value.matches("-?\\d+(\\.\\d+)?".toRegex())
+        }
+
+        private fun isArray(value: kotlin.String): kotlin.Boolean {
+            return value.startsWith("[") && value.endsWith("]")
         }
     }
 }
