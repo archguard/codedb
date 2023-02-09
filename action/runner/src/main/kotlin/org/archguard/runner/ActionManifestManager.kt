@@ -9,14 +9,11 @@ import com.charleskorn.kaml.yamlScalar
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.archguard.runner.pipeline.ActionConfig
 import org.archguard.runner.pipeline.ActionDefinitionData
-import org.archguard.runner.pipeline.ActionExecutionJob
 import org.archguard.runner.pipeline.ActionStep
 import org.archguard.runner.pipeline.CompositeActionExecutionJob
 import org.archguard.runner.pipeline.JobConfig
-import org.archguard.runner.pipeline.ScalarType
-import org.archguard.runner.pipeline.ScalarValue
+import org.archguard.runner.pipeline.Scalar
 
 
 /**
@@ -33,9 +30,9 @@ class ActionManifestManager {
                 val yamlMap = entry.value.yamlMap
                 job.config = yamlMap.get<YamlNode>("config")?.let { config ->
                     Yaml.default.decodeFromString<JobConfig>(config.contentToString())
-                }?: JobConfig()
+                } ?: JobConfig()
 
-                job.steps = yamlMap.get<YamlList>("steps")?.items?.map {
+                job.steps = yamlMap.get<YamlList>("steps")?.items?.map { it ->
                     val actionStep = ActionStep()
                     it.yamlMap.entries.forEach { entry ->
                         when (entry.key.content) {
@@ -47,18 +44,14 @@ class ActionManifestManager {
                                 entry.value.yamlMap.entries.forEach { prop ->
                                     when (prop.value.javaClass) {
                                         YamlScalar::class.java -> {
-                                            actionStep.with[prop.key.content] = ScalarValue(
-                                                value = prop.value.contentToString(),
-                                                kind = ScalarType.String
-                                            )
+                                            actionStep.with[prop.key.content] =
+                                                Scalar.from(prop.value.contentToString())
                                         }
 
                                         YamlList::class.java -> {
-                                            actionStep.with[prop.key.content] = ScalarValue(
-                                                value = prop.value.contentToString(),
-                                                kind = ScalarType.Array,
-                                                isList = true
-                                            )
+                                            val strings = prop.value.contentToString().split(",")
+                                            actionStep.with[prop.key.content] =
+                                                Scalar.Array(strings.map { str -> Scalar.String(str) })
                                         }
 
                                         else -> {}
