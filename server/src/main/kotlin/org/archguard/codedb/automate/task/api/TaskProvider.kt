@@ -1,6 +1,6 @@
 package org.archguard.codedb.automate.task.api
 
-import org.archguard.codedb.core.internal.Action
+import org.archguard.core.internal.Action
 
 interface TaskProvider<T : Task> {
     fun configure(action: Action<in T>)

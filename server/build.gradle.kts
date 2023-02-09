@@ -12,7 +12,7 @@ dependencies {
 	api(projects.workflowLib.factor)
 	api(projects.workflowLib.metric)
 	api(projects.workflowLib.repl)
-	api(projects.feeder.core)
+	implementation(projects.core)
 
 	implementation(libs.bundles.springboot)
 

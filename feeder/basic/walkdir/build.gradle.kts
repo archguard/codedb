@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.feeder.core)
+    implementation(projects.core)
 
     implementation(libs.coroutines.core)
     implementation(libs.jgit)

@@ -1,7 +1,7 @@
 package org.archguard.codedb.automate.task
 
-import org.archguard.codedb.core.DefaultProject
-import org.archguard.codedb.core.Project
+import org.archguard.core.DefaultProject
+import org.archguard.core.Project
 import org.archguard.codedb.automate.task.api.Task
 import org.archguard.codedb.automate.task.api.TaskCreatingProvider
 import org.archguard.codedb.automate.task.api.TaskProvider

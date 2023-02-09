@@ -3,7 +3,7 @@ package org.archguard.codedb.walkdir
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.archguard.codedb.core.io.DirectoryWalker
+import org.archguard.core.io.DirectoryWalker
 import org.eclipse.jgit.lib.Constants
 import org.eclipse.jgit.lib.FileMode
 import org.eclipse.jgit.lib.ObjectId

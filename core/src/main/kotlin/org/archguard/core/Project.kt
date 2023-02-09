@@ -1,4 +1,4 @@
-package org.archguard.codedb.core
+package org.archguard.core
 
 interface Project {
     var name: String

@@ -1,6 +1,6 @@
 package org.archguard.codedb.automate.task.api
 
-import org.archguard.codedb.core.Project
+import org.archguard.core.Project
 
 abstract class AbstractTask() : Task {
     open lateinit var project: Project

@@ -1,4 +1,4 @@
-package org.archguard.codedb.core
+package org.archguard.core
 
 /**
  * align IDEA project model with Gradle project model

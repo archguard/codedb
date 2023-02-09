@@ -1,4 +1,4 @@
-package org.archguard.codedb.core.internal
+package org.archguard.core.internal
 
 interface Action<T> {
     fun execute(t: T)

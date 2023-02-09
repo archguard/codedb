@@ -8,7 +8,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.feeder.core)
+    implementation(projects.core)
 
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlib)
