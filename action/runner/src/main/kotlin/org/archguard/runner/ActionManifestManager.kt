@@ -3,15 +3,20 @@ package org.archguard.runner
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlList
 import com.charleskorn.kaml.YamlNode
+import com.charleskorn.kaml.YamlScalar
 import com.charleskorn.kaml.yamlMap
 import com.charleskorn.kaml.yamlScalar
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.archguard.runner.pipeline.ActionConfig
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionExecutionJob
 import org.archguard.runner.pipeline.ActionStep
+import org.archguard.runner.pipeline.CompositeActionExecutionJob
 import org.archguard.runner.pipeline.JobConfig
+import org.archguard.runner.pipeline.ScalarType
+import org.archguard.runner.pipeline.ScalarValue
 
 
 /**
@@ -21,19 +26,56 @@ class ActionManifestManager {
     fun load(manifest: String): ActionDefinitionData {
         val result = Yaml.default.parseToYamlNode(manifest)
 
-        result.yamlMap.get<YamlNode>("jobs")?.yamlMap?.entries?.let { it ->
-            it.forEach { entry ->
-                val yamlMap = entry.value.yamlMap
-                val config = yamlMap.get<YamlNode>("config")?.let { config ->
-                    Yaml.default.decodeFromString<JobConfig>(config.contentToString())
-                }
+        val jobs = result.yamlMap.get<YamlNode>("jobs")?.yamlMap?.entries?.let { it ->
+            it.map { entry ->
+                val job = CompositeActionExecutionJob()
 
-                yamlMap.get<YamlList>("steps")?.items?.forEach {
-//                    val step = Yaml.default.decodeFromString<ActionStep>(it.contentToString())
-//                    println(step)
-                }
+                val yamlMap = entry.value.yamlMap
+                job.config = yamlMap.get<YamlNode>("config")?.let { config ->
+                    Yaml.default.decodeFromString<JobConfig>(config.contentToString())
+                }?: JobConfig()
+
+                job.steps = yamlMap.get<YamlList>("steps")?.items?.map {
+                    val actionStep = ActionStep()
+                    it.yamlMap.entries.forEach { entry ->
+                        when (entry.key.content) {
+                            "uses" -> {
+                                actionStep.uses = entry.value.contentToString()
+                            }
+
+                            "with" -> {
+                                entry.value.yamlMap.entries.forEach { prop ->
+                                    when (prop.value.javaClass) {
+                                        YamlScalar::class.java -> {
+                                            actionStep.with[prop.key.content] = ScalarValue(
+                                                value = prop.value.contentToString(),
+                                                kind = ScalarType.String
+                                            )
+                                        }
+
+                                        YamlList::class.java -> {
+                                            actionStep.with[prop.key.content] = ScalarValue(
+                                                value = prop.value.contentToString(),
+                                                kind = ScalarType.Array,
+                                                isList = true
+                                            )
+                                        }
+
+                                        else -> {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    actionStep
+                } ?: listOf()
+
+                job
             }
         }
+
+        println(Json.encodeToString(jobs))
 
         return ActionDefinitionData(
             name = result.flatString("name"),
