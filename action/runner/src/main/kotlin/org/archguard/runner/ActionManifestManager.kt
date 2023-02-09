@@ -1,7 +1,10 @@
 package org.archguard.runner
 
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.charleskorn.kaml.Yaml
+import com.charleskorn.kaml.YamlNode
+import com.charleskorn.kaml.yamlMap
+import com.charleskorn.kaml.yamlScalar
+import kotlinx.serialization.decodeFromString
 import org.archguard.runner.pipeline.ActionDefinitionData
 
 
@@ -10,72 +13,23 @@ import org.archguard.runner.pipeline.ActionDefinitionData
  */
 class ActionManifestManager {
     fun load(manifest: String): ActionDefinitionData {
-        val definition = ActionDefinitionData()
+        val result = Yaml.default.parseToYamlNode(manifest)
 
-        val factory = YAMLFactory()
-        val parser: JsonParser = factory.createParser(manifest)
-        var token = parser.nextToken()
-
-        while (token != null) {
-            when (parser.currentName) {
-                "name" -> definition.name = parser.valueAsString
-                "description" -> definition.description = parser.valueAsString
-                "version" -> definition.version = parser.valueAsString
-                "author" -> definition.author = parser.valueAsString
-                "config" -> {
-                    convertObject(parser, definition, ::convertConfig)
-                }
-                "jobs" -> {
-                    convertObject(parser, definition, ::convertJobs)
-                }
-            }
-
-            token = parser.nextToken()
-        }
-
-        return definition
+        return ActionDefinitionData(
+            name = result.flatString("name"),
+            config = result.objectValue("config"),
+            description = result.flatString("description"),
+            author = result.flatString("author"),
+            version = result.flatString("version"),
+        )
     }
+}
 
-    private fun convertJobs(parser: JsonParser, actionDefinitionData: ActionDefinitionData) {
-        when(parser.currentName) {
+private inline fun <reified T> YamlNode.objectValue(name: String): T {
+    val node = this.yamlMap.get<YamlNode>(name)?.contentToString()
+    return Yaml.default.decodeFromString(node ?: "")
+}
 
-        }
-    }
-
-    private fun convertObject(
-        parser: JsonParser,
-        definition: ActionDefinitionData,
-        function: (JsonParser, ActionDefinitionData) -> Unit
-    ) {
-        // START_OBJECT
-        parser.nextToken()
-        // FIELD_NAME
-        parser.nextToken()
-
-        function(parser, definition)
-
-        // END_OBJECT
-        parser.nextToken()
-    }
-
-    private fun convertConfig(
-        parser: JsonParser,
-        definition: ActionDefinitionData
-    ) {
-        when (parser.currentName) {
-            "metric" -> definition.config.metric = parser.valueAsBoolean
-            "server" -> {
-                convertObject(parser, definition, ::convertServerConfig)
-            }
-        }
-    }
-
-    private fun convertServerConfig(parser: JsonParser, definition: ActionDefinitionData) {
-        when (parser.currentName) {
-            "url" -> {
-                parser.nextToken()
-                definition.config.server.url = parser.valueAsString
-            }
-        }
-    }
+private fun YamlNode.flatString(name: String): String {
+    return this.yamlMap.get<YamlNode>(name)?.yamlScalar?.content ?: ""
 }

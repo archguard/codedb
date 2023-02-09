@@ -10,7 +10,9 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.serialization.json)
 
-    implementation(libs.jackson.yaml)
+    implementation(libs.kaml)
+
+//    implementation(libs.jackson.yaml)
 
     testImplementation(libs.bundles.test)
 }
