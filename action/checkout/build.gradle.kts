@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
     implementation(libs.serialization.json)
+    implementation(libs.jgit)
 
     testImplementation(libs.bundles.test)
 }
