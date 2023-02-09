@@ -14,12 +14,13 @@ package org.archguard.runner.pipeline
 // }
 
 class ActionDefinitionData(
-    val name: String,
-    val description: String,
-    val execution: ActionExecutionData,
-    val deprecated: Map<String, String>
+    var name: String = "",
+    var description: String = "",
+    val execution: ActionExecutionData = CompositeActionExecutionData(),
+    val deprecated: Map<String, String> = mapOf()
 ) {
-
+    var author: String? = null
+    var version: String? = null
 }
 
 abstract class ActionExecutionData {
@@ -34,9 +35,9 @@ enum class ActionExecutionType {
 
 class CompositeActionExecutionData(
     override val type: ActionExecutionType = ActionExecutionType.Composite,
-    val steps: List<ActionStep>,
-    val pre: List<ActionDefinitionData>,
-    val post: List<ActionDefinitionData>
+    val steps: List<ActionStep> = listOf(),
+    val pre: List<ActionDefinitionData> = listOf(),
+    val post: List<ActionDefinitionData> = listOf()
 ) : ActionExecutionData() {
 
 }

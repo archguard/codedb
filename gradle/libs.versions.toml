@@ -67,6 +67,8 @@ kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.re
 # Kotlinx Serialization
 serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 jackson-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
+jackson-yaml = { group = "com.fasterxml.jackson.dataformat", name = "jackson-dataformat-yaml", version.ref = "jackson" }
+
 
 
 # Coroutines

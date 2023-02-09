@@ -7,8 +7,10 @@ plugins {
 dependencies {
     implementation(projects.core)
 
-    implementation(libs.serialization.json)
     implementation(libs.gson)
+    implementation(libs.serialization.json)
+
+    implementation(libs.jackson.yaml)
 
     testImplementation(libs.bundles.test)
 }

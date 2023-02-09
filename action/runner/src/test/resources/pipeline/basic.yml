@@ -12,7 +12,7 @@ config:
 jobs:
   backend:
     project:
-        name: backend
+        project: backend
         server: ${{ config.server.url }}
         features: [ 'datamap' ]
 
