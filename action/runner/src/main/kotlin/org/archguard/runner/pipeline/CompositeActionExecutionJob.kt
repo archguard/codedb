@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class CompositeActionExecutionJob(
+    override var name: String = "",
     override val type: ActionExecutionType = ActionExecutionType.Composite,
     override var config: JobConfig = JobConfig(),
     override var steps: List<ActionStep> = listOf(),

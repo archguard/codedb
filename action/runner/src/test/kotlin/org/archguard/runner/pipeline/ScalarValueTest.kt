@@ -31,5 +31,12 @@ class ScalarValueTest {
                 Scalar.String("3")
             )
         )
+
+        // single quoted string
+        Scalar.from("['datamap']") shouldBe Scalar.Array(
+            listOf(
+                Scalar.String("datamap")
+            )
+        )
     }
 }

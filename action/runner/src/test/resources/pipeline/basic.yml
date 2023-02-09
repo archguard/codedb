@@ -12,7 +12,7 @@ jobs:
   backend:
     config:
       displayName: "Backend"
-      languages: [ "java", "kotin" ]
+      languages: [ "java", "kotlin" ]
       features: [ 'datamap' ]
 
     steps:
