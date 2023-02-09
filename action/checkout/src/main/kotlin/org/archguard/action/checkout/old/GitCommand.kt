@@ -1,11 +1,10 @@
-package org.archguard.action.checkout
+package org.archguard.action.checkout.old
 
 import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.transport.CredentialsProvider
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider
 import org.slf4j.LoggerFactory
 import java.io.File
-import java.nio.file.Path
 
 private const val DEFAULT_BRANCH = "master"
 @Deprecated("use native `git` command instead")

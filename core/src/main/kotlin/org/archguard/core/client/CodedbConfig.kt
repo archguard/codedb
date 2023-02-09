@@ -1,4 +1,4 @@
-package client
+package org.archguard.core.client
 
 // todo: align to ArchGuard CLI config
 class CodedbConfig {
