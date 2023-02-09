@@ -20,6 +20,16 @@ class ActionConfig(
 }
 
 @Serializable
+class JobConfig(
+    val server: ActionServerConfig = ActionServerConfig(),
+    val displayName: String = "",
+    val languages: List<String> = listOf(),
+    val features: List<String> = listOf(),
+) {
+
+}
+
+@Serializable
 class ActionServerConfig(
     var url: String = ""
 )

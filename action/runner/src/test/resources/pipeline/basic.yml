@@ -12,7 +12,7 @@ jobs:
   backend:
     config:
       displayName: "Backend"
-      language: [ "java", "kotin" ]
+      languages: [ "java", "kotin" ]
       features: [ 'datamap' ]
 
     steps:
@@ -27,7 +27,7 @@ jobs:
 
     config:
       displayName: "Frontend"
-      language: [ "javascript" ]
+      languages: [ "javascript" ]
 
     steps:
       - uses: actions/checkout@v3

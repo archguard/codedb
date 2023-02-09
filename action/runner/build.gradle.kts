@@ -12,7 +12,5 @@ dependencies {
 
     implementation(libs.kaml)
 
-//    implementation(libs.jackson.yaml)
-
     testImplementation(libs.bundles.test)
 }

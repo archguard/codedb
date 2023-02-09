@@ -15,6 +15,8 @@ class ActionDefinitionData(
 
 @Serializable
 abstract class ActionExecutionJob {
+    abstract val config: JobConfig
+    abstract val steps: List<ActionStep>
     abstract val type: ActionExecutionType
 }
 
