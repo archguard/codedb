@@ -5,7 +5,6 @@ on: [ push ]
 
 # shared context information
 config:
-  metric: true
   server:
     url: http://localhost:8084
 

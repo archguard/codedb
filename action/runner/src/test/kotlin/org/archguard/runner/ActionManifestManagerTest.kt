@@ -11,5 +11,6 @@ class ActionManifestManagerTest {
         val actionManifest = ActionManifestManager().load(File(source).readText())
 
         actionManifest.name shouldBe "ArchGuard 3.0 - CodeDB"
+        actionManifest.config.server.url shouldBe "http://localhost:8084"
     }
 }

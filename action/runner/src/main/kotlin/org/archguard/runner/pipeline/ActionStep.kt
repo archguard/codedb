@@ -1,5 +1,8 @@
 package org.archguard.runner.pipeline
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class ActionStep : JobStep() {
 }
 
