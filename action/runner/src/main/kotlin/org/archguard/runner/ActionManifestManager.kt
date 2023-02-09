@@ -25,9 +25,8 @@ class ActionManifestManager {
                 "config" -> {
                     convertObject(parser, definition, ::convertConfig)
                 }
-
-                "runs" -> {
-
+                "jobs" -> {
+                    convertObject(parser, definition, ::convertJobs)
                 }
             }
 
@@ -35,6 +34,12 @@ class ActionManifestManager {
         }
 
         return definition
+    }
+
+    private fun convertJobs(parser: JsonParser, actionDefinitionData: ActionDefinitionData) {
+        when(parser.currentName) {
+
+        }
     }
 
     private fun convertObject(

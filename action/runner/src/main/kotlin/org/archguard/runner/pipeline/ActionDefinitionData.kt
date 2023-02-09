@@ -9,12 +9,12 @@ class ActionDefinitionData(
     var author: String? = "",
     var version: String? = "",
     var config: ActionConfig = ActionConfig(),
-    val execution: ActionExecutionData = CompositeActionExecutionData()
+    val jobs: Map<String, ActionExecutionJob> = mapOf()
 ) {
 }
 
 @Serializable
-abstract class ActionExecutionData {
+abstract class ActionExecutionJob {
     abstract val type: ActionExecutionType
 }
 

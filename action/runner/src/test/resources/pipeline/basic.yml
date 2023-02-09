@@ -3,17 +3,17 @@ name: ArchGuard 3.0 - CodeDB
 # This workflow is triggered on pushes to the repository.
 on: [ push ]
 
-# shared context information
+# global shared context information
 config:
   server:
     url: http://localhost:8084
 
 jobs:
   backend:
-    project:
-        project: backend
-        server: ${{ config.server.url }}
-        features: [ 'datamap' ]
+    config:
+      displayName: "Backend"
+      language: [ "java", "kotin" ]
+      features: [ 'datamap' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,12 @@ jobs:
       - uses: analyser/coverage@v1
 
   frontend:
+
+    config:
+      displayName: "Frontend"
+      language: [ "javascript" ]
+
+    steps:
       - uses: actions/checkout@v3
       - uses: analyser/source-code@v1
         with:
