@@ -11,6 +11,7 @@ import org.archguard.runner.pipeline.CompositeActionExecutionJob
 import org.archguard.runner.pipeline.JobConfig
 import org.archguard.runner.serial.Scalar
 import org.archguard.runner.serial.flatString
+import org.archguard.runner.serial.from
 import org.archguard.runner.serial.objectValue
 import org.archguard.runner.serial.stringify
 

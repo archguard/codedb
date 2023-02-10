@@ -105,44 +105,41 @@ sealed class Scalar {
             return value.toString()
         }
     }
+}
 
-    companion object {
-        fun from(prop: YamlNode): Scalar {
-            return when (prop) {
-                is YamlScalar -> fromString(prop)
-                is YamlList -> Array(fromArray(prop))
-                is YamlMap -> Object(fromObject(prop))
-                else -> Null
-            }
-        }
-
-        private fun fromArray(value: YamlList): List<Scalar> = value.items.map(Companion::scalarByNode)
-        private fun fromObject(yamlMap: YamlMap): List<Scalar> =
-            yamlMap.entries.map { (key, value) -> scalarByNode(value) }
-
-        private fun scalarByNode(value: YamlNode) = when (value) {
-            is YamlScalar -> fromString(value)
-            is YamlList -> Array(fromArray(value.yamlList))
-            is YamlMap -> Object(fromObject(value.yamlMap))
-            else -> Null
-        }
-
-        private fun fromString(origin: YamlScalar): Scalar = fromString(origin.stringify())
-
-        fun fromString(value: kotlin.String): Scalar {
-            return when {
-                isBoolean(value) -> Boolean(java.lang.Boolean.parseBoolean(value))
-                isNumber(value) -> Number(value.toDouble())
-                else -> String(value)
-            }
-        }
-
-        private fun isBoolean(value: kotlin.String): kotlin.Boolean {
-            return value == "true" || value == "false"
-        }
-
-        private fun isNumber(value: kotlin.String): kotlin.Boolean {
-            return value.matches("-?\\d+(\\.\\d+)?".toRegex())
-        }
+fun Scalar.Companion.from(prop: YamlNode): Scalar {
+    return when (prop) {
+        is YamlScalar -> fromString(prop)
+        is YamlList -> Scalar.Array(fromArray(prop))
+        is YamlMap -> Scalar.Object(fromObject(prop))
+        else -> Scalar.Null
     }
+}
+
+private fun fromArray(value: YamlList): List<Scalar> = value.items.map(::scalarByNode)
+private fun fromObject(yamlMap: YamlMap): List<Scalar> = yamlMap.entries.map { (key, value) -> scalarByNode(value) }
+
+private fun scalarByNode(value: YamlNode) = when (value) {
+    is YamlScalar -> fromString(value)
+    is YamlList -> Scalar.Array(fromArray(value.yamlList))
+    is YamlMap -> Scalar.Object(fromObject(value.yamlMap))
+    else -> Scalar.Null
+}
+
+private fun fromString(origin: YamlScalar): Scalar = Scalar.fromString(origin.stringify())
+
+fun Scalar.Companion.fromString(value: String): Scalar {
+    return when {
+        isBoolean(value) -> Scalar.Boolean(java.lang.Boolean.parseBoolean(value))
+        isNumber(value) -> Scalar.Number(value.toDouble())
+        else -> Scalar.String(value)
+    }
+}
+
+private fun isBoolean(value: String): Boolean {
+    return value == "true" || value == "false"
+}
+
+private fun isNumber(value: String): Boolean {
+    return value.matches("-?\\d+(\\.\\d+)?".toRegex())
 }
