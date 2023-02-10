@@ -5,9 +5,9 @@ import java.lang.Boolean.parseBoolean
 
 @Serializable
 class ActionStep(
-    val name: String = "",
-    val description: String = "",
-    val enabled: Boolean = true,
+    var name: String = "",
+    var description: String = "",
+    var enabled: Boolean = true,
     var uses: String = "",
     var with: HashMap<String, Scalar> = hashMapOf()
 ) {
@@ -19,7 +19,7 @@ sealed class Scalar {
     object Null : Scalar()
 
     @Serializable
-    data class String(val value: kotlin.String) : Scalar() {}
+    data class String(val value: kotlin.String) : Scalar()
 
     @Serializable
     class Boolean(val value: kotlin.Boolean) : Scalar() {
@@ -72,10 +72,6 @@ sealed class Scalar {
 
         override fun hashCode(): Int {
             return values.hashCode()
-        }
-
-        override fun toString(): kotlin.String {
-            return values.joinToString(",") { it.toString() }
         }
     }
 

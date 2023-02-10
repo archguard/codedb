@@ -53,6 +53,18 @@ class ActionManifestManager {
         val actionStep = ActionStep()
         it.yamlMap.entries.forEach { entry ->
             when (entry.key.content) {
+                "name" -> {
+                    actionStep.name = withoutQuotes(entry.value.contentToString())
+                }
+
+                "description" -> {
+                    actionStep.description = withoutQuotes(entry.value.contentToString())
+                }
+
+                "enabled" -> {
+                    actionStep.enabled = entry.value.contentToString().toBoolean()
+                }
+
                 "uses" -> {
                     actionStep.uses = withoutQuotes(entry.value.contentToString())
                 }
@@ -61,8 +73,7 @@ class ActionManifestManager {
                     entry.value.yamlMap.entries.forEach { prop ->
                         when (prop.value.javaClass) {
                             YamlScalar::class.java -> {
-                                actionStep.with[prop.key.content] =
-                                    Scalar.from(prop.value.contentToString())
+                                actionStep.with[prop.key.content] = Scalar.from(prop.value.contentToString())
                             }
 
                             YamlList::class.java -> {
