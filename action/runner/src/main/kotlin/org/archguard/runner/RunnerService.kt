@@ -1,7 +1,9 @@
 package org.archguard.runner
 
+import org.archguard.runner.context.HostContext
+
 open class RunnerService {
-    protected val hostContext: HostContext = HostContext()
+    protected val hostContext: HostContext = HostContext(hostType = "Runner")
 
     protected val trace = Tracing()
 

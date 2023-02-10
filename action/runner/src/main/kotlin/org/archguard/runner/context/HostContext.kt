@@ -1,4 +1,4 @@
-package org.archguard.runner
+package org.archguard.runner.context
 
 import java.io.File
 

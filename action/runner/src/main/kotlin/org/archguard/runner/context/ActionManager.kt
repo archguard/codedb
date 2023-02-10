@@ -11,8 +11,7 @@ class ActionManager: RunnerService() {
 
     //
     private fun downloadAction(context: RunnerContext) {
-        val jobRunner = JobRunner()
-        jobRunner.downloadAction()
+
     }
 }
 
