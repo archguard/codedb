@@ -29,7 +29,9 @@ sealed class Scalar {
     object Null : Scalar()
 
     @Serializable
-    data class String(val value: kotlin.String) : Scalar() {}
+    data class String(val value: kotlin.String) : Scalar() {
+        override fun toString(): kotlin.String = value
+    }
 
     @Serializable
     class Boolean(val value: kotlin.Boolean) : Scalar() {
