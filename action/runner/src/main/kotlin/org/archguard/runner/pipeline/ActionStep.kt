@@ -15,7 +15,7 @@ class ActionStep(
     var description: String = "",
     var enabled: Boolean = true,
     var uses: String = "",
-    var with: HashMap<String, Scalar> = hashMapOf()
+    var with: HashMap<String, Scalar> = hashMapOf(),
 ) {
 }
 
@@ -83,69 +83,51 @@ sealed class Scalar {
 
     @Serializable
     class Object(val value: List<Scalar>) : Scalar() {
+        override fun equals(other: Any?): kotlin.Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
 
+            other as Object
+
+            if (value != other.value) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            return value.hashCode()
+        }
     }
 
     companion object {
         fun from(prop: YamlNode): Scalar {
             return when (prop) {
-                is YamlScalar -> {
-                    from(prop)
-                }
-
-                is YamlList -> {
-                    Array(fromArray(prop))
-                }
-
-                is YamlMap -> {
-                    Object(fromObject(prop))
-                }
-
-                else -> {
-                    Null
-                }
+                is YamlScalar -> fromString(prop)
+                is YamlList -> Array(fromArray(prop))
+                is YamlMap -> Object(fromObject(prop))
+                else -> Null
             }
         }
 
-        private fun fromArray(value: YamlList): List<Scalar> {
-            return value.items.map(::scalarByNode)
-        }
-
-        private fun fromObject(yamlMap: YamlMap): List<Scalar> {
-            return yamlMap.entries.map { (_, value) -> scalarByNode(value) }
-        }
+        private fun fromArray(value: YamlList): List<Scalar> = value.items.map(::scalarByNode)
+        private fun fromObject(yamlMap: YamlMap): List<Scalar> =
+            yamlMap.entries.map { (key, value) -> scalarByNode(value) }
 
         private fun scalarByNode(value: YamlNode) = when (value) {
-            is YamlScalar -> {
-                from(value)
-            }
-
-            is YamlList -> {
-                Array(fromArray(value.yamlList))
-            }
-
-            is YamlMap -> {
-                Object(fromObject(value.yamlMap))
-            }
-
-            else -> {
-                Null
-            }
+            is YamlScalar -> fromString(value)
+            is YamlList -> Array(fromArray(value.yamlList))
+            is YamlMap -> Object(fromObject(value.yamlMap))
+            else -> Null
         }
 
-        private fun from(origin: YamlScalar): Scalar = from(origin.stringify())
+        private fun fromString(origin: YamlScalar): Scalar = fromString(origin.stringify())
 
-        fun from(value: kotlin.String): Scalar {
+        fun fromString(value: kotlin.String): Scalar {
             return when {
                 isBoolean(value) -> Boolean(parseBoolean(value))
                 isNumber(value) -> Number(value.toDouble())
-                isQuoteString(value) -> {
-                    String(value.substring(1, value.length - 1))
-                }
-
-                else -> {
-                    String(value)
-                }
+                isQuoteString(value) -> String(value.substring(1, value.length - 1))
+                else -> String(value)
             }
         }
 
