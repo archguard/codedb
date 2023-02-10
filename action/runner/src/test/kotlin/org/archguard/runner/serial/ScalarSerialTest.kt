@@ -33,8 +33,10 @@ class ScalarSerialTest {
         val dist = this.javaClass.classLoader.getResource("pipeline/serial/basic-output.json")!!.path
         val output = File(dist).readText()
 
-        val jsonObject = Json.encodeToString(Json.decodeFromString<ActionDefinitionData>(output))
+        val expectedData = Json.decodeFromString<ActionDefinitionData>(output)
 
+        println("expectedData: $expectedData")
+        val jsonObject = Json.encodeToString(expectedData)
         Json.encodeToString(actionManifest) shouldBe jsonObject
     }
 }
