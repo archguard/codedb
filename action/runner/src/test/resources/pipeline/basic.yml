@@ -5,6 +5,8 @@ on: [ push ]
 
 # global shared context information
 config:
+  plugin:
+    registry: https://plugins.archguard.org/
   server:
     url: http://localhost:8084
 
