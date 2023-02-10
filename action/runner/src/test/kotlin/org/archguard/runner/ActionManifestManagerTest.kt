@@ -1,9 +1,7 @@
 package org.archguard.runner
 
 import io.kotest.matchers.shouldBe
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import org.archguard.runner.pipeline.Scalar
+import org.archguard.runner.serial.Scalar
 import org.junit.jupiter.api.Test
 import java.io.File
 

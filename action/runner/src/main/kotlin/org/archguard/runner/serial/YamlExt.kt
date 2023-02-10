@@ -1,4 +1,4 @@
-package org.archguard.runner.pipeline
+package org.archguard.runner.serial
 
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlNode
