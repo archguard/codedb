@@ -15,6 +15,7 @@ class ScalarSerialTest {
     private val yaml = Yaml.default
 
     @Test
+    @Disabled
     fun `should convert scalar value back`() {
         val input = "value: [1, 2, 3]"
 

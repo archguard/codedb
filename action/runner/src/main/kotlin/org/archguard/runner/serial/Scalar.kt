@@ -25,6 +25,7 @@ import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import kotlinx.serialization.encoding.decodeStructure
+import kotlinx.serialization.encoding.encodeStructure
 
 @Serializable(with = ScalarSerializer::class)
 sealed class Scalar {
@@ -103,49 +104,24 @@ sealed class Scalar {
     }
 
     @Serializable
-    class Mapping(val key: kotlin.String, val value: Scalar) : Scalar() {
-        override fun equals(other: Any?): kotlin.Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
-
-            other as Mapping
-
-            if (key != other.key) return false
-            if (value != other.value) return false
-
-            return true
-        }
-
-        override fun hashCode(): Int {
-            var result = key.hashCode()
-            result = 31 * result + value.hashCode()
-            return result
-        }
-
-        override fun toString(): kotlin.String {
-            return "$key: $value"
-        }
-    }
-
-    @Serializable
-    class Object(val values: List<Scalar>) : Scalar() {
+    class Object(val map: Map<kotlin.String, Scalar>) : Scalar() {
         override fun equals(other: Any?): kotlin.Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
 
             other as Object
 
-            if (values != other.values) return false
+            if (map != other.map) return false
 
             return true
         }
 
         override fun hashCode(): Int {
-            return values.hashCode()
+            return map.hashCode()
         }
 
         override fun toString(): kotlin.String {
-            return "{" + values.joinToString(", ") + "}"
+            return map.toString()
         }
     }
 }
@@ -155,8 +131,6 @@ object ScalarSerializer : KSerializer<Scalar> {
     @OptIn(InternalSerializationApi::class, ExperimentalSerializationApi::class)
     override val descriptor: SerialDescriptor by lazy {
         buildSerialDescriptor("Scalar", PolymorphicKind.SEALED) {
-            element("mapping", defer { Scalar.Mapping.serializer().descriptor })
-
             element("object", defer { Scalar.Object.serializer().descriptor })
             element("list", defer { ListSerializer(ScalarSerializer).descriptor })
 
@@ -173,16 +147,18 @@ object ScalarSerializer : KSerializer<Scalar> {
             while (true) {
                 result = when (val index = decodeElementIndex(descriptor)) {
                     CompositeDecoder.DECODE_DONE -> break
-                    0 -> Scalar.Mapping(
-                        decodeStringElement(descriptor, 0),
-                        decodeSerializableElement(descriptor, 1, ScalarSerializer)
+                    0 -> Scalar.Object(
+                        decodeSerializableElement(
+                            descriptor,
+                            1,
+                            MapSerializer(String.serializer(), ScalarSerializer)
+                        )
                     )
 
-                    1 -> Scalar.Object(decodeSerializableElement(descriptor, 1, ListSerializer(ScalarSerializer)))
-                    2 -> Scalar.Array(decodeSerializableElement(descriptor, 2, ListSerializer(ScalarSerializer)))
-                    3 -> Scalar.String(decodeStringElement(descriptor, 3))
-                    4 -> Scalar.Number(decodeDoubleElement(descriptor, 4))
-                    5 -> Scalar.Boolean(decodeBooleanElement(descriptor, 5))
+                    1 -> Scalar.Array(decodeSerializableElement(descriptor, 2, ListSerializer(ScalarSerializer)))
+                    2 -> Scalar.String(decodeStringElement(descriptor, 3))
+                    3 -> Scalar.Number(decodeDoubleElement(descriptor, 4))
+                    4 -> Scalar.Boolean(decodeBooleanElement(descriptor, 5))
                     else -> error("Unexpected index: $index")
                 }
             }
@@ -199,12 +175,9 @@ object ScalarSerializer : KSerializer<Scalar> {
             is Scalar.Number -> encoder.encodeDouble(value.value)
             is Scalar.Array -> encoder.encodeSerializableValue(ListSerializer(ScalarSerializer), value.values)
             is Scalar.Object -> {
-                val map = value.values.associate { (it as Scalar.Mapping).key to it.value }
-                encoder.encodeSerializableValue(MapSerializer(String.serializer(), ScalarSerializer), map)
-            }
-
-            is Scalar.Mapping -> {
-                encoder.encodeString(value.key + ": " + value.value.toString())
+                encoder.encodeStructure(descriptor) {
+                    encodeSerializableElement(descriptor, 0, MapSerializer(String.serializer(), ScalarSerializer), value.map)
+                }
             }
         }
     }
@@ -220,9 +193,9 @@ fun Scalar.Companion.from(prop: YamlNode): Scalar {
 }
 
 private fun fromArray(value: YamlList): List<Scalar> = value.items.map(::scalarByNode)
-private fun fromObject(yamlMap: YamlMap): List<Scalar> = yamlMap.entries.map { (key, value) ->
-    Scalar.Mapping(key.stringify(), scalarByNode(value))
-}
+private fun fromObject(yamlMap: YamlMap): Map<String, Scalar> = yamlMap.entries.map { (key, value) ->
+    key.stringify() to scalarByNode(value)
+}.toMap()
 
 private fun scalarByNode(value: YamlNode) = when (value) {
     is YamlScalar -> fromString(value)
