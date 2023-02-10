@@ -1,0 +1,114 @@
+{
+  "name": "ArchGuard 3.0 - CodeDB",
+  "config": {
+    "plugin": {
+      "registry": "https://plugins.archguard.org/"
+    },
+    "server": {
+      "url": "http://localhost:8084"
+    }
+  },
+  "jobs": {
+    "backend": {
+      "type": "org.archguard.runner.pipeline.CompositeActionExecutionJob",
+      "name": "backend",
+      "config": {
+        "server": {},
+        "displayName": "Backend",
+        "languages": [
+          "java",
+          "kotlin"
+        ],
+        "features": [
+          "datamap"
+        ]
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "analyser/source-code@v1",
+          "with": {
+            "features": {
+              "type": "org.archguard.runner.serial.Scalar.Array",
+              "values": [
+                {
+                  "type": "org.archguard.runner.serial.Scalar.String",
+                  "value": "datamap"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "uses": "linter/database@v1"
+        },
+        {
+          "uses": "analyser/coverage@v1"
+        }
+      ]
+    },
+    "frontend": {
+      "type": "org.archguard.runner.pipeline.CompositeActionExecutionJob",
+      "name": "frontend",
+      "config": {
+        "server": {},
+        "displayName": "Frontend",
+        "languages": [
+          "javascript"
+        ]
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@v3"
+        },
+        {
+          "uses": "analyser/source-code@v1",
+          "with": {
+            "path": {
+              "type": "org.archguard.runner.serial.Scalar.String",
+              "value": "frontend"
+            },
+            "server": {
+              "type": "org.archguard.runner.serial.Scalar.String",
+              "value": "${{ project.server.url }}"
+            },
+            "features": {
+              "type": "org.archguard.runner.serial.Scalar.Array",
+              "values": [
+                {
+                  "type": "org.archguard.runner.serial.Scalar.Object",
+                  "value": [
+                    {
+                      "type": "org.archguard.runner.serial.Scalar.String",
+                      "value": "datamap"
+                    },
+                    {
+                      "type": "org.archguard.runner.serial.Scalar.Object",
+                      "value": [
+                        {
+                          "type": "org.archguard.runner.serial.Scalar.Array",
+                          "values": [
+                            {
+                              "type": "org.archguard.runner.serial.Scalar.String",
+                              "value": "javascript"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "project": {
+              "type": "org.archguard.runner.serial.Scalar.String",
+              "value": "frontend"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
