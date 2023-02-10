@@ -9,18 +9,8 @@ data class ActionDefinitionData(
     var author: String? = "",
     var version: String? = "",
     var config: ActionConfig = ActionConfig(),
-    val jobs: Map<String, ActionExecutionJob> = mapOf()
-) {
-
-}
-
-@Serializable
-sealed class ActionExecutionJob {
-    abstract val name: String
-    abstract val config: JobConfig
-    abstract val steps: List<ActionStep>
-    abstract val actionType: ActionExecutionType
-}
+    val jobs: Map<String, ActionExecutionData> = mapOf()
+)
 
 enum class ActionExecutionType {
     Composite,

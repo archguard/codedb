@@ -3,12 +3,11 @@ package org.archguard.runner
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlList
 import com.charleskorn.kaml.YamlNode
-import com.charleskorn.kaml.YamlTaggedNode
 import com.charleskorn.kaml.yamlMap
 import kotlinx.serialization.decodeFromString
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionStep
-import org.archguard.runner.pipeline.CompositeActionExecutionJob
+import org.archguard.runner.pipeline.CompositeActionExecutionData
 import org.archguard.runner.pipeline.JobConfig
 import org.archguard.runner.serial.Scalar
 import org.archguard.runner.serial.flatString
@@ -31,7 +30,8 @@ class ActionManifestManager {
                 val jobConfig = yamlMap.get<YamlNode>("config")
                 val stepItems = yamlMap.get<YamlList>("steps")?.items
 
-                CompositeActionExecutionJob(
+                // todo: support script action
+                CompositeActionExecutionData(
                     name = entry.key.content,
                     steps = stepItems?.map(::convertStep) ?: listOf(),
                     config = jobConfig?.let(::convertJobConfig) ?: JobConfig()
