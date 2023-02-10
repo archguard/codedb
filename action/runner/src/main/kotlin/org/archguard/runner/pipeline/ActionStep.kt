@@ -88,22 +88,48 @@ sealed class Scalar {
 
     companion object {
         fun from(prop: YamlNode): Scalar {
-            return when (prop.javaClass) {
-                YamlScalar::class.java -> {
-                    from(prop as YamlScalar)
+            return when (prop) {
+                is YamlScalar -> {
+                    from(prop)
                 }
 
-                YamlList::class.java -> {
-                    Array(fromArray(prop as YamlList))
+                is YamlList -> {
+                    Array(fromArray(prop))
                 }
 
-                YamlMap::class.java -> {
-                    Object(fromObject(prop as YamlMap))
+                is YamlMap -> {
+                    Object(fromObject(prop))
                 }
 
                 else -> {
                     Null
                 }
+            }
+        }
+
+        private fun fromArray(value: YamlList): List<Scalar> {
+            return value.items.map(::scalarByNode)
+        }
+
+        private fun fromObject(yamlMap: YamlMap): List<Scalar> {
+            return yamlMap.entries.map { (_, value) -> scalarByNode(value) }
+        }
+
+        private fun scalarByNode(value: YamlNode) = when (value) {
+            is YamlScalar -> {
+                from(value)
+            }
+
+            is YamlList -> {
+                Array(fromArray(value.yamlList))
+            }
+
+            is YamlMap -> {
+                Object(fromObject(value.yamlMap))
+            }
+
+            else -> {
+                Null
             }
         }
 
@@ -119,50 +145,6 @@ sealed class Scalar {
 
                 else -> {
                     String(value)
-                }
-            }
-        }
-
-        private fun fromArray(value: YamlList): List<Scalar> {
-            return value.items.map { prop ->
-                when (prop) {
-                    is YamlScalar -> {
-                        from(prop)
-                    }
-
-                    is YamlList -> {
-                        Array(fromArray(prop.yamlList))
-                    }
-
-                    is YamlMap -> {
-                        Object(fromObject(prop.yamlMap))
-                    }
-
-                    else -> {
-                        Null
-                    }
-                }
-            }
-        }
-
-        private fun fromObject(yamlMap: YamlMap): List<Scalar> {
-            return yamlMap.entries.map { (key, value) ->
-                when (value) {
-                    is YamlScalar -> {
-                        from(value)
-                    }
-
-                    is YamlList -> {
-                        Array(fromArray(value.yamlList))
-                    }
-
-                    is YamlMap -> {
-                        Object(fromObject(value.yamlMap))
-                    }
-
-                    else -> {
-                        Null
-                    }
                 }
             }
         }
