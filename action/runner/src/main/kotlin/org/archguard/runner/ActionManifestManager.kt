@@ -46,19 +46,18 @@ class ActionManifestManager {
         )
     }
 
-    private fun convertJobConfig(config: YamlNode) =
-        Yaml.default.decodeFromString<JobConfig>(config.contentToString())
+    private fun convertJobConfig(config: YamlNode) = Yaml.default.decodeFromString<JobConfig>(config.stringify())
 
-    private fun convertStep(it: YamlNode): ActionStep {
+    private fun convertStep(node: YamlNode): ActionStep {
         val actionStep = ActionStep()
-        it.yamlMap.entries.forEach { entry ->
+        node.yamlMap.entries.forEach { entry ->
             when (entry.key.content) {
                 "name" -> {
-                    actionStep.name = withoutQuotes(entry.value.contentToString())
+                    actionStep.name = entry.value.stringify()
                 }
 
                 "description" -> {
-                    actionStep.description = withoutQuotes(entry.value.contentToString())
+                    actionStep.description = entry.value.stringify()
                 }
 
                 "enabled" -> {
@@ -66,18 +65,18 @@ class ActionManifestManager {
                 }
 
                 "uses" -> {
-                    actionStep.uses = withoutQuotes(entry.value.contentToString())
+                    actionStep.uses = entry.value.stringify()
                 }
 
                 "with" -> {
                     entry.value.yamlMap.entries.forEach { prop ->
                         when (prop.value.javaClass) {
                             YamlScalar::class.java -> {
-                                actionStep.with[prop.key.content] = Scalar.from(prop.value.contentToString())
+                                actionStep.with[prop.key.content] = Scalar.from(prop.value.stringify())
                             }
 
                             YamlList::class.java -> {
-                                actionStep.with[prop.key.content] = Scalar.from(prop.value.contentToString())
+                                actionStep.with[prop.key.content] = Scalar.from(prop.value.stringify())
                             }
 
                             else -> {}
@@ -89,11 +88,22 @@ class ActionManifestManager {
 
         return actionStep
     }
+}
 
-    private fun withoutQuotes(contentToString: String): String {
-        return contentToString.replace("\"", "")
-            .replace("'", "")
+private fun YamlNode.stringify(): String {
+    return this.contentToString().withoutQuotes()
+}
+
+private fun String.withoutQuotes(): String {
+    if (this.startsWith("\"") && this.endsWith("\"")) {
+        return this.substring(1, this.length - 1)
     }
+
+    if (this.startsWith("'") && this.endsWith("'")) {
+        return this.substring(1, this.length - 1)
+    }
+
+    return this
 }
 
 private inline fun <reified T> YamlNode.objectValue(name: String): T {
