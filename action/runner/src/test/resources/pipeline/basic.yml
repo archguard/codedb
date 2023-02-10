@@ -38,4 +38,7 @@ jobs:
           project: frontend
           path: frontend
           server: ${{ project.server.url }}
-          features: [ 'datamap' ]
+          features:
+            - name: datamap
+              config:
+                languages: [ "javascript" ]

@@ -1,5 +1,8 @@
 package org.archguard.runner.pipeline
 
+import com.charleskorn.kaml.Yaml
+import com.charleskorn.kaml.YamlNode
+import com.charleskorn.kaml.yamlMap
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
@@ -14,8 +17,11 @@ class ScalarValueTest {
 
     @Test
     fun `should convert array`() {
+        val result = Yaml.default.parseToYamlNode("value: [1, 2, 3]")
+        val scalar = result.yamlMap.get<YamlNode>("value")!!
+
         // Numbers
-        Scalar.from("[1, 2, 3]") shouldBe Scalar.Array(
+        Scalar.from(scalar) shouldBe Scalar.Array(
             listOf(
                 Scalar.Number(1.0),
                 Scalar.Number(2.0),
@@ -23,19 +29,14 @@ class ScalarValueTest {
             )
         )
 
+        val result2 = Yaml.default.parseToYamlNode("value: [\"1\", \"2\", \"3\"]")
+        val scalar2 = result2.yamlMap.get<YamlNode>("value")!!
         // String arrays
-        Scalar.from("[\"1\", \"2\", \"3\"]") shouldBe Scalar.Array(
+        Scalar.from(scalar2) shouldBe Scalar.Array(
             listOf(
                 Scalar.String("1"),
                 Scalar.String("2"),
                 Scalar.String("3")
-            )
-        )
-
-        // single quoted string
-        Scalar.from("['datamap']") shouldBe Scalar.Array(
-            listOf(
-                Scalar.String("datamap")
             )
         )
     }

@@ -14,11 +14,11 @@ class ActionDefinitionData(
 }
 
 @Serializable
-abstract class ActionExecutionJob {
+sealed class ActionExecutionJob {
     abstract val name: String
     abstract val config: JobConfig
     abstract val steps: List<ActionStep>
-    abstract val type: ActionExecutionType
+    abstract val actionType: ActionExecutionType
 }
 
 enum class ActionExecutionType {
