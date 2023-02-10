@@ -2,7 +2,7 @@ package org.archguard.runner
 
 import org.archguard.runner.context.RunnerContext
 
-class ActionRunner {
+class ActionRunner: RunnerService() {
     fun run() {
         // 1. load action definition
         // 2. build context

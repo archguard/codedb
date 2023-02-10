@@ -1,6 +1,6 @@
 package org.archguard.runner
 
-class JobRunner {
+class JobRunner: RunnerService() {
     fun downloadAction() {
 
     }

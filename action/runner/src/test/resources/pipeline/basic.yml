@@ -37,7 +37,6 @@ jobs:
         with:
           project: frontend
           path: frontend
-          server: ${{ project.server.url }}
           features:
             - name: datamap
               config:
