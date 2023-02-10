@@ -3,6 +3,7 @@ package org.archguard.runner
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlList
 import com.charleskorn.kaml.YamlNode
+import com.charleskorn.kaml.YamlTaggedNode
 import com.charleskorn.kaml.yamlMap
 import kotlinx.serialization.decodeFromString
 import org.archguard.runner.pipeline.ActionDefinitionData

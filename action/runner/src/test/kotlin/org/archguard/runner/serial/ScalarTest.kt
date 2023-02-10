@@ -21,7 +21,7 @@ class ScalarTest {
         val scalar = result.yamlMap.get<YamlNode>("value")!!
 
         // Numbers
-        Scalar.from(scalar) shouldBe Scalar.Array(
+        Scalar.from(scalar) shouldBe Scalar.List(
             listOf(
                 Scalar.Number(1.0),
                 Scalar.Number(2.0),
@@ -32,7 +32,7 @@ class ScalarTest {
         val result2 = Yaml.default.parseToYamlNode("value: [\"1\", \"2\", \"3\"]")
         val scalar2 = result2.yamlMap.get<YamlNode>("value")!!
 
-        Scalar.from(scalar2) shouldBe Scalar.Array(
+        Scalar.from(scalar2) shouldBe Scalar.List(
             listOf("1.0", "2.0", "3.0").map { Scalar.Number(it.toDouble()) }
         )
     }

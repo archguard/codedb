@@ -1,13 +1,15 @@
 package org.archguard.runner.serial
 
+import com.charleskorn.kaml.PolymorphismStyle
+import com.charleskorn.kaml.SequenceStyle
 import com.charleskorn.kaml.Yaml
+import com.charleskorn.kaml.YamlConfiguration
+import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import org.archguard.runner.ActionManifestManager
 import org.archguard.runner.pipeline.ActionDefinitionData
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
 
@@ -25,18 +27,17 @@ class ScalarSerialTest {
     }
 
     @Test
-    @Disabled
-    fun `should convert yaml to json`() {
+    fun `should convert yaml to yaml to yaml`() {
         val source = this.javaClass.classLoader.getResource("pipeline/serial/basic-input.yml")!!.path
-        val actionManifest = ActionManifestManager().load(File(source).readText())
+        val firstOutput: ActionDefinitionData = ActionManifestManager().load(File(source).readText())
 
-        val dist = this.javaClass.classLoader.getResource("pipeline/serial/basic-output.json")!!.path
-        val output = File(dist).readText()
+        val output = Yaml(configuration = YamlConfiguration(
+            encodeDefaults = false,
+            polymorphismStyle = PolymorphismStyle.Property,
+        )).encodeToString(firstOutput)
 
-        val expectedData = Json.decodeFromString<ActionDefinitionData>(output)
+        val secondParsedOutput: ActionDefinitionData = ActionManifestManager().load(output)
 
-        println("expectedData: $expectedData")
-        val jsonObject = Json.encodeToString(expectedData)
-        Json.encodeToString(actionManifest) shouldBe jsonObject
+        firstOutput.shouldBeEqualToComparingFields(secondParsedOutput)
     }
 }

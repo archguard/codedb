@@ -1,7 +1,6 @@
 package org.archguard.runner.pipeline
 
 import kotlinx.serialization.Serializable
-import java.rmi.registry.LocateRegistry
 
 /**
  * examples:
@@ -14,30 +13,27 @@ import java.rmi.registry.LocateRegistry
  */
 
 @Serializable
-class ActionConfig(
+data class ActionConfig(
     var metric: Boolean = false,
     val plugin: PluginConfig = PluginConfig(),
     val server: ActionServerConfig = ActionServerConfig()
-) {
-}
+)
 
 @Serializable
-class PluginConfig(
+data class PluginConfig(
     // string representation of the plugin registry
     val registry: String = "",
 )
 
 @Serializable
-class JobConfig(
+data class JobConfig(
     val server: ActionServerConfig = ActionServerConfig(),
     val displayName: String = "",
     val languages: List<String> = listOf(),
     val features: List<String> = listOf(),
-) {
-
-}
+)
 
 @Serializable
-class ActionServerConfig(
+data class ActionServerConfig(
     var url: String = ""
 )

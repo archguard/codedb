@@ -33,6 +33,6 @@ class ActionManifestManagerTest {
         firstJob.steps[0].uses shouldBe "actions/checkout@v3"
         firstJob.steps[1].uses shouldBe "analyser/source-code@v1"
 
-        firstJob.steps[1].with["features"] shouldBe Scalar.Array(listOf(Scalar.String("datamap")))
+        firstJob.steps[1].with["features"] shouldBe Scalar.List(listOf(Scalar.String("datamap")))
     }
 }

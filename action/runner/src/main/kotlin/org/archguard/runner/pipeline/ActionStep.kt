@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 import org.archguard.runner.serial.Scalar
 
 @Serializable
-class ActionStep(
+data class ActionStep(
     var name: String = "",
     var description: String = "",
     var enabled: Boolean = true,

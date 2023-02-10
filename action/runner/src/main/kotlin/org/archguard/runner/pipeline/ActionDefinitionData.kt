@@ -3,7 +3,7 @@ package org.archguard.runner.pipeline
 import kotlinx.serialization.Serializable
 
 @Serializable
-class ActionDefinitionData(
+data class ActionDefinitionData(
     var name: String = "",
     var description: String = "",
     var author: String? = "",
@@ -11,6 +11,7 @@ class ActionDefinitionData(
     var config: ActionConfig = ActionConfig(),
     val jobs: Map<String, ActionExecutionJob> = mapOf()
 ) {
+
 }
 
 @Serializable

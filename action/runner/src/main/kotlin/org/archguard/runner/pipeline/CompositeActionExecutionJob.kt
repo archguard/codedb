@@ -3,7 +3,7 @@ package org.archguard.runner.pipeline
 import kotlinx.serialization.Serializable
 
 @Serializable
-class CompositeActionExecutionJob(
+data class CompositeActionExecutionJob(
     override var name: String = "",
     override var config: JobConfig = JobConfig(),
     override var steps: List<ActionStep> = listOf(),
