@@ -8,6 +8,7 @@ import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.shouldBe
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.archguard.runner.ActionManifestManager
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.junit.jupiter.api.Test
@@ -31,13 +32,15 @@ class ScalarSerialTest {
         val source = this.javaClass.classLoader.getResource("pipeline/serial/basic-input.yml")!!.path
         val firstOutput: ActionDefinitionData = ActionManifestManager().load(File(source).readText())
 
-        val output = Yaml(configuration = YamlConfiguration(
-            encodeDefaults = false,
-            polymorphismStyle = PolymorphismStyle.Property,
-        )).encodeToString(firstOutput)
+        val output = Yaml(
+            configuration = YamlConfiguration(
+                encodeDefaults = false,
+                polymorphismStyle = PolymorphismStyle.Property,
+            )
+        ).encodeToString(firstOutput)
 
         val secondParsedOutput: ActionDefinitionData = ActionManifestManager().load(output)
 
-        firstOutput.shouldBeEqualToComparingFields(secondParsedOutput)
+        firstOutput shouldBe secondParsedOutput
     }
 }

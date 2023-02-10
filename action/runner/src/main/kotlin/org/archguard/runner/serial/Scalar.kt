@@ -128,10 +128,10 @@ object ScalarSerializer : KSerializer<Scalar> {
     override val descriptor: SerialDescriptor by lazy {
         buildSerialDescriptor("Scalar", PolymorphicKind.SEALED) {
             element("String", defer { String.serializer().descriptor })
-            element("number", defer { Double.serializer().descriptor })
+            element("Number", defer { Double.serializer().descriptor })
             element("Boolean", defer { Boolean.serializer().descriptor })
             element("Object", defer { JsonObject.serializer().descriptor })
-            element("List", defer { Scalar.List.serializer().descriptor })
+            element("List", defer { JsonArray.serializer().descriptor })
         }
     }
 
