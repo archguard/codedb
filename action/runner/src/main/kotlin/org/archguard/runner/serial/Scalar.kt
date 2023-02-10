@@ -133,7 +133,6 @@ object ScalarSerializer : KSerializer<Scalar> {
         buildSerialDescriptor("Scalar", PolymorphicKind.SEALED) {
             element("object", defer { Scalar.Object.serializer().descriptor })
             element("list", defer { ListSerializer(ScalarSerializer).descriptor })
-
             element("string", defer { String.serializer().descriptor })
             element("number", defer { Double.serializer().descriptor })
             element("boolean", defer { Boolean.serializer().descriptor })
@@ -147,13 +146,10 @@ object ScalarSerializer : KSerializer<Scalar> {
             while (true) {
                 result = when (val index = decodeElementIndex(descriptor)) {
                     CompositeDecoder.DECODE_DONE -> break
-                    0 -> Scalar.Object(
-                        decodeSerializableElement(
-                            descriptor,
-                            1,
-                            MapSerializer(String.serializer(), ScalarSerializer)
-                        )
-                    )
+                    0 -> {
+                        val mapSerializer = MapSerializer(String.serializer(), ScalarSerializer)
+                        Scalar.Object(decodeSerializableElement(descriptor, 1, mapSerializer))
+                    }
 
                     1 -> Scalar.Array(decodeSerializableElement(descriptor, 2, ListSerializer(ScalarSerializer)))
                     2 -> Scalar.String(decodeStringElement(descriptor, 3))
@@ -175,9 +171,8 @@ object ScalarSerializer : KSerializer<Scalar> {
             is Scalar.Number -> encoder.encodeDouble(value.value)
             is Scalar.Array -> encoder.encodeSerializableValue(ListSerializer(ScalarSerializer), value.values)
             is Scalar.Object -> {
-                encoder.encodeStructure(descriptor) {
-                    encodeSerializableElement(descriptor, 0, MapSerializer(String.serializer(), ScalarSerializer), value.map)
-                }
+                val mapSerializer = MapSerializer(String.serializer(), ScalarSerializer)
+                encoder.encodeSerializableValue(mapSerializer, value.map)
             }
         }
     }
