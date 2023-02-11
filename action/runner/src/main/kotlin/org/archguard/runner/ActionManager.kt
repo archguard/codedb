@@ -49,16 +49,16 @@ class ActionManager : RunnerService() {
     }
 }
 
-class DownloadInfo(val registry: String, val type: String, val version: String, val name: String) {
+class DownloadInfo(registry: String, type: String, version: String, val name: String) {
     /**
      * The URL of the action jar file.
      */
-    val jarUrl: URL = URL("$registry$type/$name/$version/$name.jar")
+    val jarUrl: URL = URL("$registry$type/$name/$version/$name-$version.jar")
 
     /**
      * The URL of the action sha256 file.
      */
-    val sha256Url: URL = URL("$registry$type/$name/$version/$name.sha256")
+    val sha256Url: URL = URL("$registry$type/$name/$version/$name-$version.sha256")
 
     companion object {
         private const val ACTION_NAME_REGEX = "([a-z]+)/([a-z]+)@([a-z0-9.]+)"
@@ -71,7 +71,7 @@ class DownloadInfo(val registry: String, val type: String, val version: String, 
          */
         fun from(registry: String, actionName: String): DownloadInfo? {
             if (!verifyActionName(actionName)) {
-                logger.error("Invalid action name: ${actionName}")
+                logger.error("Invalid action name: $actionName")
                 return null
             }
 
