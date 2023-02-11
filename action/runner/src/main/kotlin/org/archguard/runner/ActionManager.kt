@@ -2,7 +2,7 @@ package org.archguard.runner
 
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionExecutionData
-import org.archguard.runner.pipeline.ActionStep
+import org.jetbrains.annotations.TestOnly
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -26,17 +26,25 @@ class ActionManager : RunnerService() {
     //
     private fun downloadAction(context: RunnerContext, downloadInfo: DownloadInfo) {
         val targetDir = context.pluginDirectory
-        val jarUrl = downloadInfo.jarUrl
-        var sha256Url = downloadInfo.sha256Url
 
-        // 1. download action jar
-        val jarFile = downloadFile(jarUrl, targetDir)
+        executeDownload(downloadInfo, targetDir)
     }
 
-    private fun downloadFile(url: URL, target: String) {
+    @TestOnly
+    fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
+        val jarFile = downloadFile(downloadInfo.jarUrl, fileOutput(targetDir, downloadInfo, ".jar"))
+        val shaFile = downloadFile(downloadInfo.sha256Url, fileOutput(targetDir, downloadInfo, ".sha256"))
+    }
+
+    private fun fileOutput(targetDir: String, downloadInfo: DownloadInfo, extName: String ) =
+        targetDir + File.separator + downloadInfo.name + extName
+
+    private fun downloadFile(url: URL, target: String): File {
         url.openStream().use { input ->
-            val file = File(target)
+            val file = File(target + File.separator + url.file)
             file.outputStream().use { input.copyTo(it) }
+
+            return file
         }
     }
 }
