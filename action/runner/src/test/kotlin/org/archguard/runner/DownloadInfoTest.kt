@@ -18,4 +18,11 @@ class DownloadInfoTest {
         val downloadInfo = DownloadInfo.from("https://plugin.archguard.org/", "actions/setup@v1@v1")
         downloadInfo shouldBe null
     }
+
+    @Test
+    fun `verify for snapshot name`() {
+        val downloadInfo = DownloadInfo.from("https://plugin.archguard.org/", "actions/setup@0.1.0-SNAPSHOT")!!
+
+        downloadInfo.jarUrl shouldBe URL("https://plugin.archguard.org/actions/setup/0.1.0-SNAPSHOT/setup-0.1.0-SNAPSHOT.jar")
+    }
 }

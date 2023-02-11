@@ -17,13 +17,20 @@ class ActionManager : RunnerService() {
         val downloadInfos: List<DownloadInfo> =
             actionData.steps.mapNotNull { DownloadInfo.from(context.registry, it.name) }
 
+        // 2. prepare plugins dir
+        val pluginsDir = File(context.pluginDirectory)
+        if (!pluginsDir.exists()) {
+            pluginsDir.mkdirs()
+        }
+        logger.info("Plugins directory: ${pluginsDir.absolutePath}")
+
+
         downloadInfos.forEach { downloadInfo ->
             // 2. download action
             downloadAction(context, downloadInfo)
         }
     }
 
-    //
     private fun downloadAction(context: RunnerContext, downloadInfo: DownloadInfo) {
         val targetDir = context.pluginDirectory
 
@@ -32,24 +39,32 @@ class ActionManager : RunnerService() {
 
     @TestOnly
     fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
-        val jarFile = downloadFile(downloadInfo.jarUrl, fileOutput(targetDir, downloadInfo, ".jar"))
-        val shaFile = downloadFile(downloadInfo.sha256Url, fileOutput(targetDir, downloadInfo, ".sha256"))
+        val jarFile = downloadFile(downloadInfo.jarUrl, fiename(targetDir, downloadInfo, ".jar"))
+        // todo: add verify for sha256
+//        val shaFile = downloadFile(downloadInfo.sha256Url, fileOutput(targetDir, downloadInfo, ".sha256"))
     }
 
-    private fun fileOutput(targetDir: String, downloadInfo: DownloadInfo, extName: String ) =
-        targetDir + File.separator + downloadInfo.name + extName
+    /**
+     * for examples: /tmp/plugins/checkout-0.1.0-SNAPSHOT.jar
+     */
+    private fun fiename(targetDir: String, downloadInfo: DownloadInfo, extName: String) =
+        "$targetDir${File.separator}${downloadInfo.name}-${downloadInfo.version}$extName"
 
     private fun downloadFile(url: URL, target: String): File {
         url.openStream().use { input ->
-            val file = File(target + File.separator + url.file)
+            val file = File(target)
             file.outputStream().use { input.copyTo(it) }
 
             return file
         }
     }
+
+    companion object {
+        private val logger: Logger = LoggerFactory.getLogger(ActionManager::class.java)
+    }
 }
 
-class DownloadInfo(registry: String, type: String, version: String, val name: String) {
+class DownloadInfo(registry: String, type: String, val version: String, val name: String) {
     /**
      * The URL of the action jar file.
      */
@@ -61,7 +76,7 @@ class DownloadInfo(registry: String, type: String, version: String, val name: St
     val sha256Url: URL = URL("$registry$type/$name/$version/$name-$version.sha256")
 
     companion object {
-        private const val ACTION_NAME_REGEX = "([a-z]+)/([a-z]+)@([a-z0-9.]+)"
+        private const val ACTION_NAME_REGEX = "([a-zA-Z]+)/([a-zA-Z]+)@([a-zA-Z0-9.-]+)"
         private val logger: Logger = LoggerFactory.getLogger(DownloadInfo::class.java)
 
         /**
