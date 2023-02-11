@@ -1,0 +1,14 @@
+name: ArchGuard 3.0 - CodeDB
+
+on: [ push ]
+
+jobs:
+  hello:
+    config:
+      displayName: "Sample"
+    steps:
+      - name: Sample Script
+        type: Kotlin
+        script: sample/sample.kts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
