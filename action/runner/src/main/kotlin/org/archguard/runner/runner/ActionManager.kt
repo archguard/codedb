@@ -1,6 +1,7 @@
 package org.archguard.runner.runner
 
 import org.archguard.runner.context.RunnerContext
+import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionExecutionData
 import org.jetbrains.annotations.TestOnly
 import org.slf4j.Logger
@@ -8,11 +9,18 @@ import org.slf4j.LoggerFactory
 import java.io.File
 import java.net.URL
 
-class ActionManager : RunnerService() {
+class ActionManager(val context: RunnerContext) : RunnerService() {
+    val actionManifestManager = ActionManifestManager()
+    fun loadActions(): ActionDefinitionData {
+        val content = File(context.manifestYmlPath).readText()
+        return actionManifestManager.load(content)
+    }
+
     /**
+     * todo: make api to sync and cached
      * Prepare actions for execution, this will download the action and prepare the environment.
      */
-    fun prepareActionsAsync(context: RunnerContext, actionData: ActionExecutionData) {
+    fun prepareActionsAsync(actionData: ActionExecutionData) {
         // 1. create download information
         val downloadInfos: List<DownloadInfo> =
             actionData.steps.mapNotNull { DownloadInfo.from(context.registry, it.name) }

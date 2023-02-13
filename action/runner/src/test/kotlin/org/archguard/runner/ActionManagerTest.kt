@@ -1,5 +1,6 @@
 package org.archguard.runner
 
+import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.runner.ActionManager
 import org.archguard.runner.runner.DownloadInfo
 import org.junit.jupiter.api.Disabled
@@ -10,7 +11,7 @@ class ActionManagerTest {
     @Test
     @Disabled
     fun `test action manager`() {
-        val actionManager = ActionManager()
+        val actionManager = ActionManager(RunnerContext())
 
         val targetDir = "plugins"
         val pluginFile = File(targetDir)

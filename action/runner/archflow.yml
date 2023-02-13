@@ -1,0 +1,21 @@
+name: ArchGuard 3.0 - CodeDB
+on: [ push ]
+config:
+  plugin:
+    registry: https://plugins.archguard.org/
+  server:
+    url: http://localhost:8084
+
+jobs:
+  backend:
+    config:
+      displayName: "Backend"
+      languages: [ "java", "kotlin" ]
+      features: [ 'datamap' ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: analyser/source-code@v1
+        with:
+          features: [ 'datamap' ]
+      - uses: linter/database@v1

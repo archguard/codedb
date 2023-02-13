@@ -20,8 +20,11 @@ import org.archguard.runner.serial.stringify
  * parse action manifest or json schema
  */
 class ActionManifestManager {
-    fun load(manifest: String): ActionDefinitionData {
-        val result = Yaml.default.parseToYamlNode(manifest)
+    /**
+     * load action manifest string
+     */
+    fun load(manifestContent: String): ActionDefinitionData {
+        val result = Yaml.default.parseToYamlNode(manifestContent)
 
         val jobs = result.yamlMap.get<YamlNode>("jobs")?.yamlMap?.entries?.let {
             it.map { entry ->
