@@ -39,7 +39,7 @@ class ActionManager : RunnerService() {
 
     @TestOnly
     fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
-        val jarFile = downloadFile(downloadInfo.jarUrl, fiename(targetDir, downloadInfo, ".jar"))
+        val jarFile = downloadFile(downloadInfo.jarUrl, filename(targetDir, downloadInfo, ".jar"))
         // todo: add verify for sha256
 //        val shaFile = downloadFile(downloadInfo.sha256Url, fileOutput(targetDir, downloadInfo, ".sha256"))
     }
@@ -47,7 +47,7 @@ class ActionManager : RunnerService() {
     /**
      * for examples: /tmp/plugins/checkout-0.1.0-SNAPSHOT.jar
      */
-    private fun fiename(targetDir: String, downloadInfo: DownloadInfo, extName: String) =
+    private fun filename(targetDir: String, downloadInfo: DownloadInfo, extName: String) =
         "$targetDir${File.separator}${downloadInfo.name}-${downloadInfo.version}$extName"
 
     private fun downloadFile(url: URL, target: String): File {
