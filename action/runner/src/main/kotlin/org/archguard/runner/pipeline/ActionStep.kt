@@ -32,22 +32,54 @@ data class ActionStep(
         with
             .toSortedMap(compareByDescending { it })
             .forEach { (key, value) ->
-            when (value) {
-                is Scalar.List -> {
-                    value.value.forEach {
+                when (value) {
+                    is Scalar.List -> {
+                        value.value.forEach {
+                            command.add("--$key")
+                            command.add(it.toString())
+                        }
+                    }
+
+                    else -> {
                         command.add("--$key")
-                        command.add(it.toString())
+                        command.add(value.toString())
                     }
                 }
-
-                else -> {
-                    command.add("--$key")
-                    command.add(value.toString())
-                }
             }
-        }
 
         return command.joinToString(" ")
     }
 }
 
+@Serializable
+data class ActionName(
+    var type: String = "",
+    var name: String = "",
+    var version: String = "",
+) {
+    private fun path() = "${this.name}/${this.version}"
+
+    /**
+     * action name to filename without extname: setup-0.1.0-SNAPSHOT
+     */
+    fun filename() = "${this.name}-${this.version}"
+
+
+    /**
+    for example: `actions/setup/0.1.0-SNAPSHOT/setup-0.1.0-SNAPSHOT.jar`
+     */
+    fun fullFilepath(ext: String) = "${this.type}/${this.path()}/${this.filename()}.${ext}"
+
+    companion object {
+        private const val NAME_REGEX = "([a-zA-Z]+)/([a-zA-Z]+)@([a-zA-Z0-9.-]+)"
+
+        fun verifyActionName(actionName: String): Boolean {
+            return actionName.matches(Regex(NAME_REGEX))
+        }
+
+        fun from(actionName: String): ActionName {
+            val (type, name, version) = Regex(NAME_REGEX).find(actionName)!!.destructured
+            return ActionName(type, name, version)
+        }
+    }
+}
