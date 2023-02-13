@@ -2,20 +2,35 @@ package org.archguard.runner.runner
 
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.Json
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionExecutionData
 import org.archguard.runner.pipeline.ActionName
+import org.archguard.runner.registry.ActionRegistry
+import org.archguard.runner.registry.Version
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.net.URL
 
 class ActionManager(val context: RunnerContext) : RunnerService() {
-    val actionManifestManager = ActionManifestManager()
+    private val actionManifestManager = ActionManifestManager()
+    private val client = HttpClient(CIO) {
+        install(ContentNegotiation) {
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+            })
+        }
+    }
+
     fun loadActions(): ActionDefinitionData {
         val content = File(context.manifestYmlPath).readText()
         return actionManifestManager.load(content)
@@ -43,6 +58,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
         logger.info("Plugins directory: ${pluginsDir.absolutePath}")
 
         downloadInfos.parallelStream().forEach { downloadInfo ->
+            // download json before download action
             downloadAction(context, downloadInfo)
         }
     }
@@ -55,13 +71,33 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
         try {
             runBlocking {
-                logger.info("Start downloading action: ${downloadInfo.actionName}")
-                val jarFile = downloadFile(downloadInfo.jarUrl, filepath(targetDir, downloadInfo, "jar"))
-                logger.info("Downloaded action: ${downloadInfo.actionName} to ${jarFile.absolutePath}")
+                logger.info("Start fetch registry: ${downloadInfo.actionName}")
+
+                val actionRegistry: ActionRegistry = client.get(downloadInfo.metaUrl).body()
+
+                val versionInfos: List<Version> = actionRegistry.versions.filter {
+                    it.key == downloadInfo.version
+                }.entries.map { it.value }
+
+                if (versionInfos.isEmpty()) {
+                    logger.error("Version not found: ${downloadInfo.actionName}")
+                    return@runBlocking
+                }
+
+
+                downloadByVersion(versionInfos, targetDir, downloadInfo)
             }
         } catch (e: Exception) {
             logger.error("Failed to download action: ${downloadInfo.actionName}", e)
         }
+    }
+
+    private suspend fun downloadByVersion(versionInfos: List<Version>, targetDir: String, downloadInfo: DownloadInfo) {
+        val version = versionInfos[0]
+        logger.info("Start downloading action by version: $version")
+
+        val jarFile = downloadFile(URL(version.dist.pkg), filepath(targetDir, downloadInfo, "jar"))
+        logger.info("Downloaded action: ${downloadInfo.actionName} to ${jarFile.absolutePath}")
     }
 
     /**
@@ -70,7 +106,6 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     private fun filepath(targetDir: String, downloadInfo: DownloadInfo, ext: String) =
         "$targetDir${File.separator}${downloadInfo.nameOnly(ext)}"
 
-    private val client = HttpClient()
     private suspend fun downloadFile(url: URL, target: String): File {
         val httpResponse: HttpResponse = client.get(url)
         val responseBody: ByteArray = httpResponse.body()
@@ -86,10 +121,9 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
 
 
 class DownloadInfo(registry: String, val actionName: ActionName) {
-    /**
-     * The URL of the action jar file.
-     */
-    val jarUrl: URL by lazy { URL("$registry${actionName.fullUrl("jar")}") }
+    val version: String = actionName.version
+
+    val metaUrl: URL by lazy { URL("$registry${actionName.metadata()}") }
 
     /**
      * The URL of the action sha256 file.

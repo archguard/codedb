@@ -160,6 +160,8 @@ mosaic-gradle = { module = "com.jakewharton.mosaic:mosaic-gradle-plugin", versio
 # io.ktor:ktor-client-core:2.0.3
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 
 # -------------------------------------  multiple platform dependencies -------------------------------------
 mpp-uuid = { group = "com.benasher44", name = "uuid", version.ref = "uuid" }

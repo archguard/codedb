@@ -1,7 +1,6 @@
 package org.archguard.runner.pipeline
 
 import kotlinx.serialization.Serializable
-import org.archguard.runner.runner.DownloadInfo
 import org.archguard.runner.serial.Scalar
 import java.io.File
 
@@ -72,12 +71,18 @@ data class ActionName(
      * action name to filename without extname: setup-0.1.0-SNAPSHOT
      */
     fun filename() = "${this.name}-${this.version}"
+
     fun filename(ext: String) = "${this.name}-${this.version}.${ext}"
 
     /**
      * for example: `actions/setup/0.1.0-SNAPSHOT/setup-0.1.0-SNAPSHOT.jar`
      */
     fun fullUrl(ext: String) = "${this.type}/${this.path()}/${this.filename()}.${ext}"
+
+    /**
+     * for example: `actions/setup.json`
+     */
+    fun metadata() = "${this.type}/${this.name}.json"
 
     /**
      * to support different OSs.

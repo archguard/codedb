@@ -16,6 +16,8 @@ dependencies {
     // HttpRequest
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.serialization.json)
+    implementation(libs.ktor.client.content.negotiation)
 
     // Logging
     implementation(libs.logging.slf4j.api)
