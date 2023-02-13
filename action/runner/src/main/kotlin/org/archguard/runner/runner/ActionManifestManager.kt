@@ -1,4 +1,4 @@
-package org.archguard.runner
+package org.archguard.runner.runner
 
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlList

@@ -1,6 +1,7 @@
 package org.archguard.runner
 
 import io.kotest.matchers.shouldBe
+import org.archguard.runner.runner.ActionManifestManager
 import org.archguard.runner.serial.Scalar
 import org.junit.jupiter.api.Test
 import java.io.File

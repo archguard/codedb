@@ -1,6 +1,7 @@
 package org.archguard.runner
 
 import io.kotest.matchers.shouldBe
+import org.archguard.runner.runner.DownloadInfo
 import org.junit.jupiter.api.Test
 import java.net.URL
 

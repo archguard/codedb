@@ -1,5 +1,7 @@
 package org.archguard.runner
 
+import org.archguard.runner.runner.ActionManager
+import org.archguard.runner.runner.DownloadInfo
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
