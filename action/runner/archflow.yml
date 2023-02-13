@@ -18,8 +18,7 @@ jobs:
 
       - uses: analyser/source-code@0.0.1
         with:
-          languages: kotlin
+          language: kotlin
           features: [ "datamap" ]
-        output: source-code.json
 
 #      - uses: linter/database@v1

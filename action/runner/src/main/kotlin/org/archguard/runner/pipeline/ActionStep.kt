@@ -35,27 +35,25 @@ data class ActionStep(
      * --key value --key2 value1 --key2 value2
      * ```
      */
-    fun toCommandLine(): String {
+    fun toCommandList(): List<String> {
         val command = mutableListOf<String>()
-        with
-            .toSortedMap(compareByDescending { it })
-            .forEach { (key, value) ->
-                when (value) {
-                    is Scalar.List -> {
-                        value.value.forEach {
-                            command.add("--$key")
-                            command.add(it.toString())
-                        }
-                    }
-
-                    else -> {
+        with.forEach { (key, value) ->
+            when (value) {
+                is Scalar.List -> {
+                    value.value.forEach {
                         command.add("--$key")
-                        command.add(value.toString())
+                        command.add(it.toString())
                     }
                 }
-            }
 
-        return command.joinToString(" ")
+                else -> {
+                    command.add("--$key")
+                    command.add(value.toString())
+                }
+            }
+        }
+
+        return command
     }
 }
 

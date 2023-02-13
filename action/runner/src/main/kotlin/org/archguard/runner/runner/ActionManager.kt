@@ -3,6 +3,7 @@ package org.archguard.runner.runner
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -20,9 +21,14 @@ import org.slf4j.LoggerFactory
 import java.io.File
 import java.net.URL
 
+private const val TIMEOUT_MILLIS = 1000 * 60 * 5L
+
 class ActionManager(val context: RunnerContext) : RunnerService() {
     private val actionManifestManager = ActionManifestManager()
     private val client = HttpClient(CIO) {
+        install(HttpTimeout) {
+            requestTimeoutMillis = TIMEOUT_MILLIS
+        }
         install(ContentNegotiation) {
             json(Json {
                 prettyPrint = true
@@ -84,7 +90,6 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
                     return@runBlocking
                 }
 
-
                 downloadByVersion(versionInfos, targetDir, downloadInfo)
             }
         } catch (e: Exception) {
@@ -93,10 +98,17 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     }
 
     private suspend fun downloadByVersion(versionInfos: List<Version>, targetDir: String, downloadInfo: DownloadInfo) {
+        val target = filepath(targetDir, downloadInfo, "jar")
+
+        if (File(target).exists()) {
+            logger.info("Action already downloaded: ${downloadInfo.actionName}")
+            return
+        }
+
         val version = versionInfos[0]
         logger.info("Start downloading action by version: $version")
 
-        val jarFile = downloadFile(URL(version.dist.pkg), filepath(targetDir, downloadInfo, "jar"))
+        val jarFile = downloadFile(URL(version.dist.pkg), target)
         logger.info("Downloaded action: ${downloadInfo.actionName} to ${jarFile.absolutePath}")
     }
 
@@ -107,7 +119,14 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
         "$targetDir${File.separator}${downloadInfo.nameOnly(ext)}"
 
     private suspend fun downloadFile(url: URL, target: String): File {
-        val httpResponse: HttpResponse = client.get(url)
+        val httpResponse: HttpResponse = client.get(url) {
+            onDownload { bytesSentTotal, contentLength ->
+                if (bytesSentTotal % (1024) == 0L) {
+                    logger.info("Downloaded ${bytesSentTotal / 1024}k of ${contentLength / 1024}k")
+                }
+            }
+        }
+
         val responseBody: ByteArray = httpResponse.body()
         val file = File(target)
         file.writeBytes(responseBody)

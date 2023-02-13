@@ -15,8 +15,8 @@ class ActionStepTest {
                 "key" to Scalar.String("value")
             )
         )
-        val command = step.toCommandLine()
+        val command = step.toCommandList()
 
-        command shouldBe "--key2 value1 --key2 value2 --key value"
+        command.joinToString { it } shouldBe "--key2, value1, --key2, value2, --key, value"
     }
 }
