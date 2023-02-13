@@ -8,7 +8,7 @@ import java.io.File
 @Serializable
 data class ActionStep(
     /**
-     * for plugin action, the uses is the plugin name.
+     * it's displayName, if you want to access actionName, please use `uses` instead
      */
     @Deprecated("use `uses` instead")
     var name: String = "",
@@ -22,7 +22,6 @@ data class ActionStep(
     var output: String = "",
     var outputDir: String = "",
 ) {
-
     /**
      * convert to command line string, for examples:
      * ```yaml

@@ -60,6 +60,8 @@ uuid = "0.6.0"
 
 kaml = "0.51.0"
 
+ktor = "2.0.3"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-scriptingJvm = { group = "org.jetbrains.kotlin", name = "kotlin-scripting-jvm", version.ref = "kotlin" }
@@ -153,6 +155,11 @@ clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt
 
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 mosaic-gradle = { module = "com.jakewharton.mosaic:mosaic-gradle-plugin", version.ref = "mosaic" }
+
+# http client
+# io.ktor:ktor-client-core:2.0.3
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 
 # -------------------------------------  multiple platform dependencies -------------------------------------
 mpp-uuid = { group = "com.benasher44", name = "uuid", version.ref = "uuid" }

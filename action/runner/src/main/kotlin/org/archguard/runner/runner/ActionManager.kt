@@ -1,7 +1,10 @@
 package org.archguard.runner.runner
 
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import kotlinx.coroutines.runBlocking
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionExecutionData
@@ -36,10 +39,10 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
         if (!pluginsDir.exists()) {
             pluginsDir.mkdirs()
         }
+
         logger.info("Plugins directory: ${pluginsDir.absolutePath}")
 
-        downloadInfos.forEach { downloadInfo ->
-            // 2. download action
+        downloadInfos.parallelStream().forEach { downloadInfo ->
             downloadAction(context, downloadInfo)
         }
     }
@@ -50,9 +53,12 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
 
     // todo: add verify for sha256
     fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
-        logger.info("Start downloading action: ${downloadInfo.actionName}")
         try {
-            val jarFile = downloadFile(downloadInfo.jarUrl, filepath(targetDir, downloadInfo, "jar"))
+            runBlocking {
+                logger.info("Start downloading action: ${downloadInfo.actionName}")
+                val jarFile = downloadFile(downloadInfo.jarUrl, filepath(targetDir, downloadInfo, "jar"))
+                logger.info("Downloaded action: ${downloadInfo.actionName} to ${jarFile.absolutePath}")
+            }
         } catch (e: Exception) {
             logger.error("Failed to download action: ${downloadInfo.actionName}", e)
         }
@@ -61,16 +67,16 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     /**
      * for examples: /tmp/plugins/checkout-0.1.0-SNAPSHOT.jar
      */
-    private fun filepath(targetDir: String, downloadInfo: DownloadInfo, extName: String) =
-        "$targetDir${File.separator}${downloadInfo.nameOnly(extName)}"
+    private fun filepath(targetDir: String, downloadInfo: DownloadInfo, ext: String) =
+        "$targetDir${File.separator}${downloadInfo.nameOnly(ext)}"
 
-    private fun downloadFile(url: URL, target: String): File {
-        url.openStream().use { input ->
-            val file = File(target)
-            file.outputStream().use { input.copyTo(it) }
-
-            return file
-        }
+    private val client = HttpClient()
+    private suspend fun downloadFile(url: URL, target: String): File {
+        val httpResponse: HttpResponse = client.get(url)
+        val responseBody: ByteArray = httpResponse.body()
+        val file = File(target)
+        file.writeBytes(responseBody)
+        return file
     }
 
     companion object {
