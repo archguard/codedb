@@ -9,13 +9,14 @@ config:
 jobs:
   backend:
     config:
-      displayName: "Backend"
-      languages: [ "java", "kotlin" ]
-      features: [ 'datamap' ]
+      displayName: Backend
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: analyser/source-code@v1
+      - uses: actions/checkout@0.1.0-SNAPSHOT
+      - uses: analyser/source-code@0.0.1
         with:
-          features: [ 'datamap' ]
-      - uses: linter/database@v1
+          languages: kotlin
+          features: [ "datamap" ]
+        output: source-code.json
+
+#      - uses: linter/database@v1

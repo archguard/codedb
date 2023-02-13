@@ -17,6 +17,10 @@ data class ActionStep(
     var uses: String = "",
     // plugin config
     var with: HashMap<String, Scalar> = hashMapOf(),
+
+    // todo: add for support
+    var output: String = "",
+    var outputDir: String = "",
 ) {
 
     /**
@@ -70,6 +74,7 @@ data class ActionName(
      */
     fun filename() = "${this.name}-${this.version}"
     fun filename(ext: String) = "${this.name}-${this.version}.${ext}"
+
     /**
      * for example: `actions/setup/0.1.0-SNAPSHOT/setup-0.1.0-SNAPSHOT.jar`
      */
