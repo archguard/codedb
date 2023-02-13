@@ -48,6 +48,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
 
     @TestOnly
     fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
+        logger.info("Start downloading action: ${downloadInfo.actionName}")
         val jarFile = downloadFile(downloadInfo.jarUrl, filepath(targetDir, downloadInfo, "jar"))
         // todo: add verify for sha256
 //        val shaFile = downloadFile(downloadInfo.sha256Url, fileOutput(targetDir, downloadInfo, ".sha256"))
@@ -57,7 +58,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
      * for examples: /tmp/plugins/checkout-0.1.0-SNAPSHOT.jar
      */
     private fun filepath(targetDir: String, downloadInfo: DownloadInfo, extName: String) =
-        "$targetDir${File.separator}${downloadInfo.filename(extName)}$"
+        "$targetDir${File.separator}${downloadInfo.nameOnly(extName)}"
 
     private fun downloadFile(url: URL, target: String): File {
         url.openStream().use { input ->
@@ -75,18 +76,17 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
 
 
 class DownloadInfo(registry: String, val actionName: ActionName) {
-
     /**
      * The URL of the action jar file.
      */
-    val jarUrl: URL by lazy { URL("$registry${actionName.fullFilepath("jar")}") }
+    val jarUrl: URL by lazy { URL("$registry${actionName.fullUrl("jar")}") }
 
     /**
      * The URL of the action sha256 file.
      */
-    val sha256Url: URL = URL("$registry${actionName.fullFilepath("sha256")}")
+    val sha256Url: URL = URL("$registry${actionName.fullUrl("sha256")}")
 
-    fun filename(ext: String) = actionName.fullFilepath(ext)
+    fun nameOnly(ext: String) = actionName.filename(ext)
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(DownloadInfo::class.java)

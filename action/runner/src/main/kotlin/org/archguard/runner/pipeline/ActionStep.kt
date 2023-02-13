@@ -2,6 +2,7 @@ package org.archguard.runner.pipeline
 
 import kotlinx.serialization.Serializable
 import org.archguard.runner.serial.Scalar
+import java.io.File
 
 @Serializable
 data class ActionStep(
@@ -63,12 +64,16 @@ data class ActionName(
      * action name to filename without extname: setup-0.1.0-SNAPSHOT
      */
     fun filename() = "${this.name}-${this.version}"
-
+    fun filename(ext: String) = "${this.name}-${this.version}.${ext}"
+    /**
+     * for example: `actions/setup/0.1.0-SNAPSHOT/setup-0.1.0-SNAPSHOT.jar`
+     */
+    fun fullUrl(ext: String) = "${this.type}/${this.path()}/${this.filename()}.${ext}"
 
     /**
-    for example: `actions/setup/0.1.0-SNAPSHOT/setup-0.1.0-SNAPSHOT.jar`
+     * to support different OSs.
      */
-    fun fullFilepath(ext: String) = "${this.type}/${this.path()}/${this.filename()}.${ext}"
+    fun fullpath(ext: String) = "${this.type}${File.separator}${this.path()}${File.separator}${this.filename()}.${ext}"
 
     companion object {
         private const val NAME_REGEX = "([a-zA-Z]+)/([a-zA-Z]+)@([a-zA-Z0-9.-]+)"
