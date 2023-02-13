@@ -1,10 +1,11 @@
 package org.archguard.runner.runner
 
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionExecutionData
 import org.archguard.runner.pipeline.ActionName
-import org.jetbrains.annotations.TestOnly
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -24,7 +25,11 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     fun prepareActionsAsync(actionData: ActionExecutionData) {
         // 1. create download information
         val downloadInfos: List<DownloadInfo> =
-            actionData.steps.mapNotNull { DownloadInfo.from(context.registry, it.name) }
+            actionData.steps.mapNotNull {
+                DownloadInfo.from(context.registry, it.uses)
+            }
+
+        logger.info("Download actions: ${downloadInfos.map { it.actionName }}")
 
         // 2. prepare plugins dir
         val pluginsDir = File(context.pluginDirectory)
@@ -33,7 +38,6 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
         }
         logger.info("Plugins directory: ${pluginsDir.absolutePath}")
 
-
         downloadInfos.forEach { downloadInfo ->
             // 2. download action
             downloadAction(context, downloadInfo)
@@ -41,17 +45,17 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     }
 
     private fun downloadAction(context: RunnerContext, downloadInfo: DownloadInfo) {
-        val targetDir = context.pluginDirectory
-
-        executeDownload(downloadInfo, targetDir)
+        executeDownload(downloadInfo, context.pluginDirectory)
     }
 
-    @TestOnly
+    // todo: add verify for sha256
     fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
         logger.info("Start downloading action: ${downloadInfo.actionName}")
-        val jarFile = downloadFile(downloadInfo.jarUrl, filepath(targetDir, downloadInfo, "jar"))
-        // todo: add verify for sha256
-//        val shaFile = downloadFile(downloadInfo.sha256Url, fileOutput(targetDir, downloadInfo, ".sha256"))
+        try {
+            val jarFile = downloadFile(downloadInfo.jarUrl, filepath(targetDir, downloadInfo, "jar"))
+        } catch (e: Exception) {
+            logger.error("Failed to download action: ${downloadInfo.actionName}", e)
+        }
     }
 
     /**
@@ -102,7 +106,7 @@ class DownloadInfo(registry: String, val actionName: ActionName) {
                 return null
             }
 
-            val actionName = ActionName.from(actionNameString)
+            val actionName = ActionName.from(actionNameString)!!
             return DownloadInfo(registry, actionName)
         }
     }

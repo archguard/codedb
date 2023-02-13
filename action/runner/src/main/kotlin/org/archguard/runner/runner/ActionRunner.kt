@@ -1,6 +1,7 @@
 package org.archguard.runner.runner
 
 import org.archguard.runner.context.RunnerContext
+import org.archguard.runner.handler.Handler
 import org.archguard.runner.handler.HandlerFactory
 
 class ActionRunner: RunnerService() {
@@ -15,10 +16,15 @@ class ActionRunner: RunnerService() {
 
         // 3. create handler
         // 4. prepare actions
-        val handlers = definitionData.jobs.map { job ->
+        val handlers: List<Handler> = definitionData.jobs.flatMap { job ->
+            val actionData = job.value
+
+            actionManager.prepareActionsAsync(actionData)
+
             // todo: move to handler ??
-            actionManager.prepareActionsAsync(job.value)
-            HandlerFactory.create(job.value)
+            actionData.steps.map { step ->
+                HandlerFactory.create(step, context)
+            }
         }
 
         handlers.forEach { handler ->
