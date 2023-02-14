@@ -1,8 +1,10 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     java
+    application
     alias(libs.plugins.jvm)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.shadow)
 
     kotlin("kapt")
 }
@@ -24,11 +26,28 @@ dependencies {
 
     compileOnly(libs.auto.value.annotations)
     kapt(libs.auto.value)
-//    implementation(libs.auto.value)
-
 
     implementation(libs.jcommander)
 
     testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)
+}
+
+application {
+    mainClass.set("org.archguard.codedb.coverage.MainKt")
+}
+
+tasks {
+    shadowJar {
+
+        manifest {
+            attributes(Pair("Main-Class", "org.archguard.codedb.coverage.MainKt"))
+        }
+        // minimize()
+        dependencies {
+            exclude(dependency("org.junit.jupiter:.*:.*"))
+            exclude(dependency("org.junit:.*:.*"))
+            exclude(dependency("junit:.*:.*"))
+        }
+    }
 }
