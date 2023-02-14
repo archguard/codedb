@@ -1,7 +1,7 @@
 name: "ArchGuard 3.0 - CodeDB"
 env:
-  plugin:
-    registry: "https://plugins.archguard.org/"
+  registry:
+    url: "https://registry.archguard.org/"
   server:
     url: "http://localhost:8084"
 jobs:

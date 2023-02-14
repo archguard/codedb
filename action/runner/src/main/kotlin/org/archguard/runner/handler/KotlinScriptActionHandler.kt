@@ -5,7 +5,10 @@ import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionStep
 import java.io.File
 
-class KotlinScriptActionHandler(private val step: ActionStep, val context: RunnerContext) : Handler {
+class KotlinScriptActionHandler(
+    private val step: ActionStep, val context: RunnerContext, val name: String
+) : Handler {
+    override fun getDisplayName(): String = name
     override fun runSync() {
         val file = File(step.run)
         if (!file.exists()) {

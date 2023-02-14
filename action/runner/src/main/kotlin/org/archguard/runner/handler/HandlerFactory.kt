@@ -7,13 +7,13 @@ class HandlerFactory {
     companion object {
         fun create(data: ActionStep, context: RunnerContext): Handler {
             if (data.run.isEmpty()) {
-                return CompositeActionHandler(data, context)
+                return CompositeActionHandler(data, context, data.uses)
             }
 
             return when (data.run.scriptType()) {
-                ScriptType.KotlinScriptFile -> KotlinScriptActionHandler(data, context)
-                ScriptType.Shell -> CommandActionHandler(data, context)
-                ScriptType.ShellScriptFile -> ShellScriptActionHandler(data, context)
+                ScriptType.KotlinScriptFile -> KotlinScriptActionHandler(data, context, data.name)
+                ScriptType.Shell -> CommandActionHandler(data, context, data.name)
+                ScriptType.ShellScriptFile -> ShellScriptActionHandler(data, context, data.name)
             }
         }
     }

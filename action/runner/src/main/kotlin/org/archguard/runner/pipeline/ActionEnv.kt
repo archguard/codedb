@@ -15,14 +15,15 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ActionEnv(
     var metric: Boolean = false,
-    val plugin: PluginConfig = PluginConfig(),
+    val registry: RegistryConfig = RegistryConfig(),
     val server: ActionServerConfig = ActionServerConfig()
 )
 
 @Serializable
-data class PluginConfig(
+data class RegistryConfig(
     // string representation of the plugin registry
-    val registry: String = "",
+    val url: String = "",
+    val local: Boolean = false,
 )
 
 @Serializable

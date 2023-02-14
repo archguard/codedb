@@ -2,8 +2,9 @@ name: ArchGuard 3.0 - CodeDB
 on: [ push ]
 
 env:
-  plugin:
-    registry: https://registry.archguard.org/
+  registry:
+    url: https://registry.archguard.org/
+    local: true
   server:
     url: http://localhost:8084
 

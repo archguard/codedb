@@ -8,10 +8,10 @@ import java.io.File
  * Executes a command and returns the output.
  */
 class Command {
-    fun run(args: List<String>, workdir: String): Int {
-        val processBuilder = ProcessBuilder(args)
+    fun execJar(args: List<String>, workdir: String, options: ExecOptions = ExecOptions(cwd = workdir)): Int {
+        val processBuilder = ProcessBuilder("java", "-jar", *args.toTypedArray())
 
-        return doExecute(processBuilder, ExecOptions(cwd = workdir))
+        return doExecute(processBuilder, options)
     }
 
     fun exec(commandLine: String, args: List<String>, options: ExecOptions): Int {
@@ -65,7 +65,7 @@ class ExecOptions(
 
 
 interface ExecListeners {
-    fun stdout(data: String)  {}
+    fun stdout(data: String) {}
     fun stderr(data: String) {}
     fun stdline(data: String) {}
     fun errline(data: String) {}
