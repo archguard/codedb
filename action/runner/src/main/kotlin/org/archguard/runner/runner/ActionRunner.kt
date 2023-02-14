@@ -13,6 +13,7 @@ class ActionRunner: RunnerService() {
         // 1. load action definition
         val definitionData = actionManager.loadActions()
         // 2. build context
+        context.registry = definitionData.env.plugin.registry
 
         // 3. create handler
         // 4. prepare actions

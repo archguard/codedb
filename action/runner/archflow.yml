@@ -1,6 +1,7 @@
 name: ArchGuard 3.0 - CodeDB
 on: [ push ]
-config:
+
+env:
   plugin:
     registry: https://plugins.archguard.org/
   server:
@@ -21,6 +22,6 @@ jobs:
           language: kotlin
           features: [ "datamap" ]
           output: ['http', 'json']
-          server-url: ${{ config.server.url }}
+          server-url: ${{ env.server.url }}
 
 #      - uses: linter/database@v1
