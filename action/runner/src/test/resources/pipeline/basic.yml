@@ -27,7 +27,6 @@ jobs:
 
     config:
       displayName: "Frontend"
-      languages: [ "javascript" ]
 
     steps:
       - uses: actions/checkout@v3
