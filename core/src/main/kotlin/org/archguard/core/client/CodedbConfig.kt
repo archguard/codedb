@@ -13,10 +13,6 @@ class CodedbConfig {
     val projectRoot: String = "."
 
     companion object {
-        fun fromYaml(yaml: String): CodedbConfig {
-            // todo: serialize from yaml
-            return CodedbConfig()
-        }
     }
 }
 
