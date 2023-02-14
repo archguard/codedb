@@ -31,16 +31,16 @@ class Command {
 
         val exitCode = process.waitFor()
 
+        process.inputStream.bufferedReader().use { it ->
+            it.forEachLine { line ->
+                options.listeners.stdout(line)
+            }
+        }
+
         if (exitCode != 0 && !options.ignoreReturnCode) {
-            process.inputStream.bufferedReader().use { it ->
+            process.errorStream.bufferedReader().use {
                 it.forEachLine { line ->
                     options.listeners.stderr(line)
-                }
-            }
-        } else {
-            process.inputStream.bufferedReader().use { it ->
-                it.forEachLine { line ->
-                    options.listeners.stdout(line)
                 }
             }
         }

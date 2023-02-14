@@ -1,6 +1,5 @@
 package org.archguard.runner.handler
 
-import org.archguard.action.exec.Command
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionStep
 
