@@ -16,7 +16,7 @@ class Command {
 
     fun exec(commandLine: String, args: List<String>, options: ExecOptions): Int {
         if (!options.silent) {
-            logger.info("Executing: $commandLine ${args.joinToString(" ")} in ${options.cwd}")
+            logger.info("Executing: $commandLine ${args.joinToString(" ")}")
         }
 
         val processBuilder = ProcessBuilder(commandLine, *args.toTypedArray())

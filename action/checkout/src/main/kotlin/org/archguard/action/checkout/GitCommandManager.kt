@@ -20,7 +20,7 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
      * Initializes the git repository.
      */
     fun init(): GitOutput {
-        return execGit(listOf("init", workingDirectory))
+        return execGit(listOf("init", "."))
     }
 
     fun remoteAdd(remoteName: String, remoteUrl: String) {
@@ -71,11 +71,13 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
 
     fun checkout(ref: String, startPoint: String? = null): GitOutput {
         val args = mutableListOf("checkout", "--progress", "--force")
+
         if (startPoint != null) {
             args.addAll(listOf("-B", ref, startPoint))
         } else {
             args.add(ref)
         }
+
         return execGit(args)
     }
 
@@ -147,10 +149,12 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
 
         if (output != null) {
             // Satisfy compiler, will always be set
-            for (line in output!!.stdout.trim().split("\n")) {
-                if (line.startsWith("ref:") || line.endsWith("HEAD")) {
+            println("getDefaultBranch output: $output")
+            for (splitLine in output!!.stdout.trim().split("\n")) {
+                val line = splitLine.trim()
+                if (line.startsWith("ref:") && line.endsWith("HEAD")) {
                     return line
-                        .substring("ref:".length, line.length - "ref:".length - "HEAD".length)
+                        .substring("ref:".length, line.length - "HEAD".length)
                         .trim()
                 }
             }
@@ -217,6 +221,7 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
         }
 
         val stdout = mutableListOf<String>()
+        val stderr = mutableListOf<String>()
         val options = ExecOptions(
             cwd = workingDirectory,
             env = env,
@@ -226,11 +231,18 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
                 override fun stdout(data: String) {
                     stdout.add(data)
                 }
+
+                override fun stderr(data: String) {
+                    stderr += data
+                }
             }
         )
 
         result.exitCode = exec.exec(gitPath, args, options)
-        result.stdout = stdout.joinToString("")
+        result.stdout = stdout.joinToString("\n")
+
+//        logger.info(result.stdout)
+//        logger.info(stderr.joinToString(""))
 
         return result
     }

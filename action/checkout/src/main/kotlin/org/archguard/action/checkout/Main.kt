@@ -5,7 +5,7 @@ import org.archguard.action.io.FileExt
 import java.io.File
 
 
-val logger = org.slf4j.LoggerFactory.getLogger("checkout")
+val logger = org.slf4j.LoggerFactory.getLogger("CheckoutAction")
 
 fun main(args: Array<String>) {
     // println args
