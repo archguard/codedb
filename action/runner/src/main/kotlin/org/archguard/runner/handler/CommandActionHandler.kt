@@ -7,7 +7,7 @@ import java.io.File
 
 class CommandActionHandler(private val step: ActionStep, val context: RunnerContext) : Handler {
     override fun runSync() {
-        Command().run(step.run.split("\\s"), File(context.pluginDirectory))
+        Command().run(step.run.split("\\s"), context.pluginDirectory)
     }
 }
 

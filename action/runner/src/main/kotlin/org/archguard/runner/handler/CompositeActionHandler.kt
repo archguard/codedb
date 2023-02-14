@@ -16,9 +16,8 @@ class CompositeActionHandler(
         execJavaJar(File(pluginPath).absolutePath)
     }
 
-    // exec: `java -jar plugin.jar`
     private fun execJavaJar(jar: String) {
         val args: List<String> = listOf("java", "-jar", jar) + step.toCommandList(context.actionEnv)
-        Command().run(args, File(context.pluginDirectory))
+        Command().run(args, context.pluginDirectory)
     }
 }

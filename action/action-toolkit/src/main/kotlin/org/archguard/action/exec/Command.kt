@@ -8,22 +8,10 @@ import java.io.File
  * Executes a command and returns the output.
  */
 class Command {
-    fun run(args: List<String>, workdir: File): String {
+    fun run(args: List<String>, workdir: String): Int {
         val processBuilder = ProcessBuilder(args)
 
-        val process = processBuilder
-            .directory(workdir)
-            .inheritIO()
-            .start()
-
-        val text = process.inputStream.bufferedReader().readText()
-
-        val exitCode = process.waitFor()
-        if (exitCode != 0) {
-            throw Exception("Execution failed with exit code $exitCode, command: $args")
-        }
-
-        return text
+        return doExecute(processBuilder, ExecOptions(cwd = workdir))
     }
 
     fun exec(commandLine: String, args: List<String>, options: ExecOptions): Int {
@@ -33,6 +21,10 @@ class Command {
 
         val processBuilder = ProcessBuilder(commandLine, *args.toTypedArray())
 
+        return doExecute(processBuilder, options)
+    }
+
+    private fun doExecute(processBuilder: ProcessBuilder, options: ExecOptions): Int {
         val process = processBuilder
             .directory(File(options.cwd))
             .start()

@@ -11,6 +11,6 @@ class ShellScriptActionHandler(
 ): Handler {
     override fun runSync() {
         val args: List<String> = listOf("sh", "-c", step.uses) + step.toCommandList(context.actionEnv)
-        Command().run(args, File(context.pluginDirectory))
+        Command().run(args, context.pluginDirectory)
     }
 }
