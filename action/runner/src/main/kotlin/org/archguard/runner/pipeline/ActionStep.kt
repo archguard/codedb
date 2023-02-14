@@ -40,13 +40,13 @@ data class ActionStep(
             when (value) {
                 is Scalar.List -> {
                     value.value.forEach {
-                        command.add("--${key.lowerDashCase()}")
+                        command.add("--$key")
                         command.add(it.toString())
                     }
                 }
 
                 else -> {
-                    command.add("--${key.lowerDashCase()}")
+                    command.add("--$key")
                     command.add(value.toString())
                 }
             }

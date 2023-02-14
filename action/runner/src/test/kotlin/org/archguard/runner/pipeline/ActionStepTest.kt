@@ -26,7 +26,7 @@ class ActionStepTest {
             name = "test",
             uses = "test",
             with = hashMapOf(
-                "serverUrl" to Scalar.String("value")
+                "server-url" to Scalar.String("value")
             )
         )
         val command = step.toCommandList()
