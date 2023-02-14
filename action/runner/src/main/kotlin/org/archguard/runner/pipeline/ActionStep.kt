@@ -34,25 +34,45 @@ data class ActionStep(
      * --key value --key2 value1 --key2 value2
      * ```
      */
-    fun toCommandList(): List<String> {
+    fun toCommandList(config: ActionConfig = ActionConfig()): List<String> {
         val command = mutableListOf<String>()
         with.forEach { (key, value) ->
             when (value) {
                 is Scalar.List -> {
                     value.value.forEach {
                         command.add("--$key")
-                        command.add(it.toString())
+                        command.add(replaceVariable(it, config))
                     }
                 }
 
                 else -> {
                     command.add("--$key")
-                    command.add(value.toString())
+                    command.add(replaceVariable(value, config))
                 }
             }
         }
 
         return command
+    }
+
+    /**
+     * replace variable with environment variable
+     */
+    private fun replaceVariable(value: Scalar, config: ActionConfig): String {
+        val originValue = value.toString()
+
+        val prefix = "\${{"
+        val suffix = "}}"
+        if (originValue.startsWith(prefix) && originValue.endsWith(suffix)) {
+            val variable = originValue.substring(prefix.length, originValue.length - suffix.length)
+            return when (variable.trim()) {
+                "config.server.url" -> config.server.url
+                else -> originValue
+            }
+        }
+
+
+        return originValue
     }
 }
 

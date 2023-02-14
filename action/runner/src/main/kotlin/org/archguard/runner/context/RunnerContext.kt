@@ -1,5 +1,6 @@
 package org.archguard.runner.context
 
+import org.archguard.runner.pipeline.ActionConfig
 import java.io.File
 
 const val DEFAULT_MANIFEST_PATH: String = "archflow.yml"
@@ -13,6 +14,9 @@ open class RunnerContext: EnvironmentContext, ActionContext() {
     val pluginDirectory: String = "plugins"
     var manifestYmlPath: String = DEFAULT_MANIFEST_PATH
     var workingDirectory: File = File(".")
+
+    // share in context
+    val actionConfig: ActionConfig = ActionConfig()
 
     override fun getRuntimeEnvironmentVariables(): Map<String, String> {
         return mapOf()

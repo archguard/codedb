@@ -17,7 +17,7 @@ class CompositeActionHandler(
 
     // exec: `java -jar plugin.jar`
     private fun execJavaJar(jar: String) {
-        val args: List<String> = listOf("java", "-jar", jar) + step.toCommandList()
+        val args: List<String> = listOf("java", "-jar", jar) + step.toCommandList(context.actionConfig)
         val processBuilder = ProcessBuilder(args)
 
         val process = processBuilder

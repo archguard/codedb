@@ -33,4 +33,18 @@ class ActionStepTest {
 
         command.joinToString(" ") shouldBe "--server-url value"
     }
+
+    @Test
+    fun `should update variable`() {
+        val step = ActionStep(
+            name = "test",
+            uses = "test",
+            with = hashMapOf(
+                "server-url" to Scalar.String("\${{ config.server.url }}")
+            )
+        )
+        val command = step.toCommandList(ActionConfig(server = ActionServerConfig(url = "http://localhost:8084")))
+
+        command.joinToString(" ") shouldBe "--server-url http://localhost:8084"
+    }
 }

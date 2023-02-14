@@ -14,8 +14,6 @@ jobs:
   backend:
     config:
       displayName: "Backend"
-      languages: [ "java", "kotlin" ]
-      features: [ 'datamap' ]
 
     steps:
       - uses: actions/checkout@v3

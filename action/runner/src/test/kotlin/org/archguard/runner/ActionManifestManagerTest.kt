@@ -28,7 +28,6 @@ class ActionManifestManagerTest {
 
         val firstJob = jobs["backend"]!!
         firstJob.config.displayName shouldBe "Backend"
-        firstJob.config.languages shouldBe listOf("java", "kotlin")
 
         firstJob.steps.size shouldBe 4
         firstJob.steps[0].uses shouldBe "actions/checkout@v3"
