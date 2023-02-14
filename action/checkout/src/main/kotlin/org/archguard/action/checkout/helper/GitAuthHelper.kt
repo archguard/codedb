@@ -3,12 +3,14 @@ package org.archguard.action.checkout.helper
 import org.archguard.action.checkout.GitCommandManager
 import org.archguard.action.checkout.GitSourceSettings
 import java.io.File
+import java.lang.System.*
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.util.*
 
 const val SSH_COMMAND_KEY = "core.sshCommand"
+val IS_WINDOWS: Boolean = getProperty("os.name").startsWith("Windows")
 
 class GitAuthHelper(
     val git: GitCommandManager,
@@ -36,7 +38,7 @@ class GitAuthHelper(
         }
 
         // Create a temp home directory
-        val runnerTemp = System.getenv("RUNNER_TEMP") ?: ""
+        val runnerTemp = getenv("RUNNER_TEMP") ?: ""
         assert(runnerTemp.isNotEmpty()) { "RUNNER_TEMP is not defined" }
 
         val uniqueId = UUID.randomUUID().toString()
@@ -44,7 +46,7 @@ class GitAuthHelper(
         File(temporaryHomePath).mkdirs()
 
         // Copy the global git config
-        val gitConfigPath = "${System.getenv("HOME") ?: System.getProperty("user.home")}/.gitconfig"
+        val gitConfigPath = "${getenv("HOME") ?: getProperty("user.home")}/.gitconfig"
         val newGitConfigPath = "$temporaryHomePath/.gitconfig"
         val configExists = File(gitConfigPath).exists()
         if (configExists) {
@@ -61,12 +63,26 @@ class GitAuthHelper(
         return newGitConfigPath
     }
 
+    fun removeGlobalConfig() {
+        if (temporaryHomePath.isNotEmpty()) {
+            println("Unsetting HOME override")
+            git.removeEnvironmentVariable("HOME")
+            File(temporaryHomePath).deleteRecursively()
+        }
+    }
+
     fun configureAuth() {
         removeSsh()
         removeToken()
 
-//    configureSsh()
-//    configureToken()
+//        configureSsh()
+//        configureToken()
+    }
+
+    fun configureSsh() {
+        if (settings.sshKey.isEmpty()) {
+            return
+        }
     }
 
     fun removeSsh() {

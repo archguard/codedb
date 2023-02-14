@@ -8,6 +8,10 @@ plugins {
 dependencies {
     implementation(projects.action.actionToolkit)
 
+    // Logging
+    implementation(libs.logging.slf4j.api)
+    implementation(libs.logging.logback.classic)
+
     testImplementation(libs.bundles.test)
 }
 

@@ -5,7 +5,7 @@ import org.archguard.action.exec.ExecListeners
 import org.archguard.action.exec.ExecOptions
 import java.io.File
 
-class GitCommandManager {
+class GitCommandManager(private var workingDirectory: String = ".", private var lfs: Boolean = false) {
     private val gitEnv: MutableMap<String, String> = mutableMapOf(
         "GIT_TERMINAL_PROMPT" to "0", // Disable git prompt
         "GCM_INTERACTIVE" to "Never" // Disable prompting for git credential manager
@@ -13,17 +13,18 @@ class GitCommandManager {
 
     private var gitPath = "git"
 
-    private var lfs = false
-
-    private var workingDirectory = "."
-
     private val exec = Command()
+
 
     /**
      * Initializes the git repository.
      */
     fun init(): GitOutput {
         return execGit(listOf("init", workingDirectory))
+    }
+
+    fun remoteAdd(remoteName: String, remoteUrl: String) {
+        execGit(listOf("remote", "add", remoteName, remoteUrl))
     }
 
     fun branchDelete(remote: Boolean, branch: String): GitOutput {
@@ -88,13 +89,27 @@ class GitCommandManager {
         if (add) {
             args.add("--add")
         }
+
         args.addAll(listOf(configKey, configValue))
         return execGit(args)
     }
 
+    fun tryDisableAutomaticGarbageCollection(): Boolean {
+        val output = execGit(listOf("config", "--local", "gc.auto", "0"), true)
+        return output.exitCode == 0
+    }
+
     fun configExists(configKey: String, globalConfig: Boolean = false): Boolean {
         val pattern = Regex.escape(configKey)
-        val output = execGit(listOf("config", if (globalConfig) "--global" else "--local", "--name-only", "--get-regexp", pattern), true)
+        val output = execGit(
+            listOf(
+                "config",
+                if (globalConfig) "--global" else "--local",
+                "--name-only",
+                "--get-regexp",
+                pattern
+            ), true
+        )
         return output.exitCode == 0
     }
 
@@ -225,8 +240,18 @@ class GitCommandManager {
     }
 
     fun tryConfigUnset(configKey: String, globalConfig: Boolean = false): Boolean {
-        val output = execGit(listOf("config", if (globalConfig) "--global" else "--local", "--unset-all", configKey), true)
+        val output =
+            execGit(listOf("config", if (globalConfig) "--global" else "--local", "--unset-all", configKey), true)
         return output.exitCode == 0
+    }
+
+    fun tagExists(ref: String): Boolean {
+        val output = execGit(listOf("tag", "--list", ref))
+        return output.stdout.trim().isNotEmpty()
+    }
+
+    fun removeEnvironmentVariable(name: String) {
+        gitEnv.remove(name)
     }
 }
 

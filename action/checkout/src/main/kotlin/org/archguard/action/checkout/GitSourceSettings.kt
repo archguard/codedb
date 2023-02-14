@@ -6,11 +6,13 @@ class GitSourceSettings(
     val repository: String,
     val branch: String = "master",
     val serverSide: Boolean = false,
-    val ref: String = "refs/heads/$branch",
-    val authToken: String = "",
+    var ref: String = "refs/heads/$branch",
+    val token: String = "",
     val sshKey: String = "",
 ) {
-
+    val fetchDepth: Int = 0
+    val nestedSubmodules: Boolean = false
+    val commit: String = ""
     val repositoryPath: String get() = repository.substringAfterLast("/")
 
     companion object {
@@ -21,7 +23,7 @@ class GitSourceSettings(
                 repository = argsMap["--repository"] ?: "",
                 branch = argsMap["--branch"] ?: "master",
                 ref = argsMap["--ref"] ?: "refs/heads/master",
-                authToken = argsMap["--auth-token"] ?: "",
+                token = argsMap["--token"] ?: "",
                 sshKey = argsMap["--ssh-key"] ?: "",
             )
         }
