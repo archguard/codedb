@@ -6,15 +6,15 @@ import org.archguard.runner.pipeline.ActionStep
 class HandlerFactory {
     companion object {
         fun create(data: ActionStep, context: RunnerContext): Handler {
-            if (data.run.isNotEmpty()) {
-                when (data.run.scriptType()) {
-                    ScriptType.KotlinScriptFile -> return KotlinScriptActionHandler(data, context)
-                    ScriptType.Shell -> return CommandActionHandler(data, context)
-                    ScriptType.ShellScriptFile -> return ShellScriptActionHandler(data, context)
-                }
+            if (data.run.isEmpty()) {
+                return CompositeActionHandler(data, context)
             }
-            // todo: add more for support
-            return CompositeActionHandler(data, context)
+
+            return when (data.run.scriptType()) {
+                ScriptType.KotlinScriptFile -> KotlinScriptActionHandler(data, context)
+                ScriptType.Shell -> CommandActionHandler(data, context)
+                ScriptType.ShellScriptFile -> ShellScriptActionHandler(data, context)
+            }
         }
     }
 }
