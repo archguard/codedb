@@ -17,6 +17,9 @@ class ActionManifestManagerTest {
 
         val jobs = actionManifest.jobs
         jobs.size shouldBe 2
+
+        val sourceCodeAction = jobs["backend"]!!.steps[1]
+        sourceCodeAction.with["server-url"] shouldBe Scalar.String("http://localhost:8084")
     }
 
     @Test

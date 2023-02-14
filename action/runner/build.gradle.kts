@@ -7,10 +7,10 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.clikt)
-
     implementation(projects.core)
+    implementation(projects.action.actionToolkit)
 
+    implementation(libs.clikt)
     implementation(libs.serialization.json)
 
     // HttpRequest

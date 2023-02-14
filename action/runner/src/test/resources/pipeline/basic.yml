@@ -20,6 +20,7 @@ jobs:
       - uses: analyser/source-code@v1
         with:
           features: [ 'datamap' ]
+          server-url: ${{ env.server.url }}
       - uses: linter/database@v1
       - uses: analyser/coverage@v1
 

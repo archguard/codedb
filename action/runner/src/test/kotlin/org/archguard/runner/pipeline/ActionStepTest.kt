@@ -40,7 +40,7 @@ class ActionStepTest {
             name = "test",
             uses = "test",
             with = hashMapOf(
-                "server-url" to Scalar.String("\${{ config.server.url }}")
+                "server-url" to Scalar.String("\${{ env.server.url }}")
             )
         )
         val command = step.toCommandList(ActionEnv(server = ActionServerConfig(url = "http://localhost:8084")))

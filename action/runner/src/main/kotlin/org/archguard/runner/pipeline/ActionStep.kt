@@ -41,89 +41,18 @@ data class ActionStep(
                 is Scalar.List -> {
                     value.value.forEach {
                         command.add("--$key")
-                        command.add(replaceVariable(it, config))
+                        command.add(it.variable(config))
                     }
                 }
 
                 else -> {
                     command.add("--$key")
-                    command.add(replaceVariable(value, config))
+                    command.add(value.variable(config))
                 }
             }
         }
 
         return command
     }
-
-    /**
-     * replace variable with environment variable
-     */
-    private fun replaceVariable(value: Scalar, config: ActionEnv): String {
-        val originValue = value.toString()
-
-        val prefix = "\${{"
-        val suffix = "}}"
-        if (originValue.startsWith(prefix) && originValue.endsWith(suffix)) {
-            val variable = originValue.substring(prefix.length, originValue.length - suffix.length)
-            return when (variable.trim()) {
-                "config.server.url" -> config.server.url
-                else -> originValue
-            }
-        }
-
-
-        return originValue
-    }
 }
 
-private fun String.lowerDashCase(vararg ignore: Char): String {
-    return formatLowerCase(this, '-', ignore)
-}
-
-private fun formatLowerCase(input: String, separator: Char, ignore: CharArray) =
-    formatCase(input, separator, ignore, false)
-
-/**
- * Unlicense license
- * based on https://github.com/Fleshgrinder/kotlin-case-format
- */
-private fun formatCase(input: String, separator: Char, ignore: CharArray, upperCase: Boolean) =
-    if (input.isEmpty()) input else StringBuilder(input.length).also {
-        var seenSeparator = true
-        var seenUpperCase = false
-
-        input.forEach { c ->
-            when (c) {
-                in ignore -> {
-                    it.append(c)
-                    seenSeparator = true
-                    seenUpperCase = false
-                }
-
-                in '0'..'9' -> {
-                    it.append(c)
-                    seenSeparator = false
-                    seenUpperCase = false
-                }
-
-                in 'a'..'z' -> {
-                    it.append(if (upperCase) c.toUpperCase() else c)
-                    seenSeparator = false
-                    seenUpperCase = false
-                }
-
-                in 'A'..'Z' -> {
-                    if (!seenSeparator && !seenUpperCase) it.append(separator)
-                    it.append(if (upperCase) c else c.toLowerCase())
-                    seenSeparator = false
-                    seenUpperCase = true
-                }
-
-                else -> {
-                    if (!seenSeparator || !seenUpperCase) it.append(separator)
-                    seenSeparator = true
-                    seenUpperCase = false
-                }
-            }
-        }
-    }.toString()

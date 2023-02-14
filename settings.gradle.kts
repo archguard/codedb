@@ -37,6 +37,7 @@ include(":workflow-lib:task-core")
 include(":workflow-lib:repl")
 
 include(":action:runner")
+include(":action:action-toolkit")
 
 include(":action:checkout")
 include(":action:coverage")
