@@ -27,3 +27,8 @@ jobs:
           path: "."
 
 #      - uses: linter/database@v1
+#      - used: metric/oo@v1
+#      - used: metric/complexity@v1
+
+# for translation custom rules
+#      - used: factor/sonarqube@v1

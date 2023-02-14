@@ -13,8 +13,6 @@ import org.slf4j.LoggerFactory
 import java.io.File
 import java.net.URL
 
-private const val TIMEOUT_MILLIS = 1000 * 60 * 5L
-
 class ActionManager(val context: RunnerContext) : RunnerService() {
     private val actionManifestManager = ActionManifestManager()
     private val client = HttpClientWrapper()
@@ -25,7 +23,6 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     }
 
     /**
-     * todo: make api to sync and cached
      * Prepare actions for execution, this will download the action and prepare the environment.
      */
     fun prepareActionsAsync(actionData: ActionExecutionData) {

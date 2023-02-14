@@ -5,7 +5,6 @@ rootProject.name = "CodeDB"
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        // for CLUI
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
@@ -41,9 +40,3 @@ include(":action:action-toolkit")
 
 include(":action:checkout")
 include(":action:coverage")
-
-//fun libSubproject(name: String) = workflow(name, "workflow-lib/")
-//fun workflow(name: String, parentPath: String) {
-//    include(name)
-//    project(":$name").projectDir = file("$parentPath$name")
-//}
