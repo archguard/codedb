@@ -11,7 +11,6 @@ class ShellScriptActionHandler(
 ) : Handler {
     override fun getDisplayName(): String = name
     override fun runSync() {
-        val args: List<String> = listOf("sh", "-c", step.uses) + step.toCommandList(context.actionEnv)
-        Command().execJar(args, context.pluginDirectory)
+
     }
 }

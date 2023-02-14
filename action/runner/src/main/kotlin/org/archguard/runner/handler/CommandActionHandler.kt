@@ -12,7 +12,7 @@ class CommandActionHandler(
     override fun getDisplayName(): String = name
 
     override fun runSync() {
-        Command().execJar(step.run.split("\\s"), context.pluginDirectory)
+
     }
 }
 
