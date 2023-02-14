@@ -20,10 +20,8 @@ include(":server")
 // TODO: spike for core usage
  include(":core")
 
-include(":feeder:basic:gitignore")
-include(":feeder:basic:walkdir")
-
-include(":feeder:analyser:coverage")
+include(":submodules:gitignore")
+include(":submodules:walkdir")
 
 include(":client:client-api")
 include(":client:codedb-cli")
@@ -38,8 +36,10 @@ include(":workflow-lib:fitness-engine")
 include(":workflow-lib:task-core")
 include(":workflow-lib:repl")
 
-include(":action:checkout")
 include(":action:runner")
+
+include(":action:checkout")
+include(":action:coverage")
 
 //fun libSubproject(name: String) = workflow(name, "workflow-lib/")
 //fun workflow(name: String, parentPath: String) {

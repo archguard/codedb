@@ -15,7 +15,7 @@ class GitDirectoryWalkerTest {
 
     @BeforeEach
     fun setUp() {
-        val rootDir = Paths.get("").toAbsolutePath().parent.parent.parent.toString()
+        val rootDir = Paths.get("").toAbsolutePath().parent.parent.toString()
         walker = GitDirectoryWalker(rootDir)
     }
 
