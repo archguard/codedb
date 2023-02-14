@@ -101,6 +101,7 @@ logging-logback-classic = { group = "ch.qos.logback", name = "logback-classic", 
 # DSL
 jupyter-api = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-api", version.ref = "jupyterApi" }
 jupyter-kernel = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-kernel", version.ref = "jupyterApi" }
+jupyter-shared-compiler = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-shared-compiler", version.ref = "jupyterApi" }
 
 # QueryDSL
 querydsl-core = { group = "com.querydsl", name = "querydsl-core", version.ref = "querydsl" }

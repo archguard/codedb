@@ -1,11 +1,14 @@
 package org.archguard.codedb.repl
 
+import kotlinx.serialization.Serializable
 import org.jetbrains.kotlinx.jupyter.EvalRequestData
 import org.jetbrains.kotlinx.jupyter.ReplForJupyter
 import org.jetbrains.kotlinx.jupyter.api.Code
+import org.jetbrains.kotlinx.jupyter.compiler.util.EvaluatedSnippetMetadata
 import org.jetbrains.kotlinx.jupyter.libraries.EmptyResolutionInfoProvider
 import org.jetbrains.kotlinx.jupyter.libraries.LibraryResolver
 import org.jetbrains.kotlinx.jupyter.messaging.NoOpDisplayHandler
+import org.jetbrains.kotlinx.jupyter.repl.EvalResult
 import org.jetbrains.kotlinx.jupyter.repl.creating.createRepl
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -48,7 +51,7 @@ class KotlinReplWrapper {
     }
 
     fun eval(code: Code, jupyterId: Int = -1, storeHistory: Boolean = true) =
-        repl.eval(EvalRequestData(code, jupyterId, storeHistory))
+        repl.eval(EvalRequestData(code, jupyterId, storeHistory)).toWrapperResult()
 
     companion object {
         fun resolveArchGuardDsl(): LibraryResolver {
@@ -62,6 +65,44 @@ class KotlinReplWrapper {
                 """.trimIndent()
 
             return listOf(lib).toLibraries()
+        }
+    }
+}
+
+private fun EvalResult.toWrapperResult(): WrapperReplResult {
+    return WrapperReplResult.from(this)
+}
+
+class WrapperReplResult(
+    val resultValue: Any?,
+    val metadata: WrapperEvaluatedSnippetMetadata,
+) {
+
+    companion object {
+        fun from(result: EvalResult): WrapperReplResult {
+            return WrapperReplResult(
+                result.resultValue,
+                WrapperEvaluatedSnippetMetadata.from(result.metadata),
+            )
+        }
+    }
+}
+
+@Serializable
+class WrapperEvaluatedSnippetMetadata(
+    val newClasspath: List<String> = emptyList(),
+    val newSources: List<String> = emptyList(),
+    val newImports: List<String> = emptyList(),
+    val evaluatedVariablesState: Map<String, String?> = mutableMapOf(),
+) {
+    companion object {
+        fun from(metadata: EvaluatedSnippetMetadata): WrapperEvaluatedSnippetMetadata {
+            return WrapperEvaluatedSnippetMetadata(
+                metadata.newClasspath,
+                metadata.newSources,
+                metadata.newImports,
+                metadata.evaluatedVariablesState,
+            )
         }
     }
 }

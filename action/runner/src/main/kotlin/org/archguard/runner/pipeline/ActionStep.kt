@@ -16,6 +16,9 @@ data class ActionStep(
     // plugin config
     var with: HashMap<String, Scalar> = hashMapOf(),
 
+    // script file for running
+    var run: String = "",
+
     // todo: add for support
     var output: String = "",
     var outputDir: String = "",

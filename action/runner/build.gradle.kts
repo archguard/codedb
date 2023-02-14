@@ -9,6 +9,7 @@ plugins {
 dependencies {
     implementation(projects.core)
     implementation(projects.action.actionToolkit)
+    implementation(projects.workflowLib.repl)
 
     implementation(libs.clikt)
     implementation(libs.serialization.json)
@@ -25,6 +26,7 @@ dependencies {
 
 
     implementation(libs.kaml)
+    implementation(project(mapOf("path" to ":workflow-lib:repl")))
 
     testImplementation(libs.bundles.test)
 }

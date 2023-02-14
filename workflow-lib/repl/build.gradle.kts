@@ -14,6 +14,7 @@ dependencies {
     // DSL
     implementation(libs.jupyter.api)
     implementation(libs.jupyter.kernel)
+    implementation(libs.jupyter.shared.compiler)
     compileOnly(libs.kotlin.scriptingJvm)
 
     implementation(libs.archguard.dsl) {
