@@ -17,6 +17,20 @@ class ActionStepTest {
         )
         val command = step.toCommandList()
 
-        command.joinToString { it } shouldBe "--key2, value1, --key2, value2, --key, value"
+        command.joinToString(" ") shouldBe "--key2 value1 --key2 value2 --key value"
+    }
+
+    @Test
+    fun `should convert uppercase`() {
+        val step = ActionStep(
+            name = "test",
+            uses = "test",
+            with = hashMapOf(
+                "serverUrl" to Scalar.String("value")
+            )
+        )
+        val command = step.toCommandList()
+
+        command.joinToString(" ") shouldBe "--server-url value"
     }
 }

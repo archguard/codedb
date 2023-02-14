@@ -40,13 +40,13 @@ data class ActionStep(
             when (value) {
                 is Scalar.List -> {
                     value.value.forEach {
-                        command.add("--$key")
+                        command.add("--${key.lowerDashCase()}")
                         command.add(it.toString())
                     }
                 }
 
                 else -> {
-                    command.add("--$key")
+                    command.add("--${key.lowerDashCase()}")
                     command.add(value.toString())
                 }
             }
@@ -55,3 +55,55 @@ data class ActionStep(
         return command
     }
 }
+
+private fun String.lowerDashCase(vararg ignore: Char): String {
+    return formatLowerCase(this, '-', ignore)
+}
+
+private fun formatLowerCase(input: String, separator: Char, ignore: CharArray) =
+    formatCase(input, separator, ignore, false)
+
+/**
+ * Unlicense license
+ * based on https://github.com/Fleshgrinder/kotlin-case-format
+ */
+private fun formatCase(input: String, separator: Char, ignore: CharArray, upperCase: Boolean) =
+    if (input.isEmpty()) input else StringBuilder(input.length).also {
+        var seenSeparator = true
+        var seenUpperCase = false
+
+        input.forEach { c ->
+            when (c) {
+                in ignore -> {
+                    it.append(c)
+                    seenSeparator = true
+                    seenUpperCase = false
+                }
+
+                in '0'..'9' -> {
+                    it.append(c)
+                    seenSeparator = false
+                    seenUpperCase = false
+                }
+
+                in 'a'..'z' -> {
+                    it.append(if (upperCase) c.toUpperCase() else c)
+                    seenSeparator = false
+                    seenUpperCase = false
+                }
+
+                in 'A'..'Z' -> {
+                    if (!seenSeparator && !seenUpperCase) it.append(separator)
+                    it.append(if (upperCase) c else c.toLowerCase())
+                    seenSeparator = false
+                    seenUpperCase = true
+                }
+
+                else -> {
+                    if (!seenSeparator || !seenUpperCase) it.append(separator)
+                    seenSeparator = true
+                    seenUpperCase = false
+                }
+            }
+        }
+    }.toString()
