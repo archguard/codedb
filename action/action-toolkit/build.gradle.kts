@@ -8,6 +8,7 @@ dependencies {
     // Logging
     api(libs.logging.slf4j.api)
 
+    // http
     api(libs.ktor.client.core)
     api(libs.ktor.client.cio)
     api(libs.ktor.serialization.json)

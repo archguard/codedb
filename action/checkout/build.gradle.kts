@@ -6,6 +6,8 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.action.actionToolkit)
+
     testImplementation(libs.bundles.test)
 }
 
