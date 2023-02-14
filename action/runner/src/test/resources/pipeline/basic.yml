@@ -4,7 +4,7 @@ name: ArchGuard 3.0 - CodeDB
 on: [ push ]
 
 # global shared context information
-config:
+env:
   plugin:
     registry: https://plugins.archguard.org/
   server:

@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
  */
 
 @Serializable
-data class ActionConfig(
+data class ActionEnv(
     var metric: Boolean = false,
     val plugin: PluginConfig = PluginConfig(),
     val server: ActionServerConfig = ActionServerConfig()

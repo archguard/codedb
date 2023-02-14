@@ -34,7 +34,7 @@ data class ActionStep(
      * --key value --key2 value1 --key2 value2
      * ```
      */
-    fun toCommandList(config: ActionConfig = ActionConfig()): List<String> {
+    fun toCommandList(config: ActionEnv = ActionEnv()): List<String> {
         val command = mutableListOf<String>()
         with.forEach { (key, value) ->
             when (value) {
@@ -58,7 +58,7 @@ data class ActionStep(
     /**
      * replace variable with environment variable
      */
-    private fun replaceVariable(value: Scalar, config: ActionConfig): String {
+    private fun replaceVariable(value: Scalar, config: ActionEnv): String {
         val originValue = value.toString()
 
         val prefix = "\${{"

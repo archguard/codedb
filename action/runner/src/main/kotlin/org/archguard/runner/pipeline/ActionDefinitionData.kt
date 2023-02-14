@@ -8,7 +8,7 @@ data class ActionDefinitionData(
     var description: String = "",
     var author: String? = "",
     var version: String? = "",
-    var config: ActionConfig = ActionConfig(),
+    var env: ActionEnv = ActionEnv(),
     val jobs: Map<String, ActionExecutionData> = mapOf()
 )
 

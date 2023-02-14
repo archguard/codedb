@@ -44,7 +44,7 @@ class ActionManifestManager {
 
         return ActionDefinitionData(
             name = result.flatString("name"),
-            config = result.objectValue("config"),
+            env = result.objectValue("env"),
             description = result.flatString("description"),
             author = result.flatString("author"),
             version = result.flatString("version"),

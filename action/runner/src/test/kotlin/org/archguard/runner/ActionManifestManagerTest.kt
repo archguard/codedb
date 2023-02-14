@@ -13,7 +13,7 @@ class ActionManifestManagerTest {
         val actionManifest = ActionManifestManager().load(File(source).readText())
 
         actionManifest.name shouldBe "ArchGuard 3.0 - CodeDB"
-        actionManifest.config.server.url shouldBe "http://localhost:8084"
+        actionManifest.env.server.url shouldBe "http://localhost:8084"
 
         val jobs = actionManifest.jobs
         jobs.size shouldBe 2

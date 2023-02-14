@@ -43,7 +43,7 @@ class ActionStepTest {
                 "server-url" to Scalar.String("\${{ config.server.url }}")
             )
         )
-        val command = step.toCommandList(ActionConfig(server = ActionServerConfig(url = "http://localhost:8084")))
+        val command = step.toCommandList(ActionEnv(server = ActionServerConfig(url = "http://localhost:8084")))
 
         command.joinToString(" ") shouldBe "--server-url http://localhost:8084"
     }
