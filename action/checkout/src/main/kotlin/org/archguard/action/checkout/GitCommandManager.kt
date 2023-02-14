@@ -4,10 +4,9 @@ import org.archguard.action.exec.Command
 import org.archguard.action.exec.ExecListeners
 import org.archguard.action.exec.ExecOptions
 import java.io.File
-import java.nio.file.Path
 
 class GitCommandManager {
-    private val gitEnv = mapOf(
+    private val gitEnv: MutableMap<String, String> = mutableMapOf(
         "GIT_TERMINAL_PROMPT" to "0", // Disable git prompt
         "GCM_INTERACTIVE" to "Never" // Disable prompting for git credential manager
     )
@@ -69,109 +68,6 @@ class GitCommandManager {
         return result
     }
 
-    //  async checkout(ref: string, startPoint: string): Promise<void> {
-    //    const args = ['checkout', '--progress', '--force']
-    //    if (startPoint) {
-    //      args.push('-B', ref, startPoint)
-    //    } else {
-    //      args.push(ref)
-    //    }
-    //
-    //    await this.execGit(args)
-    //  }
-    //
-    //  async checkoutDetach(): Promise<void> {
-    //    const args = ['checkout', '--detach']
-    //    await this.execGit(args)
-    //  }
-    //
-    //  async config(
-    //    configKey: string,
-    //    configValue: string,
-    //    globalConfig?: boolean,
-    //    add?: boolean
-    //  ): Promise<void> {
-    //    const args: string[] = ['config', globalConfig ? '--global' : '--local']
-    //    if (add) {
-    //      args.push('--add')
-    //    }
-    //    args.push(...[configKey, configValue])
-    //    await this.execGit(args)
-    //  }
-    //
-    //  async configExists(
-    //    configKey: string,
-    //    globalConfig?: boolean
-    //  ): Promise<boolean> {
-    //    const pattern = regexpHelper.escape(configKey)
-    //    const output = await this.execGit(
-    //      [
-    //        'config',
-    //        globalConfig ? '--global' : '--local',
-    //        '--name-only',
-    //        '--get-regexp',
-    //        pattern
-    //      ],
-    //      true
-    //    )
-    //    return output.exitCode === 0
-    //  }
-    //
-    //  async fetch(refSpec: string[], fetchDepth?: number): Promise<void> {
-    //    const args = ['-c', 'protocol.version=2', 'fetch']
-    //    if (!refSpec.some(x => x === refHelper.tagsRefSpec)) {
-    //      args.push('--no-tags')
-    //    }
-    //
-    //    args.push('--prune', '--progress', '--no-recurse-submodules')
-    //    if (fetchDepth && fetchDepth > 0) {
-    //      args.push(`--depth=${fetchDepth}`)
-    //    } else if (
-    //      fshelper.fileExistsSync(
-    //        path.join(this.workingDirectory, '.git', 'shallow')
-    //      )
-    //    ) {
-    //      args.push('--unshallow')
-    //    }
-    //
-    //    args.push('origin')
-    //    for (const arg of refSpec) {
-    //      args.push(arg)
-    //    }
-    //
-    //    const that = this
-    //    await retryHelper.execute(async () => {
-    //      await that.execGit(args)
-    //    })
-    //  }
-    //
-    //  async getDefaultBranch(repositoryUrl: string): Promise<string> {
-    //    let output: GitOutput | undefined
-    //    await retryHelper.execute(async () => {
-    //      output = await this.execGit([
-    //        'ls-remote',
-    //        '--quiet',
-    //        '--exit-code',
-    //        '--symref',
-    //        repositoryUrl,
-    //        'HEAD'
-    //      ])
-    //    })
-    //
-    //    if (output) {
-    //      // Satisfy compiler, will always be set
-    //      for (let line of output.stdout.trim().split('\n')) {
-    //        line = line.trim()
-    //        if (line.startsWith('ref:') || line.endsWith('HEAD')) {
-    //          return line
-    //            .substr('ref:'.length, line.length - 'ref:'.length - 'HEAD'.length)
-    //            .trim()
-    //        }
-    //      }
-    //    }
-    //
-    //    throw new Error('Unexpected output when retrieving default branch')
-    //  }
     fun checkout(ref: String, startPoint: String? = null): GitOutput {
         val args = mutableListOf("checkout", "--progress", "--force")
         if (startPoint != null) {
@@ -248,7 +144,7 @@ class GitCommandManager {
         throw Error("Unexpected output when retrieving default branch")
     }
 
-    fun submoduleForEach(command: String, recursive: Boolean): GitOutput {
+    fun submoduleForeach(command: String, recursive: Boolean): GitOutput {
         val args = mutableListOf("submodule", "foreach")
         if (recursive) {
             args.add("--recursive")
@@ -322,6 +218,15 @@ class GitCommandManager {
         result.stdout = stdout.joinToString("")
 
         return result
+    }
+
+    fun setEnvironmentVariable(name: String, value: String) {
+        gitEnv[name] = value
+    }
+
+    fun tryConfigUnset(configKey: String, globalConfig: Boolean = false): Boolean {
+        val output = execGit(listOf("config", if (globalConfig) "--global" else "--local", "--unset-all", configKey), true)
+        return output.exitCode == 0
     }
 }
 

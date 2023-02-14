@@ -5,10 +5,13 @@ import org.archguard.action.exec.CommandArgs
 class GitSourceSettings(
     val repository: String,
     val branch: String = "master",
+    val serverSide: Boolean = false,
     val ref: String = "refs/heads/$branch",
     val authToken: String = "",
     val sshKey: String = "",
 ) {
+
+    val repositoryPath: String get() = repository.substringAfterLast("/")
 
     companion object {
         fun fromArgs(args: Array<String>): GitSourceSettings {
