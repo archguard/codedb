@@ -66,6 +66,8 @@ class HttpClientWrapper {
         runBlocking {
             client.prepareGet(url).execute { httpResponse ->
                 val channel: ByteReadChannel = httpResponse.body()
+                val totalSize = httpResponse.contentLength()?.div(MB)
+
                 while (!channel.isClosedForRead) {
                     val packet = channel.readRemaining(DEFAULT_BUFFER_SIZE.toLong())
                     while (!packet.isEmpty) {
@@ -73,7 +75,7 @@ class HttpClientWrapper {
                         file.appendBytes(bytes)
 
                         if (file.length() % MB == 0.0) {
-                            logger.info("Received ${file.length() / MB} MB from ${httpResponse.contentLength()}")
+                            logger.info("Received ${file.length() / MB} MB from $totalSize MB ")
                         }
                     }
                 }

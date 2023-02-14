@@ -26,9 +26,9 @@ class CompositeActionHandler(
 
     private fun execJavaJar(jar: String) {
         val args: List<String> = listOf(jar) + step.toCommandList(context.actionEnv)
-        Command().execJar(args, context.pluginDirectory, ExecOptions(
+        Command().execJar(args, context.workingDirectory, ExecOptions(
             silent = true,
-            cwd = context.pluginDirectory,
+            cwd = context.workingDirectory,
             listeners = object: ExecListeners {
                 override fun stdout(line: String) {
                     logger.info(line)

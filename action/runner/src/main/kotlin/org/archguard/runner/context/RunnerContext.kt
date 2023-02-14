@@ -15,7 +15,7 @@ open class RunnerContext: EnvironmentContext, ActionContext() {
 
     var manifestYmlPath: String = DEFAULT_MANIFEST_PATH
 
-    var workingDirectory: File = File(".")
+    var workingDirectory: String = "."
 
     // share in context
     val actionEnv: ActionEnv = ActionEnv()

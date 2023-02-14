@@ -7,6 +7,7 @@ import org.archguard.runner.context.DEFAULT_MANIFEST_PATH
 import org.slf4j.Logger
 import java.io.File
 import kotlin.system.exitProcess
+import kotlin.system.measureTimeMillis
 
 fun main(args: Array<String>) = Runner().main(args)
 class Runner : CliktCommand(help = "ArchGuard Action Runner") {
@@ -25,7 +26,11 @@ class Runner : CliktCommand(help = "ArchGuard Action Runner") {
             exitProcess(1)
         }
 
-        worker.run(runnerConfig)
+        measureTimeMillis {
+            worker.run(runnerConfig)
+        }.let {
+            logger.info("Runner finished in ${it}ms = ${it / 1000.0}s")
+        }
     }
 
     companion object {
