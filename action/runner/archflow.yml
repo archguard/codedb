@@ -20,5 +20,7 @@ jobs:
         with:
           language: kotlin
           features: [ "datamap" ]
+          output: ['http', 'json']
+          serverUrl: ${config.server.url}
 
 #      - uses: linter/database@v1

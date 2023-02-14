@@ -2,7 +2,6 @@ package org.archguard.runner.pipeline
 
 import kotlinx.serialization.Serializable
 import org.archguard.runner.serial.Scalar
-import java.io.File
 
 @Serializable
 data class ActionStep(
@@ -54,64 +53,5 @@ data class ActionStep(
         }
 
         return command
-    }
-}
-
-@Serializable
-data class ActionName(
-    var type: String = "",
-    var name: String = "",
-    var version: String = "",
-) {
-    private fun path() = "${this.name}/${this.version}"
-
-    /**
-     * action name to filename without extname: setup-0.1.0-SNAPSHOT
-     */
-    fun filename() = "${this.name}-${this.version}"
-
-    fun filename(ext: String) = "${this.name}-${this.version}.${ext}"
-
-    /**
-     * for example: `actions/setup/0.1.0-SNAPSHOT/setup-0.1.0-SNAPSHOT.jar`
-     */
-    fun fullUrl(ext: String) = "${this.type}/${this.path()}/${this.filename()}.${ext}"
-
-    /**
-     * for example: `actions/setup.json`
-     */
-    fun metadata() = "${this.type}/${this.name}.json"
-
-    /**
-     * to support different OSs.
-     */
-    fun fullpath(ext: String) = "${this.type}${File.separator}${this.path()}${File.separator}${this.filename()}.${ext}"
-
-    companion object {
-        private const val NAME_REGEX = "([a-zA-Z]+)/([a-zA-Z-]+)@([a-zA-Z0-9.-]+)"
-        private var cache = mutableMapOf<String, ActionName>()
-
-        fun verifyActionName(actionName: String): Boolean {
-            return actionName.matches(Regex(NAME_REGEX))
-        }
-
-        fun from(actionName: String): ActionName? {
-            if (!verifyActionName(actionName)) {
-                return null
-            }
-
-            return when {
-                cache.containsKey(actionName) -> {
-                    cache[actionName]!!
-                }
-
-                else -> {
-                    val (type, name, version) = Regex(NAME_REGEX).find(actionName)!!.destructured
-                    ActionName(type, name, version).also {
-                        cache[actionName] = it
-                    }
-                }
-            }
-        }
     }
 }

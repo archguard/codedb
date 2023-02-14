@@ -13,7 +13,7 @@ import kotlinx.serialization.json.Json
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionExecutionData
-import org.archguard.runner.pipeline.ActionName
+import org.archguard.runner.pipeline.UsesAction
 import org.archguard.runner.registry.ActionRegistry
 import org.archguard.runner.registry.Version
 import org.slf4j.Logger
@@ -53,7 +53,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
                 DownloadInfo.from(context.registry, it.uses)
             }
 
-        logger.info("Download actions: ${downloadInfos.map { it.actionName }}")
+        logger.info("Download actions: ${downloadInfos.map { it.usesAction }}")
 
         // 2. prepare plugins dir
         val pluginsDir = File(context.pluginDirectory)
@@ -77,7 +77,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
     fun executeDownload(downloadInfo: DownloadInfo, targetDir: String) {
         try {
             runBlocking {
-                logger.info("Start fetch registry: ${downloadInfo.actionName}")
+                logger.info("Start fetch registry: ${downloadInfo.usesAction}")
 
                 val actionRegistry: ActionRegistry = client.get(downloadInfo.metaUrl).body()
 
@@ -86,14 +86,14 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
                 }.entries.map { it.value }
 
                 if (versionInfos.isEmpty()) {
-                    logger.error("Version not found: ${downloadInfo.actionName}")
+                    logger.error("Version not found: ${downloadInfo.usesAction}")
                     return@runBlocking
                 }
 
                 downloadByVersion(versionInfos, targetDir, downloadInfo)
             }
         } catch (e: Exception) {
-            logger.error("Failed to download action: ${downloadInfo.actionName}", e)
+            logger.error("Failed to download action: ${downloadInfo.usesAction}", e)
         }
     }
 
@@ -101,7 +101,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
         val target = filepath(targetDir, downloadInfo, "jar")
 
         if (File(target).exists()) {
-            logger.info("Action already downloaded: ${downloadInfo.actionName}")
+            logger.info("Action already downloaded: ${downloadInfo.usesAction}")
             return
         }
 
@@ -109,7 +109,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
         logger.info("Start downloading action by version: $version")
 
         val jarFile = downloadFile(URL(version.dist.pkg), target)
-        logger.info("Downloaded action: ${downloadInfo.actionName} to ${jarFile.absolutePath}")
+        logger.info("Downloaded action: ${downloadInfo.usesAction} to ${jarFile.absolutePath}")
     }
 
     /**
@@ -139,17 +139,17 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
 }
 
 
-class DownloadInfo(registry: String, val actionName: ActionName) {
-    val version: String = actionName.version
+class DownloadInfo(registry: String, val usesAction: UsesAction) {
+    val version: String = usesAction.version
 
-    val metaUrl: URL by lazy { URL("$registry${actionName.metadata()}") }
+    val metaUrl: URL by lazy { URL("$registry${usesAction.metadata()}") }
 
     /**
      * The URL of the action sha256 file.
      */
-    val sha256Url: URL = URL("$registry${actionName.fullUrl("sha256")}")
+    val sha256Url: URL = URL("$registry${usesAction.fullUrl("sha256")}")
 
-    fun nameOnly(ext: String) = actionName.filename(ext)
+    fun nameOnly(ext: String) = usesAction.filename(ext)
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(DownloadInfo::class.java)
@@ -160,13 +160,13 @@ class DownloadInfo(registry: String, val actionName: ActionName) {
          * @param actionNameString The action name, format: type/name@version
          */
         fun from(registry: String, actionNameString: String): DownloadInfo? {
-            if (!ActionName.verifyActionName(actionNameString)) {
+            if (!UsesAction.verifyActionName(actionNameString)) {
                 logger.error("Invalid action name: $actionNameString")
                 return null
             }
 
-            val actionName = ActionName.from(actionNameString)!!
-            return DownloadInfo(registry, actionName)
+            val usesAction = UsesAction.from(actionNameString)!!
+            return DownloadInfo(registry, usesAction)
         }
     }
 }

@@ -1,21 +1,21 @@
 package org.archguard.runner.handler
 
 import org.archguard.runner.context.RunnerContext
-import org.archguard.runner.pipeline.ActionName
 import org.archguard.runner.pipeline.ActionStep
+import org.archguard.runner.pipeline.UsesAction
 import java.io.File
 
 class CompositeActionHandler(
-    val step: ActionStep,
+    private val step: ActionStep,
     val context: RunnerContext
 ) : Handler {
-    // exec plugin: `java -jar plugin.jar`
     override fun runSync() {
-        val actionName = ActionName.from(step.uses) ?: throw Exception("Invalid action name: ${step.uses}")
-        val pluginPath = "${context.pluginDirectory}/${actionName.filename("jar")}"
+        val usesAction = UsesAction.from(step.uses) ?: throw Exception("Invalid action name: ${step.uses}")
+        val pluginPath = "${context.pluginDirectory}/${usesAction.filename("jar")}"
         execJavaJar(File(pluginPath).absolutePath)
     }
 
+    // exec: `java -jar plugin.jar`
     private fun execJavaJar(jar: String) {
         val args: List<String> = listOf("java", "-jar", jar) + step.toCommandList()
         val processBuilder = ProcessBuilder(args)
