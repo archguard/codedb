@@ -2,6 +2,9 @@ package org.archguard.action.exec
 
 import java.io.File
 
+/**
+ * Executes a command and returns the output.
+ */
 class Command {
     fun run(args: List<String>, workdir: File): String {
         val processBuilder = ProcessBuilder(args)
@@ -15,7 +18,7 @@ class Command {
 
         val exitCode = process.waitFor()
         if (exitCode != 0) {
-            throw Exception("Plugin execution failed with exit code $exitCode")
+            throw Exception("Execution failed with exit code $exitCode, command: $args")
         }
 
         return text

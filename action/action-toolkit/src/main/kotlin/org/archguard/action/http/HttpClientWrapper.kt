@@ -18,7 +18,11 @@ import java.io.File
 import java.net.URL
 
 private const val TIMEOUT_MILLIS = 1000 * 60 * 5L
+private const val MB = 1.0 * 1024 * 1024
 
+/**
+ * Wrapper for ktor http client
+ */
 class HttpClientWrapper {
     val client = HttpClient(CIO) {
         install(HttpTimeout) {
@@ -57,8 +61,6 @@ class HttpClientWrapper {
             contentType(ContentType.Application.Json)
         }
     }
-
-    private val MB = 1.0 * 1024 * 1024
 
     suspend fun download(url: URL, file: File) {
         runBlocking {

@@ -3,7 +3,9 @@ package org.archguard.action.core
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-// todo:
+/**
+ * Todo: tracing for api
+ */
 class Tracing {
     fun info(str: String) {
         logger.info(str)

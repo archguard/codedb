@@ -5,10 +5,7 @@ import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionStep
 import java.io.File
 
-class CommandActionHandler(
-    private val step: ActionStep,
-    val context: RunnerContext
-): Handler {
+class CommandActionHandler(private val step: ActionStep, val context: RunnerContext) : Handler {
     override fun runSync() {
         Command().run(step.run.split("\\s"), File(context.pluginDirectory))
     }
