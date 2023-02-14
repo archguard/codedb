@@ -1,15 +1,7 @@
 package org.archguard.runner.runner
 
-import io.ktor.client.*
-import io.ktor.client.call.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.json.Json
+import org.archguard.action.http.HttpClientWrapper
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionDefinitionData
 import org.archguard.runner.pipeline.ActionExecutionData
@@ -25,17 +17,7 @@ private const val TIMEOUT_MILLIS = 1000 * 60 * 5L
 
 class ActionManager(val context: RunnerContext) : RunnerService() {
     private val actionManifestManager = ActionManifestManager()
-    private val client = HttpClient(CIO) {
-        install(HttpTimeout) {
-            requestTimeoutMillis = TIMEOUT_MILLIS
-        }
-        install(ContentNegotiation) {
-            json(Json {
-                prettyPrint = true
-                isLenient = true
-            })
-        }
-    }
+    private val client = HttpClientWrapper()
 
     fun loadActions(): ActionDefinitionData {
         val content = File(context.manifestYmlPath).readText()
@@ -79,7 +61,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
             runBlocking {
                 logger.info("Start fetch registry: ${downloadInfo.usesAction}")
 
-                val actionRegistry: ActionRegistry = client.get(downloadInfo.metaUrl).body()
+                val actionRegistry: ActionRegistry = client.get(downloadInfo.metaUrl)
 
                 val versionInfos: List<Version> = actionRegistry.versions.filter {
                     it.key == downloadInfo.version
@@ -93,7 +75,7 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
                 downloadByVersion(versionInfos, targetDir, downloadInfo)
             }
         } catch (e: Exception) {
-            logger.error("Failed to download action: ${downloadInfo.usesAction}", e)
+            logger.error("Failed to download action: ${downloadInfo.usesAction}, ${downloadInfo.metaUrl}", e)
         }
     }
 
@@ -108,8 +90,9 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
         val version = versionInfos[0]
         logger.info("Start downloading action by version: $version")
 
-        val jarFile = downloadFile(URL(version.dist.pkg), target)
-        logger.info("Downloaded action: ${downloadInfo.usesAction} to ${jarFile.absolutePath}")
+        val file = File(target)
+        client.download(URL(version.dist.pkg), file)
+        logger.info("Downloaded action: ${downloadInfo.usesAction} to ${file.absolutePath}")
     }
 
     /**
@@ -117,21 +100,6 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
      */
     private fun filepath(targetDir: String, downloadInfo: DownloadInfo, ext: String) =
         "$targetDir${File.separator}${downloadInfo.nameOnly(ext)}"
-
-    private suspend fun downloadFile(url: URL, target: String): File {
-        val httpResponse: HttpResponse = client.get(url) {
-            onDownload { bytesSentTotal, contentLength ->
-                if (bytesSentTotal % (1024) == 0L) {
-                    logger.info("Downloaded ${bytesSentTotal / 1024}k of ${contentLength / 1024}k")
-                }
-            }
-        }
-
-        val responseBody: ByteArray = httpResponse.body()
-        val file = File(target)
-        file.writeBytes(responseBody)
-        return file
-    }
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(ActionManager::class.java)

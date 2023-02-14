@@ -1,6 +1,6 @@
 package org.archguard.runner.handler
 
-import org.archguard.action.exec.ActionExec
+import org.archguard.action.exec.Command
 import org.archguard.runner.context.RunnerContext
 import org.archguard.runner.pipeline.ActionStep
 import org.archguard.runner.pipeline.UsesAction
@@ -19,6 +19,6 @@ class CompositeActionHandler(
     // exec: `java -jar plugin.jar`
     private fun execJavaJar(jar: String) {
         val args: List<String> = listOf("java", "-jar", jar) + step.toCommandList(context.actionEnv)
-        ActionExec().run(args, File(context.pluginDirectory))
+        Command().run(args, File(context.pluginDirectory))
     }
 }

@@ -6,7 +6,6 @@ class StepRunner: RunnerService() {
     private val actionRunner = ActionRunner()
 
     fun run(content: RunnerContext) {
-        trace.info("StepRunner run")
         actionRunner.run(content)
     }
 }

@@ -3,7 +3,7 @@ on: [ push ]
 
 env:
   plugin:
-    registry: https://plugins.archguard.org/
+    registry: https://registry.archguard.org/
   server:
     url: http://localhost:8084
 

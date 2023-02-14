@@ -2,7 +2,7 @@ package org.archguard.action.exec
 
 import java.io.File
 
-class ActionExec {
+class Command {
     fun run(args: List<String>, workdir: File): String {
         val processBuilder = ProcessBuilder(args)
 
