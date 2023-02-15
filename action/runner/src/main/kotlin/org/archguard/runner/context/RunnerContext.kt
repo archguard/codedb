@@ -3,7 +3,7 @@ package org.archguard.runner.context
 import org.archguard.runner.pipeline.ActionEnv
 import java.io.File
 
-const val DEFAULT_MANIFEST_PATH: String = "archflow.yml"
+const val DEFAULT_MANIFEST_PATH: String = "archguard.yml"
 
 /**
  * Runner context
