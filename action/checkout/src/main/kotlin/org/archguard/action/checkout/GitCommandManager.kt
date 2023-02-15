@@ -6,7 +6,7 @@ import org.archguard.action.exec.StringListExecListeners
 import org.jetbrains.annotations.TestOnly
 import java.io.File
 
-class GitCommandManager(private var workingDirectory: String = ".", private var lfs: Boolean = false) {
+class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boolean = false) {
     private val gitEnv: MutableMap<String, String> = mutableMapOf(
         "GIT_TERMINAL_PROMPT" to "0", // Disable git prompt
         "GCM_INTERACTIVE" to "Never" // Disable prompting for git credential manager

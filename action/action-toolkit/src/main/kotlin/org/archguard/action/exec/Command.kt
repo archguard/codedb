@@ -13,7 +13,7 @@ class Command {
         return doExecute(processBuilder, options)
     }
 
-    fun exec(commandLine: String, args: List<String>, options: ExecOptions): Int {
+    fun exec(commandLine: String, args: List<String> = listOf(), options: ExecOptions): Int {
         if (!options.silent) {
             logger.info("Executing: $commandLine ${args.joinToString(" ")}")
         }
@@ -48,6 +48,10 @@ class Command {
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(Command::class.java)
+
+        fun exec(commandLine: String, args: List<String> = listOf(), options: ExecOptions = ExecOptions()): Int {
+            return Command().exec(commandLine, args, options)
+        }
     }
 }
 
