@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 
 @Parameters(separators = "= ")
-class LcovMergerFlags {
+public class LcovMergerFlags {
   private static final Logger logger = Logger.getLogger(LcovMergerFlags.class.getName());
   private static final int DEFAULT_PARSE_FILE_PARALLELISM = 4;
 
@@ -89,7 +89,7 @@ class LcovMergerFlags {
     return parseParallelism == null ? DEFAULT_PARSE_FILE_PARALLELISM : parseParallelism;
   }
 
-  static LcovMergerFlags parseFlags(String[] args) {
+  public static LcovMergerFlags parseFlags(String[] args) {
     LcovMergerFlags flags = new LcovMergerFlags();
     JCommander jCommander = new JCommander(flags);
     jCommander.setAllowParameterOverwriting(true);

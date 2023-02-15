@@ -40,7 +40,7 @@ public class Coverage {
     }
   }
 
-  static Coverage merge(Coverage... coverages) {
+  public static Coverage merge(Coverage... coverages) {
     return merge(asList(coverages));
   }
 

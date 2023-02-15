@@ -10,6 +10,7 @@ plugins {
 }
 
 dependencies {
+    implementation(projects.action.actionToolkit)
     implementation(projects.core)
 
     implementation(libs.kotlin.reflect)
