@@ -41,4 +41,12 @@ class GitCommandManagerTest {
         branchList.contains("refs/heads/master") shouldBe false
         branchList.contains("master") shouldBe true
     }
+
+    @Test
+    fun `test parse default branch`() {
+        val output = gitCommandManager.parseDefaultBranch("""ref: refs/heads/master	HEAD
+13f70a2588e474f53a0b0059d60d2f4bedb2eb8a	HEAD""")
+
+        output shouldBe "refs/heads/master"
+    }
 }

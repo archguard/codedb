@@ -16,10 +16,6 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
 
     private val exec = Command()
 
-
-    /**
-     * Initializes the git repository.
-     */
     fun init(): GitOutput {
         return execGit(listOf("init", "."))
     }
@@ -109,15 +105,8 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
 
     fun configExists(configKey: String, globalConfig: Boolean = false): Boolean {
         val pattern = Regex.escape(configKey)
-        val output = execGit(
-            listOf(
-                "config",
-                if (globalConfig) "--global" else "--local",
-                "--name-only",
-                "--get-regexp",
-                pattern
-            ), true
-        )
+        val scope = if (globalConfig) "--global" else "--local"
+        val output = execGit(listOf("config", scope, "--name-only", "--get-regexp", pattern), true)
         return output.exitCode == 0
     }
 
@@ -154,14 +143,20 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
 
         if (output != null) {
             // Satisfy compiler, will always be set
-            println("getDefaultBranch output: $output")
-            for (splitLine in output!!.stdout.trim().split("\n")) {
-                val line = splitLine.trim()
-                if (line.startsWith("ref:") && line.endsWith("HEAD")) {
-                    return line
-                        .substring("ref:".length, line.length - "HEAD".length)
-                        .trim()
-                }
+            return parseDefaultBranch(output!!.stdout)
+        }
+
+        throw Error("Unexpected output when retrieving default branch")
+    }
+
+    @TestOnly
+    fun parseDefaultBranch(lines: String): String {
+        for (splitLine in lines.trim().split("\n")) {
+            val line = splitLine.trim()
+            if (line.startsWith("ref:") && line.endsWith("HEAD")) {
+                return line
+                    .substring("ref:".length, line.length - "HEAD".length)
+                    .trim()
             }
         }
 
