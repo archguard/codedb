@@ -16,6 +16,7 @@ jobs:
     steps:
 #      - uses: actions/checkout@0.1.0-SNAPSHOT
 #        with:
+#          repository: https://github.com/archguard/code-poc.git
 #          branch: master
 
       - name: "Source Code with Linter"
@@ -28,7 +29,7 @@ jobs:
           rules: [ "webapi", "test", "sql" ]
           path: "."
 
-      - name: "Software Complexity Analysis"
+      - name: Software Composition Analysis
         uses: archguard/scanner@v2
         with:
           type: "sca"
@@ -36,12 +37,12 @@ jobs:
           language: kotlin
           output: [ "json" ]
 
-#      - name: "Complexity"
-#        uses: archguard/scanner@v2
-#        with:
-#          type: "estimate"
-#          path: "."
-#          output: [ "json" ]
+      - name: "Complexity"
+        uses: archguard/scanner@v2
+        with:
+          type: "estimate"
+          path: "."
+          output: [ "json" ]
 
 #      - uses: analyser/architecture@0.0.1
 #        with:
