@@ -28,6 +28,9 @@ fun main(args: Array<String>) {
         authHelper.configureTempGlobalConfig()
     }
 
+    logger.info("Configuring auth")
+    authHelper.configureAuth()
+
     git.config("safe.directory", settings.repositoryPath, true, true)
 
     logger.info("Initializing git repository")

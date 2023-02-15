@@ -2,6 +2,7 @@ package org.archguard.action.checkout.helper
 
 import org.archguard.action.checkout.GitCommandManager
 import org.archguard.action.checkout.GitSourceSettings
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.lang.System.*
 import java.nio.file.Files
@@ -50,14 +51,14 @@ class GitAuthHelper(
         val newGitConfigPath = "$temporaryHomePath/.gitconfig"
         val configExists = File(gitConfigPath).exists()
         if (configExists) {
-            println("Copying '$gitConfigPath' to '$newGitConfigPath'")
+            logger.info("Copying '$gitConfigPath' to '$newGitConfigPath'")
             Files.copy(Paths.get(gitConfigPath), Paths.get(newGitConfigPath), StandardCopyOption.REPLACE_EXISTING)
         } else {
             File(newGitConfigPath).writeText("")
         }
 
         // Override HOME
-        println("Temporarily overriding HOME='$temporaryHomePath' before making global git config changes")
+        logger.info("Temporarily overriding HOME='$temporaryHomePath' before making global git config changes")
         git.setEnvironmentVariable("HOME", temporaryHomePath)
 
         return newGitConfigPath
@@ -65,7 +66,7 @@ class GitAuthHelper(
 
     fun removeGlobalConfig() {
         if (temporaryHomePath.isNotEmpty()) {
-            println("Unsetting HOME override")
+            logger.info("Unsetting HOME override")
             git.removeEnvironmentVariable("HOME")
             File(temporaryHomePath).deleteRecursively()
         }
@@ -92,8 +93,8 @@ class GitAuthHelper(
             try {
                 File(keyPath).deleteRecursively()
             } catch (err: Exception) {
-                println(err.message)
-                println("Failed to remove SSH key '$keyPath'")
+                logger.info(err.message)
+                logger.info("Failed to remove SSH key '$keyPath'")
             }
         }
 
@@ -119,7 +120,7 @@ class GitAuthHelper(
         if (!submoduleOnly) {
             if (git.configExists(configKey) && !git.tryConfigUnset(configKey)) {
                 // Load the config contents
-                println("Failed to remove '$configKey' from the git config")
+                logger.info("Failed to remove '$configKey' from the git config")
             }
         }
 
@@ -129,5 +130,9 @@ class GitAuthHelper(
             "sh -c \"git config --local --name-only --get-regexp '$pattern' && git config --local --unset-all '$configKey' || :\"",
             true
         )
+    }
+
+    companion object {
+        val logger = LoggerFactory.getLogger(GitAuthHelper::class.java)
     }
 }
