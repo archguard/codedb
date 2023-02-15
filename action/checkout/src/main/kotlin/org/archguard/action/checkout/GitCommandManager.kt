@@ -134,8 +134,7 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
         args.addAll(listOf("--prune", "--progress", "--no-recurse-submodules"))
         if (fetchDepth != null && fetchDepth > 0) {
             args.add("--depth=$fetchDepth")
-        } else if (File(workingDirectory, ".git/shallow").exists()) {
-            // todo: check Windows compatibility
+        } else if (File(workingDirectory, ".git${File.separator}shallow").exists()) {
             args.add("--unshallow")
         }
 
