@@ -17,7 +17,7 @@ class LoggerExecListeners(private val logger: Logger) : ExecListeners {
     }
 }
 
-class StringExecListeners(private var stdout: MutableList<String> = "", private var stderr: MutableList<String> = "") : ExecListeners {
+class StringListExecListeners(private var stdout: MutableList<String>, private var stderr: MutableList<String>) : ExecListeners {
     override fun stdout(data: String) {
         stdout += data
     }

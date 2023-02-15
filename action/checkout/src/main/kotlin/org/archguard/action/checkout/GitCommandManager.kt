@@ -2,7 +2,7 @@ package org.archguard.action.checkout
 
 import org.archguard.action.exec.Command
 import org.archguard.action.exec.ExecOptions
-import org.archguard.action.exec.StringExecListeners
+import org.archguard.action.exec.StringListExecListeners
 import org.jetbrains.annotations.TestOnly
 import java.io.File
 
@@ -57,14 +57,14 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
 
         val output = execGit(args)
 
-        return parseBranchList(output)
+        return parseBranchList(output.stdout.lines())
     }
 
     @TestOnly
-    fun parseBranchList(output: GitOutput): MutableList<String> {
+    fun parseBranchList(lines: List<String>): MutableList<String> {
         val result = mutableListOf<String>()
 
-        for (branch in output.stdout.lines()) {
+        for (branch in lines) {
             if (branch.startsWith("refs/heads/")) {
                 result.add(branch.substring("refs/heads/".length))
             } else if (branch.startsWith("refs/remotes/")) {
@@ -233,7 +233,7 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
             env = env,
             silent = silent,
             ignoreReturnCode = allowAllExitCodes,
-            listeners = StringExecListeners(stdout, stderr)
+            listeners = StringListExecListeners(stdout, stderr)
         )
 
         result.exitCode = exec.exec(gitPath, args, options)
