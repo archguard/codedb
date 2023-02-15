@@ -19,6 +19,13 @@ jobs:
 #          repository: https://github.com/archguard/code-poc.git
 #          branch: master
 
+      - name: "Complexity"
+        uses: archguard/scanner@v2
+        with:
+          type: "estimate"
+          path: "."
+          output: [ "json" ]
+
       - name: "Source Code with Linter"
         uses: archguard/scanner@v2
         with:
@@ -35,13 +42,6 @@ jobs:
           type: "sca"
           path: "."
           language: kotlin
-          output: [ "json" ]
-
-      - name: "Complexity"
-        uses: archguard/scanner@v2
-        with:
-          type: "estimate"
-          path: "."
           output: [ "json" ]
 
 #      - uses: analyser/architecture@0.0.1

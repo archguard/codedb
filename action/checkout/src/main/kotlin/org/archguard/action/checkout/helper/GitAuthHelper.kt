@@ -14,6 +14,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.util.*
+import kotlin.io.path.createTempDirectory
 
 const val SSH_COMMAND_KEY = "core.sshCommand"
 val IS_WINDOWS: Boolean = getProperty("os.name").startsWith("Windows")
@@ -54,7 +55,7 @@ class GitAuthHelper(
         }
 
         // Create a temp home directory
-        val runnerTemp = getenv("RUNNER_TEMP") ?: ""
+        val runnerTemp = createTempDirectory("archguard-action").toAbsolutePath().toString()
         assert(runnerTemp.isNotEmpty()) { "RUNNER_TEMP is not defined" }
 
         val uniqueId = UUID.randomUUID().toString()

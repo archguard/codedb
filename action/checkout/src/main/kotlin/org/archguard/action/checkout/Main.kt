@@ -22,9 +22,7 @@ fun main(args: Array<String>) {
 
     FileExt.mkdir(settings.repositoryPath)
 
-    if (settings.serverSide) {
-        authHelper.configureTempGlobalConfig()
-    }
+    authHelper.configureTempGlobalConfig()
 
     git.config("safe.directory", settings.repositoryPath, true, true)
 
@@ -60,7 +58,5 @@ fun main(args: Array<String>) {
     }
 
     // clean up
-    if (settings.serverSide) {
-        authHelper.removeGlobalConfig()
-    }
+    authHelper.removeGlobalConfig()
 }

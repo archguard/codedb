@@ -10,6 +10,7 @@ class GitSourceSettings(
     val sshKey: String = "",
     val serverSide: Boolean = false,
     val submodule: Boolean = false,
+    val workdir: String = "",
 ) {
     val gitServerUrl: String = "https://github.com"
     val fetchDepth: Int = 0
@@ -33,6 +34,7 @@ class GitSourceSettings(
                 sshKey = argsMap["--ssh-key"] ?: "",
                 serverSide = argsMap["--server-side"]?.toBoolean() ?: false,
                 submodule = argsMap["--submodule"]?.toBoolean() ?: false,
+                workdir = argsMap["--workdir"] ?: "",
             )
         }
     }
