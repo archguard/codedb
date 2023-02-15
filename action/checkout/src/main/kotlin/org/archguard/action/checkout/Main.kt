@@ -33,8 +33,10 @@ fun main(args: Array<String>) {
     git.init()
     git.remoteAdd("origin", settings.repository)
 
-    logger.info("Configuring auth")
-    authHelper.configureAuth()
+    if (settings.authToken.isNotEmpty()) {
+        logger.info("Configuring auth")
+        authHelper.configureAuth()
+    }
 
     logger.info("Disabling automatic garbage collection")
     git.tryDisableAutomaticGarbageCollection()
