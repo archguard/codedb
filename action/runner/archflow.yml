@@ -25,6 +25,18 @@ jobs:
           output: [ "json" ]
           server-url: ${{ env.server.url }}
           path: "."
+#      - uses: analyser/sca@0.0.1
+#        with:
+#          path: "."
+#      - uses: analyser/estimate@0.0.1
+#        with:
+#          path: "."
+#      - uses: analyser/architecture@0.0.1
+#        with:
+#          path: "."
+#      - uses: analyser/diff_changes@0.0.1
+#        with:
+#          path: "."
 
 #      - uses: linter/database@v1
 #      - used: metric/oo@v1
