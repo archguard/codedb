@@ -46,7 +46,7 @@ fun main(args: Array<String>) {
     val refHelper = RefHelper()
     val refSpec = refHelper.getRefSpecForAllHistory(settings.ref, settings.branch)
 
-    logger.info("Fetching all history for $refSpec")
+    logger.info("Fetching all history for {}", refSpec)
     git.fetch(refSpec)
 
     val checkoutInfo = refHelper.getCheckoutInfo(git, settings.ref, settings.commit)
