@@ -5,10 +5,11 @@ import org.archguard.action.exec.CommandArgs
 class GitSourceSettings(
     val repository: String,
     val branch: String = "master",
-    val serverSide: Boolean = false,
     var ref: String = "refs/heads/$branch",
     val authToken: String = "",
     val sshKey: String = "",
+    val serverSide: Boolean = false,
+    val submodule: Boolean = false,
 ) {
     val gitServerUrl: String = "https://github.com"
     val fetchDepth: Int = 0
@@ -30,6 +31,8 @@ class GitSourceSettings(
                 ref = argsMap["--ref"] ?: "refs/heads/master",
                 authToken = argsMap["--auth-token"] ?: "",
                 sshKey = argsMap["--ssh-key"] ?: "",
+                serverSide = argsMap["--server-side"]?.toBoolean() ?: false,
+                submodule = argsMap["--submodule"]?.toBoolean() ?: false,
             )
         }
     }

@@ -8,8 +8,7 @@ import java.io.File
 val logger = org.slf4j.LoggerFactory.getLogger("CheckoutAction")
 
 fun main(args: Array<String>) {
-    // println args
-    logger.info("args: ${args.joinToString(", ")}")
+    logger.info("args: ${args.joinToString(" ")}")
     // args to GitSourceSettings
     val settings = GitSourceSettings.fromArgs(args)
 
@@ -54,10 +53,14 @@ fun main(args: Array<String>) {
     git.checkout(checkoutInfo.ref, checkoutInfo.startPoint)
 
     // submodules
-    git.submoduleSync(settings.nestedSubmodules)
-    git.submoduleUpdate(settings.fetchDepth, settings.nestedSubmodules)
-    git.submoduleForeach("git config --local gc.auto 0", settings.nestedSubmodules)
+    if (settings.submodule) {
+        git.submoduleSync(settings.nestedSubmodules)
+        git.submoduleUpdate(settings.fetchDepth, settings.nestedSubmodules)
+        git.submoduleForeach("git config --local gc.auto 0", settings.nestedSubmodules)
+    }
 
     // clean up
-    authHelper.removeGlobalConfig()
+    if (settings.serverSide) {
+        authHelper.removeGlobalConfig()
+    }
 }
