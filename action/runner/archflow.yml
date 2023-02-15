@@ -14,29 +14,37 @@ jobs:
       displayName: Backend
 
     steps:
-      - uses: actions/checkout@0.1.0-SNAPSHOT
-        with:
-          branch: master
+#      - uses: actions/checkout@0.1.0-SNAPSHOT
+#        with:
+#          branch: master
 
-      - uses: analyser/source-code@0.0.1
+      - name: "Source Code with Linter"
+        uses: archguard/scanner@v2
         with:
+          type: "source_code"
           language: kotlin
           features: [ "datamap" ]
           output: [ "json" ]
-          server-url: ${{ env.server.url }}
+          rules: [ "webapi", "test", "sql" ]
           path: "."
-#      - uses: analyser/sca@0.0.1
+
+      - name: "Software Complexity Analysis"
+        uses: archguard/scanner@v2
+        with:
+          type: "sca"
+          path: "."
+          language: kotlin
+          output: [ "json" ]
+
+#      - name: "Complexity"
+#        uses: archguard/scanner@v2
 #        with:
+#          type: "estimate"
 #          path: "."
-#      - uses: analyser/estimate@0.0.1
-#        with:
-#          path: "."
+#          output: [ "json" ]
+
 #      - uses: analyser/architecture@0.0.1
 #        with:
-#          path: "."
-#      - uses: analyser/diff_changes@0.0.1
-#        with:
-#          path: "."
 
 #      - uses: linter/database@v1
 #      - used: metric/oo@v1

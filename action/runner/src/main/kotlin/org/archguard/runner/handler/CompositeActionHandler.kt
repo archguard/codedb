@@ -19,7 +19,7 @@ class CompositeActionHandler(
     override fun getDisplayName(): String = name
 
     override fun runSync() {
-        logger.info("Running composite action: {}, with args: {}", step.uses, step.toCommandList(context.actionEnv))
+        logger.info("Running name {}, composite action: {}, with args: {}", step.name, step.uses, step.toCommandList(context.actionEnv))
         val usesAction = UsesAction.from(step.uses) ?: throw Exception("Invalid action name: ${step.uses}")
         val pluginPath = "${context.pluginDirectory}/${usesAction.filename("jar")}"
         execJavaJar(File(pluginPath).absolutePath)

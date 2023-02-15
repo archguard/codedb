@@ -27,12 +27,12 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
      */
     fun prepareActionsAsync(actionData: ActionExecutionData) {
         // 1. create download information
-        val downloadInfos: List<DownloadInfo> =
+        val downloadInfos: Map<String, DownloadInfo> =
             actionData.steps.mapNotNull {
                 DownloadInfo.from(context.registry, it.uses)
-            }
+            }.associateBy { it.usesAction.name }
 
-        logger.info("Download actions: ${downloadInfos.map { it.usesAction }}")
+        logger.info("Download actions: ${downloadInfos.map { it.value.usesAction.name }.joinToString(", ")}")
 
         // 2. prepare plugins dir
         val pluginsDir = File(context.pluginDirectory)
@@ -42,9 +42,9 @@ class ActionManager(val context: RunnerContext) : RunnerService() {
 
         logger.info("Plugins directory: ${pluginsDir.absolutePath}")
 
-        downloadInfos.parallelStream().forEach { downloadInfo ->
+        downloadInfos.entries.parallelStream().forEach { map ->
             // download json before download action
-            downloadAction(context, downloadInfo)
+            downloadAction(context, map.value)
         }
     }
 
