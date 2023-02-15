@@ -33,7 +33,6 @@ class GitAuthHelper(
     private var sshKnownHostsPath: String = ""
     private var temporaryHomePath: String = ""
 
-
     init {
         // Token auth header
         val serverUrl = URL(settings.gitServerUrl)
@@ -120,7 +119,7 @@ class GitAuthHelper(
         }
 
         // Write known hosts
-        val userKnownHostsPath = Paths.get(System.getProperty("user.home"), ".ssh", "known_hosts").toString()
+        val userKnownHostsPath = Paths.get(getProperty("user.home"), ".ssh", "known_hosts").toString()
         val userKnownHosts = try {
             File(userKnownHostsPath).readText()
         } catch (err: Exception) {
@@ -159,6 +158,7 @@ class GitAuthHelper(
         }
     }
 
+    //  git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic <basic_credential>"
     fun configureToken(configPath: String? = null, globalConfig: Boolean = false) {
         // Validate args
         assert((configPath != null && globalConfig) || (configPath == null && !globalConfig)) { "Unexpected configureToken parameter combinations" }

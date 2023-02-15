@@ -24,18 +24,17 @@ fun main(args: Array<String>) {
     FileExt.mkdir(settings.repositoryPath)
 
     if (settings.serverSide) {
-        // todo: config token and ssh key for clone
         authHelper.configureTempGlobalConfig()
     }
-
-    logger.info("Configuring auth")
-    authHelper.configureAuth()
 
     git.config("safe.directory", settings.repositoryPath, true, true)
 
     logger.info("Initializing git repository")
     git.init()
     git.remoteAdd("origin", settings.repository)
+
+    logger.info("Configuring auth")
+    authHelper.configureAuth()
 
     logger.info("Disabling automatic garbage collection")
     git.tryDisableAutomaticGarbageCollection()
@@ -52,13 +51,11 @@ fun main(args: Array<String>) {
     val checkoutInfo = refHelper.getCheckoutInfo(git, settings.ref, settings.commit)
     git.checkout(checkoutInfo.ref, checkoutInfo.startPoint)
 
+    // submodules
     git.submoduleSync(settings.nestedSubmodules)
     git.submoduleUpdate(settings.fetchDepth, settings.nestedSubmodules)
     git.submoduleForeach("git config --local gc.auto 0", settings.nestedSubmodules)
 
     // clean up
-    if (settings.serverSide) {
-        // todo: remove auth
-        authHelper.removeGlobalConfig()
-    }
+    authHelper.removeGlobalConfig()
 }
