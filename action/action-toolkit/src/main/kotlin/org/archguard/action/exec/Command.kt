@@ -10,7 +10,6 @@ import java.io.File
 class Command {
     fun execJar(args: List<String>, workdir: String, options: ExecOptions = ExecOptions(cwd = workdir)): Int {
         val processBuilder = ProcessBuilder("java", "-jar", *args.toTypedArray())
-
         return doExecute(processBuilder, options)
     }
 
@@ -20,7 +19,6 @@ class Command {
         }
 
         val processBuilder = ProcessBuilder(commandLine, *args.toTypedArray())
-
         return doExecute(processBuilder, options)
     }
 
@@ -59,15 +57,5 @@ class ExecOptions(
     val silent: Boolean = false,
     val ignoreReturnCode: Boolean = false,
     val listeners: ExecListeners = object : ExecListeners {}
-) {
+)
 
-}
-
-
-interface ExecListeners {
-    fun stdout(data: String) {}
-    fun stderr(data: String) {}
-    fun stdline(data: String) {}
-    fun errline(data: String) {}
-    fun debug(data: String) {}
-}

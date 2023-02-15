@@ -1,8 +1,9 @@
 package org.archguard.action.checkout
 
 import org.archguard.action.exec.Command
-import org.archguard.action.exec.ExecListeners
 import org.archguard.action.exec.ExecOptions
+import org.archguard.action.exec.StringExecListeners
+import org.jetbrains.annotations.TestOnly
 import java.io.File
 
 class GitCommandManager(private var workingDirectory: String = ".", private var lfs: Boolean = false) {
@@ -47,8 +48,6 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
     }
 
     fun branchList(remote: Boolean): List<String> {
-        val result = mutableListOf<String>()
-
         val args = mutableListOf("rev-parse", "--symbolic-full-name")
         if (remote) {
             args.add("--remotes=origin")
@@ -57,6 +56,13 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
         }
 
         val output = execGit(args)
+
+        return parseBranchList(output)
+    }
+
+    @TestOnly
+    fun parseBranchList(output: GitOutput): MutableList<String> {
+        val result = mutableListOf<String>()
 
         for (branch in output.stdout.lines()) {
             if (branch.startsWith("refs/heads/")) {
@@ -227,15 +233,7 @@ class GitCommandManager(private var workingDirectory: String = ".", private var 
             env = env,
             silent = silent,
             ignoreReturnCode = allowAllExitCodes,
-            listeners = object : ExecListeners {
-                override fun stdout(data: String) {
-                    stdout.add(data)
-                }
-
-                override fun stderr(data: String) {
-                    stderr += data
-                }
-            }
+            listeners = StringExecListeners(stdout, stderr)
         )
 
         result.exitCode = exec.exec(gitPath, args, options)
