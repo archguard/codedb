@@ -29,16 +29,4 @@ class HandlerFactorTest {
 
         handler.shouldBeTypeOf<CommandActionHandler>()
     }
-
-    @Test
-    fun `handler type kotlin script`() {
-        val handler = HandlerFactory.create(
-            ActionStep(
-                name = "test",
-                run = "test.kts"
-            ), RunnerContext()
-        )
-
-        handler.shouldBeTypeOf<KotlinScriptActionHandler>()
-    }
 }

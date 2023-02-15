@@ -6,10 +6,21 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
+val kotlinScript = sourceSets.create("kts")
+java {
+    registerFeature(kotlinScript.name) {
+        usingSourceSet(sourceSets["main"])
+        usingSourceSet(kotlinScript)
+        capability(project.group.toString(), project.name, project.version.toString())
+    }
+}
+
 dependencies {
     implementation(projects.core)
     implementation(projects.action.actionToolkit)
-    implementation(projects.workflowLib.repl)
+
+    "ktsImplementation"(projects.workflowLib.repl)
+    "ktsImplementation"(projects.action.runner)
 
     implementation(libs.clikt)
     implementation(libs.serialization.json)
@@ -26,7 +37,6 @@ dependencies {
 
 
     implementation(libs.kaml)
-    implementation(project(mapOf("path" to ":workflow-lib:repl")))
 
     testImplementation(libs.bundles.test)
 }

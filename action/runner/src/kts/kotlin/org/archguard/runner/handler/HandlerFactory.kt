@@ -11,11 +11,9 @@ class HandlerFactory {
             }
 
             return when (data.run.scriptType()) {
+                ScriptType.KotlinScriptFile -> KotlinScriptActionHandler(data, context, data.name)
                 ScriptType.Shell -> CommandActionHandler(data, context, data.name)
                 ScriptType.ShellScriptFile -> ShellScriptActionHandler(data, context, data.name)
-                else -> {
-                    throw Exception("Unsupported script type: ${data.run}")
-                }
             }
         }
     }
