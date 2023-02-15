@@ -10,7 +10,7 @@ class GitSourceSettings(
     val authToken: String = "",
     val sshKey: String = "",
 ) {
-    val gitServerUrl: String = "github.com"
+    val gitServerUrl: String = "https://github.com"
     val fetchDepth: Int = 0
     val nestedSubmodules: Boolean = false
     val commit: String = ""
