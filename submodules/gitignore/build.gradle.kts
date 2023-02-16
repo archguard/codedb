@@ -8,8 +8,8 @@ dependencies {
     implementation(libs.coroutines.core)
 
     // Logging
-    implementation(libs.logging.slf4j.api)
-    implementation(libs.logging.logback.classic)
+    implementation(libs.logging.kotlin)
 
+    testImplementation(libs.jimfs)
     testImplementation(libs.bundles.test)
 }

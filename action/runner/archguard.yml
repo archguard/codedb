@@ -18,13 +18,13 @@ jobs:
 #        with:
 #          repository: https://github.com/archguard/code-poc.git
 #          branch: master
-
-      - name: "Complexity"
-        uses: archguard/scanner@v2
-        with:
-          type: "estimate"
-          path: "."
-          output: [ "json" ]
+#
+#      - name: "Complexity"
+#        uses: archguard/scanner@v2
+#        with:
+#          type: "estimate"
+#          path: "."
+#          output: [ "json", "arrow" ]
 
       - name: "Source Code with Linter"
         uses: archguard/scanner@v2
@@ -32,7 +32,7 @@ jobs:
           type: "source_code"
           language: kotlin
           features: [ "datamap" ]
-          output: [ "json" ]
+          output: [ "json", "arrow" ]
           rules: [ "webapi", "test", "sql" ]
           path: "."
 

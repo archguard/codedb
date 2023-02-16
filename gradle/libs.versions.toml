@@ -41,6 +41,7 @@ jacoco = "0.8.8"
 re2j = "1.7"
 
 logback = "1.4.5"
+kotlinLogging = "4.0.0-beta-19"
 
 jgit = "6.4.0.202211300538-r"
 
@@ -99,6 +100,7 @@ test-assertj = { group = "org.assertj", name = "assertj-core", version.ref = "as
 # Logging
 logging-slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j" }
 logging-logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+logging-kotlin = { group = "io.github.oshai", name = "kotlin-logging-jvm", version.ref = "kotlinLogging" }
 
 # DSL
 jupyter-api = { group = "org.jetbrains.kotlinx", name = "kotlin-jupyter-api", version.ref = "jupyterApi" }
@@ -168,6 +170,8 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 
 # -------------------------------------  multiple platform dependencies -------------------------------------
 mpp-uuid = { group = "com.benasher44", name = "uuid", version.ref = "uuid" }
+
+jimfs = "com.google.jimfs:jimfs:1.2"
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
