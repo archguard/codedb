@@ -63,6 +63,9 @@ kaml = "0.51.0"
 
 ktor = "2.0.3"
 
+arrow = "11.0.0"
+dataframe = "0.10.0-dev-1373"
+
 [libraries]
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
@@ -172,6 +175,16 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 mpp-uuid = { group = "com.benasher44", name = "uuid", version.ref = "uuid" }
 
 jimfs = "com.google.jimfs:jimfs:1.2"
+
+
+# arrow
+arrow-vector = { group = "org.apache.arrow", name = "arrow-vector", version.ref = "arrow" }
+# arrow-memory = { group = "org.apache.arrow", name = "arrow-memory", version.ref = "arrow" }
+arrow-memory-netty = { group = "org.apache.arrow", name = "arrow-memory-netty", version.ref = "arrow" }
+arrow-memory-unsafe = { group = "org.apache.arrow", name = "arrow-memory-unsafe", version.ref = "arrow" }
+
+dataframe = { group = "org.jetbrains.kotlinx", name = "dataframe", version.ref = "dataframe" }
+dataframe-arrow = { group = "org.jetbrains.kotlinx", name = "dataframe-arrow", version.ref = "dataframe" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

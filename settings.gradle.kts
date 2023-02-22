@@ -40,3 +40,4 @@ include(":action:action-toolkit")
 
 include(":action:checkout")
 include(":action:coverage")
+include(":action:oo-metric")
