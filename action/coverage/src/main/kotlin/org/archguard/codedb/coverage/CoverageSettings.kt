@@ -1,6 +1,8 @@
 package org.archguard.codedb.coverage
 
-class CoverageSettings(val workdir: String, val outputDir: String) {
+import org.archguard.action.exec.CommandSetting
+
+class CoverageSettings(val workdir: String, val outputDir: String) : CommandSetting {
     companion object {
         fun from(argsToMap: Map<String, String>): CoverageSettings {
             return CoverageSettings(

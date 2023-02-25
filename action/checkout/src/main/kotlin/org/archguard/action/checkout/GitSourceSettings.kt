@@ -1,6 +1,7 @@
 package org.archguard.action.checkout
 
 import org.archguard.action.exec.CommandArgs
+import org.archguard.action.exec.CommandSetting
 
 class GitSourceSettings(
     val repository: String,
@@ -11,7 +12,7 @@ class GitSourceSettings(
     val serverSide: Boolean = false,
     val submodule: Boolean = false,
     val workdir: String = "",
-) {
+) : CommandSetting {
     val gitServerUrl: String = "https://github.com"
     val fetchDepth: Int = 0
     val nestedSubmodules: Boolean = false
