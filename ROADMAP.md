@@ -28,7 +28,7 @@ Client Side:
     - [ ] CodeCity
     - [ ] ...
 
-Build Side:
+Pipeline:
 
 - [ ] eDSL = embedding DSL
     - [x] MongoDB. Need to implement custom `querysql-mongodb` for new morphia.
