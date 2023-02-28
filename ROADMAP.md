@@ -13,18 +13,23 @@
     - Database Migration
     - Align ArchGuard Server APIs
 
-## 2021-12-31
+## 2023-12-31
 
 # Todos
 
-Todos:
+Client Side:
 
-- [ ] Workbench
-    - [x] REPL environment
-        - [x] Kotlin REPL
-        - [x] Kotlin Jupyter Kernel
-        - [x] Dynamic Library
-    - [ ] REPL Editor
+- [ ] Data Visualization
+    - [ ] Landscape View
+    - [ ] Mapping View
+        - [ ] Services Map, Database Map, Message Map
+    - [ ] Network Profiling
+        - [ ] [Sample](https://user-images.githubusercontent.com/5441976/187399382-907788dc-9c03-4a66-a560-07d28fd2de07.png)
+    - [ ] CodeCity
+    - [ ] ...
+
+Build Side:
+
 - [ ] eDSL = embedding DSL
     - [x] MongoDB. Need to implement custom `querysql-mongodb` for new morphia.
     - [x] Query DSL
@@ -42,6 +47,15 @@ Todos:
 - [ ] Fitness Engine
     - [ ] Fitness function
     - [ ] Math integration API
+
+Server Side:
+
+- [ ] Workbench
+    - [x] REPL environment
+        - [x] Kotlin REPL
+        - [x] Kotlin Jupyter Kernel
+        - [x] Dynamic Library
+    - [ ] REPL Editor
 - [ ] Factor Model. CodeDB 自带模型，用于查询代码库的度量指标
     - Builtin Data
         - [ ] Ast Tree with TreeSitter ??
@@ -52,19 +66,6 @@ Todos:
         - [ ] security
         - [ ] sonarqube
         - [ ] ...
-- [ ] AI Algorithm
-    - [ ] ML Algorithm
-        - [ ] KNN
-        - [ ] SVM
-        - [ ] ...
-- [ ] Data Visualization
-    - [ ] Landscape View
-    - [ ] Mapping View
-        - [ ] Services Map, Database Map, Message Map
-    - [ ] Network Profiling
-        - [ ] [Sample](https://user-images.githubusercontent.com/5441976/187399382-907788dc-9c03-4a66-a560-07d28fd2de07.png)
-    - [ ] CodeCity
-    - [ ] ...
 - [ ] Data Query
     - [ ] Structure QL. 用于支持动态的模型引入
         - [ ] search by file name
@@ -72,3 +73,11 @@ Todos:
         - [ ] search by regex
     - [ ] Query Engine
         - [ ] search by code snippet
+
+AI Side (need to spike):
+
+- [ ] AI Algorithm
+    - [ ] ML Algorithm
+        - [ ] KNN
+        - [ ] SVM
+        - [ ] ...
