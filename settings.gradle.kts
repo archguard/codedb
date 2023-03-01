@@ -9,7 +9,6 @@ pluginManagement {
     }
 }
 
-enableFeaturePreview("VERSION_CATALOGS")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":api-examples:getting-started")
@@ -35,9 +34,9 @@ include(":workflow-lib:fitness-engine")
 include(":workflow-lib:task-core")
 include(":workflow-lib:repl")
 
-include(":action:runner")
-include(":action:action-toolkit")
+include(":pipeline:runner")
+include(":pipeline:action-toolkit")
 
-include(":action:checkout")
-include(":action:coverage")
-include(":action:oo-metric")
+include(":pipeline:checkout")
+include(":pipeline:coverage")
+include(":pipeline:oo-metric")

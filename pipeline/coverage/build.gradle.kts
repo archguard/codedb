@@ -10,28 +10,39 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.action.actionToolkit)
+    implementation(projects.pipeline.actionToolkit)
     implementation(projects.core)
 
-    implementation(libs.serialization.json)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlin.stdlib)
 
-    implementation(libs.dataframe.arrow)
-    implementation(libs.arrow.vector)
-    implementation(libs.chapi.domain)
+    // Logging
+    implementation(libs.logging.slf4j.api)
+    implementation(libs.logging.logback.classic)
+
+    // java
+    implementation(libs.jacoco.core)
+    implementation(libs.guava)
+    implementation(libs.gson)
+
+    compileOnly(libs.auto.value.annotations)
+    kapt(libs.auto.value)
+
+    implementation(libs.jcommander)
 
     testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)
 }
 
 application {
-    mainClass.set("org.archguard.codedb.metric.oo.MainKt")
+    mainClass.set("org.archguard.codedb.coverage.MainKt")
 }
 
 tasks {
     shadowJar {
 
         manifest {
-            attributes(Pair("Main-Class", "org.archguard.codedb.metric.oo.MainKt"))
+            attributes(Pair("Main-Class", "org.archguard.codedb.coverage.MainKt"))
         }
         // minimize()
         dependencies {

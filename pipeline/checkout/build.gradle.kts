@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.action.actionToolkit)
+    implementation(projects.pipeline.actionToolkit)
 
     // Logging
     implementation(libs.logging.slf4j.api)

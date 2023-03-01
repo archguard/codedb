@@ -17,10 +17,10 @@ java {
 
 dependencies {
     implementation(projects.core)
-    implementation(projects.action.actionToolkit)
+    implementation(projects.pipeline.actionToolkit)
 
     "ktsImplementation"(projects.workflowLib.repl)
-    "ktsImplementation"(projects.action.runner)
+    "ktsImplementation"(projects.pipeline.runner)
 
     implementation(libs.clikt)
     implementation(libs.serialization.json)
