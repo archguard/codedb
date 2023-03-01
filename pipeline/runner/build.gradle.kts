@@ -6,21 +6,21 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-val kotlinScript = sourceSets.create("kts")
-java {
-    registerFeature(kotlinScript.name) {
-        usingSourceSet(sourceSets["main"])
-        usingSourceSet(kotlinScript)
-        capability(project.group.toString(), project.name, project.version.toString())
-    }
-}
+//val kotlinScript = sourceSets.create("kts")
+//java {
+//    registerFeature(kotlinScript.name) {
+//        usingSourceSet(sourceSets["main"])
+//        usingSourceSet(kotlinScript)
+//        capability(project.group.toString(), project.name, project.version.toString())
+//    }
+//}
 
 dependencies {
     implementation(projects.core)
     implementation(projects.pipeline.actionToolkit)
 
-    "ktsImplementation"(projects.workflowLib.repl)
-    "ktsImplementation"(projects.pipeline.runner)
+//    "ktsImplementation"(projects.workflowLib.repl)
+//    "ktsImplementation"(projects.pipeline.runner)
 
     implementation(libs.clikt)
     implementation(libs.serialization.json)
