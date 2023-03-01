@@ -21,6 +21,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/three": "^0.146.0",
     "antd": "^5.1.2",
+    "apache-arrow": "^11.0.0",
     "craco-antd": "^2.0.0",
     "echarts": "^5.4.1",
     "i18next": "^22.4.9",
