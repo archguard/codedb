@@ -29,9 +29,7 @@ include(":client:codedb-gradle-plugin")
 // for server/cli/other usage
 include(":workflow-lib:factor")
 include(":workflow-lib:metric")
-include(":workflow-lib:structure-ql")
 include(":workflow-lib:fitness-engine")
-include(":workflow-lib:task-core")
 include(":workflow-lib:repl")
 
 include(":pipeline:runner")
