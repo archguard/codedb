@@ -10,7 +10,6 @@ plugins {
 
 dependencies {
 	api(projects.workflowLib.factor)
-	api(projects.workflowLib.metric)
 	api(projects.workflowLib.repl)
 	implementation(projects.core)
 
