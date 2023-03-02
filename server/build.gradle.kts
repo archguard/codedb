@@ -10,7 +10,7 @@ plugins {
 
 dependencies {
 	api(projects.workflowLib.factor)
-	api(projects.workflowLib.repl)
+	api(projects.submodules.repl)
 	implementation(projects.core)
 
 	implementation(libs.bundles.springboot)
