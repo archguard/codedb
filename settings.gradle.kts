@@ -37,3 +37,5 @@ include(":pipeline:action-toolkit")
 include(":pipeline:checkout")
 include(":pipeline:coverage")
 include(":pipeline:oo-metric")
+
+include(":language:llm-core")
