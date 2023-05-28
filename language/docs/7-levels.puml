@@ -31,9 +31,9 @@ package "能力层(Domain Services)" {
 }   
 
 package "核心平台(Core Platform)" {
-[Authentication]
-[Logging] 
-[Caching]
+  [Authentication]
+  [Logging]
+  [Caching]
 }
 
 [App] --> [CRM]  
