@@ -1,5 +1,68 @@
 # LLM with Arch
 
+三阶六工程
+
+## 定义工序
+
+目标形态：
+
+```yml
+- Q: 介绍一下这个应用？
+  A:
+  T: 这是一个 xx 系统的 Web 渠道，业务场景是：xxx。在技术架构上，采用的是 xx 架构风格。
+  Data: README, Build Tool, 渠道信息，应用类型，技术栈，核心业务场景？
+  PromptEng: 
+- Q: 架构质量信息
+  A:
+  Data: 架构指标，合理度规范 
+  PromptEng:
+- Q: 规范检查
+  A: 
+  Data: 已有代码
+  PromptEng: 多次 Prompt
+- Q: 业务逻辑查询
+  A: 
+  T: 分析过程？自动 Endpoint/Component 分析，Build Tool analysis (Bazel like ?)
+  Data: 
+  PromptEng:   
+- Q: 模式代码
+  A:
+  Data: 设计模式代码
+  PromptEng: FineTuning
+```
+
+## 形态
+
+1. 文本应用。
+2. markdown 表格，渲染器。
+
+## Data sources?
+
+- 代码库规模：1k~3k?
+
+计划占比
+
+| 应用类型   | 占比  |
+|--------|-----|
+| Web 前端 | 15% |
+| 移动应用   | 15% |
+| 后端微服务  | 50% |
+| 桌面应用   | 5%  |
+| 插件     | 5%  |
+| 嵌入式应用  | 5%  |
+| 杂项     | 5%  |
+
+Todo: 调研不同类型的桌面应用
+
+| 渠道类型 | 目标应用类型 | 技术栈        | 计划占比 |
+|------|--------|------------|------|
+| Web  | 桌面 Web | JavaScript | 5%   |
+| Web  | 移动 Web | JavaScript | 5%   |
+| 桌面应用 | 桌面应用   | .Net/C++?  | 3%   |
+| 桌面应用 | 桌面应用   | .Net?      | 3%   |
+
+语言建模
+
 ## Define Architecture
 
 定义架构：
