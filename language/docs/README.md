@@ -6,6 +6,18 @@
 
 目标形态：
 
+我在设计一个基于 LLM（大语言模型） 的架构问答系统，帮我编写完成下面的材料。要求：
+
+1. 问题和回答的质量要高，问题要具有指向性，回答要具有解决性。
+2. 如果问题和回答不够好，请帮我生成一些问题和回答。
+3. 如果材料不够，帮我生成一些材料。
+4. 根据 template 编写一个完整的 Answer 示例
+5. 最后，你只返回 yml 格式结果。
+
+原始材料如下：
+
+###
+
 Q - Question, A - Answer, T - Template, Data - Data, PromptEng - Prompt Engineering
 
 ```yml
@@ -15,29 +27,32 @@ Q - Question, A - Answer, T - Template, Data - Data, PromptEng - Prompt Engineer
   Data: README 文件，Build Tool 配置，渠道信息，应用类型，技术栈，核心业务场景
   PromptEng: 根据提供的材料，组织好问题，确保问题清晰且具体。
 
-- Q: 架构质量信息
+- Q: 架构质量如何？
   A: 
+  T: 该架构质量良好，符合 xxx 指标。xx 需要注意的是 xxx，建议使用 xxx 方式进行优化。
   Data: 架构指标，合理度规范
   PromptEng: 描述架构指标和合理度规范，确保问题具有明确的指向性。
 
 - Q: 检查一下如下的代码，看是否符合规范？
   A: 
   T: 其中，第一行代码不符合规范，应该使用 xxx 方式。第二行代码符合规范。
-  Data: 已有代码
+  Data: 已有代码、代码规范、架构规范、API 规范
   PromptEng: 使用多个Prompt，引导模型生成与规范检查相关的问题和解决方案，确保问题和回答的有效性。
 
 - Q: 请解释一下下面代码的业务含义？
   A:
   T: 
-  Data: 系统结构，Endpoint/Component 分析结果，Build Tool 配置
+  Data: 系统结构、Endpoint/Component 分析结果、Build Tool 配置
   PromptEng: 提供更多关于系统结构和技术的信息，以便模型能够更好地分析业务逻辑。
 
 - Q: 下面的业务逻辑，适合用什么设计模式？
   A: 
   T: 根据业务逻辑，可以使用 xxx 设计模式。请参考 xxx 代码示例，了解如何使用该设计模式。
-  Data: 设计模式代码
+  Data: 设计模式数据集
   PromptEng: 使用Fine-Tuning技术，针对设计模式进行调整和优化，以生成与设计模式相关的代码示例。
 ```
+
+###
 
 ## 形态
 
