@@ -8,6 +8,7 @@ dependencies {
     implementation(projects.language.llmCore)
 
     implementation(libs.kotlin.stdlib)
+    implementation(libs.langtorch)
 
     testImplementation(libs.bundles.test)
     testRuntimeOnly(libs.test.junit.engine)

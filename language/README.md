@@ -9,6 +9,8 @@
 - [ ] OpenAI Calling
 - [ ] Agent API
 - [ ] Command
+- [ ] JVM version LangChain
+    - [LangTorch](https://github.com/Knowly-ai/langtorch) 
 
 ## To Spike
 
