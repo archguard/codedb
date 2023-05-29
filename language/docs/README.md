@@ -6,29 +6,37 @@
 
 目标形态：
 
+Q - Question, A - Answer, T - Template, Data - Data, PromptEng - Prompt Engineering
+
 ```yml
 - Q: 介绍一下这个应用？
-  A:
-  T: 这是一个 xx 系统的 Web 渠道，业务场景是：xxx。在技术架构上，采用的是 xx 架构风格。
-  Data: README, Build Tool, 渠道信息，应用类型，技术栈，核心业务场景？
-  PromptEng: 
+  A: 
+  T: 这是一个基于 xx 架构风格的 Web 渠道系统，旨在应用于 xxx 场景。它提供了什么功能？使用了哪些技术栈？请参考 README 文件和渠道信息获取更多详细信息。
+  Data: README 文件，Build Tool 配置，渠道信息，应用类型，技术栈，核心业务场景
+  PromptEng: 根据提供的材料，组织好问题，确保问题清晰且具体。
+
 - Q: 架构质量信息
-  A:
-  Data: 架构指标，合理度规范 
-  PromptEng:
-- Q: 规范检查
   A: 
+  Data: 架构指标，合理度规范
+  PromptEng: 描述架构指标和合理度规范，确保问题具有明确的指向性。
+
+- Q: 检查一下如下的代码，看是否符合规范？
+  A: 
+  T: 其中，第一行代码不符合规范，应该使用 xxx 方式。第二行代码符合规范。
   Data: 已有代码
-  PromptEng: 多次 Prompt
-- Q: 业务逻辑查询
-  A: 
-  T: 分析过程？自动 Endpoint/Component 分析，Build Tool analysis (Bazel like ?)
-  Data: 
-  PromptEng:   
-- Q: 模式代码
+  PromptEng: 使用多个Prompt，引导模型生成与规范检查相关的问题和解决方案，确保问题和回答的有效性。
+
+- Q: 请解释一下下面代码的业务含义？
   A:
+  T: 
+  Data: 系统结构，Endpoint/Component 分析结果，Build Tool 配置
+  PromptEng: 提供更多关于系统结构和技术的信息，以便模型能够更好地分析业务逻辑。
+
+- Q: 下面的业务逻辑，适合用什么设计模式？
+  A: 
+  T: 根据业务逻辑，可以使用 xxx 设计模式。请参考 xxx 代码示例，了解如何使用该设计模式。
   Data: 设计模式代码
-  PromptEng: FineTuning
+  PromptEng: 使用Fine-Tuning技术，针对设计模式进行调整和优化，以生成与设计模式相关的代码示例。
 ```
 
 ## 形态
