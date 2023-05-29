@@ -39,3 +39,4 @@ include(":pipeline:coverage")
 include(":pipeline:oo-metric")
 
 include(":language:llm-core")
+include(":language:copilot-poc")
