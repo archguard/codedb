@@ -7,8 +7,10 @@ class ExecAgentTest {
     fun demo() {
         exec {
             workspace("language/copilot-poc")
-            archStyle("dd")
-            createPackage("org.archguard.copilot.exec.agent")
+
+            group("org.archguard.copilot.exec.agent")
+
+            archStyle("ddd")
         }
     }
 }

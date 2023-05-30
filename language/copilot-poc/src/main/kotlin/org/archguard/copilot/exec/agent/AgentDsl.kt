@@ -15,6 +15,10 @@ enum class ArchStyle(val value: String) {
             val lowercase = string.lowercase()
             return values().any { it.value == lowercase }
         }
+
+        fun valuesString(): String {
+            return values().joinToString(", ") { it.value }
+        }
     }
 }
 
@@ -26,14 +30,17 @@ class ExecAgent {
         this.workdir = path
     }
 
+    /**
+     * the Architecture Style, default is MVC, available values are: [ArchStyle.valuesString]
+     * should be lowercase
+     */
     fun archStyle(string: String) {
-        // parse string to ArchStyle
         if (ArchStyle.contains(string)) {
             this.archStyle = ArchStyle.valueOf(string.uppercase())
         }
     }
 
-    fun createPackage(packageName: String) {
+    fun group(packageName: String) {
 
     }
 
