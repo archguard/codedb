@@ -2,14 +2,21 @@ package org.archguard.copilot.exec.agent
 
 class ExecAgent {
     fun createPackage(packageName: String) {
-        TODO("Not yet implemented")
+
     }
+
+    fun createClass(className: String, body: ClassBody.() -> Unit) {
+
+    }
+}
+
+class ClassBody {
 
 }
 
 
 fun exec(init: ExecAgent.() -> Unit): ExecAgent {
-    val html = ExecAgent()
-    html.init()
-    return html
+    val agent = ExecAgent()
+    agent.init()
+    return agent
 }
