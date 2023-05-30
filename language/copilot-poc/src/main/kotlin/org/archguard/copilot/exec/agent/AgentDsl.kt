@@ -44,6 +44,14 @@ class ExecAgent {
 
     }
 
+    fun operation(operation: Operation.() -> Unit): Operation {
+        val op = Operation()
+        op.operation()
+        return op
+    }
+}
+
+class Operation {
     fun createClass(packageName: String, className: String, body: String) {
 
     }

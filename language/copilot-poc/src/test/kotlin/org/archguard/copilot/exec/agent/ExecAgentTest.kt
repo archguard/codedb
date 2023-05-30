@@ -12,15 +12,18 @@ class ExecAgentTest {
 
             archStyle("ddd")
 
-            createClass(
-                "com.banking.payment", "PaymentService", """
+            operation {
+                createClass(
+                    "com.banking.payment", "PaymentService", """
 class PaymentService {
     fun pay() {
         println("pay")
     }
 }
             """.trimIndent()
-            )
+                )
+
+            }
         }
     }
 }
