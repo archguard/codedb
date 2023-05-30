@@ -6,11 +6,21 @@ class ExecAgentTest {
     @Test
     fun demo() {
         exec {
-            workspace("language/copilot-poc")
+            workspace("payment-service")
 
-            group("org.archguard.copilot.exec.agent")
+            group("com.banking.payment")
 
             archStyle("ddd")
+
+            createClass(
+                "com.banking.payment", "PaymentService", """
+class PaymentService {
+    fun pay() {
+        println("pay")
+    }
+}
+            """.trimIndent()
+            )
         }
     }
 }

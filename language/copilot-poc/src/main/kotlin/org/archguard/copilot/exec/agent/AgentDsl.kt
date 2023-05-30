@@ -44,15 +44,16 @@ class ExecAgent {
 
     }
 
-    fun createClass(className: String, body: ClassBody.() -> Unit) {
+    fun createClass(packageName: String, className: String, body: String) {
 
     }
 }
 
 class ClassBody {
+    fun createMethod(methodName: String, returnType: String, body: String) {
 
+    }
 }
-
 
 fun exec(init: ExecAgent.() -> Unit): ExecAgent {
     val agent = ExecAgent()
