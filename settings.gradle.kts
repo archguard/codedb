@@ -16,7 +16,7 @@ include(":api-examples:getting-started")
 include(":server")
 
 // TODO: spike for core usage
- include(":core")
+include(":core")
 
 include(":submodules:gitignore")
 include(":submodules:walkdir")
@@ -38,5 +38,3 @@ include(":pipeline:checkout")
 include(":pipeline:coverage")
 include(":pipeline:oo-metric")
 
-include(":language:llm-core")
-include(":language:copilot-poc")
