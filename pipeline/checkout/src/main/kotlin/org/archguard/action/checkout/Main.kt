@@ -1,6 +1,7 @@
 package org.archguard.action.checkout
 
 import org.archguard.action.checkout.helper.GitAuthHelper
+import org.archguard.action.checkout.helper.RefHelper
 import org.archguard.action.io.FileExt
 import java.io.File
 

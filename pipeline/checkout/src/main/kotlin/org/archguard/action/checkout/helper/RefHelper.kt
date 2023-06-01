@@ -1,5 +1,6 @@
-package org.archguard.action.checkout
+package org.archguard.action.checkout.helper
 
+import org.archguard.action.checkout.GitCommandManager
 import java.util.*
 
 class RefHelper {

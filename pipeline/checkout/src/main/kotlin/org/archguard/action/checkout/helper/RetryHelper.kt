@@ -1,4 +1,4 @@
-package org.archguard.action.checkout
+package org.archguard.action.checkout.helper
 
 import kotlin.math.floor
 

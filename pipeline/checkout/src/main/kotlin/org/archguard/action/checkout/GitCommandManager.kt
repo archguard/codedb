@@ -1,5 +1,7 @@
 package org.archguard.action.checkout
 
+import org.archguard.action.checkout.helper.RefHelper
+import org.archguard.action.checkout.helper.RetryHelper
 import org.archguard.action.exec.Command
 import org.archguard.action.exec.ExecOptions
 import org.archguard.action.exec.StringListExecListeners
