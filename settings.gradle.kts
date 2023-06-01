@@ -11,8 +11,6 @@ pluginManagement {
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include(":api-examples:getting-started")
-
 include(":server")
 
 // TODO: spike for core usage
