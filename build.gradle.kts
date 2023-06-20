@@ -66,6 +66,9 @@ configure(
             - project(":submodules")
             - project(":pipeline")
             - project(":workflow-lib")
+            - project(":client:codedb-gradle-plugin")
+            - project(":client:codedb-clui")
+            - project(":client:codedb-cli")
 ) {
     apply(plugin = "java-library")
     apply(plugin = "maven-publish")
