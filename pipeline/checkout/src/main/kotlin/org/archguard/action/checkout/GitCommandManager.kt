@@ -14,7 +14,8 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
         "GCM_INTERACTIVE" to "Never" // Disable prompting for git credential manager
     )
 
-    private var gitPath = "git"
+    // enable for custom git path
+    var gitPath = "git"
 
     private val exec = Command()
 

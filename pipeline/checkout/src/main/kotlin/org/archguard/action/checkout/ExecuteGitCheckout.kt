@@ -8,6 +8,10 @@ import java.io.File
 fun executeGitCheckout(settings: GitSourceSettings) {
     val git = GitCommandManager(settings.repositoryPath)
 
+    doCheckout(git, settings)
+}
+
+fun doCheckout(git: GitCommandManager, settings: GitSourceSettings) {
     val authHelper = GitAuthHelper(git, settings)
 
     if (File(settings.repositoryPath).exists()) {
