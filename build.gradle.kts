@@ -30,7 +30,7 @@ allprojects {
     }
 
     group = "org.archguard.codedb"
-    version = "0.1.1"
+    version = "0.1.2"
 
     java.sourceCompatibility = JavaVersion.VERSION_11
     java.targetCompatibility = JavaVersion.VERSION_11
