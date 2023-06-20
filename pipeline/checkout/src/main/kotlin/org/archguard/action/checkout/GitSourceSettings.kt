@@ -11,10 +11,10 @@ class GitSourceSettings(
     val sshKey: String = "",
     val serverSide: Boolean = false,
     val submodule: Boolean = false,
+    var fetchDepth: Int = 0,
     val workdir: String = "",
 ) : CommandSetting {
     val gitServerUrl: String = "https://github.com"
-    val fetchDepth: Int = 0
     val nestedSubmodules: Boolean = false
     val commit: String = ""
     val repositoryPath: String get() = repository.substringAfterLast("/")
