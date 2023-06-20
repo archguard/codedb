@@ -99,15 +99,15 @@ configure(
                     }
                     developers {
                         developer {
-                            id.set("Modernizing")
-                            name.set("Modernizing Team")
+                            id.set("ArchGuard")
+                            name.set("ArchGuard Team")
                             email.set("h@phodal.com")
                         }
                     }
                     scm {
-                        connection.set("scm:git:git://github.com/archguard/scanner.git")
-                        developerConnection.set("scm:git:ssh://github.com/archguard/scanner.git")
-                        url.set("https://github.com/archguard/scanner/")
+                        connection.set("scm:git:git://github.com/archguard/codedb.git")
+                        developerConnection.set("scm:git:ssh://github.com/archguard/codedb.git")
+                        url.set("https://github.com/archguard/codedb/")
                     }
                 }
             }
