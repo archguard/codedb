@@ -2,6 +2,7 @@ package org.archguard.action.checkout
 
 import org.archguard.action.exec.CommandArgs
 import org.archguard.action.exec.CommandSetting
+import java.io.File.separator
 
 class GitSourceSettings(
     val repository: String,
@@ -17,8 +18,7 @@ class GitSourceSettings(
     val gitServerUrl: String = "https://github.com"
     val nestedSubmodules: Boolean = false
     val commit: String = ""
-    val repositoryPath: String get() = repository.substringAfterLast("/")
-
+    var repositoryPath = workdir + separator + repository.substringAfterLast("/")
     val persistCredentials: Boolean = false
     val sshStrict: Boolean = false
     val sshKnownHosts: String = ""

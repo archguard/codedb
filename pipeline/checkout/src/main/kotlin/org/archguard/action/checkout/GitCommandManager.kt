@@ -20,7 +20,7 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
     private val exec = Command()
 
     fun init(): GitOutput {
-        return execGit(listOf("init", "."))
+        return execGit(listOf("init", workingDirectory))
     }
 
     fun remoteAdd(remoteName: String, remoteUrl: String) {
@@ -208,6 +208,7 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
         } else {
             listOf("log", "-1")
         }
+
         val silent = format != null
         return execGit(args, false, silent)
     }
