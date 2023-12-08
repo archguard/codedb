@@ -13,7 +13,7 @@ class GitSourceSettings(
     val serverSide: Boolean = false,
     val submodule: Boolean = false,
     var fetchDepth: Int = 0,
-    val workdir: String = "",
+    var workdir: String = "",
 ) : CommandSetting {
     val gitServerUrl: String = "https://github.com"
     val nestedSubmodules: Boolean = false
@@ -35,7 +35,7 @@ class GitSourceSettings(
                 sshKey = argsMap["--ssh-key"] ?: "",
                 serverSide = argsMap["--server-side"]?.toBoolean() ?: false,
                 submodule = argsMap["--submodule"]?.toBoolean() ?: false,
-                workdir = argsMap["--workdir"] ?: "",
+                workdir = argsMap["--workdir"] ?: ".",
             )
         }
     }

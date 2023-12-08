@@ -146,14 +146,14 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
 
         if (output != null) {
             // Satisfy compiler, will always be set
-            return parseDefaultBranch(output!!.stdout)
+            return parseDefaultBranch(output!!.stdout) ?: throw Error("Unexpected output when retrieving default branch")
         }
 
         throw Error("Unexpected output when retrieving default branch")
     }
 
     @TestOnly
-    fun parseDefaultBranch(lines: String): String {
+    fun parseDefaultBranch(lines: String): String? {
         for (splitLine in lines.trim().split("\n")) {
             val line = splitLine.trim()
             if (line.startsWith("ref:") && line.endsWith("HEAD")) {
@@ -163,7 +163,9 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
             }
         }
 
-        throw Error("Unexpected output when retrieving default branch")
+        logger.error("Output: $lines")
+        logger.error("Unexpected output when retrieving default branch")
+        return null
     }
 
     fun submoduleForeach(command: String, recursive: Boolean): GitOutput {

@@ -10,10 +10,7 @@ class GitSourceSettingsTest {
         val branch = "master"
 
         val settings = GitSourceSettings.fromArgs(arrayOf("--repository", repository, "--branch", branch))
-        settings.repositoryPath = ".tmp/codedb"
-
-//        settings.repository shouldBe repository
-//        settings.branch shouldBe branch
+        settings.workdir = ".tmp"
 
         val commandManager = GitCommandManager(settings.repositoryPath)
         doCheckout(commandManager, settings)
