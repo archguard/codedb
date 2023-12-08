@@ -4,21 +4,24 @@ import org.archguard.action.checkout.helper.GitAuthHelper
 import org.archguard.action.checkout.helper.RefHelper
 import org.archguard.action.io.FileExt
 import java.io.File
+import kotlin.io.path.Path
 
 fun executeGitCheckout(settings: GitSourceSettings) {
-    val git = GitCommandManager(settings.workdir + File.separator + settings.repositoryPath)
+    val workingDirectory = settings.workdir + File.separator + settings.repositoryPath
+    val git = GitCommandManager(workingDirectory)
+
+    logger.info("Working directory: {}", Path(workingDirectory).toAbsolutePath())
+    if (File(workingDirectory).exists()) {
+        FileExt.rmdir(workingDirectory)
+    }
+
+    FileExt.mkdir(workingDirectory)
 
     doCheckout(git, settings)
 }
 
 fun doCheckout(git: GitCommandManager, settings: GitSourceSettings) {
     val authHelper = GitAuthHelper(git, settings)
-
-    if (File(git.workingDirectory).exists()) {
-        FileExt.rmdir(git.workingDirectory)
-    }
-
-    FileExt.mkdir(git.workingDirectory)
 
     authHelper.configureTempGlobalConfig()
 
@@ -36,8 +39,8 @@ fun doCheckout(git: GitCommandManager, settings: GitSourceSettings) {
     logger.info("Disabling automatic garbage collection")
     git.tryDisableAutomaticGarbageCollection()
 
-    settings.ref = git.getDefaultBranch(git.workingDirectory)
-    logger.info("Determining default branch for repository: ${git.workingDirectory}, default branch: ${settings.ref}")
+    settings.ref = git.getDefaultBranch(settings.repository)
+    logger.info("Determining default branch for repository: ${settings.repository}, default branch: ${settings.ref}")
 
     val refHelper = RefHelper()
     val refSpec = refHelper.getRefSpecForAllHistory(settings.ref, settings.branch)

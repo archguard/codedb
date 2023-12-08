@@ -13,7 +13,7 @@ class GitSourceSettings(
     val serverSide: Boolean = false,
     val submodule: Boolean = false,
     var fetchDepth: Int = 0,
-    var workdir: String = "",
+    var workdir: String = ".tmp",
 ) : CommandSetting {
     val gitServerUrl: String = "https://github.com"
     val nestedSubmodules: Boolean = false

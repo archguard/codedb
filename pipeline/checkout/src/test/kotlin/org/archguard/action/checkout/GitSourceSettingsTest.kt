@@ -12,10 +12,8 @@ class GitSourceSettingsTest {
         val settings = GitSourceSettings(
             repository = repository,
             branch = branch,
-            workdir = ".tmp",
         )
 
-        val commandManager = GitCommandManager(settings.repositoryPath)
-        doCheckout(commandManager, settings)
+        executeGitCheckout(settings)
     }
 }
