@@ -212,7 +212,7 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
         return execGit(args, false, silent)
     }
 
-    private fun execGit(args: List<String>, allowAllExitCodes: Boolean = false, silent: Boolean = false): GitOutput {
+    fun execGit(args: List<String>, allowAllExitCodes: Boolean = false, silent: Boolean = false): GitOutput {
         val result = GitOutput()
 
         val env = mutableMapOf<String, String>()
@@ -236,10 +236,16 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
         result.exitCode = exec.exec(gitPath, args, options)
         result.stdout = stdout.joinToString("\n")
 
-//        logger.info(result.stdout)
-//        logger.info(stderr.joinToString(""))
-
         return result
+    }
+
+    fun pullRemote(remoteName: String, refSpec: String, fetchDepth: Int? = null): GitOutput {
+        val args = mutableListOf("pull", "--progress", "--no-recurse-submodules", remoteName, refSpec)
+        if (fetchDepth != null && fetchDepth > 0) {
+            args.add("--depth=$fetchDepth")
+        }
+
+        return execGit(args)
     }
 
     fun setEnvironmentVariable(name: String, value: String) {
