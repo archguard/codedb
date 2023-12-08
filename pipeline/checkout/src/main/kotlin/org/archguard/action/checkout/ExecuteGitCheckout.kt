@@ -6,7 +6,7 @@ import org.archguard.action.io.FileExt
 import java.io.File
 
 fun executeGitCheckout(settings: GitSourceSettings) {
-    val git = GitCommandManager(settings.repositoryPath)
+    val git = GitCommandManager(settings.workdir + File.separator + settings.repositoryPath)
 
     doCheckout(git, settings)
 }
@@ -14,15 +14,15 @@ fun executeGitCheckout(settings: GitSourceSettings) {
 fun doCheckout(git: GitCommandManager, settings: GitSourceSettings) {
     val authHelper = GitAuthHelper(git, settings)
 
-    if (File(settings.repositoryPath).exists()) {
-        FileExt.rmdir(settings.repositoryPath)
+    if (File(git.workingDirectory).exists()) {
+        FileExt.rmdir(git.workingDirectory)
     }
 
-    FileExt.mkdir(settings.repositoryPath)
+    FileExt.mkdir(git.workingDirectory)
 
     authHelper.configureTempGlobalConfig()
 
-    git.config("safe.directory", settings.repositoryPath, true, true)
+    git.config("safe.directory", git.workingDirectory, true, true)
 
     logger.info("Initializing git repository")
     git.init()
@@ -36,8 +36,8 @@ fun doCheckout(git: GitCommandManager, settings: GitSourceSettings) {
     logger.info("Disabling automatic garbage collection")
     git.tryDisableAutomaticGarbageCollection()
 
-    settings.ref = git.getDefaultBranch(settings.repository)
-    logger.info("Determining default branch for repository: ${settings.repository}, default branch: ${settings.ref}")
+    settings.ref = git.getDefaultBranch(git.workingDirectory)
+    logger.info("Determining default branch for repository: ${git.workingDirectory}, default branch: ${settings.ref}")
 
     val refHelper = RefHelper()
     val refSpec = refHelper.getRefSpecForAllHistory(settings.ref, settings.branch)

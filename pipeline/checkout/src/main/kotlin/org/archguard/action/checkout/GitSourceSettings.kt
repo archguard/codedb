@@ -35,7 +35,7 @@ class GitSourceSettings(
                 sshKey = argsMap["--ssh-key"] ?: "",
                 serverSide = argsMap["--server-side"]?.toBoolean() ?: false,
                 submodule = argsMap["--submodule"]?.toBoolean() ?: false,
-                workdir = argsMap["--workdir"] ?: ".",
+                workdir = argsMap["--workdir"] ?: ".tmp",
             )
         }
     }
