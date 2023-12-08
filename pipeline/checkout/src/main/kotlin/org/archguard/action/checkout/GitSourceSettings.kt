@@ -18,7 +18,7 @@ class GitSourceSettings(
     val gitServerUrl: String = "https://github.com"
     val nestedSubmodules: Boolean = false
     val commit: String = ""
-    var repositoryPath = workdir + separator + repository.substringAfterLast("/")
+    var repositoryPath = repository.substringAfterLast("/")
     val persistCredentials: Boolean = false
     val sshStrict: Boolean = false
     val sshKnownHosts: String = ""
