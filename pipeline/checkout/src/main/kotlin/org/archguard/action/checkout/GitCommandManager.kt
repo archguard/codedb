@@ -146,9 +146,13 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
 
         if (output != null) {
             // Satisfy compiler, will always be set
-            return parseDefaultBranch(output!!.stdout) ?: throw Error("Unexpected output when retrieving default branch")
+            val defaultBranch = parseDefaultBranch(output!!.stdout)
+            if (defaultBranch != null) {
+                return defaultBranch
+            }
         }
 
+        logger.info("getDefaultBranch Output Code: ${output!!.stderr}")
         throw Error("Unexpected output when retrieving default branch")
     }
 
@@ -238,6 +242,7 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
 
         result.exitCode = exec.exec(gitPath, args, options)
         result.stdout = stdout.joinToString("\n")
+        result.stderr = stderr.joinToString("\n")
 
         return result
     }
@@ -273,5 +278,6 @@ class GitCommandManager(var workingDirectory: String = ".", private var lfs: Boo
 
 data class GitOutput(
     var stdout: String = "",
-    var exitCode: Int = 0
+    var exitCode: Int = 0,
+    var stderr: String = ""
 )
