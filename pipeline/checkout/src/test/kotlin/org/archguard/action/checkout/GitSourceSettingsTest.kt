@@ -11,6 +11,7 @@ class GitSourceSettingsTest {
 
         val settings = GitSourceSettings.fromArgs(arrayOf("--repository", repository, "--branch", branch))
         settings.workdir = ".tmp"
+        settings.repositoryPath = ".tmp" + java.io.File.separator + repository.substringAfterLast("/")
 
         val commandManager = GitCommandManager(settings.repositoryPath)
         doCheckout(commandManager, settings)
