@@ -1,6 +1,7 @@
 # CodeDB: Technology Insight of Code
 
 [![CI](https://github.com/archguard/codedb-poc/actions/workflows/ci.yaml/badge.svg)](https://github.com/archguard/codedb-poc/actions/workflows/ci.yaml)
+![Maven Central](https://img.shields.io/maven-central/v/org.archguard.codedb/runner)
 
 ![CodeDB Logo](assets/codedb.svg)
 
